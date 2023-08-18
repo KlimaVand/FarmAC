@@ -8,7 +8,6 @@
 public class ALFAM
 {
     /// <summary>
-    /// 
     //! Parameters of model
     /// </summary>
     public double maxTime = 168.0;
