@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+  <constants>
+    <Identity>0</Identity>
+    <CO2EqCH4>
+      <Value>37.4</Value>
+      <Units>kg CO2 equivalents/kg CH4-C</Units>
+      <Description>CO2 equivalent of CH4-C (100 year)</Description>
+    </CO2EqCH4>
+    <CO2EqN2O>
+      <Value>416.4</Value>
+      <Units>kg CO2 equivalents/kg N2O-N</Units>
+      <Description>CO2 equivalent of N2O-N (100 year. IPCC(2007)=265 er kg CO2eq pr kg N2O, dermed er kg CO2eq pr kg N = 265*(2*14+16)/(2*14) = 416.4</Description>
+    </CO2EqN2O>
+    <InventorySystem>
+      <Identity>1</Identity>
+      <Description>IPCC 2006</Description>
+      <Value>1</Value>
+      <Units>none</Units>
+    </InventorySystem>
+    <InventorySystem>
+      <Identity>2</Identity>
+      <Description>FarmAC</Description>
+      <Value>2</Value>
+      <Units>none</Units>
+    </InventorySystem>
+    <ErrorToleranceYield>
+      <Value>0.2</Value>
+      <Description>Maximum difference between expected and modelled DM yield of crops</Description>
+      <Units>none</Units>
+    </ErrorToleranceYield>
+    <ErrorToleranceGrazing>
+      <Value>0.5</Value>
+      <Description>Maximum proportional difference between grazed crop DM and grazed crop intake</Description>
+      <Units>none</Units>
+    </ErrorToleranceGrazing>
+    <EFNO3_IPCC>
+      <Description>Leaching fraction - IPCC (2006)</Description>
+      <Value>0.3</Value>
+      <Units>kg N2O-N/kg manure N</Units>
+    </EFNO3_IPCC>
+    <fert_EFNH3_IPCC>
+      <Description>Emission factor for NH3 and NOx - IPCC (2006)</Description>
+      <Value>0.1</Value>
+      <Units>kg NH3-N or NOx-N/kg fertiliser N</Units>
+    </fert_EFNH3_IPCC>
+    <man_EFNH3_IPCC>
+      <Description>Emission factor for NH3 and NOx - IPCC (2006)</Description>
+      <Value>0.2</Value>
+      <Units>kg NH3-N/kg manure N</Units>
+    </man_EFNH3_IPCC>
+    <adaptationTimePeriod>
+      <Description>Minimum length of the period over which flows will be calculated when using adaptation mode</Description>
+      <Value>100</Value>
+      <Units>years</Units>
+    </adaptationTimePeriod>
+    <minimumTimePeriod>
+      <Description>Minimum length of the period over which flows will be calculated when using projection mode</Description>
+      <Value>20</Value>
+      <Units>years</Units>
+    </minimumTimePeriod>
+    <ErrorToleranceYield>
+      <Value>0.9</Value>
+      <Description>Maximum difference between expected and modelled DM yield of crops</Description>
+      <Units>none</Units>
+    </ErrorToleranceYield>
+  </constants>
+</xml>

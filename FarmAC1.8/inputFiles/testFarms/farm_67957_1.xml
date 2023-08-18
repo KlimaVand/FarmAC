@@ -1,0 +1,303 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Farm>
+    <Identity>67957</Identity>
+    <FarmNumber>67957</FarmNumber>
+    <FarmOwnerName>67957</FarmOwnerName>
+    <AgroEcologicalZone>1</AgroEcologicalZone>
+    <FarmType>1</FarmType>
+    <FarmTypeDescription>Planteavler</FarmTypeDescription>
+    <SelectedScenario>
+      <Identity>1</Identity>
+      <FarmNumber>67957</FarmNumber>
+      <Name>Scenario 1</Name>
+      <NumberOfScenario>1</NumberOfScenario>
+      <IS-ID>1</IS-ID>
+      <ES-ID>1</ES-ID>
+      <InventorySystem>
+        <Name>IPCC 2006 </Name>
+        <Value>1</Value>
+      </InventorySystem>
+      <Rotation>
+        <Identity>1</Identity>
+        <FarmNumber>67957</FarmNumber>
+        <ScenarioID>1</ScenarioID>
+        <NameOfRotation>1</NameOfRotation>
+        <Area>1</Area>
+        <SoilType>Clayey Sandy Soil (&gt; 40% fine sand)</SoilType>
+        <Crop>
+          <Identity>1</Identity>
+          <NameOfCrop>Crimson clover</NameOfCrop>
+          <RotationID>1</RotationID>
+          <Start_day>1</Start_day>
+          <Start_month>4</Start_month>
+          <Start_year>2022</Start_year>
+          <End_day>7</End_day>
+          <End_month>8</End_month>
+          <End_year>2022</End_year>
+          <Irrigation>false</Irrigation>
+          <HarvestMethod>
+            <Value>Combine harvesting</Value>
+            <Description>Combine harvesting</Description>
+            <Identity>1</Identity>
+            <RotationID>1</RotationID>
+          </HarvestMethod>
+          <Product>
+            <Identity>1</Identity>
+            <Name>Crimson clover</Name>
+            <Amount>0</Amount>
+            <FeedCode>951</FeedCode>
+            <Harvested>Harvested</Harvested>
+            <RotationID>1</RotationID>
+            <FieldPlanRotationID>1</FieldPlanRotationID>
+            <Grazed>false</Grazed>
+            <Expected_yield>
+              <Value>0</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>1</FieldPlanRotationID>
+              <FeedstuffID>951</FeedstuffID>
+            </Expected_yield>
+            <Potential_yield>
+              <Value>4000</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>1</FieldPlanRotationID>
+              <FeedstuffID>951</FeedstuffID>
+            </Potential_yield>
+          </Product>
+        </Crop>
+        <Crop>
+          <Identity>2</Identity>
+          <NameOfCrop>Permanent grass</NameOfCrop>
+          <RotationID>1</RotationID>
+          <Start_day>8</Start_day>
+          <Start_month>8</Start_month>
+          <Start_year>2022</Start_year>
+          <End_day>31</End_day>
+          <End_month>3</End_month>
+          <End_year>2023</End_year>
+          <Irrigation>false</Irrigation>
+          <HarvestMethod>
+            <Value>Grazing</Value>
+            <Description>Grazing</Description>
+            <Identity>2</Identity>
+            <RotationID>1</RotationID>
+          </HarvestMethod>
+          <Product>
+            <Identity>2</Identity>
+            <Name>Grass, 6-8 cm incorporated</Name>
+            <Amount>0</Amount>
+            <FeedCode>2464</FeedCode>
+            <Harvested>Incorporated</Harvested>
+            <RotationID>1</RotationID>
+            <FieldPlanRotationID>2</FieldPlanRotationID>
+            <Grazed>false</Grazed>
+            <Expected_yield>
+              <Value>0</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>2</FieldPlanRotationID>
+              <FeedstuffID>2464</FeedstuffID>
+            </Expected_yield>
+            <Potential_yield>
+              <Value>1000</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>2</FieldPlanRotationID>
+              <FeedstuffID>2464</FeedstuffID>
+            </Potential_yield>
+          </Product>
+        </Crop>
+        <Crop>
+          <Identity>3</Identity>
+          <NameOfCrop>Sunflower</NameOfCrop>
+          <RotationID>1</RotationID>
+          <Start_day>1</Start_day>
+          <Start_month>4</Start_month>
+          <Start_year>2023</Start_year>
+          <End_day>31</End_day>
+          <End_month>8</End_month>
+          <End_year>2023</End_year>
+          <Irrigation>false</Irrigation>
+          <Fertilizer_applied>
+            <Identity>1</Identity>
+            <StorageID>33</StorageID>
+            <Name>Calcium ammonium nitrate</Name>
+            <DeliveryID>5</DeliveryID>
+            <Unit>kg N/ha</Unit>
+            <Value>100</Value>
+            <N_Loss>2.2</N_Loss>
+            <Type>2</Type>
+            <Kg_N_Utilized>0</Kg_N_Utilized>
+            <Month_applied>5</Month_applied>
+            <RotationID>1</RotationID>
+            <FieldPlanRotationID>3</FieldPlanRotationID>
+            <MFId>0</MFId>
+            <Applic_technique_Fertilizer>
+              <NameS>Fertilizer spreading</NameS>
+              <NameI>5</NameI>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>3</FieldPlanRotationID>
+              <StorageID>33</StorageID>
+              <MFId>0</MFId>
+            </Applic_technique_Fertilizer>
+          </Fertilizer_applied>
+          <HarvestMethod>
+            <Value>Combine harvesting</Value>
+            <Description>Combine harvesting</Description>
+            <Identity>3</Identity>
+            <RotationID>1</RotationID>
+          </HarvestMethod>
+          <Product>
+            <Identity>4</Identity>
+            <Name>Sunflower crop residues</Name>
+            <Amount>0</Amount>
+            <FeedCode>950</FeedCode>
+            <Harvested>Harvested</Harvested>
+            <RotationID>1</RotationID>
+            <FieldPlanRotationID>3</FieldPlanRotationID>
+            <Grazed>false</Grazed>
+            <Expected_yield>
+              <Value>0</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>3</FieldPlanRotationID>
+              <FeedstuffID>950</FeedstuffID>
+            </Expected_yield>
+            <Potential_yield>
+              <Value>3000</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>3</FieldPlanRotationID>
+              <FeedstuffID>950</FeedstuffID>
+            </Potential_yield>
+          </Product>
+          <Product>
+            <Identity>5</Identity>
+            <Name>Sunflower seed</Name>
+            <Amount>0</Amount>
+            <FeedCode>217</FeedCode>
+            <Harvested>Harvested</Harvested>
+            <RotationID>1</RotationID>
+            <FieldPlanRotationID>3</FieldPlanRotationID>
+            <Grazed>false</Grazed>
+            <Expected_yield>
+              <Value>0</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>3</FieldPlanRotationID>
+              <FeedstuffID>217</FeedstuffID>
+            </Expected_yield>
+            <Potential_yield>
+              <Value>2000</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>3</FieldPlanRotationID>
+              <FeedstuffID>217</FeedstuffID>
+            </Potential_yield>
+          </Product>
+        </Crop>
+        <Crop>
+          <Identity>4</Identity>
+          <NameOfCrop>Bare soil</NameOfCrop>
+          <RotationID>1</RotationID>
+          <Start_day>1</Start_day>
+          <Start_month>9</Start_month>
+          <Start_year>2023</Start_year>
+          <End_day>31</End_day>
+          <End_month>3</End_month>
+          <End_year>2024</End_year>
+          <Irrigation>false</Irrigation>
+        </Crop>
+        <Crop>
+          <Identity>5</Identity>
+          <NameOfCrop>Potatoes</NameOfCrop>
+          <RotationID>1</RotationID>
+          <Start_day>1</Start_day>
+          <Start_month>4</Start_month>
+          <Start_year>2024</Start_year>
+          <End_day>30</End_day>
+          <End_month>9</End_month>
+          <End_year>2024</End_year>
+          <Irrigation>false</Irrigation>
+          <Fertilizer_applied>
+            <Identity>2</Identity>
+            <StorageID>33</StorageID>
+            <Name>Calcium ammonium nitrate</Name>
+            <DeliveryID>5</DeliveryID>
+            <Unit>kg N/ha</Unit>
+            <Value>200</Value>
+            <N_Loss>4.4</N_Loss>
+            <Type>2</Type>
+            <Kg_N_Utilized>0</Kg_N_Utilized>
+            <Month_applied>5</Month_applied>
+            <RotationID>1</RotationID>
+            <FieldPlanRotationID>5</FieldPlanRotationID>
+            <MFId>0</MFId>
+            <Applic_technique_Fertilizer>
+              <NameS>Fertilizer spreading</NameS>
+              <NameI>5</NameI>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>5</FieldPlanRotationID>
+              <StorageID>33</StorageID>
+              <MFId>0</MFId>
+            </Applic_technique_Fertilizer>
+          </Fertilizer_applied>
+          <HarvestMethod>
+            <Value>Combine harvesting</Value>
+            <Description>Combine harvesting</Description>
+            <Identity>5</Identity>
+            <RotationID>1</RotationID>
+          </HarvestMethod>
+          <Product>
+            <Identity>3</Identity>
+            <Name>Potatoes</Name>
+            <Amount>0</Amount>
+            <FeedCode>395</FeedCode>
+            <Harvested>Harvested</Harvested>
+            <RotationID>1</RotationID>
+            <FieldPlanRotationID>5</FieldPlanRotationID>
+            <Grazed>false</Grazed>
+            <Expected_yield>
+              <Value>0</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>5</FieldPlanRotationID>
+              <FeedstuffID>395</FeedstuffID>
+            </Expected_yield>
+            <Potential_yield>
+              <Value>9000</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>5</FieldPlanRotationID>
+              <FeedstuffID>395</FeedstuffID>
+            </Potential_yield>
+          </Product>
+        </Crop>
+        <Crop>
+          <Identity>6</Identity>
+          <NameOfCrop>Bare soil</NameOfCrop>
+          <RotationID>1</RotationID>
+          <Start_day>1</Start_day>
+          <Start_month>10</Start_month>
+          <Start_year>2024</Start_year>
+          <End_day>31</End_day>
+          <End_month>3</End_month>
+          <End_year>2025</End_year>
+          <Irrigation>false</Irrigation>
+        </Crop>
+      </Rotation>
+      <EnergySystem>
+        <Name>Metabolisable energy</Name>
+        <Value>1</Value>
+      </EnergySystem>
+    </SelectedScenario>
+    <NDepositionRate>
+      <Description>Rate of deposition of N from the atmosphere</Description>
+      <Value>10</Value>
+      <Units>Kg N/ha/year</Units>
+      <FarmNumber>67957</FarmNumber>
+    </NDepositionRate>
+  </Farm>
+</NewDataSet>

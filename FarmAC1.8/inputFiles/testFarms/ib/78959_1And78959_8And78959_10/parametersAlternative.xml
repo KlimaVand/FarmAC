@@ -1,0 +1,588 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+  <AgroecologicalZone>
+    <Identity color="red">1</Identity>
+    <Name color="green">European maritime</Name>
+    <Description>Details for a single agroecological zone - France</Description>
+    <Livestock>
+      <Identity>1</Identity>
+      <Description>Details of livestock</Description>
+      <Name>Holstein types - dairy</Name>
+      <Liveweight>
+        <Identity>0</Identity>
+        <Value color="green">650</Value>
+        <Units>kg</Units>
+        <Description>Mean live weight of livestock (optional)</Description>
+      </Liveweight>
+      <milkNconc>
+        <Identity>0</Identity>
+        <Value color="green">0.00556</Value>
+        <Units>kg/kg</Units>
+        <Description>Concentration of nitrogen in milk</Description>
+      </milkNconc>
+      <milkAdjustmentCoeff>
+        <Identity>0</Identity>
+        <Value color="red">1</Value>
+        <Units>MJ/kg</Units>
+        <Description>Energy requirement per unit of milk produced</Description>
+      </milkAdjustmentCoeff>
+      <entericYm>
+        <Identity>0</Identity>
+        <Value color="green">0.06</Value>
+        <Units>kg methane per MJ energy intake</Units>
+        <Description>Methan conversion factor</Description>
+      </entericYm>
+      <Mortality>
+        <Identity>0</Identity>
+        <Value color="green">0.0</Value>
+        <Units>-</Units>
+        <Description>Proportion of livestock dying on the farm</Description>
+      </Mortality>
+      <nitrateEfficiency>
+        <Identity>0</Identity>
+        <Value>0.8</Value>
+        <Units>kg methane oxidized per kg nitrate</Units>
+        <Description>efficiency of nitrate in feed in reducing methane emissions</Description>
+      </nitrateEfficiency>
+    </Livestock>
+    <Housing>
+      <Identity>1</Identity>
+      <HousingType>1</HousingType>
+      <Name>Cattle tied housing</Name>
+      <Description>Details of livestock housing</Description>
+      <beddingFactor>
+        <Description>Rate of use of bedding dry matter</Description>
+        <Value color="green">1.0</Value>
+        <Units>kg DM/animal/day</Units>
+      </beddingFactor>
+      <EFNH3housingTier2>
+        <Value>0.07</Value>
+        <Units>kg ammonia N/kg ammonium in housing</Units>
+        <Description>Ammonia emission factor for housing</Description>
+      </EFNH3housingTier2>
+      <feedWasteFactor>
+        <Value color="red">0.03</Value>
+        <Units>kg DM/kg DM</Units>
+        <Description>Proportion of feed dry matter that is wasted in housing</Description>
+      </feedWasteFactor>
+    </Housing>
+    <Housing>
+      <Identity>3</Identity>
+      <HousingType>3</HousingType>
+      <Name>Cattle cubicle housing, slatted floor</Name>
+      <Description>Details of livestock housing</Description>
+      <beddingFactor>
+        <Description>Rate of use of bedding dry matter</Description>
+        <Value color="green">0.5</Value>
+        <Units>kg DM/animal/day</Units>
+      </beddingFactor>
+      <EFNH3housingTier2>
+        <Value>0.1325</Value>
+        <Units>kg ammonia N/kg ammonium in housing</Units>
+        <Description>Ammonia emission factor for housing</Description>
+      </EFNH3housingTier2>
+      <feedWasteFactor>
+        <Value color="red">0.03</Value>
+        <Units>kg DM/kg DM</Units>
+        <Description>Proportion of feed dry matter that is wasted in housing</Description>
+      </feedWasteFactor>
+    </Housing>
+    <Housing>
+      <Identity>5</Identity>
+      <HousingType>5</HousingType>
+      <Name>Cattle, deep litter and slurry</Name>
+      <Description>Details of livestock housing</Description>
+      <feedWasteFactor>
+        <Value color="red">0.03</Value>
+        <Units>kg DM/kg DM</Units>
+        <Description>Proportion of feed dry matter that is wasted in housing</Description>
+      </feedWasteFactor>
+      <beddingFactor>
+        <Description>Rate of use of bedding dry matter</Description>
+        <Value color="green">2.5</Value>
+        <Units>kg DM/animal/day</Units>
+      </beddingFactor>
+    </Housing>
+    <Housing>
+      <Identity>6</Identity>
+      <HousingType>6</HousingType>
+      <Name>Deep litter, all livestock types</Name>
+      <Description>Details of livestock housing</Description>
+      <beddingFactor>
+        <Description>Rate of use of bedding dry matter</Description>
+        <Value color="green">4</Value>
+        <Units>kg DM/animal/day</Units>
+      </beddingFactor>
+      <feedWasteFactor>
+        <Value color="red">0.03</Value>
+        <Units>kg DM/kg DM</Units>
+        <Description>Proportion of feed dry matter that is wasted in housing</Description>
+      </feedWasteFactor>
+    </Housing>
+    <ManureStorage>
+      <Identity>7</Identity>
+      <Name color="green">slurryTank - cattle, with cover</Name>
+      <StorageType>2</StorageType>
+      <SpeciesGroup>1</SpeciesGroup>
+      <Description>Details of manure storage</Description>
+      <EFNH3storageIPCC>
+        <Value color="green">0.0189</Value>
+        <Units>kg/kg</Units>
+        <Description>Ammonia emission factor IPCC system</Description>
+      </EFNH3storageIPCC>
+      <EFN2OstorageIPCC>
+        <Value color="green">0.005</Value>
+        <Units>kg/kg</Units>
+        <Description>N2O emission factor IPCC system</Description>
+      </EFN2OstorageIPCC>
+      <MCF>
+        <Description>methane conversion factor</Description>
+        <Value color="green">0.1</Value>
+        <Units>none</Units>
+      </MCF>
+    </ManureStorage>
+    <Manure>
+      <Description>Emission factors for manures</Description>
+      <EFN2O>
+        <Description>Nitrous oxide emission factor</Description>
+        <Value color="red">0.01</Value>
+        <Units>kg N2O-N/kg manure N</Units>
+      </EFN2O>
+      <EFN2O_IPCC>
+        <Description>Nitrous oxide emission factor</Description>
+        <Value color="green">0.01</Value>
+        <Units>kg N2O-N/kg manure N</Units>
+      </EFN2O_IPCC>
+      <N2Factor>
+        <Description>Dinitrogen emission factor</Description>
+        <Value color="red">2.81</Value>
+        <Units>kg N2-N/kg N2O-N emitted</Units>
+      </N2Factor>
+      <ManureType>
+        <Identity>11</Identity>
+        <Name color="green">Cattle liquid fraction</Name>
+        <StorageType>6</StorageType>
+        <SpeciesGroup>1</SpeciesGroup>
+        <Description>Details for individual manure type</Description>
+      </ManureType>
+      <ManureType>
+        <Identity>12</Identity>
+        <Name color="green">Cattle liquid fraction</Name>
+        <StorageType>9</StorageType>
+        <SpeciesGroup>1</SpeciesGroup>
+        <Description>Details for individual manure type</Description>
+      </ManureType>
+    </Manure>
+    <ManureApplicationTechnique>
+      <Identity>2</Identity>
+      <Name color="green">Injection</Name>
+      <Description>Details for individual manure application method</Description>
+      <NH3ReductionFactor>
+        <Value color="green">0.94</Value>
+        <Units>none</Units>
+        <Description>Reduction in ammonia emission relative to broadcast spreading:0.9 black soil &amp; 0.5 grass sward</Description>
+      </NH3ReductionFactor>
+    </ManureApplicationTechnique>
+    <NumberRaindays>
+      <Description>Total number of rainy days per year</Description>
+      <Value color="green">110</Value>
+    </NumberRaindays>
+    <Month>
+      <Identity>1</Identity>
+      <Name color="green">January</Name>
+      <Description>Monthly mean weather data</Description>
+      <AirTemperature>
+        <Units>Celsius</Units>
+        <Description>Average monthly air temperature 2 metres above ground</Description>
+        <Value color="green">1.45</Value>
+      </AirTemperature>
+      <DroughtIndex>
+        <Units>None</Units>
+        <Description>Index 0 to 1 of drought (0 = none, 1 = severe)</Description>
+        <Value color="green">0.001</Value>
+      </DroughtIndex>
+      <PotentialEvapoTrans>
+        <Units>mm</Units>
+        <Description>Average daily evapotranspiration for the month</Description>
+        <Value color="green">0.24</Value>
+      </PotentialEvapoTrans>
+      <Precipitation>
+        <Units>mm</Units>
+        <Description>Average monthly precipitation</Description>
+        <Value color="green">75</Value>
+      </Precipitation>
+    </Month>
+    <Month>
+      <Identity>2</Identity>
+      <Name color="green">February</Name>
+      <Description>Monthly mean weather data</Description>
+      <AirTemperature>
+        <Units>Celsius</Units>
+        <Description>Average monthly air temperature 2 metres above ground</Description>
+        <Value color="green">1.36</Value>
+      </AirTemperature>
+      <Precipitation>
+        <Units>mm</Units>
+        <Description>Average monthly precipitation</Description>
+        <Value color="green">66</Value>
+      </Precipitation>
+      <PotentialEvapoTrans>
+        <Units>mm</Units>
+        <Description>Average daily evapotranspiration for the month</Description>
+        <Value color="green">0.46</Value>
+      </PotentialEvapoTrans>
+    </Month>
+    <Month>
+      <Identity>3</Identity>
+      <Name color="green">March</Name>
+      <Description>Monthly mean weather data</Description>
+      <AirTemperature>
+        <Units>Celsius</Units>
+        <Description>Average monthly air temperature 2 metres above ground</Description>
+        <Value color="green">3.3</Value>
+      </AirTemperature>
+      <Precipitation>
+        <Units>mm</Units>
+        <Description>Average monthly precipitation</Description>
+        <Value color="green">55</Value>
+      </Precipitation>
+      <PotentialEvapoTrans>
+        <Units>mm</Units>
+        <Description>Average daily evapotranspiration for the month</Description>
+        <Value color="green">0.95</Value>
+      </PotentialEvapoTrans>
+    </Month>
+    <Month>
+      <Identity>4</Identity>
+      <Name color="green">April</Name>
+      <Description>Monthly mean weather data</Description>
+      <AirTemperature>
+        <Units>Celsius</Units>
+        <Description>Average monthly air temperature 2 metres above ground</Description>
+        <Value color="green">7.19</Value>
+      </AirTemperature>
+      <Precipitation>
+        <Units>mm</Units>
+        <Description>Average monthly precipitation</Description>
+        <Value color="green">43</Value>
+      </Precipitation>
+      <PotentialEvapoTrans>
+        <Units>mm</Units>
+        <Description>Average daily evapotranspiration for the month</Description>
+        <Value color="green">1.75</Value>
+      </PotentialEvapoTrans>
+    </Month>
+    <Month>
+      <Identity>5</Identity>
+      <Name color="green">May</Name>
+      <Description>Monthly mean weather data</Description>
+      <AirTemperature>
+        <Units>Celsius</Units>
+        <Description>Average monthly air temperature 2 metres above ground</Description>
+        <Value color="green">11.21</Value>
+      </AirTemperature>
+      <Precipitation>
+        <Units>mm</Units>
+        <Description>Average monthly precipitation</Description>
+        <Value color="green">50</Value>
+      </Precipitation>
+      <PotentialEvapoTrans>
+        <Units>mm</Units>
+        <Description>Average daily evapotranspiration for the month</Description>
+        <Value color="green">2.69</Value>
+      </PotentialEvapoTrans>
+    </Month>
+    <Month>
+      <Identity>6</Identity>
+      <Name color="green">June</Name>
+      <Description>Monthly mean weather data</Description>
+      <AirTemperature>
+        <Units>Celsius</Units>
+        <Description>Average monthly air temperature 2 metres above ground</Description>
+        <Value color="green">14.12</Value>
+      </AirTemperature>
+      <Precipitation>
+        <Units>mm</Units>
+        <Description>Average monthly precipitation</Description>
+        <Value color="green">69</Value>
+      </Precipitation>
+      <PotentialEvapoTrans>
+        <Units>mm</Units>
+        <Description>Average daily evapotranspiration for the month</Description>
+        <Value color="green">3.13</Value>
+      </PotentialEvapoTrans>
+      <DroughtIndex>
+        <Units>None</Units>
+        <Description>Index 0 to 1 of drought (0 = none, 1 = severe)</Description>
+        <Value color="green">0.8</Value>
+      </DroughtIndex>
+    </Month>
+    <Month>
+      <Identity>7</Identity>
+      <Name color="green">July</Name>
+      <Description>Monthly mean weather data</Description>
+      <AirTemperature>
+        <Units>Celsius</Units>
+        <Description>Average monthly air temperature 2 metres above ground</Description>
+        <Value color="green">16.71</Value>
+      </AirTemperature>
+      <Precipitation>
+        <Units>mm</Units>
+        <Description>Average monthly precipitation</Description>
+        <Value color="green">72</Value>
+      </Precipitation>
+      <PotentialEvapoTrans>
+        <Units>mm</Units>
+        <Description>Average daily evapotranspiration for the month</Description>
+        <Value color="green">3.09</Value>
+      </PotentialEvapoTrans>
+    </Month>
+    <Month>
+      <Identity>8</Identity>
+      <Name color="green">August</Name>
+      <Description>Monthly mean weather data</Description>
+      <AirTemperature>
+        <Units>Celsius</Units>
+        <Description>Average monthly air temperature 2 metres above ground</Description>
+        <Value color="green">16.78</Value>
+      </AirTemperature>
+      <Precipitation>
+        <Units>mm</Units>
+        <Description>Average monthly precipitation</Description>
+        <Value color="green">86</Value>
+      </Precipitation>
+      <PotentialEvapoTrans>
+        <Units>mm</Units>
+        <Description>Average daily evapotranspiration for the month</Description>
+        <Value color="green">2.78</Value>
+      </PotentialEvapoTrans>
+    </Month>
+    <Month>
+      <Identity>9</Identity>
+      <Name color="green">September</Name>
+      <Description>Monthly mean weather data</Description>
+      <AirTemperature>
+        <Units>Celsius</Units>
+        <Description>Average monthly air temperature 2 metres above ground</Description>
+        <Value color="green">13.34</Value>
+      </AirTemperature>
+      <Precipitation>
+        <Units>mm</Units>
+        <Description>Average monthly precipitation</Description>
+        <Value color="green">80</Value>
+      </Precipitation>
+      <PotentialEvapoTrans>
+        <Units>mm</Units>
+        <Description>Average daily evapotranspiration for the month</Description>
+        <Value color="green">1.84</Value>
+      </PotentialEvapoTrans>
+    </Month>
+    <Month>
+      <Identity>10</Identity>
+      <Name color="green">October</Name>
+      <Description>Monthly mean weather data</Description>
+      <AirTemperature>
+        <Units>Celsius</Units>
+        <Description>Average monthly air temperature 2 metres above ground</Description>
+        <Value color="green">9.05</Value>
+      </AirTemperature>
+      <Precipitation>
+        <Units>mm</Units>
+        <Description>Average monthly precipitation</Description>
+        <Value color="green">86</Value>
+      </Precipitation>
+      <PotentialEvapoTrans>
+        <Units>mm</Units>
+        <Description>Average daily evapotranspiration for the month</Description>
+        <Value color="green">1.00</Value>
+      </PotentialEvapoTrans>
+    </Month>
+    <Month>
+      <Identity>11</Identity>
+      <Name color="green">November</Name>
+      <Description>Monthly mean weather data</Description>
+      <AirTemperature>
+        <Units>Celsius</Units>
+        <Description>Average monthly air temperature 2 metres above ground</Description>
+        <Value color="green">5.15</Value>
+      </AirTemperature>
+      <Precipitation>
+        <Units>mm</Units>
+        <Description>Average monthly precipitation</Description>
+        <Value color="green">78</Value>
+      </Precipitation>
+      <PotentialEvapoTrans>
+        <Units>mm</Units>
+        <Description>Average daily evapotranspiration for the month</Description>
+        <Value color="green">0.45</Value>
+      </PotentialEvapoTrans>
+    </Month>
+    <Month>
+      <Identity>12</Identity>
+      <Name color="green">December</Name>
+      <Description>Monthly mean weather data</Description>
+      <AirTemperature>
+        <Units>Celsius</Units>
+        <Description>Average monthly air temperature 2 metres above ground</Description>
+        <Value color="green">2.01</Value>
+      </AirTemperature>
+      <Precipitation>
+        <Units>mm</Units>
+        <Description>Average monthly precipitation</Description>
+        <Value color="green">79</Value>
+      </Precipitation>
+      <PotentialEvapoTrans>
+        <Units>mm</Units>
+        <Description>Average daily evapotranspiration for the month</Description>
+        <Value color="green">0.22</Value>
+      </PotentialEvapoTrans>
+    </Month>
+    <SoilType>
+      <Identity>3</Identity>
+      <Name color="green">Clayey Sandy Soil (&lt;= 40% fine sand)</Name>
+      <SandFraction>
+        <Description>Fraction of sand</Description>
+        <Value color="green">0.5</Value>
+        <Units>none</Units>
+      </SandFraction>
+      <ClayFraction>
+        <Description>Fraction of clay</Description>
+        <Value color="green">0.0434</Value>
+        <Units>kg/kg soil</Units>
+      </ClayFraction>
+      <C-Tool>
+        <Identity>1</Identity>
+        <Name>Arable</Name>
+        <Description>C-Tool parameters for arable soil</Description>
+        <InitialC>
+          <Description>Initial carbon in soil</Description>
+          <Value color="black">138000</Value>
+          <Units>kg/ha</Units>
+        </InitialC>
+        <InitialCtoN>
+          <Description>Initial C:N ratio of soil</Description>
+          <Value color="red">14.5</Value>
+          <Units>none</Units>
+        </InitialCtoN>
+        <InitialFOMinput>
+          <Description>Annual FOM input to be used in model initialisation</Description>
+          <Value>5600</Value>
+          <Units>kg C/ha/yr</Units>
+        </InitialFOMinput>
+        <pHUMupperLayer>
+          <Description> Proportion of HUM in topsoil</Description>
+          <Value color="red">0.48</Value>
+          <Units>fraction</Units>
+        </pHUMupperLayer>
+        <pHUMlowerLayer>
+          <Description>Proportion of HUM in subsoil</Description>
+          <Value color="red">0.31</Value>
+          <Units>fraction</Units>
+        </pHUMlowerLayer>
+      </C-Tool>
+      <C-Tool>
+        <Identity>3</Identity>
+        <Name>Grassland</Name>
+        <Description>C-Tool parameters for grassland soil</Description>
+        <InitialC>
+          <Description>Initial carbon in soil</Description>
+          <Value color="black">127000</Value>
+          <Units>kg/ha</Units>
+        </InitialC>
+        <InitialCtoN>
+          <Description>Initial C:N ratio of soil</Description>
+          <Value color="red">14.5</Value>
+          <Units>none</Units>
+        </InitialCtoN>
+        <InitialFOMinput>
+          <Description>Annual FOM input to be used in model initialisation</Description>
+          <Value>9600</Value>
+          <Units>kg C/ha/yr</Units>
+        </InitialFOMinput>
+        <pHUMupperLayer>
+          <Description> Proportion of HUM in topsoil</Description>
+          <Value color="red">0.55</Value>
+          <Units>fraction</Units>
+        </pHUMupperLayer>
+        <pHUMlowerLayer>
+          <Description>Proportion of HUM in subsoil</Description>
+          <Value color="red">0.45</Value>
+          <Units>fraction</Units>
+        </pHUMlowerLayer>
+      </C-Tool>
+      <N2Factor>
+        <Description>Dinitrogen emission factor</Description>
+        <Value color="red">2.81</Value>
+        <Units>kg N2-N/kg N2O-N emitted</Units>
+      </N2Factor>
+    </SoilType>
+    <Crop>
+      <Identity>8</Identity>
+      <Name color="green">Rotational clover grass</Name>
+      <Description>Details of crops</Description>
+      <NfixationFactor>
+        <Value color="green">0.95</Value>
+        <Units>kg N/kg mineral N available</Units>
+        <Description>Rate of reduction in N fixation with increasing mineral N availability</Description>
+      </NfixationFactor>
+      <PropBelowGroundResidues>
+        <Value color="green">1.17</Value>
+        <Units>kg DM/kg DM</Units>
+        <Description>The below-ground crop residues (e.g. roots), as a proportion of the DM yield</Description>
+      </PropBelowGroundResidues>
+      <HarvestMethod>
+        <Identity>1</Identity>
+        <Name color="green">Forage harvester</Name>
+        <PropAboveGroundResidues>
+          <Value color="green">0.43</Value>
+          <Units>kg DM/kg DM</Units>
+          <Description>Above-ground yield of dry matter that cannot be harvested</Description>
+        </PropAboveGroundResidues>
+      </HarvestMethod>
+      <HarvestMethod>
+        <Identity>2</Identity>
+        <Name color="green">Grazing</Name>
+        <PropAboveGroundResidues>
+          <Value color="green">1.00</Value>
+          <Units>kg DM/kg DM</Units>
+          <Description>Above-ground yield of dry matter that cannot be harvested</Description>
+        </PropAboveGroundResidues>
+      </HarvestMethod>
+      <BelowGroundCtoN>
+        <Value color="red">20</Value>
+        <Units>none</Units>
+        <Description>Ratio of carbon to nitrogen in below-ground dry matter</Description>
+      </BelowGroundCtoN>
+      <MaxLAI>
+        <Value color="green">3.0</Value>
+        <Description>The maximum leaf area index achieved by the crop</Description>
+      </MaxLAI>
+      <Irrigation>
+        <Description>Parameters for irrigation</Description>
+        <irrigationMinimum>
+          <Value color="red">20</Value>
+          <Units>mm</Units>
+          <Description>Minimum application of irrigation water</Description>
+        </irrigationMinimum>
+      </Irrigation>
+    </Crop>
+    <Fertiliser>
+      <Description>Emission factors for fertilisers</Description>
+      <FertiliserType>
+        <Identity>1</Identity>
+        <Description>Details of emission factors for a specific type of nitrogen fertiliser</Description>
+        <Name color="green">Ammonium nitrate</Name>
+        <EFNH3>
+          <Description>Ammonia emission factor</Description>
+          <Value>0.02</Value>
+          <Units>kg NH3-N/kg N</Units>
+        </EFNH3>
+      </FertiliserType>
+    </Fertiliser>
+    <UrineNH3EF>
+      <Description>Urine NH3 emission factor</Description>
+      <Value color="red">0.105</Value>
+      <Units>kg NH3-N/kg urine N</Units>
+    </UrineNH3EF>
+  </AgroecologicalZone>
+</xml>

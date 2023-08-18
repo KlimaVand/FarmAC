@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+  <AgroecologicalZone>
+    <Identity color="red">1</Identity>
+    <Name color="green">Maritime (European land-based)</Name>
+    <Description>isk all grazing feeds(4**) have same quality=DK average and 20% crude prot. All grasssilage=15.6% crude protein</Description>
+    <feedItem>
+      <Identity>162</Identity>
+      <Name color="green">Clovergrass, silage, middle fodder quality, 20% clover</Name>
+      <FeedCode color="red">522</FeedCode>
+      <Main>
+        <Value color="green">true</Value>
+        <Unit>none</Unit>
+        <Description>Is true if this item is the main product of the crop</Description>
+      </Main>
+      <CrudeProtein_concentration>
+        <Value color="green">0.165</Value>
+        <Unit>kg/kgDM</Unit>
+        <Description>Concentration of crude protein (= 6.25 times nitrogen concentration)</Description>
+      </CrudeProtein_concentration>
+      <Energy_concentration>
+        <Value color="green">12.88786</Value>
+        <Unit>MJ/kgDM</Unit>
+        <Description>Concentration of digestible energy</Description>
+      </Energy_concentration>
+      <Ash_concentration>
+        <Value color="green">0.098</Value>
+        <Unit>kg/kgDM</Unit>
+        <Description>Concentration of ash</Description>
+      </Ash_concentration>
+      <DMDigestibility>
+        <Value color="green">0.74</Value>
+        <Unit>kg/kgDM</Unit>
+        <Description>Dry matter digestibility</Description>
+      </DMDigestibility>
+      <Bedding_material>
+        <Value color="green">false</Value>
+        <Unit>Boolean</Unit>
+        <Description>Is true if this item can be used as bedding</Description>
+      </Bedding_material>
+      <processStorageLoss>
+        <Value color="green">0.07</Value>
+        <Unit>-</Unit>
+        <Description>Proportion of DM, C and N lost during processing or storage</Description>
+      </processStorageLoss>
+    </feedItem>
+  </AgroecologicalZone>
+</xml>

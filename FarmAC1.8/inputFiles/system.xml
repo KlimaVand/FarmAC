@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+  <settings>
+    <Identity>0</Identity>
+    <constants>c:\Home\Projects\M4Models\Case study farms\DK\constants.xml </constants>
+    <parameters>c:\Home\Projects\M4Models\Case study farms\DK\parameters.xml</parameters>
+    <farm>c:\Home\Projects\M4Models\Case study farms\DK\Dairy\farm_78986_39.xml</farm>
+    <fertAndManure>c:\Home\Projects\M4Models\Case study farms\DK\fertMan.xml</fertAndManure>
+    <feedItems>c:\Home\Projects\M4Models\Case study farms\DK\feedstuff.xml</feedItems>
+    <outputDir>c:\Home\Projects\M4Models\Case study farms\ModelOutput\DK\Dairy\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>DK dairy</Note>
+  </settings>
+  <settings>
+    <Identity>1</Identity>
+    <constants>c:\Home\Projects\M4Models\Case study farms\DK\constants.xml </constants>
+    <parameters>c:\Home\Projects\M4Models\Case study farms\DK\parameters.xml</parameters>
+    <farm>c:\Home\Projects\M4Models\Case study farms\DK\farm_78986_39.xml</farm>
+    <fertAndManure>c:\Home\Projects\M4Models\Case study farms\DK\fertMan.xml</fertAndManure>
+    <feedItems>c:\Home\Projects\M4Models\Case study farms\DK\feedstuff.xml</feedItems>
+    <outputDir>c:\Home\Projects\M4Models\Case study farms\ModelOutput\DK\Dairy\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>39</Adaptation>
+    <Note>DK dairy</Note>
+  </settings>
+  <settings>
+    <Identity>2</Identity>
+    <constants>c:\Home\Projects\M4Models\Case study farms\DK\constants.xml </constants>
+    <parameters>c:\Home\Projects\M4Models\Case study farms\DK\parameters.xml</parameters>
+    <farm>c:\Home\Projects\M4Models\Case study farms\DK\Pig\farm_720010_1.xml</farm>
+    <fertAndManure>c:\Home\Projects\M4Models\Case study farms\DK\fertMan.xml</fertAndManure>
+    <feedItems>c:\Home\Projects\M4Models\Case study farms\DK\feedstuff.xml</feedItems>
+    <outputDir>c:\Home\Projects\M4Models\Case study farms\ModelOutput\DK\Pig\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>DK pigs</Note>
+  </settings>
+  <settings>
+    <Identity>3</Identity>
+    <constants>c:\Home\Projects\M4Models\Case study farms\DK\constants.xml </constants>
+    <parameters>c:\Home\Projects\M4Models\Case study farms\DK\parameters.xml</parameters>
+    <farm>c:\Home\Projects\M4Models\Case study farms\DK\farm_720010_1.xml</farm>
+    <fertAndManure>c:\Home\Projects\M4Models\Case study farms\DK\fertMan.xml</fertAndManure>
+    <feedItems>c:\Home\Projects\M4Models\Case study farms\DK\feedstuff.xml</feedItems>
+    <outputDir>c:\Home\Projects\M4Models\Case study farms\ModelOutput\DK\Pig\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>1</Adaptation>
+    <Note>DK pigs</Note>
+  </settings>
+  <settings>
+    <Identity>4</Identity>
+    <constants>c:\Home\Projects\M4Models\Case study farms\NL\constants.xml </constants>
+    <parameters>c:\Home\Projects\M4Models\Case study farms\NL\parameters.xml</parameters>
+    <farm>c:\Home\Projects\M4Models\Case study farms\NL\Dairy\farm_720032_1.xml</farm>
+    <fertAndManure>c:\Home\Projects\M4Models\Case study farms\NL\fertMan.xml</fertAndManure>
+    <feedItems>c:\Home\Projects\M4Models\Case study farms\NL\feedstuff.xml</feedItems>
+    <outputDir>c:\Home\Projects\M4Models\Case study farms\ModelOutput\NL\Dairy\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>NL dairy</Note>
+  </settings>
+  <settings>
+    <Identity>5</Identity>
+    <constants>c:\Home\Projects\M4Models\Case study farms\NL\constants.xml </constants>
+    <parameters>c:\Home\Projects\M4Models\Case study farms\NL\parameters.xml</parameters>
+    <farm>c:\Home\Projects\M4Models\Case study farms\NL\Dairy\farm_720032_1.xml</farm>
+    <fertAndManure>c:\Home\Projects\M4Models\Case study farms\NL\fertMan.xml</fertAndManure>
+    <feedItems>c:\Home\Projects\M4Models\Case study farms\NL\feedstuff.xml</feedItems>
+    <outputDir>c:\Home\Projects\M4Models\Case study farms\ModelOutput\NL\Dairy\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>1</Adaptation>
+    <Note>NL dairy</Note>
+  </settings>
+  <settings>
+    <Identity>6</Identity>
+    <constants>c:\Home\Projects\M4Models\Case study farms\DE\constants.xml </constants>
+    <parameters>c:\Home\Projects\M4Models\Case study farms\DE\parameters.xml</parameters>
+    <farm>c:\Home\Projects\M4Models\Case study farms\DE\Dairy\farm_212818_1.xml</farm>
+    <fertAndManure>c:\Home\Projects\M4Models\Case study farms\DE\fertMan.xml</fertAndManure>
+    <feedItems>c:\Home\Projects\M4Models\Case study farms\DE\feedstuff.xml</feedItems>
+    <outputDir>c:\Home\Projects\M4Models\Case study farms\ModelOutput\DE\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>DE dairy</Note>
+  </settings>
+  <settings>
+    <Identity>7</Identity>
+    <constants>c:\Home\Projects\M4Models\Case study farms\DE\constants.xml </constants>
+    <parameters>c:\Home\Projects\M4Models\Case study farms\DE\parameters.xml</parameters>
+    <farm>c:\Home\Projects\M4Models\Case study farms\DE\Dairy\farm_212818_1.xml</farm>
+    <fertAndManure>c:\Home\Projects\M4Models\Case study farms\DE\fertMan.xml</fertAndManure>
+    <feedItems>c:\Home\Projects\M4Models\Case study farms\DE\feedstuff.xml</feedItems>
+    <outputDir>c:\Home\Projects\M4Models\Case study farms\ModelOutput\DE\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>1</Adaptation>
+    <Note>DE dairy</Note>
+  </settings>
+  <settings>
+    <Identity>8</Identity>
+    <constants>c:\Home\Projects\M4Models\Case study farms\DE\constants.xml </constants>
+    <parameters>c:\Home\Projects\M4Models\Case study farms\DE\Pigs\parameters.xml</parameters>
+    <farm>c:\Home\Projects\M4Models\Case study farms\DE\Pigs\farm_212821_1.xml</farm>
+    <fertAndManure>c:\Home\Projects\M4Models\Case study farms\DE\fertMan.xml</fertAndManure>
+    <feedItems>c:\Home\Projects\M4Models\Case study farms\DE\feedstuff.xml</feedItems>
+    <outputDir>c:\Home\Projects\M4Models\Case study farms\ModelOutput\DE\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>DE Pigs</Note>
+  </settings>
+  <settings>
+    <Identity>9</Identity>
+    <constants>c:\Home\Projects\M4Models\Case study farms\DE\constants.xml </constants>
+    <parameters>c:\Home\Projects\M4Models\Case study farms\DE\parameters.xml</parameters>
+    <farm>c:\Home\Projects\M4Models\Case study farms\DE\Pigs\farm_212821_1.xml</farm>
+    <fertAndManure>c:\Home\Projects\M4Models\Case study farms\DE\fertMan.xml</fertAndManure>
+    <feedItems>c:\Home\Projects\M4Models\Case study farms\DE\feedstuff.xml</feedItems>
+    <outputDir>c:\Home\Projects\M4Models\Case study farms\DE\ModelOutput\Pigs\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>1</Adaptation>
+    <Note>DE pigs</Note>
+  </settings>
+  <settings>
+    <Identity>10</Identity>
+    <constants>c:\Home\Projects\M4Models\Case study farms\NL\constants.xml </constants>
+    <parameters>c:\Home\Projects\M4Models\Case study farms\NL\parameters.xml</parameters>
+    <farm>c:\Home\Projects\M4Models\Case study farms\NL\Pigs\farm_720017_1.xml</farm>
+    <fertAndManure>c:\Home\Projects\M4Models\Case study farms\NL\fertMan.xml</fertAndManure>
+    <feedItems>c:\Home\Projects\M4Models\Case study farms\NL\feedstuff.xml</feedItems>
+    <outputDir>c:\Home\Projects\M4Models\Case study farms\ModelOutput\NL\Pigs\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>NL pigs</Note>
+  </settings>
+  <settings>
+    <Identity>11</Identity>
+    <constants>c:\Home\Projects\M4Models\Case study farms\NL\constants.xml </constants>
+    <parameters>c:\Home\Projects\M4Models\Case study farms\NL\parameters.xml</parameters>
+    <farm>c:\Home\Projects\M4Models\Case study farms\NL\Pigs\farm_720017_1.xml</farm>
+    <fertAndManure>c:\Home\Projects\M4Models\Case study farms\NL\fertMan.xml</fertAndManure>
+    <feedItems>c:\Home\Projects\M4Models\Case study farms\NL\feedstuff.xml</feedItems>
+    <outputDir>c:\Home\Projects\M4Models\Case study farms\ModelOutput\NL\Pigs\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>1</Adaptation>
+    <Note>NL pigs</Note>
+  </settings>
+  <settings>
+    <Identity>12</Identity>
+    <constants>c:\Home\Projects\M4Models\Case study farms\SWE\constants.xml </constants>
+    <parameters>c:\Home\Projects\M4Models\Case study farms\SWE\parameters.xml</parameters>
+    <farm>c:\Home\Projects\M4Models\Case study farms\SWE\Pigs\farm_720019_1.xml</farm>
+    <fertAndManure>c:\Home\Projects\M4Models\Case study farms\SWE\fertMan.xml</fertAndManure>
+    <feedItems>c:\Home\Projects\M4Models\Case study farms\SWE\feedstuff.xml</feedItems>
+    <outputDir>c:\Home\Projects\M4Models\Case study farms\ModelOutput\SWE\Pigs\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>SWE pigs</Note>
+  </settings>
+  <settings>
+    <Identity>13</Identity>
+    <constants>c:\Home\Projects\M4Models\Case study farms\SWE\constants.xml </constants>
+    <parameters>c:\Home\Projects\M4Models\Case study farms\SWE\parameters.xml</parameters>
+    <farm>c:\Home\Projects\M4Models\Case study farms\SWE\Pigs\farm_720019_1.xml</farm>
+    <fertAndManure>c:\Home\Projects\M4Models\Case study farms\SWE\fertMan.xml</fertAndManure>
+    <feedItems>c:\Home\Projects\M4Models\Case study farms\SWE\feedstuff.xml</feedItems>
+    <outputDir>c:\Home\Projects\M4Models\Case study farms\ModelOutput\SWE\Pigs\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>1</Adaptation>
+    <Note>SWE pigs</Note>
+  </settings>
+  <CommonSettings>
+    <alternativePath>c:\Home\Projects\M4Models\Case study farms\</alternativePath>
+    <verbosityLevel>2</verbosityLevel>
+    <logFile>true</logFile>
+    <logScreen>true</logScreen>
+  </CommonSettings>
+</xml>

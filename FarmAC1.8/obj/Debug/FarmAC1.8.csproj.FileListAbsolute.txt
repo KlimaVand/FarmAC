@@ -1,0 +1,6 @@
+c:\Workspace\FarmAC\FarmAC1.8\obj\Debug\FarmAC1.8.csproj.AssemblyReference.cache
+c:\Workspace\FarmAC\FarmAC1.8\obj\Debug\FarmAC1.8.csproj.CoreCompileInputs.cache
+c:\Workspace\FarmAC\FarmAC1.8\bin\Debug\FarmAC1.8.exe
+c:\Workspace\FarmAC\FarmAC1.8\bin\Debug\FarmAC1.8.pdb
+c:\Workspace\FarmAC\FarmAC1.8\obj\Debug\FarmAC1.8.exe
+c:\Workspace\FarmAC\FarmAC1.8\obj\Debug\FarmAC1.8.pdb
