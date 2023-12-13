@@ -652,12 +652,10 @@ public class GlobalVars
         }
         public void CloseDebugFile()
         {
-            try
+            if (debugfile!=null)
             {
                 debugfile.Close();
             }
-            catch
-            { }
         }
 
         public void WriteToDebug(string aString)

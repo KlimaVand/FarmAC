@@ -148,7 +148,7 @@ public class SoilClayer
         FOMCO2 = FOMdecomposition * (1 - humification);
         CO2 += FOMCO2;
         if (layerNo == 0)
-            FOMtransportOut = FomAfterDecom * tF;
+            FOMtransportOut = FOMdecomposition * tF;
         else
             FOMtransportOut = 0.0;
         fomc = FomAfterDecom + FOMtransportIn - FOMtransportOut;
