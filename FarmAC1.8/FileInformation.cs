@@ -103,6 +103,7 @@ public class FileInformation
                             if (!nameOfFile.Contains("Alternative"))
                             {
                                 GlobalVars.Instance.log("Could not fine " + nameOfFile, 4);
+                                GlobalVars.Instance.Error(nameOfFile + " not found", "in FileInformation(string nameOfFile)", true);
                             }
                             break;
                         }
@@ -145,33 +146,36 @@ public class FileInformation
                         Console.WriteLine("Not found " + nameOfFile);
 #endif
                     }
-                    //start reading through the xml-tree
-                    while (data.Read())
+                    if (data != null)
                     {
-                        if (data.NodeType == XmlNodeType.Element)
+                        //start reading through the xml-tree
+                        while (data.Read())
                         {
-                            XElement el = XNode.ReadFrom(data) as XElement;
-                            IEnumerable<XElement> node = el.Elements();
-                            //running through each sub-trees from the top node
-                            for (int i = 0; i < node.Count(); i++)
+                            if (data.NodeType == XmlNodeType.Element)
                             {
-                                IEnumerable<XElement> ting = node.ElementAt(i).Elements();
-                                //creating a new node with value and name
-                                Node newNode = new Node();
-                                newNode.setNodeValue(node.ElementAt(i).Value);
-                                newNode.setNodeName(node.ElementAt(i).Name.ToString());
-                                //reading the nodes children
-                                recursionRead(ting, ref newNode);
-                                //adding the new node to the tree
-                                tree.addChild(newNode);
+                                XElement el = XNode.ReadFrom(data) as XElement;
+                                IEnumerable<XElement> node = el.Elements();
+                                //running through each sub-trees from the top node
+                                for (int i = 0; i < node.Count(); i++)
+                                {
+                                    IEnumerable<XElement> ting = node.ElementAt(i).Elements();
+                                    //creating a new node with value and name
+                                    Node newNode = new Node();
+                                    newNode.setNodeValue(node.ElementAt(i).Value);
+                                    newNode.setNodeName(node.ElementAt(i).Name.ToString());
+                                    //reading the nodes children
+                                    recursionRead(ting, ref newNode);
+                                    //adding the new node to the tree
+                                    tree.addChild(newNode);
+                                }
                             }
                         }
+                        data.Close();
+                        //file name saved
+                        tree.FileName = file;
+                        //saving the xml-tree
+                        AllNodes.Add(tree);
                     }
-                    data.Close();
-                    //file name saved
-                    tree.FileName = file;
-                    //saving the xml-tree
-                    AllNodes.Add(tree);
                 }
                 catch (Exception e)
                 {
