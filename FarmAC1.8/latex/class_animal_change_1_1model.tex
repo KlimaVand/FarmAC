@@ -1,0 +1,96 @@
+\hypertarget{class_animal_change_1_1model}{}\section{Animal\+Change.\+model Class Reference}
+\label{class_animal_change_1_1model}\index{AnimalChange.model@{AnimalChange.model}}
+
+
+Contains the main functions for controlling the model.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_animal_change_1_1model_adc89d4cffd48c182ee6496328e888727}{run}} (string\mbox{[}$\,$\mbox{]} args)
+\begin{DoxyCompactList}\small\item\em This function controls the model run. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_animal_change_1_1model_a8e454fd8dcd665b2e2531b499729dcae}{write\+Output}} (List$<$ \mbox{\hyperlink{classmanure_store}{manure\+Store}} $>$ list\+Of\+Manurestores, List$<$ \mbox{\hyperlink{classhousing}{housing}} $>$ list\+Of\+Housing, List$<$ \mbox{\hyperlink{classlivestock}{livestock}} $>$ list\+Of\+Livestock, List$<$ \mbox{\hyperlink{class_crop_sequence_class}{Crop\+Sequence\+Class}} $>$ rotation\+List)
+\begin{DoxyCompactList}\small\item\em A normal member.\+Write output. Taking four arguments. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_animal_change_1_1model_a00134912be0bf6244574ee6d006c5afa}\label{class_animal_change_1_1model_a00134912be0bf6244574ee6d006c5afa}} 
+static string {\bfseries error\+Message\+Return} = \char`\"{}\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_animal_change_1_1model_a987a46cb1a575a4d2c3cd2710dd1af39}{Get\+Error\+Message\+Return}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em If errors are to be read by the server, this function is used to access the string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contains the main functions for controlling the model. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_animal_change_1_1model_adc89d4cffd48c182ee6496328e888727}\label{class_animal_change_1_1model_adc89d4cffd48c182ee6496328e888727}} 
+\index{AnimalChange.model@{AnimalChange.model}!run@{run}}
+\index{run@{run}!AnimalChange.model@{AnimalChange.model}}
+\subsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Animal\+Change.\+model.\+run (\begin{DoxyParamCaption}\item[{string \mbox{[}$\,$\mbox{]}}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This function controls the model run. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & arguments sent by the call to initiate the model, as a string argument. \\
+\hline
+\end{DoxyParams}
+start of livestock section
+
+read the livestock details from file
+
+calculate composition of bedding material
+
+read details of any manure stores that do not receive manure from livestock on the farm
+
+get details of animal housing (for each livestock category) \mbox{\Hypertarget{class_animal_change_1_1model_a8e454fd8dcd665b2e2531b499729dcae}\label{class_animal_change_1_1model_a8e454fd8dcd665b2e2531b499729dcae}} 
+\index{AnimalChange.model@{AnimalChange.model}!writeOutput@{writeOutput}}
+\index{writeOutput@{writeOutput}!AnimalChange.model@{AnimalChange.model}}
+\subsubsection{\texorpdfstring{writeOutput()}{writeOutput()}}
+{\footnotesize\ttfamily void Animal\+Change.\+model.\+write\+Output (\begin{DoxyParamCaption}\item[{List$<$ \mbox{\hyperlink{classmanure_store}{manure\+Store}} $>$}]{list\+Of\+Manurestores,  }\item[{List$<$ \mbox{\hyperlink{classhousing}{housing}} $>$}]{list\+Of\+Housing,  }\item[{List$<$ \mbox{\hyperlink{classlivestock}{livestock}} $>$}]{list\+Of\+Livestock,  }\item[{List$<$ \mbox{\hyperlink{class_crop_sequence_class}{Crop\+Sequence\+Class}} $>$}]{rotation\+List }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+A normal member.\+Write output. Taking four arguments. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+Of\+Manurestores,one} & list argument that points to \mbox{\hyperlink{classmanure_store}{manure\+Store}} class. \\
+\hline
+{\em list\+Of\+Housing,one} & list argument that points to housing class. \\
+\hline
+{\em list\+Of\+Livestock,one} & list argument that points to livestock class. \\
+\hline
+{\em rotation\+List,one} & list argument that points to \mbox{\hyperlink{class_crop_sequence_class}{Crop\+Sequence\+Class}} class. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{class_animal_change_1_1model_a987a46cb1a575a4d2c3cd2710dd1af39}\label{class_animal_change_1_1model_a987a46cb1a575a4d2c3cd2710dd1af39}} 
+\index{AnimalChange.model@{AnimalChange.model}!GetErrorMessageReturn@{GetErrorMessageReturn}}
+\index{GetErrorMessageReturn@{GetErrorMessageReturn}!AnimalChange.model@{AnimalChange.model}}
+\subsubsection{\texorpdfstring{GetErrorMessageReturn}{GetErrorMessageReturn}}
+{\footnotesize\ttfamily string Animal\+Change.\+model.\+Get\+Error\+Message\+Return\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+If errors are to be read by the server, this function is used to access the string. 
+
+\begin{DoxyReturn}{Returns}
+the error message as a string value. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+model.\+cs\end{DoxyCompactItemize}

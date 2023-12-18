@@ -62,12 +62,12 @@ public class ALFAM
      \param anExposureTime a double argument, duration of emission event in hours
    */
 
-    public void initialise(int soilWet, //
+    public void initialise(int soilWet, //=1 if soil is wet
                            double aveAirTemp, //air temperature in Celsius
                            double aveWindspeed, // wind speed in metres per second
                            int manureType, // 1 = cattle, 2 = pig
-                           double initDM, // initial dry matter content 
-                           double initTAN, // initial TAN content
+                           double initDM, // initial dry matter content (%)
+                           double initTAN, // initial TAN content (g N/kg fresh weight)
                            double appRate, // application rate in tonnes per ha
                            int appMeth, // application method (1 = broadcast, 2 = trailing hose, 3 = trailing shoe, 4 = open slot injection, 5 = closed slot injection)
                            double anExposureTime)  // duration of emission event in hours
@@ -125,62 +125,10 @@ public class ALFAM
         }
     }
 
-    /// <summary>
-    //! A member,that Returns proportion of TAN volatilised.
-    /*!
-
-    \return proportion of TAN volatilised
-    
-  */
-
-    /// </summary>
-
+    //! Returns the emission factor (kg NH3-N/kg N)
     public double ALFAM_volatilisation()
     {
-      double ret_val = Nmax* exposureTime / (exposureTime+ km);
-      return ret_val;
-    }
-    //! A member,that Get ALFARMApplicCode.
-    /*!
-      \param OpCode an integer argument.
-      
-      \return The code number or string
-      
-    */
-    public int GetALFAMApplicCode(int OpCode)
-    {
-        switch (OpCode)
-        {
-            case 7:    // SpreadingLiquidManure
-                return 1;
-                break;
-
-            case 8:    // ClosedSlotInjectingLiquidManure
-                return 5;
-                break;
-
-            case 9:    // SpreadingSolidManure
-                return 1;
-                break;
-
-            case 35:    // OpenSlotInjectingLiquidManure
-                return 4;
-                break;
-
-            case 36:    // TrailingHoseSpreadingLiquidManure
-                return 2;
-                break;
-
-            case 37:    // TrailingShoeSpreadingLiquidManure
-                return 3;
-                break;
-
-            default:
-                string theMessage="ALFAM: application method code not found";
-                break;
-        }
-
-        return 0;
+        double ret_val = Nmax * exposureTime / (exposureTime + km);
+        return ret_val;
     }
 }
-

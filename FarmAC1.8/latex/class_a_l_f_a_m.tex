@@ -1,0 +1,173 @@
+\hypertarget{class_a_l_f_a_m}{}\section{A\+L\+F\+AM Class Reference}
+\label{class_a_l_f_a_m}\index{ALFAM@{ALFAM}}
+
+
+Class to implement the \mbox{\hyperlink{class_a_l_f_a_m}{A\+L\+F\+AM}} model of ammonia emission from slurry (Atmospheric Environment 36 (2002) 3309–3319)  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a906de2a7e6a63d037313aecb092e08fa}\label{class_a_l_f_a_m_a906de2a7e6a63d037313aecb092e08fa}} 
+\mbox{\hyperlink{class_a_l_f_a_m_a906de2a7e6a63d037313aecb092e08fa}{A\+L\+F\+AM}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor (empty) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_a_l_f_a_m_a99b2b359704634465506484436dbd8f2}{initialise}} (int soil\+Wet, double ave\+Air\+Temp, double ave\+Windspeed, int manure\+Type, double init\+DM, double init\+T\+AN, double app\+Rate, int app\+Meth, double an\+Exposure\+Time)
+\begin{DoxyCompactList}\small\item\em A member taking 9 arguments. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a74f67c0b90bec2b1423add60999fb332}\label{class_a_l_f_a_m_a74f67c0b90bec2b1423add60999fb332}} 
+double \mbox{\hyperlink{class_a_l_f_a_m_a74f67c0b90bec2b1423add60999fb332}{A\+L\+F\+A\+M\+\_\+volatilisation}} ()
+\begin{DoxyCompactList}\small\item\em Returns the emission factor (kg N\+H3-\/\+N/kg N) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{class_a_l_f_a_m_a0c0298445d03428301cd76870c188d3a}{max\+Time}} = 168.\+0
+\begin{DoxyCompactList}\small\item\em Parameters of model \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a05ff3ab2a9a9b1b5a6fd8078beb26472}\label{class_a_l_f_a_m_a05ff3ab2a9a9b1b5a6fd8078beb26472}} 
+double {\bfseries b\+\_\+\+Nmx0} = -\/6.\+5757
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_af82b827a0da42f12e5ce566becd423dd}\label{class_a_l_f_a_m_af82b827a0da42f12e5ce566becd423dd}} 
+double {\bfseries b\+\_\+sm1\+Nmx} = 0.\+0971
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_af3dc4fb18cd6344d9ca1ab0087f89e73}\label{class_a_l_f_a_m_af3dc4fb18cd6344d9ca1ab0087f89e73}} 
+double {\bfseries b\+\_\+at\+Nmx} = 0.\+0221
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a3d28dab8a5760d1f70eaa6d2a2bfa3c2}\label{class_a_l_f_a_m_a3d28dab8a5760d1f70eaa6d2a2bfa3c2}} 
+double {\bfseries b\+\_\+ws\+Nmx} = 0.\+0409
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a1371ff3a9982d7ac86efec70e56b2dc3}\label{class_a_l_f_a_m_a1371ff3a9982d7ac86efec70e56b2dc3}} 
+double {\bfseries b\+\_\+mt1\+Nmx} = -\/0.\+156
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a45ce98ac8aef559bc70ab1a17807d6c3}\label{class_a_l_f_a_m_a45ce98ac8aef559bc70ab1a17807d6c3}} 
+double {\bfseries b\+\_\+mdm\+Nmx} = 0.\+1024
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_abda46fb6febfc79bebea9db18a054799}\label{class_a_l_f_a_m_abda46fb6febfc79bebea9db18a054799}} 
+double {\bfseries b\+\_\+mtan\+Nmx} = -\/0.\+1888
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_acd106a763271a835c77fc8f18c1d4f36}\label{class_a_l_f_a_m_acd106a763271a835c77fc8f18c1d4f36}} 
+double {\bfseries b\+\_\+ma0\+Nmx} = 3.\+5691
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a4054c5701c65765862b0bf221e52deca}\label{class_a_l_f_a_m_a4054c5701c65765862b0bf221e52deca}} 
+double {\bfseries b\+\_\+ma1\+Nmx} = 3.\+0198
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_af01c1126b1045793b1f6485afb08b3a7}\label{class_a_l_f_a_m_af01c1126b1045793b1f6485afb08b3a7}} 
+double {\bfseries b\+\_\+ma2\+Nmx} = 3.\+1592
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a3fa227600312da4ba1120f619de41913}\label{class_a_l_f_a_m_a3fa227600312da4ba1120f619de41913}} 
+double {\bfseries b\+\_\+ma3\+Nmx} = 2.\+2702
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a231390015fe7195be17e13001d7cdcc7}\label{class_a_l_f_a_m_a231390015fe7195be17e13001d7cdcc7}} 
+double {\bfseries b\+\_\+ma4\+Nmx} = 2.\+9582
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a952800c1afba30c0b22c8d66bb0e7446}\label{class_a_l_f_a_m_a952800c1afba30c0b22c8d66bb0e7446}} 
+double {\bfseries b\+\_\+mr\+Nmx} = -\/0.\+00433
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a61fa0cdf225aca15e38af987cd743fee}\label{class_a_l_f_a_m_a61fa0cdf225aca15e38af987cd743fee}} 
+double {\bfseries b\+\_\+mi0\+Nmx} = 2.\+4291
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a2ce56870ff473b39034b0ccc2324e5a9}\label{class_a_l_f_a_m_a2ce56870ff473b39034b0ccc2324e5a9}} 
+double {\bfseries b\+\_\+met1\+Nmx} = -\/0.\+6382
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a8c39e10a86a3645a3eb8057e6c34a9e5}\label{class_a_l_f_a_m_a8c39e10a86a3645a3eb8057e6c34a9e5}} 
+double {\bfseries b\+\_\+met2\+Nmx} = -\/0.\+5485
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_af11a31c171d5d3ac45127ee4d6695980}\label{class_a_l_f_a_m_af11a31c171d5d3ac45127ee4d6695980}} 
+double {\bfseries b\+\_\+\+Km0} = 0.\+037
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_ac682bfd4b30db6ae7ef3416826d723b0}\label{class_a_l_f_a_m_ac682bfd4b30db6ae7ef3416826d723b0}} 
+double {\bfseries b\+\_\+sm1\+Km} = 0.\+0974
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_ab06e11bdaaed997f3f6c4cafbebb8465}\label{class_a_l_f_a_m_ab06e11bdaaed997f3f6c4cafbebb8465}} 
+double {\bfseries b\+\_\+at\+Km} = -\/0.\+0409
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a049bbe089c017d831f88ced26d47d3f8}\label{class_a_l_f_a_m_a049bbe089c017d831f88ced26d47d3f8}} 
+double {\bfseries b\+\_\+ws\+Km} = -\/0.\+0517
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a375ac169c8400161db686c499f0f98b5}\label{class_a_l_f_a_m_a375ac169c8400161db686c499f0f98b5}} 
+double {\bfseries b\+\_\+mt1\+Km} = 1.\+3567
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a3a5841a182efa3d2eb459685251e2731}\label{class_a_l_f_a_m_a3a5841a182efa3d2eb459685251e2731}} 
+double {\bfseries b\+\_\+mdm\+Km} = 0.\+1614
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a97420e446a5c3ff4782a4e3459e56126}\label{class_a_l_f_a_m_a97420e446a5c3ff4782a4e3459e56126}} 
+double {\bfseries b\+\_\+mtan\+Km} = 0.\+1011
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a2a580260fb08cefccdcf59236090b149}\label{class_a_l_f_a_m_a2a580260fb08cefccdcf59236090b149}} 
+double {\bfseries b\+\_\+mr\+Km} = 0.\+0175
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_ab0c9b715e0b11629652093747a4e2a26}\label{class_a_l_f_a_m_ab0c9b715e0b11629652093747a4e2a26}} 
+double {\bfseries b\+\_\+met1\+Km} = 0.\+3888
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_afb713c277cbc896b038d493f2af143c4}\label{class_a_l_f_a_m_afb713c277cbc896b038d493f2af143c4}} 
+double {\bfseries b\+\_\+met2\+Km} = 0.\+7024
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_ab656c7583f34299c9eb0185ca5ddc533}\label{class_a_l_f_a_m_ab656c7583f34299c9eb0185ca5ddc533}} 
+double {\bfseries applic\+Rate} = 0
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_ae6112359ba7fd8e1654c2a69009a2420}\label{class_a_l_f_a_m_ae6112359ba7fd8e1654c2a69009a2420}} 
+double {\bfseries exposure\+Time} = 0
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_ab4efd6087708a1b18feae7c4dab0882e}\label{class_a_l_f_a_m_ab4efd6087708a1b18feae7c4dab0882e}} 
+double {\bfseries km} = 0
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a6f6fecb398e1e18a76b684aa7a09385c}\label{class_a_l_f_a_m_a6f6fecb398e1e18a76b684aa7a09385c}} 
+double {\bfseries Nmax} = 0
+\item 
+\mbox{\Hypertarget{class_a_l_f_a_m_a2d2c07644fb7d996f28d46a77133b996}\label{class_a_l_f_a_m_a2d2c07644fb7d996f28d46a77133b996}} 
+double {\bfseries T\+AN} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class to implement the \mbox{\hyperlink{class_a_l_f_a_m}{A\+L\+F\+AM}} model of ammonia emission from slurry (Atmospheric Environment 36 (2002) 3309–3319) 
+
+A more elaborate class description.
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_l_f_a_m_a99b2b359704634465506484436dbd8f2}\label{class_a_l_f_a_m_a99b2b359704634465506484436dbd8f2}} 
+\index{ALFAM@{ALFAM}!initialise@{initialise}}
+\index{initialise@{initialise}!ALFAM@{ALFAM}}
+\subsubsection{\texorpdfstring{initialise()}{initialise()}}
+{\footnotesize\ttfamily void A\+L\+F\+A\+M.\+initialise (\begin{DoxyParamCaption}\item[{int}]{soil\+Wet,  }\item[{double}]{ave\+Air\+Temp,  }\item[{double}]{ave\+Windspeed,  }\item[{int}]{manure\+Type,  }\item[{double}]{init\+DM,  }\item[{double}]{init\+T\+AN,  }\item[{double}]{app\+Rate,  }\item[{int}]{app\+Meth,  }\item[{double}]{an\+Exposure\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+A member taking 9 arguments. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em soil\+Wet} & an integer argument. \\
+\hline
+{\em ave\+Air\+Temp} & a double argument, air temperature in Celsius. \\
+\hline
+{\em ave\+Windspeed} & a double argument, wind speed in metres per second \\
+\hline
+{\em manure\+Type} & an integer argument, 1 = cattle, 2 = pig \\
+\hline
+{\em init\+DM} & a double argument, initial dry matter content \\
+\hline
+{\em init\+T\+AN} & a double argument, initial T\+AN content \\
+\hline
+{\em app\+Rate} & a double argument, application rate in tonnes per ha \\
+\hline
+{\em app\+Meth} & an integer argument, application method (1 = broadcast, 2 = trailing hose, 3 = trailing shoe, 4 = open slot injection, 5 = closed slot injection) \\
+\hline
+{\em an\+Exposure\+Time} & a double argument, duration of emission event in hours \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_a_l_f_a_m_a0c0298445d03428301cd76870c188d3a}\label{class_a_l_f_a_m_a0c0298445d03428301cd76870c188d3a}} 
+\index{ALFAM@{ALFAM}!maxTime@{maxTime}}
+\index{maxTime@{maxTime}!ALFAM@{ALFAM}}
+\subsubsection{\texorpdfstring{maxTime}{maxTime}}
+{\footnotesize\ttfamily double A\+L\+F\+A\+M.\+max\+Time = 168.\+0}
+
+
+
+Parameters of model 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+A\+L\+F\+A\+M.\+cs\end{DoxyCompactItemize}
