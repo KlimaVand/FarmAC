@@ -8,10 +8,8 @@ Simulates pools of water in or on the soil, or on the crop canopy.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classsimplesoil_model_1_1pool_a29dc8988f752b7b7e1189d2442a431bd}\label{classsimplesoil_model_1_1pool_a29dc8988f752b7b7e1189d2442a431bd}} 
 double \mbox{\hyperlink{classsimplesoil_model_1_1pool_a29dc8988f752b7b7e1189d2442a431bd}{getvolume}} ()
 \begin{DoxyCompactList}\small\item\em Return volume of water in pool (mm) as double. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classsimplesoil_model_1_1pool_ae038949bd94e78acf1fca1e82e6eae30}\label{classsimplesoil_model_1_1pool_ae038949bd94e78acf1fca1e82e6eae30}} 
 double \mbox{\hyperlink{classsimplesoil_model_1_1pool_ae038949bd94e78acf1fca1e82e6eae30}{getmax\+Volume}} ()
 \begin{DoxyCompactList}\small\item\em Return maximum volume of pool (mm) as double. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classsimplesoil_model_1_1pool_a2459746f840a3d2a6de1748cd430aafc}{setvolume}} (double avolume)
@@ -30,12 +28,10 @@ void \mbox{\hyperlink{classsimplesoil_model_1_1pool_a926062b473c9a2aa0ffb63cc375
 \begin{DoxyCompactList}\small\item\em Initialise a pool. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classsimplesoil_model_1_1pool_aaa4af3081e7de0130231425871a51a85}{daily\+Snow}} (ref double pot\+Evap, double precip, double Tmean)
 \begin{DoxyCompactList}\small\item\em Simulates the dynamics of snow melting and subtracts evaporation from the snow from the potential evaporation. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classsimplesoil_model_1_1pool_a9757328038ba614ff98df009e7c2c7f5}\label{classsimplesoil_model_1_1pool_a9757328038ba614ff98df009e7c2c7f5}} 
 void \mbox{\hyperlink{classsimplesoil_model_1_1pool_a9757328038ba614ff98df009e7c2c7f5}{output\+Details}} ()
 \begin{DoxyCompactList}\small\item\em Outputs state variables to file. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classsimplesoil_model_1_1pool_ae4545ac52a8f85f1d9796a766929e830}{Output\+Debug\+Header}} (int line)
 \begin{DoxyCompactList}\small\item\em Outputs header information to debug file0. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classsimplesoil_model_1_1pool_ab26e1e43b04a4f0677f0b43bdb28f290}\label{classsimplesoil_model_1_1pool_ab26e1e43b04a4f0677f0b43bdb28f290}} 
 void \mbox{\hyperlink{classsimplesoil_model_1_1pool_ab26e1e43b04a4f0677f0b43bdb28f290}{Output\+Debug}} ()
 \begin{DoxyCompactList}\small\item\em Outputs information to debug file. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classsimplesoil_model_1_1pool_ac59aa0194deabd5476178504a75d82f1}{get\+Deficit}} ()
@@ -78,6 +74,26 @@ Return the deficit between the capacity of the pool and the current volume.
 \begin{DoxyReturn}{Returns}
 deficit in mm 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classsimplesoil_model_1_1pool_ae038949bd94e78acf1fca1e82e6eae30}\label{classsimplesoil_model_1_1pool_ae038949bd94e78acf1fca1e82e6eae30}} 
+\index{simplesoilModel.pool@{simplesoilModel.pool}!getmaxVolume@{getmaxVolume}}
+\index{getmaxVolume@{getmaxVolume}!simplesoilModel.pool@{simplesoilModel.pool}}
+\subsubsection{\texorpdfstring{getmaxVolume()}{getmaxVolume()}}
+{\footnotesize\ttfamily double simplesoil\+Model.\+pool.\+getmax\+Volume (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return maximum volume of pool (mm) as double. 
+
+\mbox{\Hypertarget{classsimplesoil_model_1_1pool_a29dc8988f752b7b7e1189d2442a431bd}\label{classsimplesoil_model_1_1pool_a29dc8988f752b7b7e1189d2442a431bd}} 
+\index{simplesoilModel.pool@{simplesoilModel.pool}!getvolume@{getvolume}}
+\index{getvolume@{getvolume}!simplesoilModel.pool@{simplesoilModel.pool}}
+\subsubsection{\texorpdfstring{getvolume()}{getvolume()}}
+{\footnotesize\ttfamily double simplesoil\+Model.\+pool.\+getvolume (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return volume of water in pool (mm) as double. 
+
 \mbox{\Hypertarget{classsimplesoil_model_1_1pool_a926062b473c9a2aa0ffb63cc375afbed}\label{classsimplesoil_model_1_1pool_a926062b473c9a2aa0ffb63cc375afbed}} 
 \index{simplesoilModel.pool@{simplesoilModel.pool}!Initialise@{Initialise}}
 \index{Initialise@{Initialise}!simplesoilModel.pool@{simplesoilModel.pool}}
@@ -97,6 +113,16 @@ Initialise a pool.
 {\em thedrainage\+Const} & the initial drainage constant (millimetres per day) \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classsimplesoil_model_1_1pool_ab26e1e43b04a4f0677f0b43bdb28f290}\label{classsimplesoil_model_1_1pool_ab26e1e43b04a4f0677f0b43bdb28f290}} 
+\index{simplesoilModel.pool@{simplesoilModel.pool}!OutputDebug@{OutputDebug}}
+\index{OutputDebug@{OutputDebug}!simplesoilModel.pool@{simplesoilModel.pool}}
+\subsubsection{\texorpdfstring{OutputDebug()}{OutputDebug()}}
+{\footnotesize\ttfamily void simplesoil\+Model.\+pool.\+Output\+Debug (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Outputs information to debug file. 
+
 \mbox{\Hypertarget{classsimplesoil_model_1_1pool_ae4545ac52a8f85f1d9796a766929e830}\label{classsimplesoil_model_1_1pool_ae4545ac52a8f85f1d9796a766929e830}} 
 \index{simplesoilModel.pool@{simplesoilModel.pool}!OutputDebugHeader@{OutputDebugHeader}}
 \index{OutputDebugHeader@{OutputDebugHeader}!simplesoilModel.pool@{simplesoilModel.pool}}
@@ -112,6 +138,16 @@ Outputs header information to debug file0.
 {\em line} & as integer, = 1 for variable name, = 2 for units \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classsimplesoil_model_1_1pool_a9757328038ba614ff98df009e7c2c7f5}\label{classsimplesoil_model_1_1pool_a9757328038ba614ff98df009e7c2c7f5}} 
+\index{simplesoilModel.pool@{simplesoilModel.pool}!outputDetails@{outputDetails}}
+\index{outputDetails@{outputDetails}!simplesoilModel.pool@{simplesoilModel.pool}}
+\subsubsection{\texorpdfstring{outputDetails()}{outputDetails()}}
+{\footnotesize\ttfamily void simplesoil\+Model.\+pool.\+output\+Details (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Outputs state variables to file. 
+
 \mbox{\Hypertarget{classsimplesoil_model_1_1pool_abcfebe450f6322fd8ece80e88026eb3b}\label{classsimplesoil_model_1_1pool_abcfebe450f6322fd8ece80e88026eb3b}} 
 \index{simplesoilModel.pool@{simplesoilModel.pool}!setdrainageConst@{setdrainageConst}}
 \index{setdrainageConst@{setdrainageConst}!simplesoilModel.pool@{simplesoilModel.pool}}
@@ -208,4 +244,4 @@ Set volume of pool.
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-pool.\+cs\end{DoxyCompactItemize}
+\mbox{\hyperlink{pool_8cs}{pool.\+cs}}\end{DoxyCompactItemize}

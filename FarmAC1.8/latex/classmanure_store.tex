@@ -48,19 +48,14 @@ bool \mbox{\hyperlink{classmanure_store_ad1ec2e50223e778b18e3a76ae6b5a627}{Get\+
 \begin{DoxyCompactList}\small\item\em Determine if the storage stores solid manure. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classmanure_store_a5254b8e9e76a105f39eed9ef9b6a6c38}{Addmanure}} (\mbox{\hyperlink{classmanure}{manure}} amanure, double proportion\+Of\+Year\+Grazing)
 \begin{DoxyCompactList}\small\item\em Adds manure to storage. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classmanure_store_a2018264038e021dc1bd770557587f468}\label{classmanure_store_a2018264038e021dc1bd770557587f468}} 
 void \mbox{\hyperlink{classmanure_store_a2018264038e021dc1bd770557587f468}{Update\+Manure\+Exchange}} ()
 \begin{DoxyCompactList}\small\item\em Update the database of manure transactions. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classmanure_store_a82539494f37b506deb4c398558b7d9a3}\label{classmanure_store_a82539494f37b506deb4c398558b7d9a3}} 
 void \mbox{\hyperlink{classmanure_store_a82539494f37b506deb4c398558b7d9a3}{Do\+Manurestore}} ()
 \begin{DoxyCompactList}\small\item\em Do the manure store dynamics. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classmanure_store_a4d1191eaab06551dece64f91c207e3f5}\label{classmanure_store_a4d1191eaab06551dece64f91c207e3f5}} 
 void \mbox{\hyperlink{classmanure_store_a4d1191eaab06551dece64f91c207e3f5}{Do\+Carbon}} ()
 \begin{DoxyCompactList}\small\item\em Do the carbon dynamics. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classmanure_store_aada25a32d476b57dbeebd25786d5b0bf}\label{classmanure_store_aada25a32d476b57dbeebd25786d5b0bf}} 
 void \mbox{\hyperlink{classmanure_store_aada25a32d476b57dbeebd25786d5b0bf}{Do\+Nitrogen}} ()
 \begin{DoxyCompactList}\small\item\em Do the nitrogen dynamics. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classmanure_store_a78539590211c7a2a278df92b41bbd1d0}\label{classmanure_store_a78539590211c7a2a278df92b41bbd1d0}} 
 void \mbox{\hyperlink{classmanure_store_a78539590211c7a2a278df92b41bbd1d0}{Write}} ()
 \begin{DoxyCompactList}\small\item\em Write details to file. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classmanure_store_a15e3ef4a2d1ffe2d556b213ff2b5c378}{Check\+Manure\+Store\+C\+Balance}} ()
@@ -70,7 +65,6 @@ bool \mbox{\hyperlink{classmanure_store_a6aa8b1751c4d53ac68ec113efc055c1d}{Check
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classmanure_store_a850d2cd27fa7400a7ab9fcda1272f79f}\label{classmanure_store_a850d2cd27fa7400a7ab9fcda1272f79f}} 
 List$<$ \mbox{\hyperlink{classfeed_item}{feed\+Item}} $>$ \mbox{\hyperlink{classmanure_store_a850d2cd27fa7400a7ab9fcda1272f79f}{supplementary\+Feedstock}}
 \begin{DoxyCompactList}\small\item\em List of organic matter feedstocks added to biogas reactor. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -167,6 +161,36 @@ Check if the manure store N budget is closed.
 \begin{DoxyReturn}{Returns}
 always returns false (throws an error if budget does not close). 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classmanure_store_a4d1191eaab06551dece64f91c207e3f5}\label{classmanure_store_a4d1191eaab06551dece64f91c207e3f5}} 
+\index{manureStore@{manureStore}!DoCarbon@{DoCarbon}}
+\index{DoCarbon@{DoCarbon}!manureStore@{manureStore}}
+\subsubsection{\texorpdfstring{DoCarbon()}{DoCarbon()}}
+{\footnotesize\ttfamily void manure\+Store.\+Do\+Carbon (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Do the carbon dynamics. 
+
+\mbox{\Hypertarget{classmanure_store_a82539494f37b506deb4c398558b7d9a3}\label{classmanure_store_a82539494f37b506deb4c398558b7d9a3}} 
+\index{manureStore@{manureStore}!DoManurestore@{DoManurestore}}
+\index{DoManurestore@{DoManurestore}!manureStore@{manureStore}}
+\subsubsection{\texorpdfstring{DoManurestore()}{DoManurestore()}}
+{\footnotesize\ttfamily void manure\+Store.\+Do\+Manurestore (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Do the manure store dynamics. 
+
+\mbox{\Hypertarget{classmanure_store_aada25a32d476b57dbeebd25786d5b0bf}\label{classmanure_store_aada25a32d476b57dbeebd25786d5b0bf}} 
+\index{manureStore@{manureStore}!DoNitrogen@{DoNitrogen}}
+\index{DoNitrogen@{DoNitrogen}!manureStore@{manureStore}}
+\subsubsection{\texorpdfstring{DoNitrogen()}{DoNitrogen()}}
+{\footnotesize\ttfamily void manure\+Store.\+Do\+Nitrogen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Do the nitrogen dynamics. 
+
 \mbox{\Hypertarget{classmanure_store_a634f58e84c82d2ef7110cd1081a41c17}\label{classmanure_store_a634f58e84c82d2ef7110cd1081a41c17}} 
 \index{manureStore@{manureStore}!GetbiogasCH4C@{GetbiogasCH4C}}
 \index{GetbiogasCH4C@{GetbiogasCH4C}!manureStore@{manureStore}}
@@ -392,8 +416,41 @@ Set the housing from which the manure comes.
 {\em ahouse,a} & pointer argument to the housing. \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classmanure_store_a2018264038e021dc1bd770557587f468}\label{classmanure_store_a2018264038e021dc1bd770557587f468}} 
+\index{manureStore@{manureStore}!UpdateManureExchange@{UpdateManureExchange}}
+\index{UpdateManureExchange@{UpdateManureExchange}!manureStore@{manureStore}}
+\subsubsection{\texorpdfstring{UpdateManureExchange()}{UpdateManureExchange()}}
+{\footnotesize\ttfamily void manure\+Store.\+Update\+Manure\+Exchange (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Update the database of manure transactions. 
+
+\mbox{\Hypertarget{classmanure_store_a78539590211c7a2a278df92b41bbd1d0}\label{classmanure_store_a78539590211c7a2a278df92b41bbd1d0}} 
+\index{manureStore@{manureStore}!Write@{Write}}
+\index{Write@{Write}!manureStore@{manureStore}}
+\subsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily void manure\+Store.\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Write details to file. 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classmanure_store_a850d2cd27fa7400a7ab9fcda1272f79f}\label{classmanure_store_a850d2cd27fa7400a7ab9fcda1272f79f}} 
+\index{manureStore@{manureStore}!supplementaryFeedstock@{supplementaryFeedstock}}
+\index{supplementaryFeedstock@{supplementaryFeedstock}!manureStore@{manureStore}}
+\subsubsection{\texorpdfstring{supplementaryFeedstock}{supplementaryFeedstock}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classfeed_item}{feed\+Item}}$>$ manure\+Store.\+supplementary\+Feedstock}
+
+
+
+List of organic matter feedstocks added to biogas reactor. 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-Manure\+Store.\+cs\end{DoxyCompactItemize}
+\mbox{\hyperlink{_manure_store_8cs}{Manure\+Store.\+cs}}\end{DoxyCompactItemize}

@@ -2,6 +2,7 @@ var searchData=
 [
   ['readfertmanapplication',['ReadFertManApplication',['../classfert_record.html#a2eb0f5970facf6762392870c5c6dcb65',1,'fertRecord']]],
   ['readglobalconstants',['readGlobalConstants',['../class_global_vars.html#aa2b488457aa6dc34540b3649edd85d82',1,'GlobalVars']]],
+  ['readzonespecificdata',['readZoneSpecificData',['../struct_global_vars_1_1zone_specific_data.html#a8abd745cc132dff95df9a4f982f1071c',1,'GlobalVars::zoneSpecificData']]],
   ['recursionforitem',['recursionForItem',['../class_file_information.html#a130927de30209803fd7e1c2ab7c84b69',1,'FileInformation']]],
   ['reloadc_5ftool',['reloadC_Tool',['../classctool2.html#a463a13b4941af48d351824a9b4a5e400',1,'ctool2']]],
   ['reset',['reset',['../class_file_information.html#a5e19ac29cfc7a806e3af6b346a02578a',1,'FileInformation.reset()'],['../class_global_vars.html#a76cfa6a2f43f92c148c8abf8664122f0',1,'GlobalVars.reset()']]],

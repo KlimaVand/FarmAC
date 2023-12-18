@@ -2,10 +2,13 @@ var searchData=
 [
   ['addactualamount',['AddActualAmount',['../class_global_vars_1_1product.html#ad0777eac2225214c7b3abd5f961e41ce',1,'GlobalVars::product']]],
   ['addamount',['Addamount',['../classfeed_item.html#a7b662aa8b1ac382a6c2e27e45ca486bd',1,'feedItem']]],
+  ['addbiochar',['addBiochar',['../class_soil_clayer.html#ad4ff61d6fc320884f78f259399baa800',1,'SoilClayer']]],
   ['addchild',['addChild',['../class_animal_change_1_1_node.html#afa898ee369ed1ead4ecd6f880e3744d8',1,'AnimalChange.Node.addChild(string name, string value)'],['../class_animal_change_1_1_node.html#ac38160caf74e60731c7f92abf8d62388',1,'AnimalChange.Node.addChild(Node newNode)']]],
   ['addexpectedyield',['AddExpectedYield',['../class_global_vars_1_1product.html#a8e8487be42a12272849cfcdfd0e87470',1,'GlobalVars::product']]],
   ['addfeeditem',['AddFeedItem',['../classfeed_item.html#a9d4d5c145e4196c035034388e8d0a9a4',1,'feedItem']]],
+  ['addfom',['addFOM',['../class_soil_clayer.html#a9d4734c2cc8736bb04b2f7d163900eac',1,'SoilClayer']]],
   ['addgrazableproductunutilised',['AddGrazableProductUnutilised',['../class_global_vars.html#ab89dab6808de1b3cf7dea479146f6865',1,'GlobalVars']]],
+  ['addhum',['addHUM',['../class_soil_clayer.html#a221ec3644b0aef328a8615c26f99bfca',1,'SoilClayer']]],
   ['addmanure',['Addmanure',['../classmanure_store.html#a5254b8e9e76a105f39eed9ef9b6a6c38',1,'manureStore.Addmanure()'],['../classmanure.html#aa00f0ac2446502ded3b6c942bbff6c5b',1,'manure.AddManure()']]],
   ['addone_5ftimeorganicmatter',['AddOne_timeOrganicMatter',['../class_crop_class.html#aa0f85f842c98fcdebc9c914fde896246',1,'CropClass']]],
   ['addproductproduced',['AddProductProduced',['../class_global_vars.html#ab82efa871de33736324f919209f89c46',1,'GlobalVars']]],

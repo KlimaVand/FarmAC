@@ -2,7 +2,7 @@ var searchData=
 [
   ['opencropfile',['OpenCropFile',['../class_global_vars.html#a96dcdedd261f3aaf43edfd203a3b940d',1,'GlobalVars']]],
   ['openctoolfile',['OpenCtoolFile',['../class_global_vars.html#a946e269cb4206093e882f56cbe93e266',1,'GlobalVars']]],
-  ['opendebugfile',['OpenDebugFile',['../class_global_vars.html#ae4b87d624a1c79b1cdaca50e96e2275f',1,'GlobalVars']]],
+  ['opendebugfile',['OpenDebugFile',['../struct_global_vars_1_1zone_specific_data.html#a016b9b6888f6421e60fd9097379220e9',1,'GlobalVars.zoneSpecificData.OpenDebugFile()'],['../class_global_vars.html#ae4b87d624a1c79b1cdaca50e96e2275f',1,'GlobalVars.OpenDebugFile()']]],
   ['openfieldfile',['OpenFieldFile',['../class_global_vars.html#a5eddc5dbbfc855539c90949c67595a0a',1,'GlobalVars']]],
   ['openlivestockfile',['OpenLivestockFile',['../class_global_vars.html#a67d8101f65e6a06b48e4ee6f98648bc1',1,'GlobalVars']]],
   ['openoutputtabfile',['OpenOutputTabFile',['../class_global_vars.html#a3d95bee07269860dc17a738aa02722f1',1,'GlobalVars']]],

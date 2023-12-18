@@ -1,14 +1,12 @@
 var searchData=
 [
-  ['parens',['parens',['../class_crop_class.html#a157b2bf636da40932ea48a3249393492',1,'CropClass.parens()'],['../struct_global_vars_1_1grazed_item.html#ad571e8aafded85c7897e3d27d2525ecc',1,'GlobalVars.grazedItem.parens()'],['../structlivestock_1_1_manure_recipient.html#adb66d99bb1b3cf89215d89acca36d3e2',1,'livestock.ManureRecipient.parens()'],['../structlivestock_1_1housing_record.html#a180d9ab0c1e6023d24500933a2f546f7',1,'livestock.housingRecord.parens()'],['../classfert_record.html#a4581cecf1c4f53b6809c7878c5ea75ff',1,'fertRecord.Parens()']]],
-  ['pathnames',['PathNames',['../class_file_information.html#ab4b5c2a04bb90cbdb9b9e7fe1320ce88',1,'FileInformation']]],
-  ['piglactationenergy',['pigLactationEnergy',['../classlivestock.html#ace8fc768f943e96b99d42783932d53ee',1,'livestock']]],
-  ['pigmaintenanceenergy',['pigMaintenanceEnergy',['../classlivestock.html#a030909d0ff24a1fcb0a88394033d2cc8',1,'livestock']]],
-  ['pool',['pool',['../classsimplesoil_model_1_1pool.html',1,'simplesoilModel']]],
-  ['printplantproducts',['PrintPlantProducts',['../class_global_vars.html#ad1d5b8cf02cda37a3323a94dff915e00',1,'GlobalVars']]],
-  ['processexpectedyieldforoutput',['processExpectedYieldForOutput',['../class_crop_sequence_class.html#aff5bfa87d2cc1dea5dea8f29a4df32f0',1,'CropSequenceClass']]],
-  ['product',['product',['../class_global_vars_1_1product.html',1,'GlobalVars.product'],['../class_global_vars_1_1product.html#a98e409001908cf1b15212222ce84c22a',1,'GlobalVars.product.product()'],['../class_global_vars_1_1product.html#aea0a467580d4e1dbc977f42140334605',1,'GlobalVars.product.product(product aProduct)']]],
-  ['program',['Program',['../class_animal_change_1_1_program.html',1,'AnimalChange']]],
-  ['propdmgrazed',['propDMgrazed',['../classlivestock.html#a4dbd96b6381bb6910c2b9af29955c991',1,'livestock']]],
-  ['proptime',['propTime',['../structlivestock_1_1housing_record.html#aefaaa48895680f2d4f90ad4ca14f2c4e',1,'livestock::housingRecord']]]
+  ['n2factor',['N2Factor',['../struct_global_vars_1_1zone_specific_data_1_1soil_data.html#a787c2b731ff0fd4db270c8348e6cc8aa',1,'GlobalVars::zoneSpecificData::soilData']]],
+  ['name',['name',['../struct_global_vars_1_1grazed_item.html#a90bd7ad02315379fdb3a9873c4f73bd9',1,'GlobalVars.grazedItem.name()'],['../struct_global_vars_1_1zone_specific_data_1_1fertiliser_data.html#a71523f1fcc994b969accb37aff6397eb',1,'GlobalVars.zoneSpecificData.fertiliserData.name()'],['../struct_global_vars_1_1zone_specific_data_1_1soil_data.html#a9ecc5be71d90700844d9b81c63bdb783',1,'GlobalVars.zoneSpecificData.soilData.name()'],['../struct_global_vars_1_1zone_specific_data_1_1manure_app_data.html#aa848820d888c7adb178c6c76fd6f9a6b',1,'GlobalVars.zoneSpecificData.manureAppData.name()'],['../classfert_record.html#a04116c39447ca7dba821361c530b23f9',1,'fertRecord.Name()']]],
+  ['nameofhousing',['NameOfHousing',['../structlivestock_1_1housing_record.html#a8a33c1c98dbd03f6a305a87372050d6b',1,'livestock::housingRecord']]],
+  ['namount',['Namount',['../classfert_record.html#a60a97d66e846afeb5e5b6425d89b2427',1,'fertRecord']]],
+  ['nh3emissionreductionfactor',['NH3EmissionReductionFactor',['../struct_global_vars_1_1zone_specific_data_1_1manure_app_data.html#a0b82f6dc3e8aaa6c3039b765d74bf66a',1,'GlobalVars::zoneSpecificData::manureAppData']]],
+  ['nmax',['Nmax',['../class_a_l_f_a_m.html#a6f6fecb398e1e18a76b684aa7a09385c',1,'ALFAM']]],
+  ['node',['Node',['../class_animal_change_1_1_node.html',1,'AnimalChange.Node'],['../class_crop_sequence_class.html#aeb621b262d3b943df74d6d2fc5835868',1,'CropSequenceClass.node()'],['../class_animal_change_1_1_node.html#ab61b9908056398b7dbae90ef77d79f95',1,'AnimalChange.Node.Node()']]],
+  ['node_2ecs',['Node.cs',['../_node_8cs.html',1,'']]],
+  ['ntocrudeprotein',['NtoCrudeProtein',['../class_global_vars.html#af457f71344887d7f092c0a8190bf47ef',1,'GlobalVars']]]
 ];

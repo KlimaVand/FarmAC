@@ -8,55 +8,42 @@ Class used to model soil water dynamics. Based on soil submodel of the Evacrop m
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a2bdef505d32a606cc6937983a77abed2}\label{classsimplesoil_model_1_1simple_soil_a2bdef505d32a606cc6937983a77abed2}} 
 List$<$ \mbox{\hyperlink{classsimplesoil_model_1_1soil_water_layer_class}{soil\+Water\+Layer\+Class}} $>$ \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a2bdef505d32a606cc6937983a77abed2}{getthe\+Layers}} ()
 \begin{DoxyCompactList}\small\item\em Get the list of the layers in the soil. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a8409280085e27eeab591070b94e39674}\label{classsimplesoil_model_1_1simple_soil_a8409280085e27eeab591070b94e39674}} 
 double \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a8409280085e27eeab591070b94e39674}{getcanopy\+Interception}} ()
 \begin{DoxyCompactList}\small\item\em Get the amount of water in the canopy interception pool (mm) \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a9784cacbb68950312021f3ff082c0fa5}\label{classsimplesoil_model_1_1simple_soil_a9784cacbb68950312021f3ff082c0fa5}} 
 double \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a9784cacbb68950312021f3ff082c0fa5}{Get\+Rooting\+Water\+Volume}} ()
 \begin{DoxyCompactList}\small\item\em Get the volume of water in the soil in a layer from the soil surface to the rooting depth (mm) \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a9809c673d928e457714aff6a2da5803e}\label{classsimplesoil_model_1_1simple_soil_a9809c673d928e457714aff6a2da5803e}} 
 double \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a9809c673d928e457714aff6a2da5803e}{Getdrainage}} ()
 \begin{DoxyCompactList}\small\item\em Get the drainage from the soil (mm) \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a3745efc62197a3432e8dc6065e008a6e}\label{classsimplesoil_model_1_1simple_soil_a3745efc62197a3432e8dc6065e008a6e}} 
 double \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a3745efc62197a3432e8dc6065e008a6e}{Getsnow\+Evap}} ()
 \begin{DoxyCompactList}\small\item\em Get the evaporation from the snow (mm) \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a39baf3c0ecbb38d43dae18dedce649be}\label{classsimplesoil_model_1_1simple_soil_a39baf3c0ecbb38d43dae18dedce649be}} 
 double \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a39baf3c0ecbb38d43dae18dedce649be}{Getevap}} ()
 \begin{DoxyCompactList}\small\item\em Get the evaporation from liquid water (mm) \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a442e17dc9c07530c48ff41282a6851be}\label{classsimplesoil_model_1_1simple_soil_a442e17dc9c07530c48ff41282a6851be}} 
 double \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a442e17dc9c07530c48ff41282a6851be}{Gettranspire}} ()
 \begin{DoxyCompactList}\small\item\em Get the crop transpiration (mm) \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a06e8097b093bfdc37b57abe418d8ca5f}\label{classsimplesoil_model_1_1simple_soil_a06e8097b093bfdc37b57abe418d8ca5f}} 
 \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a06e8097b093bfdc37b57abe418d8ca5f}{simple\+Soil}} ()
 \begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_ae4a82d34a86b81420ca86f7364038f57}{Initialise2}} (int soiltype\+No, double amax\+Rooting\+Depth, double rooting\+Depth, double total\+L\+AI, double \mbox{[}$\,$\mbox{]} layer\+OrgC)
 \begin{DoxyCompactList}\small\item\em Initialise an instance of this class. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a6209b0b03b7ffac86ceecf7bc1f3b8c0}\label{classsimplesoil_model_1_1simple_soil_a6209b0b03b7ffac86ceecf7bc1f3b8c0}} 
-double {\bfseries Get\+Plant\+Avail\+Water\+In\+Soil} ()
+double \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a6209b0b03b7ffac86ceecf7bc1f3b8c0}{Get\+Plant\+Avail\+Water\+In\+Soil}} ()
 \item 
 void \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a04390b2df05316b8bfee985a4d29e90a}{daily\+Routine}} (double pot\+Evap, double precip\+In, double irrigation\+Water, double Tmean, double total\+L\+AI, double rooting\+Depth, ref double rel\+\_\+drought\+Plant, ref double relative\+Drought\+Soil)
 \begin{DoxyCompactList}\small\item\em Execute the daily functions. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a1cdf6eb12b0414d1fc6002a08f803f05}{update\+Pools}} (double rooting\+Depth, double total\+L\+AI)
 \begin{DoxyCompactList}\small\item\em Update the soil pools to account for changes in the crop rooting depth and L\+AI. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a40799ba66476c4a190adafc91169699f}\label{classsimplesoil_model_1_1simple_soil_a40799ba66476c4a190adafc91169699f}} 
 void \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a40799ba66476c4a190adafc91169699f}{check\+Budget}} ()
 \begin{DoxyCompactList}\small\item\em Reports an error if the soil water budget cannot be closed. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a8e716d4ae99f278b1bf013e04e0de57c}{Write}} ()
 \begin{DoxyCompactList}\small\item\em Outputs the soil variables to a file. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a2c3168847b685c0972abc43cb71be993}\label{classsimplesoil_model_1_1simple_soil_a2c3168847b685c0972abc43cb71be993}} 
 void \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a2c3168847b685c0972abc43cb71be993}{Write\+Debug\+Header}} ()
 \begin{DoxyCompactList}\small\item\em used for writing header to file when debugging \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a082248ca3544715749dfa69649b1adee}\label{classsimplesoil_model_1_1simple_soil_a082248ca3544715749dfa69649b1adee}} 
 void \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a082248ca3544715749dfa69649b1adee}{Write\+Debug}} (int day)
 \begin{DoxyCompactList}\small\item\em Write data to debug file. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a5ed67a8d25b44c463f586d3689296211}{get\+S\+MD}} (double depth, double rooting\+Depth)
 \begin{DoxyCompactList}\small\item\em Returns the soil moisture deficit to a given depth (mm) \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a91b32d1ce3edeea34d86405ba9013c21}{Get\+Max\+Avail\+Water\+To\+Rooting\+Depth}} (double depth, double rooting\+Depth)
 \begin{DoxyCompactList}\small\item\em Returns the maximum amount of plant-\/available water to a given depth (mm) \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a28e0b5547e5728fee34db025abf7d9de}\label{classsimplesoil_model_1_1simple_soil_a28e0b5547e5728fee34db025abf7d9de}} 
 double \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a28e0b5547e5728fee34db025abf7d9de}{getwater\+In\+System}} ()
 \begin{DoxyCompactList}\small\item\em Get the total amount of water in the soil (mm) \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_a4ba9c7c0f072654666128bc23e3693a2}{Get\+Field\+Capacity}} (double sand, double clay, double OM)
@@ -72,6 +59,19 @@ void \mbox{\hyperlink{classsimplesoil_model_1_1simple_soil_ac52b9f1e6b4007ff4b24
 \subsection{Detailed Description}
 Class used to model soil water dynamics. Based on soil submodel of the Evacrop model. 
 
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a06e8097b093bfdc37b57abe418d8ca5f}\label{classsimplesoil_model_1_1simple_soil_a06e8097b093bfdc37b57abe418d8ca5f}} 
+\index{simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}!simpleSoil@{simpleSoil}}
+\index{simpleSoil@{simpleSoil}!simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}}
+\subsubsection{\texorpdfstring{simpleSoil()}{simpleSoil()}}
+{\footnotesize\ttfamily simplesoil\+Model.\+simple\+Soil.\+simple\+Soil (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+default constructor 
+
+
+
 \subsection{Member Function Documentation}
 \mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_ac52b9f1e6b4007ff4b24c8a45816ce74}\label{classsimplesoil_model_1_1simple_soil_ac52b9f1e6b4007ff4b24c8a45816ce74}} 
 \index{simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}!CalcSoilWaterProps@{CalcSoilWaterProps}}
@@ -84,6 +84,16 @@ Class used to model soil water dynamics. Based on soil submodel of the Evacrop m
 {\em total\+SoilC} & total soilC (kg/ha) \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a40799ba66476c4a190adafc91169699f}\label{classsimplesoil_model_1_1simple_soil_a40799ba66476c4a190adafc91169699f}} 
+\index{simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}!checkBudget@{checkBudget}}
+\index{checkBudget@{checkBudget}!simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}}
+\subsubsection{\texorpdfstring{checkBudget()}{checkBudget()}}
+{\footnotesize\ttfamily void simplesoil\+Model.\+simple\+Soil.\+check\+Budget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports an error if the soil water budget cannot be closed. 
+
 \mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a04390b2df05316b8bfee985a4d29e90a}\label{classsimplesoil_model_1_1simple_soil_a04390b2df05316b8bfee985a4d29e90a}} 
 \index{simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}!dailyRoutine@{dailyRoutine}}
 \index{dailyRoutine@{dailyRoutine}!simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}}
@@ -103,6 +113,36 @@ Execute the daily functions.
 {\em Tmean} & mean air temperature (Celsius) \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a8409280085e27eeab591070b94e39674}\label{classsimplesoil_model_1_1simple_soil_a8409280085e27eeab591070b94e39674}} 
+\index{simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}!getcanopyInterception@{getcanopyInterception}}
+\index{getcanopyInterception@{getcanopyInterception}!simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}}
+\subsubsection{\texorpdfstring{getcanopyInterception()}{getcanopyInterception()}}
+{\footnotesize\ttfamily double simplesoil\+Model.\+simple\+Soil.\+getcanopy\+Interception (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the amount of water in the canopy interception pool (mm) 
+
+\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a9809c673d928e457714aff6a2da5803e}\label{classsimplesoil_model_1_1simple_soil_a9809c673d928e457714aff6a2da5803e}} 
+\index{simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}!Getdrainage@{Getdrainage}}
+\index{Getdrainage@{Getdrainage}!simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}}
+\subsubsection{\texorpdfstring{Getdrainage()}{Getdrainage()}}
+{\footnotesize\ttfamily double simplesoil\+Model.\+simple\+Soil.\+Getdrainage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the drainage from the soil (mm) 
+
+\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a39baf3c0ecbb38d43dae18dedce649be}\label{classsimplesoil_model_1_1simple_soil_a39baf3c0ecbb38d43dae18dedce649be}} 
+\index{simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}!Getevap@{Getevap}}
+\index{Getevap@{Getevap}!simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}}
+\subsubsection{\texorpdfstring{Getevap()}{Getevap()}}
+{\footnotesize\ttfamily double simplesoil\+Model.\+simple\+Soil.\+Getevap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the evaporation from liquid water (mm) 
+
 \mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a4ba9c7c0f072654666128bc23e3693a2}\label{classsimplesoil_model_1_1simple_soil_a4ba9c7c0f072654666128bc23e3693a2}} 
 \index{simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}!GetFieldCapacity@{GetFieldCapacity}}
 \index{GetFieldCapacity@{GetFieldCapacity}!simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}}
@@ -176,6 +216,22 @@ the maximum amount of plant-\/available water in the soil (mm)
 \begin{DoxyReturn}{Returns}
 the permanent witing point (\% by volume) 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a6209b0b03b7ffac86ceecf7bc1f3b8c0}\label{classsimplesoil_model_1_1simple_soil_a6209b0b03b7ffac86ceecf7bc1f3b8c0}} 
+\index{simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}!GetPlantAvailWaterInSoil@{GetPlantAvailWaterInSoil}}
+\index{GetPlantAvailWaterInSoil@{GetPlantAvailWaterInSoil}!simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}}
+\subsubsection{\texorpdfstring{GetPlantAvailWaterInSoil()}{GetPlantAvailWaterInSoil()}}
+{\footnotesize\ttfamily double simplesoil\+Model.\+simple\+Soil.\+Get\+Plant\+Avail\+Water\+In\+Soil (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a9784cacbb68950312021f3ff082c0fa5}\label{classsimplesoil_model_1_1simple_soil_a9784cacbb68950312021f3ff082c0fa5}} 
+\index{simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}!GetRootingWaterVolume@{GetRootingWaterVolume}}
+\index{GetRootingWaterVolume@{GetRootingWaterVolume}!simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}}
+\subsubsection{\texorpdfstring{GetRootingWaterVolume()}{GetRootingWaterVolume()}}
+{\footnotesize\ttfamily double simplesoil\+Model.\+simple\+Soil.\+Get\+Rooting\+Water\+Volume (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the volume of water in the soil in a layer from the soil surface to the rooting depth (mm) 
+
 \mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a5ed67a8d25b44c463f586d3689296211}\label{classsimplesoil_model_1_1simple_soil_a5ed67a8d25b44c463f586d3689296211}} 
 \index{simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}!getSMD@{getSMD}}
 \index{getSMD@{getSMD}!simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}}
@@ -196,6 +252,46 @@ Returns the soil moisture deficit to a given depth (mm)
 \begin{DoxyReturn}{Returns}
 the soil moisture deficit to a given depth (mm) 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a3745efc62197a3432e8dc6065e008a6e}\label{classsimplesoil_model_1_1simple_soil_a3745efc62197a3432e8dc6065e008a6e}} 
+\index{simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}!GetsnowEvap@{GetsnowEvap}}
+\index{GetsnowEvap@{GetsnowEvap}!simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}}
+\subsubsection{\texorpdfstring{GetsnowEvap()}{GetsnowEvap()}}
+{\footnotesize\ttfamily double simplesoil\+Model.\+simple\+Soil.\+Getsnow\+Evap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the evaporation from the snow (mm) 
+
+\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a2bdef505d32a606cc6937983a77abed2}\label{classsimplesoil_model_1_1simple_soil_a2bdef505d32a606cc6937983a77abed2}} 
+\index{simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}!gettheLayers@{gettheLayers}}
+\index{gettheLayers@{gettheLayers}!simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}}
+\subsubsection{\texorpdfstring{gettheLayers()}{gettheLayers()}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{classsimplesoil_model_1_1soil_water_layer_class}{soil\+Water\+Layer\+Class}}$>$ simplesoil\+Model.\+simple\+Soil.\+getthe\+Layers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the list of the layers in the soil. 
+
+\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a442e17dc9c07530c48ff41282a6851be}\label{classsimplesoil_model_1_1simple_soil_a442e17dc9c07530c48ff41282a6851be}} 
+\index{simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}!Gettranspire@{Gettranspire}}
+\index{Gettranspire@{Gettranspire}!simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}}
+\subsubsection{\texorpdfstring{Gettranspire()}{Gettranspire()}}
+{\footnotesize\ttfamily double simplesoil\+Model.\+simple\+Soil.\+Gettranspire (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the crop transpiration (mm) 
+
+\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a28e0b5547e5728fee34db025abf7d9de}\label{classsimplesoil_model_1_1simple_soil_a28e0b5547e5728fee34db025abf7d9de}} 
+\index{simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}!getwaterInSystem@{getwaterInSystem}}
+\index{getwaterInSystem@{getwaterInSystem}!simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}}
+\subsubsection{\texorpdfstring{getwaterInSystem()}{getwaterInSystem()}}
+{\footnotesize\ttfamily double simplesoil\+Model.\+simple\+Soil.\+getwater\+In\+System (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the total amount of water in the soil (mm) 
+
 \mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_ae4a82d34a86b81420ca86f7364038f57}\label{classsimplesoil_model_1_1simple_soil_ae4a82d34a86b81420ca86f7364038f57}} 
 \index{simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}!Initialise2@{Initialise2}}
 \index{Initialise2@{Initialise2}!simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}}
@@ -253,8 +349,28 @@ Outputs the soil variables to a file.
 {\em header} & set to true if only the variable names should be printed \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a082248ca3544715749dfa69649b1adee}\label{classsimplesoil_model_1_1simple_soil_a082248ca3544715749dfa69649b1adee}} 
+\index{simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}!WriteDebug@{WriteDebug}}
+\index{WriteDebug@{WriteDebug}!simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}}
+\subsubsection{\texorpdfstring{WriteDebug()}{WriteDebug()}}
+{\footnotesize\ttfamily void simplesoil\+Model.\+simple\+Soil.\+Write\+Debug (\begin{DoxyParamCaption}\item[{int}]{day }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Write data to debug file. 
+
+\mbox{\Hypertarget{classsimplesoil_model_1_1simple_soil_a2c3168847b685c0972abc43cb71be993}\label{classsimplesoil_model_1_1simple_soil_a2c3168847b685c0972abc43cb71be993}} 
+\index{simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}!WriteDebugHeader@{WriteDebugHeader}}
+\index{WriteDebugHeader@{WriteDebugHeader}!simplesoilModel.simpleSoil@{simplesoilModel.simpleSoil}}
+\subsubsection{\texorpdfstring{WriteDebugHeader()}{WriteDebugHeader()}}
+{\footnotesize\ttfamily void simplesoil\+Model.\+simple\+Soil.\+Write\+Debug\+Header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+used for writing header to file when debugging 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-simple\+Soil.\+cs\end{DoxyCompactItemize}
+\mbox{\hyperlink{simple_soil_8cs}{simple\+Soil.\+cs}}\end{DoxyCompactItemize}

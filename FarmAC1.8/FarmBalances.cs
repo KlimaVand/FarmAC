@@ -59,6 +59,9 @@ class farmBalanceClass
     double Nharvested = 0;
     ///Change in soil N storage
     double changeSoilN = 0;
+    /// <summary>
+    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// </summary>
     double entericCH4CO2Eq = 0.0;
     double manureCH4CO2Eq = 0;
     double manureN2OCO2Eq = 0;

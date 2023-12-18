@@ -47,13 +47,10 @@ List$<$ \mbox{\hyperlink{struct_global_vars_1_1manurestore_record}{Global\+Vars.
 \begin{DoxyCompactList}\small\item\em A constructor with five arguments. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classhousing_ad26e09572df342d9e0b17400f24720ef}{Get\+Cto\+Storage}} ()
 \begin{DoxyCompactList}\small\item\em Returns the amount of C sent to storage. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classhousing_af7e45d8da4358309aaacb9d24bb19523}\label{classhousing_af7e45d8da4358309aaacb9d24bb19523}} 
 void \mbox{\hyperlink{classhousing_af7e45d8da4358309aaacb9d24bb19523}{Do\+Housing}} ()
 \begin{DoxyCompactList}\small\item\em Do all the calculations for animal housing. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classhousing_a50306a2782cf072bc5b353331f001cf9}\label{classhousing_a50306a2782cf072bc5b353331f001cf9}} 
 void \mbox{\hyperlink{classhousing_a50306a2782cf072bc5b353331f001cf9}{Do\+Nitrogen}} ()
 \begin{DoxyCompactList}\small\item\em Do nitrogen dynamics. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classhousing_a589942e33cabe72d088f1428d076d8ac}\label{classhousing_a589942e33cabe72d088f1428d076d8ac}} 
 void \mbox{\hyperlink{classhousing_a589942e33cabe72d088f1428d076d8ac}{Write}} ()
 \begin{DoxyCompactList}\small\item\em Write details of housing to file. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classhousing_afc648290d69e019a0ef2b6bf0ef4dc43}{Check\+Housing\+C\+Balance}} ()
@@ -121,6 +118,26 @@ a boolean value.\+Check the housing N Balance.
 Checks whether the N balance is closed. If not, an error is generated and the function is terminated \begin{DoxyReturn}{Returns}
 will always return false. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classhousing_af7e45d8da4358309aaacb9d24bb19523}\label{classhousing_af7e45d8da4358309aaacb9d24bb19523}} 
+\index{housing@{housing}!DoHousing@{DoHousing}}
+\index{DoHousing@{DoHousing}!housing@{housing}}
+\subsubsection{\texorpdfstring{DoHousing()}{DoHousing()}}
+{\footnotesize\ttfamily void housing.\+Do\+Housing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Do all the calculations for animal housing. 
+
+\mbox{\Hypertarget{classhousing_a50306a2782cf072bc5b353331f001cf9}\label{classhousing_a50306a2782cf072bc5b353331f001cf9}} 
+\index{housing@{housing}!DoNitrogen@{DoNitrogen}}
+\index{DoNitrogen@{DoNitrogen}!housing@{housing}}
+\subsubsection{\texorpdfstring{DoNitrogen()}{DoNitrogen()}}
+{\footnotesize\ttfamily void housing.\+Do\+Nitrogen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Do nitrogen dynamics. 
+
 \mbox{\Hypertarget{classhousing_a75970a10d0af75df797cd4bb98c8c058}\label{classhousing_a75970a10d0af75df797cd4bb98c8c058}} 
 \index{housing@{housing}!getBeddingC@{getBeddingC}}
 \index{getBeddingC@{getBeddingC}!housing@{housing}}
@@ -394,8 +411,18 @@ Get the urine N (kg).
 \begin{DoxyReturn}{Returns}
 N in urine (kg/yr) as a double value. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classhousing_a589942e33cabe72d088f1428d076d8ac}\label{classhousing_a589942e33cabe72d088f1428d076d8ac}} 
+\index{housing@{housing}!Write@{Write}}
+\index{Write@{Write}!housing@{housing}}
+\subsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily void housing.\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Write details of housing to file. 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-Housing.\+cs\end{DoxyCompactItemize}
+\mbox{\hyperlink{_housing_8cs}{Housing.\+cs}}\end{DoxyCompactItemize}

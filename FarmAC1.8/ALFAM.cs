@@ -51,12 +51,12 @@ public class ALFAM
     }
     //! A member taking 9 arguments 
     /*!
-     \param soilWet an integer argument.
+     \param soilWet an integer argument, equal to 1 if soil is wet
      \param aveAirTemp a double argument, air temperature in Celsius.
      \param aveWindspeed a double argument, wind speed in metres per second
      \param manureType an integer argument, 1 = cattle, 2 = pig
-     \param initDM a double argument, initial dry matter content
-     \param initTAN a double argument, initial TAN content
+     \param initDM a double argument, initial dry matter content (%)
+     \param initTAN a double argument, initial TAN content (g N/kg fresh weight)
      \param appRate a double argument,  application rate in tonnes per ha
      \param appMeth an integer argument, application method (1 = broadcast, 2 = trailing hose, 3 = trailing shoe, 4 = open slot injection, 5 = closed slot injection)
      \param anExposureTime a double argument, duration of emission event in hours

@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['logfilestream',['logFileStream',['../class_global_vars.html#a887d3b4680e3797b1ae8b50cf1c27cab',1,'GlobalVars']]],
-  ['logscreen',['logScreen',['../class_global_vars.html#a595268838a351f8166bbf37c837cdec6',1,'GlobalVars']]]
+  ['harvested',['Harvested',['../class_global_vars_1_1product.html#ab2fc244d1ed43617cb8243da8497d936',1,'GlobalVars::product']]],
+  ['headerfield',['headerField',['../class_global_vars.html#a2e743041f1f7c995cc92ce90dced2822',1,'GlobalVars']]],
+  ['headerlivestock',['headerLivestock',['../class_global_vars.html#a13f0621b9ef546909f40ca12eb999c78',1,'GlobalVars']]],
+  ['housingtype',['HousingType',['../structlivestock_1_1housing_record.html#a3e532e43462b184a6bcde53c6e7b047b',1,'livestock::housingRecord']]]
 ];
