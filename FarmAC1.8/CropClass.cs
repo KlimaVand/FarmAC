@@ -157,7 +157,6 @@ public class CropClass
         mineralNToNextCrop = theCropToBeCopied.mineralNToNextCrop;
         fertiliserN2OEmission = theCropToBeCopied.fertiliserN2OEmission;
         manureN2OEmission = theCropToBeCopied.manureN2OEmission;
-        cropResidueN2O = theCropToBeCopied.cropResidueN2O ;
         soilN2OEmission = theCropToBeCopied.soilN2OEmission;
         nitrateLeaching = theCropToBeCopied.nitrateLeaching;
         cropSequenceName = theCropToBeCopied.cropSequenceName;
@@ -387,8 +386,6 @@ public class CropClass
     double fertiliserN2OEmission = 0;
     //! N2O-N emission from manure applied (kg/ha)
     double manureN2OEmission;
-    //! N2O-N emission from mineralised crop residues (kg/ha)
-    double cropResidueN2O = 0;
     //! N2O-N emission from mineralised soil organic matter (kg/ha)
     double soilN2OEmission = 0;
     //! Nitrate leaching (kg N/ha)
@@ -552,11 +549,6 @@ public class CropClass
       \return the mineral N remaining from the last crop (kg/ha) as a double value.
     */
     public double getMineralNFromLastCrop(){return mineralNFromLastCrop;}
-    //!  Get Crop Residue N2O-N. 
-    /*!
-      \return N2O-N emissions from crop residues (kg/ha) as a double value.
-    */
-    public double getCropResidueN2O() { return cropResidueN2O; }
     //!  Get N fixation. 
     /*!
       \return N fixation (kg/ha) as a double value.
@@ -780,11 +772,6 @@ public class CropClass
       \return Manure N2O-N Emission (kg/ha) as a double value.
     */
     public double GetmanureN2ONEmission() { return manureN2OEmission; }
-    //!  Get Crop Residue N2O-N. 
-    /*!
-      \return Crop Residue N2O-N (kg/ha) as a double value.
-    */
-    public double GetcropResidueN2ON() { return cropResidueN2O; }
     //!  Get Soil N2O-N Emission. 
     /*!
       \return Soil N2O-N Emission (kg/ha) as a double value.
@@ -2792,7 +2779,7 @@ public class CropClass
             GlobalVars.Instance.writeEndTab();
             GlobalVars.Instance.writeInformationToFiles("isIrrigated", "Is irrigated", "-", isIrrigated, parens);
             GlobalVars.Instance.writeInformationToFiles("fertiliserN2OEmission", "N2O emission from fertiliser", "kgN/ha", fertiliserN2OEmission, parens);
-            GlobalVars.Instance.writeInformationToFiles("cropResidueN2O", "N2O emission from crop residues", "kgN/ha", cropResidueN2O, parens);
+            GlobalVars.Instance.writeInformationToFiles("Placeholder", "Placeholder", "", 0, parens);
             GlobalVars.Instance.writeInformationToFiles("soilN2OEmission", "N2O emission from mineralised N", "kgN/ha", soilN2OEmission, parens);
             GlobalVars.Instance.writeInformationToFiles("unutilisedGrazableDM", "Unutilised grazable DM", "kg DM/ha", unutilisedGrazableDM, parens);
 
@@ -2852,7 +2839,7 @@ public class CropClass
             GlobalVars.Instance.writeInformationToFiles("mineralNToNextCrop", "Mineral N to next crop", "kgN/ha", mineralNToNextCrop, parens);
             GlobalVars.Instance.writeInformationToFiles("fertiliserN2OEmission", "N2O emission from fertiliser N", "kgN/ha", fertiliserN2OEmission, parens);
             GlobalVars.Instance.writeInformationToFiles("manureN2OEmission", "N2O emission from manure N", "kgN/ha", manureN2OEmission, parens);
-            GlobalVars.Instance.writeInformationToFiles("cropResidueN2O", "N2O emission from crop residue N", "kgN/ha", cropResidueN2O, parens);
+            GlobalVars.Instance.writeInformationToFiles("Placeholder", "Placeholder", "", 0, parens);
             GlobalVars.Instance.writeInformationToFiles("soilN2OEmission", "N2O emission from mineralised N", "kgN/ha", soilN2OEmission, parens);
             GlobalVars.Instance.writeInformationToFiles("N2ONemission", "N2O emission", "kgN/ha", N2ONemission, parens);
             GlobalVars.Instance.writeInformationToFiles("soilNMineralisation", "Soil mineralised N", "kgN/ha", soilNMineralisation, parens);
@@ -2971,7 +2958,7 @@ public class CropClass
             GlobalVars.Instance.writeFieldFile("manureN2OEmission", "N2O emission from manure N", "kgN/ha", manureN2OEmission, parens, 0);
             GlobalVars.Instance.writeFieldFile("soilN2OEmission", "N2O emission from mineralised N", "kgN/ha", soilN2OEmission, parens, 0);
             GlobalVars.Instance.writeFieldFile("fertiliserN2OEmission", "N2O emission from fertiliser", "kgN/ha", fertiliserN2OEmission, parens, 0);
-            GlobalVars.Instance.writeFieldFile("cropResidueN2O", "N2O emission from crop residues", "kgN/ha", cropResidueN2O, parens, 0);
+            GlobalVars.Instance.writeFieldFile("Placeholder", "Placeholder", "", 0, parens, 0);
             GlobalVars.Instance.writeFieldFile("burningN2ON", "N2O emission from burned crop residues", "kgN/ha", burningN2ON, parens, 0);
             GlobalVars.Instance.writeFieldFile("N2Nemission", "N2 emission", "kgN/ha", N2Nemission, parens, 0);
             GlobalVars.Instance.writeFieldFile("burningNH3N", "NH3 emission from burned crop residues", "kgN/ha", burningNH3N, parens, 0);

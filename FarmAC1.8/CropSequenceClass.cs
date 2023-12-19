@@ -943,28 +943,6 @@ public class CropSequenceClass
         }
         return manureN2OEmission;
     }
-    //!  Get Crop Residue N2O-N emission for the whole crop sequence. 
-    /*
-     \return Crop Residue N2O-N emission (kg)
-    */
-    public double GetcropResidueN2ON()
-    {
-        return GetcropResidueN2ON(theCrops.Count);
-    }
-    //!  Get Crop Residue N2O N for the crop sequence up until crop number maxCrops. 
-    /*!
-     \param maxCrops maximum number of crops to include in the calculation
-     \return Crop Residue N2O N (kg)
-    */
-    public double GetcropResidueN2ON(int maxCrops)
-    {
-        double cropResidueN2O = 0;
-        for (int i = 0; i < maxCrops; i++)
-        {
-            cropResidueN2O += theCrops[i].GetcropResidueN2ON() * area;
-        }
-        return cropResidueN2O;
-    }
     //!  Get Soil N2O-N Emission for the whole crop sequence
     /*
      \return soil N2O N emission (kg)
@@ -1406,11 +1384,7 @@ public class CropSequenceClass
         }
         GlobalVars.Instance.writeInformationToFiles("fertiliserN2OEmission", "N2O emission from fertiliser", "kgN/ha/yr", tmp / year, parens);
         tmp = 0;
-        for (int i = 0; i < theCrops.Count; i++)
-        {
-            tmp += theCrops[i].getCropResidueN2O();
-        }
-        GlobalVars.Instance.writeInformationToFiles("cropResidueN2O", "N2O emission from crop residues", "kgN/ha/yr", tmp / year, parens);
+        GlobalVars.Instance.writeInformationToFiles("Placeholder", "Placeholder", "", tmp / year, parens);
         tmp = 0;
         for (int i = 0; i < theCrops.Count; i++)
         {
@@ -1479,11 +1453,7 @@ public class CropSequenceClass
         }
         GlobalVars.Instance.writeInformationToFiles("manureN2OEmission", "N2O emission from manure N", "kgN/ha/yr", tmp / year, parens);
         tmp = 0;
-        for (int i = 0; i < theCrops.Count; i++)
-        {
-            tmp += theCrops[i].getCropResidueN2O();
-        }
-        GlobalVars.Instance.writeInformationToFiles("cropResidueN2O", "N2O emission from crop residue N", "kgN/ha/yr", tmp / year, parens);
+        GlobalVars.Instance.writeInformationToFiles("Placeholder", "Placeholder", "", tmp / year, parens);
         tmp = 0;
         for (int i = 0; i < theCrops.Count; i++)
         {

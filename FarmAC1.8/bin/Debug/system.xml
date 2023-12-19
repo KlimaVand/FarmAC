@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xml>
-  <settings>
+  <settings1>
     <Identity>0</Identity>
     <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\M4Models\DK\Dairy\constants.xml </constants>
     <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\M4Models\DK\Dairy\parameters.xml</parameters>
@@ -12,20 +12,20 @@
     <stopOnError>true</stopOnError>
     <Adaptation>-1</Adaptation>
     <Note>Test sugar beet</Note>
-  </settings>
-  <settings1>
+  </settings1>
+  <settings>
     <Identity>1</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\M4Models\DK\720010\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\M4Models\DK\720010\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\M4Models\DK\720010\farm_720017_1.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\M4Models\DK\720010\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\M4Models\DK\720010\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\M4Models\DK\720010\output\</outputDir>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\M4Models\DK\Pigs\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\M4Models\DK\Pigs\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\M4Models\DK\Pigs\farm_720017_1.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\M4Models\DK\Pigs\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\M4Models\DK\Pigs\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\M4Models\DK\Pigs\output\</outputDir>
     <pauseBeforeExit>true</pauseBeforeExit>
     <stopOnError>true</stopOnError>
     <Adaptation>-1</Adaptation>
     <Note>Test sugar beet</Note>
-  </settings1>
+  </settings>
   <settings1>
     <Identity>2</Identity>
     <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\M4Models\DE\Dairy\212818\constants.xml </constants>

@@ -1,0 +1,5 @@
+C:\Users\au224222\Source\Repos\KlimaVand\FarmAC\FarmAC1.8\bin\Debug\FarmAC1.8.exe
+C:\Users\au224222\Source\Repos\KlimaVand\FarmAC\FarmAC1.8\bin\Debug\FarmAC1.8.pdb
+C:\Users\au224222\Source\Repos\KlimaVand\FarmAC\FarmAC1.8\obj\Debug\FarmAC1.8.csproj.CoreCompileInputs.cache
+C:\Users\au224222\Source\Repos\KlimaVand\FarmAC\FarmAC1.8\obj\Debug\FarmAC1.8.exe
+C:\Users\au224222\Source\Repos\KlimaVand\FarmAC\FarmAC1.8\obj\Debug\FarmAC1.8.pdb
