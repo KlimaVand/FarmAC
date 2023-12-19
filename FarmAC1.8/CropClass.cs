@@ -1880,8 +1880,8 @@ public class CropClass
             //parameters for ALFAM. Only used for liquid manures
             double airTemperature = GlobalVars.Instance.theZoneData.airTemp[applicationMonth];
             double manureDM = 5.0;
-            double EFNH3TotalN = 0;//emission factor as proportion of total N
-            double EFNH3TAN = 0;//emission factor as proportion of TAN
+            double EFNH3TotalN = 0;//emission factor as proportion of total N i.e. kg NH3-N/kg total N
+            double EFNH3TAN = 0;//emission factor as proportion of TAN i.e. kg NH3-N/kg total ammoniacal N
             int maxManure = 0;
             maxManure = GlobalVars.Instance.theZoneData.theFertManData.Count;
             bool gotit = false;
