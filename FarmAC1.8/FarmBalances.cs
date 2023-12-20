@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
-/*! A class that named farmBalanceClass */
+/*! FarmBalanceClass calculates and displays farm C, N and GHG balances, plus ancillary information*/
 class farmBalanceClass
 {
     //! import of N in livestock feed (kg)
@@ -63,18 +63,57 @@ class farmBalanceClass
     /// Enteric greenhouse gas emissions in CO2 equivalents
     /// </summary>
     double entericCH4CO2Eq = 0.0;
+    /// <summary>
+    /// Greenhouse gas emissions from manure storage in CO2 equivalents
+    /// </summary>
     double manureCH4CO2Eq = 0;
+    /// <summary>
+    /// Greenhouse gas emissions as N2O from manure N, in CO2 equivalents
+    /// </summary>
     double manureN2OCO2Eq = 0;
+    /// <summary>
+    /// Greenhouse gas emissions in CO2 equivalents
+    /// </summary>
     double fieldN2OCO2Eq = 0;
+    /// <summary>
+    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// </summary>
     double fieldCH4CO2Eq = 0;
+    /// <summary>
+    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// </summary>
     double fieldCO2 = 0;
+    /// <summary>
+    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// </summary>
     double directGHGEmissionCO2Eq = 0;
+    /// <summary>
+    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// </summary>
     double soilCO2Eq = 0;
+    /// <summary>
+    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// </summary>
     double housingNH3CO2Eq = 0;
+    /// <summary>
+    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// </summary>
     double manurestoreNH3CO2Eq = 0;
+    /// <summary>
+    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// </summary>
     double fieldmanureNH3CO2Eq = 0;
+    /// <summary>
+    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// </summary>
     double fieldfertNH3CO2Eq =0;
+    /// <summary>
+    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// </summary>
     double leachedNCO2Eq = 0;
+    /// <summary>
+    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// </summary>
     double indirectGHGCO2Eq = 0;
     //!carbon fixation by crops (kg)
     double carbonFromPlants = 0;
@@ -227,8 +266,6 @@ class farmBalanceClass
     double changeInMinN = 0;
     //!nitrous oxide emission from fertiliser
     double fertiliserN2OEmission = 0;
-   //!nitrous oxide emissions from crop residues
-    double cropResidueN2O = 0;
     //!leaching of organic nitrogen
     double organicNLeached = 0;
     //!N2O-N in gases from burnt crop residues
@@ -636,7 +673,6 @@ class farmBalanceClass
             Nharvested += rotationList[rotationID - 1].getNharvested()/ rotationList[rotationID - 1].GetlengthOfSequence();
             fieldN2Emission += rotationList[rotationID - 1].GetN2NEmission() / rotationList[rotationID - 1].GetlengthOfSequence();
             fertiliserN2OEmission += rotationList[rotationID - 1].GetfertiliserN2ONEmissions() / rotationList[rotationID - 1].GetlengthOfSequence();
-            cropResidueN2O += rotationList[rotationID - 1].GetcropResidueN2ON() / rotationList[rotationID - 1].GetlengthOfSequence();
             fieldN2OEmission += rotationList[rotationID - 1].GetN2ONemission() / rotationList[rotationID - 1].GetlengthOfSequence();
             fertNH3NEmission += rotationList[rotationID - 1].GetFertNH3NEmission() / rotationList[rotationID - 1].GetlengthOfSequence();
             fieldmanureNH3Emission += rotationList[rotationID - 1].GetManureNH3NEmission() / rotationList[rotationID - 1].GetlengthOfSequence();
