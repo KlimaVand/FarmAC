@@ -127,7 +127,7 @@ class farmBalanceClass
     //!Carbon in synthetic fertilisers
     double CinImportedFertiliser = 0;
     //!Total amount of C input to farm
-    double cInput = 0;
+    double CInput = 0;
     //!Carbon exported in milk (kg)
     double Cmilk = 0;
     //!Carbon exported in meat (kg)
@@ -138,180 +138,186 @@ class farmBalanceClass
     double Cmanexp = 0;
     //!Carbon ín sold crop products (kg)
     double CinCropProductsSold = 0;
-    //!Total C exported from farm in products and manure
+    //!Total C exported from farm in products and manure (kg)
     double Cexport = 0;
-    //!total carbon loss to environment
+    //!total carbon loss to environment (kg)
     double CLost = 0;
-    //!Carbon lost as methane from livestock
+    //!Carbon lost as methane from livestock (kg)
     double livestockCH4C = 0;
-    //!Carbon lost as carbon dioxide from livestock
+    //!Carbon lost as carbon dioxide from livestock (kg)
     double livestockCO2C = 0;
-    //!Total carbon loss from livestock (CO2 + CH4)
+    //!Total carbon loss from livestock (CO2 + CH4) (kg)
     double livstockCLoss = 0;
+    //! Carbon in excreta deposited in livetock housing  (kg)
     double CInhouseExcreta = 0;
-    //!Carbon lost as carbon dioxide from urea hydrolysis
+    //!Carbon lost as carbon dioxide from urea hydrolysis in housing (kg)
     double housingCLoss = 0;
+    //! Carbon in wasted feed (kg)
     double CinFeedWaste = 0;
+    //! Carbon in feed fed in livestock housing
     double CinFeedFedInHouse = 0;
+    //! Carbon in manure sent to manure storage  (kg)
     double CinManureSentToStorage = 0;
-    //!Carbon lost as methane from manure storage
+    //!Carbon lost as methane from manure storage (kg)
     double manurestoreCH4C = 0;
-    //!Carbon lost as carbon dioxide from manure storage
+    //!Carbon lost as carbon dioxide from manure storage (kg)
     double manurestoreCO2C = 0;
-    //!change in soil C
+    //!change in soil C (kg)
     double CDeltaSoil = 0;
-    //!emissions of CO2 from soil
+    //!emissions of CO2 from soil (kg)
     double soilCO2_CEmission = 0;
-    //!emissions of CH4 from excreta deposited during grazing
+    //!emissions of CH4 from excreta deposited during grazing (kg)
     double soilCH4_CEmission = 0;
-    //!C lost from stored plant products
+    //!C lost from stored plant products (kg)
     double processStorageCloss = 0;
-    //!C in organic matter leached from soil
+    //!C in organic matter leached from soil (kg)
     double soilCleached = 0;
-    //!CO-C from burnt crop residues
+    //!CO-C from burnt crop residues (kg)
     double burntResidueCOC = 0;
-    //!Black C from burnt crop residues
+    //!Black C from burnt crop residues (kg)
     double burntResidueBlackC = 0;
-    //!CO2-C from burnt crop residues
+    //!CO2-C from burnt crop residues (kg)
     double burntResidueCO2C = 0;
-    //!C in CH4 from biogas reactor
+    //!C in CH4 from biogas reactor (kg)
     double biogasCH4C = 0;
-    //!C in CO2 from biogas reactor
+    //!C in CO2 from biogas reactor (kg)
     double biogasCO2C = 0;
-    //!C in manure organic matter lost in runoff from manure storage
+    //!C in manure organic matter lost in runoff from manure storage (kg)
     double manurestoreRunoffC = 0;
-    //!C in crop residues remaining on the fields
+    //!C in crop residues remaining on the fields (kg)
     double residueCremaining = 0;
-    //!C lost as CO2 from fertilisers (e.g. urea)
+    //!C lost as CO2 from fertilisers (e.g. urea) (kg)
     double fertiliserCloss = 0;
-    //!C in crop products harvested. Includes harvesting by grazing
+    //!C in crop products harvested. Includes harvesting by grazing (kg)
     double harvestedC = 0;
-
+    //! Carbon in crop residues (kg)
     double cropResidueC = 0;
-    //! C in grazed herbage
+    //! C in grazed herbage (kg)
     double grazedHerbageC = 0;
-    //! C in pasture-fed feed
+    //! C in pasture-fed supplementary feed (kg)
     double CinPastureFeed = 0;
-    //!C in excreta deposited during grazing
+    //!C in excreta deposited during grazing (kg)
     double excretalCtoPasture = 0;
 
-    //!continuity check for C
+    //!continuity check for C (kg)
     double Cbalance =0;
 
     //! N input via N fixation in crops (kg)
-    double nFix = 0;
-    //!N lost from stored plant products
+    double NFix = 0;
+    //!N lost from stored plant products (kg)
     double processStorageNloss = 0;
-    //! N input via atmospheric deposition
+    //! N input via atmospheric deposition (kg)
     double Natm = 0;
     //!N input in N fertilisers (kg)
-    double nFert = 0;//1.134 where are the import of fertiliser??//1.134
+    double NFert = 0;
     //!N input in bedding (kg)
     double Nbedding = 0;
     //! carbon imported in livestock manure (kg)
     double Nmanimp = 0;
     //! N imported in animal feed (kg)
     double NPlantProductImported = 0;
-    //! N sold in crop products
+    //! N sold in crop products (kg)
     double Nsold = 0;
-    //!N exported in milk
+    //!N exported in milk (kg)
     double Nmilk = 0;
-    //! N exported in animal growth
+    //! N exported in animal growth (kg)
     double NGrowth = 0;
-    //! N exported in animal mortalities
+    //! N exported in animal mortalities (kg)
     double Nmortalities = 0;
-    //!N exported in animal manure
+    //!N exported in animal manure (kg)
     double Nmanexp = 0;
-    //total N export
+    //total N export (kg)
     double NExport = 0;
-    // N losses and change in N stored in soil
+    // N losses and change in N stored in soil (kg)
     double NDeltaSoil = 0;
-    //!total N lost
+    //!total N lost (kg)
     double NLost = 0;
-    //!N lost as NH3 from housing
+    //!N lost as NH3 from housing (kg)
     double housingNH3Loss = 0;
-    //!N2O-N emission from stored manure
+    //!N2O-N emission from stored manure (kg)
     double manureN2Emission = 0;
-    //!N2-N emission from stored manure
+    //!N2-N emission from stored manure (kg)
     double manureN2OEmission = 0;
-    //!NH3-N emission from stored manure
+    //!NH3-N emission from stored manure (kg)
     double manureNH3Emission = 0;
+    //! N lost from manure storage (kg)
     double manurestoreNLoss = 0;
+    //! N lost from fields (kg)
     double fieldNLoss = 0;
-    //N2-N emission from soil
+    //N2-N emission from soil (kg)
     double fieldN2Emission = 0;
-    //N2O-N emission from soil
+    //N2O-N emission from soil (kg)
     double fieldN2OEmission = 0;
-    //NH3-N-N emission from fertiliser
+    //NH3-N-N emission from fertiliser (kg)
     double fertNH3NEmission = 0;
-    //NH3-N emission from field-applied manure
+    //NH3-N emission from field-applied manure (kg)
     double fieldmanureNH3Emission = 0;
-    //NH3-N emission from urine deposited in the field
+    //NH3-N emission from urine deposited in the field (kg)
     double fieldUrineNH3Emission = 0;
-    //NO3-N leaching from soil
+    //NO3-N leaching from soil (kg)
     double Nleaching = 0;
-    //N excreted in housing
+    //N excreted in housing (kg)
     double NexcretedHousing = 0;
-    //N excreted during grazing
+    //N excreted during grazing (kg)
     double NexcretedField = 0;
-    //N fed in housing
+    //N in feed fed in housing (kg)
     double NfedInHousing = 0;
-    //N fed in at pasture
+    //N in supplementary feed fed in at pasture (kg)
     double NfedAtPasture = 0;
-    //N from grazed feed
+    //N from grazed feed (kg)
     double NinGrazedFeed = 0;
-    //DM from grazed
+    //DM from grazed (kg)
     double DMinGrazedFeed = 0;
-    //!Change in mineral N in soil
+    //!Change in mineral N in soil (kg)
     double changeInMinN = 0;
-    //!nitrous oxide emission from fertiliser
+    //!nitrous oxide emission from fertiliser (kg)
     double fertiliserN2OEmission = 0;
-    //!leaching of organic nitrogen
+    //!leaching of organic nitrogen (kg)
     double organicNLeached = 0;
-    //!N2O-N in gases from burnt crop residues
+    //!N2O-N in gases from burnt crop residues (kg)
     double burntResidueN2ON = 0;
-    //!NH3N in gases from burnt crop residues
+    //!NH3N in gases from burnt crop residues (kg)
     double burntResidueNH3N = 0;
-    //!NOX in gases from burnt crop residues
+    //!NOX in gases from burnt crop residues (kg)
     double burntResidueNOxN = 0;
-    //!N in other gases from burnt crop residues
+    //!N in other gases from burnt crop residues (kg)
     double burntResidueOtherN = 0;
-    //!runoff from manure storage
+    //!N in runoff from manure storage (kg)
     double runoffN = 0;
-    //!residual soil mineral N at end of crop sequence
+    //!residual soil mineral N at end of crop sequence (kg)
     double residualSoilMineralN = 0;
-    //!total losses from pocess/storage of crop products, housing and manure storage
+    //!total losses from pocess/storage of crop products, housing and manure storage (kg)
     double totalHouseStoreNloss = 0;
-    //! total losses from fields
+    //! total loss of N from fields (kg)
     double totalFieldNlosses = 0;
-    //!change in total N storage (organic and inorganic)
+    //!change in total N storage (organic and inorganic) (kg)
     double changeAllSoilNstored = 0;
-    //!N in crop residues remaining on the fields
+    //!N in crop residues remaining on the fields (kg)
     double residueNremaining = 0;
-    //!farm N surplus (kg/ha/yr)
+    //!farm N surplus (kg)
     double totalFarmNSurplus = 0;
-    //!continuity check
+    //!continuity check  (kg)
     double Nbalance = 0;
-    //! N in crop residues input to the soil
+    //! N in crop residues input to the soil (kg)
     double NinCropResidues =0;
-    //! N taken up by crop 
+    //! N taken up by crop  (kg)
     double CropNuptake = 0;
 
-    ///farm milk production
+    ///farm milk production (kg/yr)
     double farmMilkProduction = 0;
-    ///farm meat production
+    ///farm meat production (kg/yr)
     double farmMeatProduction = 0;
-    ///average milk production per head
+    ///average milk production per head (kg/animal/yr)
     double avgProductionMilkPerHead = 0;
-    //total DM used by livestock, kg
+    //total DM used by livestock (Mg/animal/yr)
     double farmLivestockDM = 0;
-    ///concentrate DM used
+    ///concentrate DM used (Mg/yr)
     double farmConcentrateDM = 0;
-    ///concentrate energy used
+    ///concentrate energy used (MJ/yr)
     double farmConcentrateEnergy = 0;
-    ///grazed DM used
+    ///grazed DM used (Mg/yr)
     double farmGrazedDM = 0;
-    ///farm utilised grazable DM
+    ///farm utilised grazable DM (Mg/yr)
     double farmUnutilisedGrazableDM = 0;
     //!farm area (ha)
     double agriculturalArea = 0;
@@ -319,6 +325,7 @@ class farmBalanceClass
     double totalDMproduction = 0;
     //!Utilised DM production on farm (tonnes/yr)
     double utilisedDMproduction = 0;
+    //! Mean harvested DM (Mg/yr)
     double FarmHarvestDM=0;
     //!number of dairy ruminant livestock
     double numDairy = 0;
@@ -328,25 +335,32 @@ class farmBalanceClass
     double numNonRuminants = 0;
 
     string parens; /*!< a string containing information about the farm and scenario number.*/
+    //! Annual precipitation (mm)
     double precip = 0;
+    //! Annumal evaporation (mm)
     double evap = 0;
+    //! Annual transpiration (mm)
     double transpire = 0;
+    //! Annual irrigation
     double irrig = 0;
+    //! Annual draindage (mm)
     double drainage = 0;
+    //! Maximum plant-available water capacity (mm)
     double MaxPlantAvailWater = 0;
+    //! Temporary variable used for diverse purposes
     double temp = 0;
     //! A constructor with one argument.
     /*!
-      \param aparens, a string argument that points to parens.
+      \param aparens, a string argument that points a string containing information about the farm and scenario number.
     */
     public farmBalanceClass(string aparens)
     {
         parens = aparens;
     }
-    //!  Get AgriculturalArea. Taking one argument and
+    //!  Get AgriculturalArea returns the total area of all crop sequences on the farm
     /*!
-     \param therotationList, one list value that points to CropSequenceClass.
-      \return a double value for AgriculturalArea.
+     \param therotationList, list of CropSequenceClass.
+      \return a double value for total agricultural area (ha).
     */
     public double GetAgriculturalArea(List<CropSequenceClass> therotationList)
     {
@@ -357,7 +371,7 @@ class farmBalanceClass
         }
         return area;
     }
-    //!  Do FarmBalance. Taking four arguments
+    //!  Do FarmBalance calculates all the nutrient balances for the farm
     /*!
      \param rotationList, one list value that points to CropSequenceClass.
      \param listOfLivestock, one list value that points to livestock.
@@ -367,11 +381,10 @@ class farmBalanceClass
     public void DoFarmBalances(List<CropSequenceClass> rotationList, List<livestock> listOfLivestock, List<housing> listOfHousing,
         List<manureStore> listOfManurestores)
     {
-        ///Farm balances
-        ///C balance
-        ///C inputs
+        //!  Calculate the import and export of products to/from the farm
         GlobalVars.Instance.CalculateTradeBalance();
-
+        //! Do the farm carbon balance
+        //! Start with the crop sequences
         int minRotation = 1;
         int maxRotation = rotationList.Count;
         for (int rotationID = minRotation; rotationID <= maxRotation; rotationID++)
@@ -380,7 +393,6 @@ class farmBalanceClass
             NinCropResidues+= rotationList[rotationID - 1].GetresidueNinput() / rotationList[rotationID - 1].GetlengthOfSequence();
             CropNuptake+= rotationList[rotationID - 1].GetCropNuptake() / rotationList[rotationID - 1].GetlengthOfSequence();
             CinImportedFertiliser+= rotationList[rotationID - 1].GetFertiliserC() / rotationList[rotationID - 1].GetlengthOfSequence();
-            //rotationList[rotationID - 1].CheckNuptake();
         }
         for (int i = 0; i < GlobalVars.Instance.theManureExchange.GetmanuresImported().Count; i++)
         {
@@ -393,24 +405,29 @@ class farmBalanceClass
             GlobalVars.Instance.GetthebeddingMaterial().GetC_conc();
         CPlantProductImported += CinImportedBedding;
 
-        cInput = carbonFromPlants + CPlantProductImported + Cmanimp + CinImportedFertiliser;
+        //! Calculate the total C input to the farm (including C fixed by crops)
+        CInput = carbonFromPlants + CPlantProductImported + Cmanimp + CinImportedFertiliser;
 
         ///C outputs
+        /////! Start with crop product outputs 
         GlobalVars.product compositeProductExported = GlobalVars.Instance.GetPlantProductExports();
         GlobalVars.Instance.PrintPlantProducts();
         CinCropProductsSold = compositeProductExported.composition.Getamount() * compositeProductExported.composition.GetC_conc();
 
+        //! Calculate C exported in animal products
         for (int i = 0; i < listOfLivestock.Count; i++)
         {
             Cmilk += listOfLivestock[i].GetMilkC() * listOfLivestock[i].GetAvgNumberOfAnimal(); //1.113
             Cmeat += listOfLivestock[i].GetGrowthC() * listOfLivestock[i].GetAvgNumberOfAnimal();//1.114
             Cmortalities += listOfLivestock[i].GetMortalitiesC() * listOfLivestock[i].GetAvgNumberOfAnimal();
         }
-
+        //! Calculate C exported in manure
         for (int i = 0; i < GlobalVars.Instance.theManureExchange.GetmanuresExported().Count; i++)
         {
             Cmanexp += GlobalVars.Instance.theManureExchange.GetmanuresExported()[i].GetTotalC();
         }
+
+        //! Calculate the total C export
         Cexport = CinCropProductsSold + Cmilk + Cmeat + Cmanexp + Cmortalities;//1.116
         //variables used for debugging
         double LivestockCconsumption = 0;
@@ -420,6 +437,8 @@ class farmBalanceClass
         double LivestockMilkC = 0;
         double LivestockMortalityC = 0;
         //end of variables for debugging
+
+        //! Calculate livestock C flows
         for (int i = 0; i < listOfLivestock.Count; i++)
         {
             livestock anAnimalCategory = listOfLivestock[i];
@@ -435,8 +454,9 @@ class farmBalanceClass
             excretalCtoPasture+=anAnimalCategory.GetCexcretionToPasture()* listOfLivestock[i].GetAvgNumberOfAnimal();
        }
         livstockCLoss = livestockCH4C + livestockCO2C;
+        //! More will be added to CLost later
         CLost += livstockCLoss;
-
+        //! Calculate C losses from livestock housing
         for (int i = 0; i < listOfHousing.Count; i++)
         {
             housing ahouse = listOfHousing[i];
@@ -447,6 +467,8 @@ class farmBalanceClass
             NinFeedFedInHouse += ahouse.GetNinFeedFedInHouse();
         }
         CLost += housingCLoss;
+
+        //! Calculate C flows for manure storage (including anaerobic digestion)
         biogasCH4C=0;
         biogasCO2C=0;
         manurestoreRunoffC = 0;
@@ -466,7 +488,7 @@ class farmBalanceClass
         manurestoreCLoss = manurestoreCH4C + manurestoreCO2C + manurestoreRunoffC;
         Cexport += biogasCO2C + biogasCH4C;
         CLost += manurestoreCLoss;
-
+        //! Calculate soil C flows
         soilCO2_CEmission = 0;
         processStorageCloss = 0;
         burntResidueCOC = 0;
@@ -493,17 +515,15 @@ class farmBalanceClass
             soilCH4_CEmission += rotationList[rotationID - 1].getGrazingMethaneC() / rotationList[rotationID - 1].GetlengthOfSequence();
             fertiliserCloss+= rotationList[rotationID - 1].GetFertiliserC() / rotationList[rotationID - 1].GetlengthOfSequence();
         }
-        //cropResidueC = CinputToSoil-excretalCtoPasture;
-
         double burntResidueC = burntResidueBlackC + burntResidueCO2C + burntResidueCOC;
 
         CLost += processStorageCloss + soilCO2_CEmission + soilCleached + burntResidueC + soilCH4_CEmission + fertiliserCloss;
-        
-        Cbalance = cInput - (Cexport + CLost + CDeltaSoil);//1.117
+        //Calculate the C balance for the farm and report an error if the C budget cannot be closed (a margin of error is permitted, especially because of grazing)
+        Cbalance = CInput - (Cexport + CLost + CDeltaSoil);//1.117
         double tolerance = GlobalVars.Instance.getmaxToleratedError();
         double diff = 0;
-        if (cInput > 0)  //check absolute error, if no C input
-            diff = Cbalance / cInput;
+        if (CInput > 0)  //check absolute error, if no C input
+            diff = Cbalance / CInput;
         else
             diff = Cbalance;
         if (Math.Abs(diff) > tolerance)
@@ -512,9 +532,9 @@ class farmBalanceClass
             string tmp="Error; C balance at farm scale deviates by more than the permitted margin.\n";
             tmp += ("Percentage error = " + errorPercent.ToString("0.00") + "%"); ;
             GlobalVars.Instance.Error(tmp);
-            if (GlobalVars.Instance.getPauseBeforeExit() && rotationList.Count != 0)
+            if (GlobalVars.Instance.getPauseBeforeExit() && rotationList.Count != 0)  //Delay exit until the console can be read
                 Console.Read();
-            if ((rotationList.Count != 0)&&(GlobalVars.Instance.getstopOnError()))
+            if ((rotationList.Count != 0)&&(GlobalVars.Instance.getstopOnError())) //!
                 throw new System.ArgumentException("farmFail", "farmFail");
             else
             {
@@ -523,7 +543,7 @@ class farmBalanceClass
             }
         }
 
-        ///Other C flows
+        ///Other C flows - these are to allow internal flows to be monitored in output files
 
         double CliveCO2 = 0;
         double CliveCH4 = 0;
@@ -550,11 +570,11 @@ class farmBalanceClass
             CinFeedWaste += listOfHousing[i].getFeedWasteC();//1.124
         }
 
-        ///N balance 
-
+        ///Now do the farm N balance 
+        //! N fixation
         for (int i = 0; i < rotationList.Count; i++)
         {
-            nFix += rotationList[i].getNFix() / rotationList[i].GetlengthOfSequence();//1.132
+            NFix += rotationList[i].getNFix() / rotationList[i].GetlengthOfSequence();//1.132
         }
         /// N deposition from atmosphere
         for (int i = 0; i < rotationList.Count; i++)
@@ -564,7 +584,7 @@ class farmBalanceClass
         ///Fertiliser N
         for (int i = 0; i < rotationList.Count; i++)
         {
-            nFert += rotationList[i].getFertiliserNapplied() / rotationList[i].GetlengthOfSequence();
+            NFert += rotationList[i].getFertiliserNapplied() / rotationList[i].GetlengthOfSequence();
         }
 
         ///bedding N
@@ -580,8 +600,9 @@ class farmBalanceClass
             Nmanimp += GlobalVars.Instance.theManureExchange.GetmanuresImported()[i].GetTotalN();// / GlobalVars.Instance.theZoneData.GetaverageYearsToSimulate();
         }
         manureImportN = Nmanimp;
+        //! N in imported plant products
         NPlantProductImported = compositeProductImported.composition.Getamount() * compositeProductImported.composition.GetN_conc();
-        double Ninput = Natm + nFert + nFix + Nmanimp + NPlantProductImported;
+        double Ninput = Natm + NFert + NFix + Nmanimp + NPlantProductImported;
         
         liveFeedImportN = NPlantProductImported - Nbedding;
 
@@ -589,7 +610,7 @@ class farmBalanceClass
         ///N exported in crop products
         temp = compositeProductExported.composition.Getamount();/// GlobalVars.Instance.theZoneData.GetaverageYearsToSimulate();
         Nsold = compositeProductExported.composition.Getamount() * compositeProductExported.composition.GetN_conc();
-
+        //! Livestock N flows
         livestockNintake = 0;
         double livestockNexcreted = 0;
         for (int i = 0; i < listOfLivestock.Count; i++)
@@ -611,14 +632,15 @@ class farmBalanceClass
         ///N from grazed feed
         grazedN = NinGrazedFeed;
         NfedInHousing = livestockNintake - (NinGrazedFeed + NfedAtPasture);
+        //! N exported in manure
         for (int i = 0; i < GlobalVars.Instance.theManureExchange.GetmanuresExported().Count; i++)
         {
             Nmanexp += GlobalVars.Instance.theManureExchange.GetmanuresExported()[i].GetTotalN();// / GlobalVars.Instance.theZoneData.GetaverageYearsToSimulate();
         }
         manureExportN = Nmanexp;
-
+        //Calculate total N exported
         NExport = Nmanexp + Nsold + Nmilk + NGrowth + Nmortalities;
-
+        //! Calculate housing N flows
         for (int i = 0; i < listOfHousing.Count; i++)
         {
             housing ahouse = listOfHousing[i];
@@ -638,6 +660,7 @@ class farmBalanceClass
         NexcretedField = livestockNexcreted - NexcretedHousing;
         manureNexStorage = 0;
         NLost += housingNH3Loss;
+        //! Calculate manure storage N flows
         for (int i = 0; i < listOfManurestores.Count; i++)
         {
             manureStore amanurestore2 = listOfManurestores[i];
@@ -656,7 +679,7 @@ class farmBalanceClass
         NLost += manurestoreNLoss + runoffN;
 
         manureToFieldN = manureNexStorage + manureImportN - manureExportN;
-
+        //! Soil N flows (and some additional variables)
         double startsoilMineralN = 0;
         burntResidueN2ON = 0;
         burntResidueNH3N = 0;
@@ -709,7 +732,7 @@ class farmBalanceClass
         totalFarmNSurplus = Ninput - NExport; //1.137
         totalHouseStoreNloss = housingNH3Loss + manurestoreNLoss + processStorageNloss;
         changeAllSoilNstored = NDeltaSoil + changeInMinN;
-
+        //! Calculate farm N balance and report an error if the N budget cannot be closed
         Nbalance = Ninput - (NExport + NLost + NDeltaSoil + changeInMinN + residueNremaining);//1.117
         if (Ninput > 0)
             diff = Nbalance / Ninput;
@@ -794,7 +817,7 @@ class farmBalanceClass
             else
                 avgProductionMilkPerHead = 0;
         }
-
+        //! Do water budget
         for (int rotationID = minRotation; rotationID <= maxRotation; rotationID++)
         {
             precip += rotationList[rotationID - 1].GetCumulativePrecip() / rotationList[rotationID - 1].GetlengthOfSequence();
@@ -815,21 +838,22 @@ class farmBalanceClass
         transpire /= agriculturalArea;
         drainage /= agriculturalArea;
         double ConcentrateDMexported = GlobalVars.Instance.GetConcentrateExports();
-
+        //! Write farm budgets to file
         WriteFarmBalances(rotationList, listOfLivestock);
     }
-    //!  Write FarmBalance. Taking two arguments
+    //!  Write farm budgets to file
     /*!
-     \param CropSequence, one list value that points to CropSequenceClass.
-     \param listOfLivestock, one list value that points to livestock.
+     \param CropSequence, list of CropSequenceClass.
+     \param listOfLivestock, list of livestock.
     */
     public void WriteFarmBalances(List<CropSequenceClass> CropSequence, List<livestock> listOfLivestock)
-        {
+     {
             double Nsurp = 0;
             if (agriculturalArea > 0)
                 Nsurp = totalFarmNSurplus / agriculturalArea;//1,138
 
-        ///writing output.
+        ///Write outputs at the farm scale
+        //! First writes to the xml and xls (csv) files
         GlobalVars.Instance.writeStartTab("FarmBalance");
 
         GlobalVars.Instance.writeStartTab("Farm");
@@ -837,9 +861,9 @@ class farmBalanceClass
         feedItem afeedItem=GlobalVars.Instance.GetBeddingImported();
         double NinImportedBedding = afeedItem.Getamount() * afeedItem.GetN_conc();
         GlobalVars.Instance.writeInformationToFiles("importedBeddingN", "Imported bedding", "kgN/yr", NinImportedBedding, parens);
-        GlobalVars.Instance.writeInformationToFiles("nFix", "N fixation", "kg N/yr", nFix, parens);
+        GlobalVars.Instance.writeInformationToFiles("NFix", "N fixation", "kg N/yr", NFix, parens);
         GlobalVars.Instance.writeInformationToFiles("Natm", "N deposited from atmosphere", "kg N/yr", Natm, parens);
-        GlobalVars.Instance.writeInformationToFiles("nFert", "N in fertiliser", "kg N/yr", nFert, parens);
+        GlobalVars.Instance.writeInformationToFiles("NFert", "N in fertiliser", "kg N/yr", NFert, parens);
         GlobalVars.Instance.writeInformationToFiles("manureImportN", "Imported manure", "kgN/yr", manureImportN, parens);
         GlobalVars.Instance.writeInformationToFiles("Nsold", "N sold in crop products", "kg N/yr", Nsold, parens);
         GlobalVars.Instance.writeInformationToFiles("Nmilk", "N sold in milk", "kg N/yr", Nmilk, parens);
@@ -894,9 +918,9 @@ class farmBalanceClass
 
         GlobalVars.Instance.writeStartTab("Fields");
         double NharvestedMechanically = Nharvested - grazedN;
-        GlobalVars.Instance.writeInformationToFiles("nFix", "N fixation", "kg N/yr", nFix, parens);
+        GlobalVars.Instance.writeInformationToFiles("NFix", "N fixation", "kg N/yr", NFix, parens);
         GlobalVars.Instance.writeInformationToFiles("Natm", "N deposited from atmosphere", "kg N/yr", Natm, parens);
-        GlobalVars.Instance.writeInformationToFiles("nFert", "N in fertiliser", "kg N/yr", nFert, parens);
+        GlobalVars.Instance.writeInformationToFiles("NFert", "N in fertiliser", "kg N/yr", NFert, parens);
         GlobalVars.Instance.writeInformationToFiles("manureToFieldN", "Manure applied", "kgN/yr", manureToFieldN, parens);
         GlobalVars.Instance.writeInformationToFiles("fieldGaseousLossN", "Gaseous loss fields", "kgN/yr", fieldGaseousLossN, parens);
         GlobalVars.Instance.writeInformationToFiles("fieldNitrateLeachedN", "Nitrate leaching", "kgN/yr", fieldNitrateLeachedN, parens);
@@ -935,6 +959,7 @@ class farmBalanceClass
         GlobalVars.Instance.writeInformationToFiles("CDeltaSoil", "Change in C stored in the soil", "kg C/yr", CDeltaSoil, parens);
         GlobalVars.Instance.writeInformationToFiles("CLost", "C lost to the environment", "kg C/yr", CLost, parens);
         GlobalVars.Instance.writeInformationToFiles("Cbalance", "Net C balance (should be about zero)", "kg C/yr", Cbalance, parens);
+        //!Provided the farm has land, write the C flows on a per hectare basis
         if (agriculturalArea > 0)
         {
             GlobalVars.Instance.writeStartTab("PerUnitArea");
@@ -961,9 +986,9 @@ class farmBalanceClass
         GlobalVars.Instance.writeEndTab();
         GlobalVars.Instance.writeStartTab("FarmNBalance");
         GlobalVars.Instance.writeInformationToFiles("Nmanimp", "N in imported manure", "kg N/yr", Nmanimp, parens);
-        GlobalVars.Instance.writeInformationToFiles("nFix", "N fixation", "kg N/yr", nFix, parens);
+        GlobalVars.Instance.writeInformationToFiles("NFix", "N fixation", "kg N/yr", NFix, parens);
         GlobalVars.Instance.writeInformationToFiles("Natm", "N deposited from atmosphere", "kg N/yr", Natm, parens);
-        GlobalVars.Instance.writeInformationToFiles("nFert", "N in fertiliser", "kg N/yr", nFert, parens);
+        GlobalVars.Instance.writeInformationToFiles("NFert", "N in fertiliser", "kg N/yr", NFert, parens);
         GlobalVars.Instance.writeInformationToFiles("Nbedding", "N in bedding", "kg N/yr", Nbedding, parens);
         GlobalVars.Instance.writeInformationToFiles("NPlantProductImported", "N in imported crop products", "kg N/yr", NPlantProductImported, parens);
         GlobalVars.Instance.writeInformationToFiles("processStorageNloss", "N lost from processing/stored crop products", "kg N/yr", processStorageNloss, parens);
@@ -999,13 +1024,14 @@ class farmBalanceClass
 
         GlobalVars.Instance.writeInformationToFiles("Nsurplus", "N surplus", "kg N/yr", totalFarmNSurplus, parens);
         GlobalVars.Instance.writeInformationToFiles("Nbalance", "N balance (should be about zero)", "kg N/yr", Nbalance, parens);
+        //!Provided the farm has land, write the N flows on a per hectare basis
         if (agriculturalArea > 0)
         {
             GlobalVars.Instance.writeStartTab("PerUnitArea");
             GlobalVars.Instance.writeInformationToFiles("Nmanimp", "N in imported manure", "kg N/ha/yr", Nmanimp / agriculturalArea, parens);
-            GlobalVars.Instance.writeInformationToFiles("nFix", "N fixation", "kg N/ha/yr", nFix / agriculturalArea, parens);
+            GlobalVars.Instance.writeInformationToFiles("NFix", "N fixation", "kg N/ha/yr", NFix / agriculturalArea, parens);
             GlobalVars.Instance.writeInformationToFiles("Natm", "N deposited from atmosphere", "kg N/ha/yr", Natm / agriculturalArea, parens);
-            GlobalVars.Instance.writeInformationToFiles("nFert", "N in fertiliser", "kg N/ha/yr", nFert / agriculturalArea, parens);
+            GlobalVars.Instance.writeInformationToFiles("NFert", "N in fertiliser", "kg N/ha/yr", NFert / agriculturalArea, parens);
             GlobalVars.Instance.writeInformationToFiles("Nbedding", "N in bedding", "kg N/ha/yr", Nbedding / agriculturalArea, parens);
             GlobalVars.Instance.writeInformationToFiles("NPlantProductImported", "N in imported crop products", "kg N/ha/yr", NPlantProductImported / agriculturalArea, parens);
             GlobalVars.Instance.writeInformationToFiles("processStorageNloss", "N lost from processing/stored crop products", "kg N/ha/yr", processStorageNloss / agriculturalArea, parens);
@@ -1065,7 +1091,7 @@ class farmBalanceClass
         GlobalVars.Instance.writeInformationToFiles("indirectGHGCO2Eq", "Total indirect emissions", "kg CO2 equivalents/yr", indirectGHGCO2Eq, parens);
         GlobalVars.Instance.writeEndTab();
         GlobalVars.Instance.writeEndTab();
-
+        //! Write diverse farm indicators
         double roughageDMimported = 0;
         double roughageDMExported = 0;
         double farmUnutilisedGrazableDMPercent = 0;
@@ -1095,7 +1121,7 @@ class farmBalanceClass
         
         GlobalVars.Instance.writeEndTab();
 
-  
+        //! Write the water budget indicators
         GlobalVars.Instance.writeStartTab("WaterBalance");
         GlobalVars.Instance.writeInformationToFiles("precip", "precipitation", "mm", precip, parens);
         GlobalVars.Instance.writeInformationToFiles("evap", "evaporation", "mm", evap, parens);
@@ -1129,6 +1155,7 @@ class farmBalanceClass
         GlobalVars.Instance.writeInformationToFiles("biogasSupplementaryN", "Biogas supplementary feedstock", "kgN/yr", biogasSupplN, parens);
         GlobalVars.Instance.writeEndTab();
 
+        //! Now write to the summary Excel (csv) file
         GlobalVars.Instance.writeSummaryExcel("Farm and scenario", "", GlobalVars.Instance.getFarmFilePath()[0]); 
         GlobalVars.Instance.writeSummaryExcel("C fixed from atmosphere", "kg C/ha/yr", carbonFromPlants / agriculturalArea);
         GlobalVars.Instance.writeSummaryExcel("C in imported feed", "kg C/ha/yr", CPlantProductImported / agriculturalArea);
@@ -1169,16 +1196,16 @@ class farmBalanceClass
         GlobalVars.Instance.writeSummaryExcel("C in excreta deposited on fields", "kg C/ha/yr", excretalCtoPasture / agriculturalArea);
         GlobalVars.Instance.writeSummaryExcel("Change in soil C", "kg C/ha/yr", CDeltaSoil / agriculturalArea);
         GlobalVars.Instance.writeSummaryExcel("Total C emitted", "kg C/ha/yr", CLost / agriculturalArea);
-        double FarmCbalance = cInput - (CLost + Cexport);
+        double FarmCbalance = CInput - (CLost + Cexport);
         double temp = 0;
         ///inputs of N
         GlobalVars.Instance.writeSummaryExcel("N in imported manure", "kg N/yr", Nmanimp / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N fixation", "kg N/ha/yr", nFix / agriculturalArea);
+        GlobalVars.Instance.writeSummaryExcel("N fixation", "kg N/ha/yr", NFix / agriculturalArea);
         GlobalVars.Instance.writeSummaryExcel("N deposited from atmosphere", "kg N/ha/yr", Natm / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N in fertiliser", "kg N/ha/yr", nFert / agriculturalArea);
+        GlobalVars.Instance.writeSummaryExcel("N in fertiliser", "kg N/ha/yr", NFert / agriculturalArea);
         GlobalVars.Instance.writeSummaryExcel("N in imported crop products", "kg N/ha/yr", NPlantProductImported / agriculturalArea);
         GlobalVars.Instance.writeSummaryExcel("N in biogas supplementary feedstock", "kg N/ha/yr", biogasSupplN/ agriculturalArea);
-        temp = (Nmanimp + Natm + nFix + nFert + NPlantProductImported + biogasSupplN) / agriculturalArea;
+        temp = (Nmanimp + Natm + NFix + NFert + NPlantProductImported + biogasSupplN) / agriculturalArea;
         GlobalVars.Instance.writeSummaryExcel("Total N input", "kg N/ha/yr", temp);
         ///outputs of N
         GlobalVars.Instance.writeSummaryExcel("N sold in crop products", "kg N/ha/yr", Nsold / agriculturalArea);
@@ -1261,7 +1288,6 @@ class farmBalanceClass
         GlobalVars.Instance.writeSummaryExcel("Farm milk production per head", "kg/yr", avgProductionMilkPerHead);
         GlobalVars.Instance.writeSummaryExcel("Milk production per unit area", "kg/ha/yr", farmMilkProduction / agriculturalArea);
 
-        //GlobalVars.Instance.writeSummaryExcel("DMinGrazedFeed", "DM in grazed feed", "kg N/ha/yr", DMinGrazedFeed / agriculturalArea, parens);
         for (int i = 0; i < listOfLivestock.Count; i++)
         {
             livestock anAnimalCategory = listOfLivestock[i];
