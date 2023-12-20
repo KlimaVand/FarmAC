@@ -72,47 +72,47 @@ class farmBalanceClass
     /// </summary>
     double manureN2OCO2Eq = 0;
     /// <summary>
-    /// Greenhouse gas emissions in CO2 equivalents
+    /// Greenhouse gas emissions from mineralised soil N, in CO2 equivalents
     /// </summary>
     double fieldN2OCO2Eq = 0;
     /// <summary>
-    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// Greenhouse gas emissions from field CH4 emissions, in CO2 equivalents
     /// </summary>
     double fieldCH4CO2Eq = 0;
     /// <summary>
-    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// Greenhouse gas emissions from hydrolysis of urea, in CO2 equivalents
     /// </summary>
     double fieldCO2 = 0;
     /// <summary>
-    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// Direct greenhouse gas emissions in CO2 equivalents
     /// </summary>
     double directGHGEmissionCO2Eq = 0;
     /// <summary>
-    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// Greenhouse gas emissions from changes in soil C, in CO2 equivalents
     /// </summary>
     double soilCO2Eq = 0;
     /// <summary>
-    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// Greenhouse gas emissions from NH3 emissions from livestock housing, in CO2 equivalents
     /// </summary>
     double housingNH3CO2Eq = 0;
     /// <summary>
-    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// Greenhouse gas emissions from NH3 emissions from manure storage, in CO2 equivalents
     /// </summary>
     double manurestoreNH3CO2Eq = 0;
     /// <summary>
-    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// Greenhouse gas emissions from NH3 emissions from field-applied manure, in CO2 equivalents
     /// </summary>
     double fieldmanureNH3CO2Eq = 0;
     /// <summary>
-    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// Greenhouse gas emissions from NH3 emissions from fertilizer, in CO2 equivalents
     /// </summary>
     double fieldfertNH3CO2Eq =0;
     /// <summary>
-    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// Greenhouse gas emissions from leached nitrate, in CO2 equivalents
     /// </summary>
     double leachedNCO2Eq = 0;
     /// <summary>
-    /// Enteric greenhouse gas emissions in CO2 equivalents
+    /// Indirect greenhouse gas emissions in CO2 equivalents
     /// </summary>
     double indirectGHGCO2Eq = 0;
     //!carbon fixation by crops (kg)
@@ -123,10 +123,11 @@ class farmBalanceClass
     double CPlantProductImported = 0;
     //!carbon in bedding (kg)
     double CinBedding = 0;
+    //! carbon in imported bedding (kg)
     double CinImportedBedding = 0;
-    //!Carbon in synthetic fertilisers
+    //!Carbon in synthetic fertilisers  (kg)
     double CinImportedFertiliser = 0;
-    //!Total amount of C input to farm
+    //!Total amount of C input to farm (kg)
     double cInput = 0;
     //!Carbon exported in milk (kg)
     double Cmilk = 0;
@@ -138,51 +139,55 @@ class farmBalanceClass
     double Cmanexp = 0;
     //!Carbon ín sold crop products (kg)
     double CinCropProductsSold = 0;
-    //!Total C exported from farm in products and manure
+    //!Total C exported from farm in products and manure (kg)
     double Cexport = 0;
-    //!total carbon loss to environment
+    //!total carbon loss to environment (kg)
     double CLost = 0;
-    //!Carbon lost as methane from livestock
+    //!Carbon lost as methane from livestock (kg)
     double livestockCH4C = 0;
-    //!Carbon lost as carbon dioxide from livestock
+    //!Carbon lost as carbon dioxide from livestock (kg)
     double livestockCO2C = 0;
-    //!Total carbon loss from livestock (CO2 + CH4)
+    //!Total carbon loss from livestock (CO2 + CH4) (kg)
     double livstockCLoss = 0;
+    //! Carbon in excreta deposited in livestock housing (kg)
     double CInhouseExcreta = 0;
-    //!Carbon lost as carbon dioxide from urea hydrolysis
+    //!Carbon lost as carbon dioxide from urea hydrolysis (kg)
     double housingCLoss = 0;
+    //! Carbon in feed waste  (kg)
     double CinFeedWaste = 0;
+    //! Carbon in feed fed in livestock housing (kg)
     double CinFeedFedInHouse = 0;
+    //! Carbon in feed sent to feed storage  (kg)
     double CinManureSentToStorage = 0;
-    //!Carbon lost as methane from manure storage
+    //!Carbon lost as methane from manure storage (kg)
     double manurestoreCH4C = 0;
-    //!Carbon lost as carbon dioxide from manure storage
+    //!Carbon lost as carbon dioxide from manure storage (kg)
     double manurestoreCO2C = 0;
-    //!change in soil C
+    //!change in soil C  (kg)
     double CDeltaSoil = 0;
-    //!emissions of CO2 from soil
+    //!emissions of CO2 from soil  (kg)
     double soilCO2_CEmission = 0;
-    //!emissions of CH4 from excreta deposited during grazing
+    //!emissions of CH4 from excreta deposited during grazing (kg)
     double soilCH4_CEmission = 0;
-    //!C lost from stored plant products
+    //!C lost from stored plant products (kg)
     double processStorageCloss = 0;
-    //!C in organic matter leached from soil
+    //!C in organic matter leached from soil (kg)
     double soilCleached = 0;
-    //!CO-C from burnt crop residues
+    //!CO-C from burnt crop residues (kg)
     double burntResidueCOC = 0;
-    //!Black C from burnt crop residues
+    //!Black C from burnt crop residues (kg)
     double burntResidueBlackC = 0;
-    //!CO2-C from burnt crop residues
+    //!CO2-C from burnt crop residues (kg)
     double burntResidueCO2C = 0;
-    //!C in CH4 from biogas reactor
+    //!C in CH4 from biogas reactor (kg)
     double biogasCH4C = 0;
-    //!C in CO2 from biogas reactor
+    //!C in CO2 from biogas reactor (kg)
     double biogasCO2C = 0;
-    //!C in manure organic matter lost in runoff from manure storage
+    //!C in manure organic matter lost in runoff from manure storage (kg)
     double manurestoreRunoffC = 0;
-    //!C in crop residues remaining on the fields
+    //!C in crop residues remaining on the fields (kg)
     double residueCremaining = 0;
-    //!C lost as CO2 from fertilisers (e.g. urea)
+    //!C lost as CO2 from fertilisers (e.g. urea) (kg)
     double fertiliserCloss = 0;
     //!C in crop products harvested. Includes harvesting by grazing
     double harvestedC = 0;
@@ -212,69 +217,71 @@ class farmBalanceClass
     double Nmanimp = 0;
     //! N imported in animal feed (kg)
     double NPlantProductImported = 0;
-    //! N sold in crop products
+    //! N sold in crop products (kg)
     double Nsold = 0;
-    //!N exported in milk
+    //!N exported in milk (kg)
     double Nmilk = 0;
-    //! N exported in animal growth
+    //! N exported in animal growth (kg)
     double NGrowth = 0;
-    //! N exported in animal mortalities
+    //! N exported in animal mortalities (kg)
     double Nmortalities = 0;
-    //!N exported in animal manure
+    //!N exported in animal manure (kg)
     double Nmanexp = 0;
-    //total N export
+    //total N export (kg)
     double NExport = 0;
-    // N losses and change in N stored in soil
+    // N losses and change in N stored in soil (kg)
     double NDeltaSoil = 0;
-    //!total N lost
+    //!total N lost (kg)
     double NLost = 0;
-    //!N lost as NH3 from housing
+    //!N lost as NH3 from housing (kg)
     double housingNH3Loss = 0;
-    //!N2O-N emission from stored manure
+    //!N2O-N emission from stored manure (kg)
     double manureN2Emission = 0;
-    //!N2-N emission from stored manure
+    //!N2-N emission from stored manure (kg)
     double manureN2OEmission = 0;
-    //!NH3-N emission from stored manure
+    //!NH3-N emission from stored manure (kg)
     double manureNH3Emission = 0;
+    //! Total loss of N from manure storage (kg)
     double manurestoreNLoss = 0;
+    //! Total loss of N from fields (kg)
     double fieldNLoss = 0;
-    //N2-N emission from soil
+    //N2-N emission from soil (kg)
     double fieldN2Emission = 0;
-    //N2O-N emission from soil
+    //N2O-N emission from mineralised soil N (kg)
     double fieldN2OEmission = 0;
-    //NH3-N-N emission from fertiliser
+    //NH3-N-N emission from fertiliser (kg)
     double fertNH3NEmission = 0;
-    //NH3-N emission from field-applied manure
+    //NH3-N emission from field-applied manure (kg)
     double fieldmanureNH3Emission = 0;
-    //NH3-N emission from urine deposited in the field
+    //NH3-N emission from urine deposited in the field (kg)
     double fieldUrineNH3Emission = 0;
-    //NO3-N leaching from soil
+    //NO3-N leaching from soil (kg)
     double Nleaching = 0;
-    //N excreted in housing
+    //N excreted in housing (kg)
     double NexcretedHousing = 0;
-    //N excreted during grazing
+    //N excreted during grazing (kg)
     double NexcretedField = 0;
-    //N fed in housing
+    //N fed in housing (kg)
     double NfedInHousing = 0;
-    //N fed in at pasture
+    //N fed in at pasture (kg)
     double NfedAtPasture = 0;
-    //N from grazed feed
+    //N from grazed feed (kg)
     double NinGrazedFeed = 0;
-    //DM from grazed
+    //DM from grazed (kg)
     double DMinGrazedFeed = 0;
-    //!Change in mineral N in soil
+    //!Change in mineral N in soil (kg)
     double changeInMinN = 0;
-    //!nitrous oxide emission from fertiliser
+    //!N2O-N emission from fertiliser (kg)
     double fertiliserN2OEmission = 0;
-    //!leaching of organic nitrogen
+    //!leaching of organic nitrogen (kg)
     double organicNLeached = 0;
-    //!N2O-N in gases from burnt crop residues
+    //!N2O-N in gases from burnt crop residues (kg)
     double burntResidueN2ON = 0;
-    //!NH3N in gases from burnt crop residues
+    //!NH3N in gases from burnt crop residues (kg)
     double burntResidueNH3N = 0;
-    //!NOX in gases from burnt crop residues
+    //!NOX in gases from burnt crop residues (kg)
     double burntResidueNOxN = 0;
-    //!N in other gases from burnt crop residues
+    //!N in other gases from burnt crop residues (kg)
     double burntResidueOtherN = 0;
     //!runoff from manure storage
     double runoffN = 0;
