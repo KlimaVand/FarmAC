@@ -2,7 +2,7 @@
 using System.Xml;
 using System.Xml.Linq;
 using System.Collections.Generic;
-/*! A class named ctool2 */
+/*! ctool2 models carbon and nitrogen dynamics in the soil */
 /*!
  Based on CTool model, expanded to include N
 */
@@ -26,6 +26,7 @@ public class ctool2
     double CtoNROM = 10.0;// will be overwritten with value from parameter file
     //! Clay fraction in the soil (should be made layer-specific but is not at the moment)
     double Clayfraction = 0;
+    //! Number of soil layers. Currently only works with 2 layers but number is read from parameter file, in case someone wants to have more layers in the future
     int numberOfLayers = 0;
     //! FOMn = N in fresh organic matter, kg N/ha
     public double FOMn = 0;
@@ -49,7 +50,8 @@ public class ctool2
     double amplitude = 0;
     //! constant characterizing the decrease in amplitude with an increase in distance from the soil surface
     double dampingDepth = 0;
-    string parens; /*!< a string containing information about the farm and scenario number.*/
+    //!< a string containing information about the farm and scenario number.
+    string parens; 
     //! 
     private bool pauseBeforeExit = false;
     //! C input in FOM (including at start of simulation) (kg/ha)
@@ -77,23 +79,23 @@ public class ctool2
 
     //! list of instances of SoilClayer in this sequence
     List<SoilClayer> theClayers = new List<SoilClayer>();
+    //! get the list of soil C layers
+    public List<SoilClayer> GettheClayers() { return theClayers; }
 
+    //!Variables used to estimate the global warming potential of soil C re-emitted to the atmosphere
     List<SoilClayer> theSpikeFOMClayers = new List<SoilClayer>();
     List<SoilClayer> theSpikeHUMClayers = new List<SoilClayer>();
     List<SoilClayer> theSpikeROMClayers = new List<SoilClayer>();
     List<SoilClayer> theSpikeBiocharClayers = new List<SoilClayer>();
-
-    //! get the list of soil C layers
-    public List<SoilClayer> GettheClayers() { return theClayers; }
     public List<SoilClayer> GettheSpikeFOMClayers() { return theSpikeFOMClayers; }
     public List<SoilClayer> GettheSpikeHUMClayers() { return theSpikeHUMClayers; }
     public List<SoilClayer> GettheSpikeROMClayers() { return theSpikeROMClayers; }
     public List<SoilClayer> GettheSpikeBiocharClayers() { return theSpikeBiocharClayers; }
 
 
-    //! A constructor with one argument.
+    //! Constructor
     /*!
-      \param aparens, a string argument that points to parens.
+      \param aparens, a string argument containing information about the farm and scenario number
     */
     public ctool2(string aparens)
     {
@@ -170,7 +172,7 @@ public class ctool2
         ctoolInfo.PathNames[ctoolInfo.PathNames.Count - 1] = "ROMificationfraction";
         ROMificationfraction = ctoolInfo.getItemDouble("Value");
 
-
+        //Set up the soil layers
         SoilClayer aClayer = new SoilClayer(0, FOMdecompositionrate, HUMdecompositionrate, ROMdecompositionrate, tF, ROMificationfraction, fCO2, Clayfraction);
         theClayers.Add(aClayer);
         aClayer = new SoilClayer(aClayer);
