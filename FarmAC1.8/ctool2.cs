@@ -74,24 +74,11 @@ public class ctool2
     double BiocharcCO2 = 0;
     //! C input in biochar (including at start of simulation) (kg/ha)
     double BiocharcInput = 0;
-    //!Boolean that is True if the spiking routines should be activated
-    bool spikePresent = false;
 
     //! list of instances of SoilClayer in this sequence
     List<SoilClayer> theClayers = new List<SoilClayer>();
     //! get the list of soil C layers
     public List<SoilClayer> GettheClayers() { return theClayers; }
-
-    //!Variables used to estimate the global warming potential of soil C re-emitted to the atmosphere
-    List<SoilClayer> theSpikeFOMClayers = new List<SoilClayer>();
-    List<SoilClayer> theSpikeHUMClayers = new List<SoilClayer>();
-    List<SoilClayer> theSpikeROMClayers = new List<SoilClayer>();
-    List<SoilClayer> theSpikeBiocharClayers = new List<SoilClayer>();
-    public List<SoilClayer> GettheSpikeFOMClayers() { return theSpikeFOMClayers; }
-    public List<SoilClayer> GettheSpikeHUMClayers() { return theSpikeHUMClayers; }
-    public List<SoilClayer> GettheSpikeROMClayers() { return theSpikeROMClayers; }
-    public List<SoilClayer> GettheSpikeBiocharClayers() { return theSpikeBiocharClayers; }
-
 
     //! Constructor
     /*!
@@ -141,13 +128,12 @@ public class ctool2
      \param residualMineralN the residual mineral N in the soil at the end of spinning up the model (kg/ha)
      */
     public void Initialisation(int soilTypeNo, double ClayFraction, double offsetIn, double amplitudeIn, double maxSoilDepthIn, double dampingDepthIn,
-        double initialC, bool useSpike, string[] parameterFileName, string errorFileName, double InitialCtoN, double pHUMupperLayer, double pHUMLowerLayer,
+        double initialC, string[] parameterFileName, string errorFileName, double InitialCtoN, double pHUMupperLayer, double pHUMLowerLayer,
         ref double residualMineralN)
     {
         amplitude = amplitudeIn;
         maxSoilDepth = maxSoilDepthIn;
         dampingDepth = dampingDepthIn;
-        spikePresent = useSpike;
         //!rho is the angular frequency of the harmonic oscillation in temperature (2*Pi/P in CTool paper) (1/(seconds per year)
         double rho = GlobalVars.Instance.Getrho();
         double Th_diff = GlobalVars.Instance.theZoneData.thesoilData[soilTypeNo].thermalDiff;
@@ -248,32 +234,6 @@ public class ctool2
         ROMcInput = theClayers[0].getROM() + theClayers[1].getROM();
         BiocharcInput = theClayers[0].getBiochar() + theClayers[1].getBiochar();
         CInput = FOMcInput + HUMcInput + ROMcInput + BiocharcInput;
-        if (useSpike) 
-        {
-            SoilClayer anUpperClayer = new SoilClayer(0, FOMdecompositionrate, HUMdecompositionrate, ROMdecompositionrate, tF, ROMificationfraction, fCO2, Clayfraction);
-            theSpikeFOMClayers.Add(anUpperClayer);
-            SoilClayer aLowerClayer = new SoilClayer(1, FOMdecompositionrate, HUMdecompositionrate, ROMdecompositionrate, tF, ROMificationfraction, fCO2, Clayfraction);
-            theSpikeFOMClayers.Add(aLowerClayer);
-            theSpikeFOMClayers[0].setFOM(1000.0);
-
-            SoilClayer anotherClayer = new SoilClayer(anUpperClayer);
-            theSpikeHUMClayers.Add(anotherClayer);
-            theSpikeHUMClayers[0].setHUM(1000.0);
-            anotherClayer = new SoilClayer(aLowerClayer);
-            theSpikeHUMClayers.Add(anotherClayer);
-
-            anotherClayer = new SoilClayer(anUpperClayer);
-            theSpikeROMClayers.Add(anotherClayer);
-            theSpikeROMClayers[0].setROM(1000.0);
-            anotherClayer = new SoilClayer(aLowerClayer);
-            theSpikeROMClayers.Add(anotherClayer);
-
-            anotherClayer = new SoilClayer(anUpperClayer);
-            theSpikeBiocharClayers.Add(anotherClayer);
-            theSpikeBiocharClayers[0].setBiochar(1000.0);
-            anotherClayer = new SoilClayer(aLowerClayer);
-            theSpikeBiocharClayers.Add(anotherClayer);
-        }
     }
     //! A copy constructor .
     /*!
@@ -311,29 +271,6 @@ public class ctool2
         theClayers.Add(aSoilCLayer);
         aSoilCLayer = new SoilClayer(C_ToolToCopy.GettheClayers()[1]);
         theClayers.Add(aSoilCLayer);
-
-        if (spikePresent)
-        {
-            aSoilCLayer = new SoilClayer(C_ToolToCopy.GettheSpikeFOMClayers()[0]);
-            theSpikeFOMClayers.Add(aSoilCLayer);
-            aSoilCLayer = new SoilClayer(C_ToolToCopy.GettheSpikeFOMClayers()[1]);
-            theSpikeFOMClayers.Add(aSoilCLayer);
-
-            aSoilCLayer = new SoilClayer(C_ToolToCopy.GettheSpikeHUMClayers()[0]);
-            theSpikeHUMClayers.Add(aSoilCLayer);
-            aSoilCLayer = new SoilClayer(C_ToolToCopy.GettheSpikeHUMClayers()[1]);
-            theSpikeHUMClayers.Add(aSoilCLayer);
-
-            aSoilCLayer = new SoilClayer(C_ToolToCopy.GettheSpikeROMClayers()[0]);
-            theSpikeROMClayers.Add(aSoilCLayer);
-            aSoilCLayer = new SoilClayer(C_ToolToCopy.GettheSpikeROMClayers()[1]);
-            theSpikeROMClayers.Add(aSoilCLayer);
-
-            aSoilCLayer = new SoilClayer(C_ToolToCopy.GettheSpikeBiocharClayers()[0]);
-            theSpikeBiocharClayers.Add(aSoilCLayer);
-            aSoilCLayer = new SoilClayer(C_ToolToCopy.GettheSpikeBiocharClayers()[1]);
-            theSpikeBiocharClayers.Add(aSoilCLayer);
-        }
     }
     //! Resets the amount of C in the layers to earlier values
     /*!
@@ -350,20 +287,6 @@ public class ctool2
         Nlost = original.Nlost;
         theClayers[0].CopySoilClayer(original.theClayers[0]);
         theClayers[1].CopySoilClayer(original.theClayers[1]);
-        if (original.spikePresent)
-        {
-            theSpikeFOMClayers[0].CopySoilClayer(original.theSpikeFOMClayers[0]);
-            theSpikeFOMClayers[1].CopySoilClayer(original.theSpikeFOMClayers[1]);
-
-            theSpikeHUMClayers[0].CopySoilClayer(original.theSpikeHUMClayers[0]);
-            theSpikeHUMClayers[1].CopySoilClayer(original.theSpikeHUMClayers[1]);
-
-            theSpikeROMClayers[0].CopySoilClayer(original.theSpikeROMClayers[0]);
-            theSpikeROMClayers[1].CopySoilClayer(original.theSpikeROMClayers[1]);
-
-            theSpikeBiocharClayers[0].CopySoilClayer(original.theSpikeBiocharClayers[0]);
-            theSpikeBiocharClayers[1].CopySoilClayer(original.theSpikeBiocharClayers[1]);
-        }
         FOMcCO2 = original.FOMcCO2;
         FOMcToHUM = original.FOMcToHUM;
         HUMcCO2 = original.HUMcCO2;
@@ -644,14 +567,6 @@ public class ctool2
                 double depthInLayer = (100.0) / numberOfLayers * j + (100.0) / numberOfLayers / 2;
                 double temp = Temperature(meanTemperature[month - 1], julianDay, depthInLayer, amplitude, offset);
                 double tempCofficent = temperatureCoefficent(temp);
-                /* Only do the C dynamics for the spike if a spike exists */
-                if (spikePresent)
-                {
-                    GettheSpikeFOMClayers()[j].layerDynamics(timestep, j, FOMdecompositionrate, HUMdecompositionrate, ROMdecompositionrate,
-                    tF, fCO2, ROMificationfraction, tempCofficent, droughtIndex[i], FOMtransportIn, ref FOMtransportOut, 
-                    ref FOMCO2, HUMtransportIn, ref HUMtransportOut, ref HUMCO2, ROMtransportIn, ref ROMtransportOut, ref ROMCO2,
-                        BiochartransportIn, ref BiochartransportOut, ref BiocharCO2, ref newHUM, ref newROM);
-                }
                 theClayers[j].layerDynamics(timestep, j, FOMdecompositionrate, HUMdecompositionrate, ROMdecompositionrate,
                     tF, fCO2, ROMificationfraction,tempCofficent, droughtIndex[i], FOMtransportIn, ref FOMtransportOut, 
                     ref FOMCO2, HUMtransportIn, ref HUMtransportOut, ref HUMCO2, ROMtransportIn, ref ROMtransportOut, ref ROMCO2,

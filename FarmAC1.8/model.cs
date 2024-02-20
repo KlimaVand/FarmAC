@@ -286,9 +286,6 @@ namespace AnimalChange
                                         XmlWriter writer = GlobalVars.Instance.OpenOutputXML(outputName);
 
                                         outputName = getPath(outputName);
-#if SPIKE  //Adds 4 t cellulose (1840 kg C) as a spike. Define SPIKE in project properties (Build: define conditional compilation symbols)
-                                        outputName += "Spike";
-#endif
                                         GlobalVars.Instance.OpenOutputTabFile(outputName, settings.getItemString("outputDir"));
                                         GlobalVars.Instance.OpenDebugFile();
                                         GlobalVars.Instance.OpenCropFile();
@@ -327,15 +324,9 @@ namespace AnimalChange
                                             {
                                                 if (farmInformation.doesIDExist(rotationID))
                                                 {
-                                                    bool insertSpike = false;
-                                                    if (GlobalVars.Instance.reuseCtoolData != -1)
-                                                    {
-                                                        insertSpike = true;
-                                                    }
-                                                    insertSpike = true;
                                                     CropSequenceClass anExample = new CropSequenceClass(RotationPath, rotationID, zoneNr, FarmTyp,
                                                         "farmnr" + farmNr.ToString() + "_ScenarioNr" + ScenarioNr.ToString() + "_CropSequenceClass" +
-                                                        rotationID.ToString(), soilTypeCount, insertSpike);
+                                                        rotationID.ToString(), soilTypeCount);
                                                     areaWeightedDuration += anExample.getArea() * anExample.GetlengthOfSequence();
                                                     anExample.calcGrazedFeedItems();
                                                     farmArea += anExample.getArea();

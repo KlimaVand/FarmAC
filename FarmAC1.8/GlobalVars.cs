@@ -198,15 +198,6 @@ public class GlobalVars
     private double CO2EqN2O;
     //! 100 year GWP of the change of the carbon stored in the soil
     private double CO2EqsoilC;
-#if SPIKE
-    private int SpikeYear=900;
-    public void setSpikeYear(int aVal) { SpikeYear = aVal; }
-    public int getSpikeYear() { return SpikeYear; }
-    private int SpikeFeedCode = 788;
-    public int GetSpikeFeedCode() { return SpikeFeedCode; }
-    private double SpikeMass = 4000; //kg
-    public double GetSpikeMass() { return SpikeMass; }
-#endif
     //! kg N2O-N emitted/kg NH3-N emitted
     private double IndirectNH3N2OFactor;
     //! kg N2O-N emitted/kg NO3-N leached

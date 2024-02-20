@@ -272,11 +272,6 @@ public class CropClass
     double surfaceResidueC;
     //! C in subsurface crop residues (kg/ha)
     double subsurfaceResidueC;
-#if SPIKE
-    //! C in organic matter spike (for calculation of C offsetting) (kg)
-    double spikeC=0.0;
-    public double getspikeC() { return spikeC; }
-#endif
     //! C in urine input to the crop (kg/ha)
     double urineC = 0;
     //! C in faeces input to the crop (kg/ha)
@@ -315,11 +310,6 @@ public class CropClass
     double surfaceResidueN;
     //! N in subsurface crop residues (kg/ha)
     double subsurfaceResidueN;
-#if SPIKE
-    //! N in organic matter spike (for calculation of C offsetting) (kg)
-    double spikeN=0.0;
-    public double getspikeN() { return spikeN; }
-#endif
     //! DM in surface crop residues (kg/ha)
     double surfaceResidueDM = 0;
     //! C emitted from fertilisers (kg/ha)
@@ -2200,10 +2190,6 @@ public class CropClass
             CalculateCropResidues();
             CalculateCropResidueBurning();
         }
-#if SPIKE
-        else
-            surfaceResidueC = 0.0;  //this is necessary because for bare soil, crop residues are not recalculated
-#endif
         CalculateHarvestedYields();
     }
     //!  Handle the fate of the crop residues remaining on bare soil from the previous crop. 
@@ -2677,11 +2663,7 @@ public class CropClass
     {
         bool retVal = false;
         double manureCinput = GetManureC();
-#if SPIKE
-        double Cinp = CFixed + spikeC;
-#else
         double Cinp = CFixed;
-#endif
         if (residueFromPrevious != null)
         {
             residueCfromLastCrop = residueFromPrevious.GetModelled_yield() * residueFromPrevious.composition.GetC_conc();
@@ -2721,11 +2703,7 @@ public class CropClass
     {
         double Ninp = 0;
         if (Getname() != "Bare soil")
-#if SPIKE
-            Ninp = CalculateCropNUptake() + spikeN;
-#else
-            Ninp = CalculateCropNUptake();
-#endif
+        Ninp = CalculateCropNUptake();
         else
         {
             if (residueFromPrevious != null)
@@ -3474,26 +3452,4 @@ public class CropClass
         anOMsource.Addamount(Anamount);
         return anOMsource;
     }
-
-#if SPIKE
-    //Adds 4 t cellulose (1840 kg C) as a spike. Define SPIKE in project properties (Build: define conditional compilation symbols)
-    //this adds a one-time input of organic matter, for calculating offsetting value of C sequestration
-    //the organic matter is defined as a feed item
-    //BEWARE - may add more than one spike, if there are multiple crops in the target year
-    public bool CheckSpike()
-    {
-        if (GetStartYear() == GlobalVars.Instance.getSpikeYear())
-        {
-            feedItem addedOM = AddOne_timeOrganicMatter(GlobalVars.Instance.GetSpikeFeedCode(), GlobalVars.Instance.GetSpikeMass());  //add 4 tonnes of cellulose
-            spikeC = addedOM.Getamount() * addedOM.GetC_conc();
-            spikeN = addedOM.Getamount() * addedOM.GetN_conc();  //should be zero for cellulose
-            surfaceResidueC += spikeC;
-            surfaceResidueN += spikeN;
-            return true;
-        }
-        else
-            return false;
-    }
-#endif
-
 }

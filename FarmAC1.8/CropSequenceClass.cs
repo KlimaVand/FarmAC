@@ -75,17 +75,6 @@ public class CropSequenceClass
     /*!
       \return the name of the crop sequences as a string. 
     */
-#if SPIKE
-    private bool SpikeDone = false;
-    public void setSpikeDone(bool aVal) { SpikeDone = aVal; }
-    public bool getSpikeDone() { return SpikeDone; }
-#endif
-
-    double cumulativeLoadingPulse = 0.0;
-    double cumulativeSpikeFOMload = 0.0;
-    double cumulativeSpikeHUMload = 0.0;
-    double cumulativeSpikeROMload = 0.0;
-    double cumulativeSpikeBiocharload = 0.0;
 
     public string Getname() { return name; }
     //! Get the list of crops in the sequence
@@ -237,9 +226,8 @@ public class CropSequenceClass
      \param currentFarmType the farm type as an integer argument.
      \param aparens, a string containing information about the farm and scenario number.
      \param asoilTypeCount, an integer argument.
-    \param insertSpike is true if there needs to be a spiked soil in the sequence (only for adaptation mode)
     */
-    public CropSequenceClass(string aPath, int aID, int zoneNr, int currentFarmType, string aparens, int asoilTypeCount, bool insertSpike)
+    public CropSequenceClass(string aPath, int aID, int zoneNr, int currentFarmType, string aparens, int asoilTypeCount)
     {
         parens = aparens;
         path = aPath;
@@ -546,14 +534,13 @@ public class CropSequenceClass
         double[] averageAirTemperature = GlobalVars.Instance.theZoneData.airTemp;
         int offset = GlobalVars.Instance.theZoneData.GetairtemperatureOffset();
         double amplitude = GlobalVars.Instance.theZoneData.GetairtemperatureAmplitude();
-        cumulativeLoadingPulse = GlobalVars.Instance.CalcCseqEffectPulse(lengthOfSequence, 0);
         double mineralNFromSpinup = 0;
         if (GlobalVars.Instance.GetlockSoilTypes())
-            aModel.Initialisation(soilTypeCount, ClayFraction, offset, amplitude, maxSoilDepth, dampingDepth, initialC,insertSpike,
+            aModel.Initialisation(soilTypeCount, ClayFraction, offset, amplitude, maxSoilDepth, dampingDepth, initialC,
                 GlobalVars.Instance.getConstantFilePath(), GlobalVars.Instance.GeterrorFileName(), InitialCtoN,
                 pHUMupperLayer, pHUMlowerLayer, ref mineralNFromSpinup);
         else
-            aModel.Initialisation(soiltypeNo, ClayFraction, offset, amplitude, maxSoilDepth, dampingDepth, initialC, insertSpike,
+            aModel.Initialisation(soiltypeNo, ClayFraction, offset, amplitude, maxSoilDepth, dampingDepth, initialC,
             GlobalVars.Instance.getConstantFilePath(), GlobalVars.Instance.GeterrorFileName(), InitialCtoN,
             pHUMupperLayer, pHUMlowerLayer, ref mineralNFromSpinup);
         // spin up the soil model
@@ -1746,10 +1733,6 @@ public class CropSequenceClass
                     resetC_Tool();
                     surplusMineralN = oldsurplusMineralN;
                     theCrops[i].DoCropInputs(true);
-#if SPIKE 
-                    if (!getSpikeDone())  //makes sure that there is only one spiking event
-                        theCrops[i].CheckSpike();
-#endif
                 }
                 else
                 {
@@ -1763,10 +1746,6 @@ public class CropSequenceClass
                     }
 
                     theCrops[i].DoCropInputs(false);
-#if SPIKE 
-                    if (!getSpikeDone())  //makes sure that there is only one spiking event
-                        theCrops[i].CheckSpike();
-#endif
                 }
                 //Run the soil C and N model
                 RunCropCTool(false, false, i, Temperature, theCrops[i].GetdroughtFactorSoil(), 0, ref CropCinputToSoil, ref CropNinputToSoil, ref ManCinputToSoil, ref ManNinputToSoil,
@@ -1801,13 +1780,6 @@ public class CropSequenceClass
                 theCrops[i].SetnitrificationInhibitor(theCrops[i - 1].GetnitrificationInhibitor());
             theCrops[i].getCFixed();
             theCrops[i].DoCropInputs(true);
-#if SPIKE
-            if (!getSpikeDone())  //makes sure that there is only one spiking event per crop sequence
-            {
-                bool retVal=theCrops[i].CheckSpike();
-                setSpikeDone(retVal);
-            }
-#endif
             resetC_Tool();
 
             double[] Temperatures = GlobalVars.Instance.theZoneData.airTemp;
@@ -1858,7 +1830,6 @@ public class CropSequenceClass
         double faecalC = 0;
         double urineC = 0;
         double burntC = 0;
-        double spikeC = 0;
         double croppingPeriod = GetLengthCroppingPeriod(maxCrops);
         for (int i = 0; i < maxCrops; i++)
         {
@@ -1871,9 +1842,6 @@ public class CropSequenceClass
             faecalC += theCrops[i].GetfaecalC() * area;
             urineC += theCrops[i].GetUrineC() * area;
             burntC += theCrops[i].GetburntResidueC() * area;
-#if SPIKE
-            spikeC += theCrops[i].getspikeC() * area;
-#endif
         }
         if (theCrops[maxCrops - 1].GetresidueToNext() != null)
             residueCremaining = theCrops[maxCrops - 1].GetResidueCtoNextCrop() * area;
@@ -1895,11 +1863,7 @@ public class CropSequenceClass
         double Charvested = getCHarvested();
         double Cfixed = getCFixed();
         //! Cbalance (kg) should be zero or thereabouts
-#if SPIKE
-        double Cbalance = ((Cfixed + manureC + faecalC + urineC + spikeC - (soilCO2_CEmission + Cleached + CdeltaSoil + Charvested + burntC + residueCremaining))) / croppingPeriod;
-#else
         double Cbalance = ((Cfixed + manureC + faecalC + urineC - (soilCO2_CEmission + Cleached + CdeltaSoil + Charvested + burntC + residueCremaining))) / croppingPeriod;
-#endif
         double diffSeq = Cbalance / initialSoilC;
         errorPercent = 100 * diffSeq;
         if (Math.Abs(diffSeq) > tolerance)
