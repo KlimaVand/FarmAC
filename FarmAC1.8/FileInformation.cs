@@ -102,7 +102,7 @@ public class FileInformation
                         {
                             if (!nameOfFile.Contains("Alternative"))
                             {
-                                GlobalVars.Instance.log("Could not fine " + nameOfFile, 4);
+                                GlobalVars.Instance.log("Could not find " + nameOfFile, 4);
                                 GlobalVars.Instance.Error(nameOfFile + " not found", "in FileInformation(string nameOfFile)", true);
                             }
                             break;

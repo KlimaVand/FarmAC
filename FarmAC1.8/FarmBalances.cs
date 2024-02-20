@@ -128,7 +128,7 @@ class farmBalanceClass
     //!Carbon in synthetic fertilisers  (kg)
     double CinImportedFertiliser = 0;
     //!Total amount of C input to farm (kg)
-    double cInput = 0;
+    double CInput = 0;
     //!Carbon exported in milk (kg)
     double Cmilk = 0;
     //!Carbon exported in meat (kg)

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+  <settings>
+    <Identity>0</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\C_sequestration\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\C_sequestration\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\C_sequestration\farm_67893_1.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\C_sequestration\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\C_sequestration\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\C_sequestration\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>Test sugar beet</Note>
+  </settings>
+  <settings1>
+    <Identity>7</Identity>
+    <constants>c:\Home\Projects\M4Models\Case study farms\Modelling\SWE\Dairy\79000\constants.xml </constants>
+    <parameters>c:\Home\Projects\M4Models\Case study farms\Modelling\SWE\Dairy\79000\parameters.xml</parameters>
+    <farm>c:\Home\Projects\M4Models\Case study farms\Modelling\SWE\Dairy\79000\farm_79000_1.xml</farm>
+    <fertAndManure>c:\Home\Projects\M4Models\Case study farms\Modelling\SWE\Dairy\79000\fertMan.xml</fertAndManure>
+    <feedItems>c:\Home\Projects\M4Models\Case study farms\Modelling\SWE\Dairy\79000\feedstuff.xml</feedItems>
+    <outputDir>c:\Home\Projects\M4Models\Case study farms\Modelling\SWE\Dairy\79000\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>Test sugar beet</Note>
+  </settings1>
+  <CommonSettings>
+    <alternativePath>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\</alternativePath>
+    <verbosityLevel>5</verbosityLevel>
+    <logFile>true</logFile>
+    <logScreen>true</logScreen>
+  </CommonSettings>
+</xml>
