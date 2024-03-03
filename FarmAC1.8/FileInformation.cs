@@ -57,6 +57,7 @@ public class FileInformation
     */
     private void ReadingFile(string nameOfFile)
     {
+        //bool ret_val = false;
         string file = "";
         //getting the file name from path
         string[] partFileName = nameOfFile.Split('\\');
@@ -95,8 +96,8 @@ public class FileInformation
 #if printDiagnostics
                             Console.WriteLine("Looking for " + nameOfFile);
 #endif
-                            //file does not exist. Checking if the file is in the directorym above.
-                            string[] path = nameOfFile.Split('\\');
+                        //file does not exist. Checking if the file is in the directorym above.
+                        string[] path = nameOfFile.Split('\\');
                         //at the top directoy so file is not found
                         if (path.Count() == 1 || (path.Count() == 2 && path[0][1] == ':'))
                         {
@@ -175,8 +176,8 @@ public class FileInformation
                         tree.FileName = file;
                         //saving the xml-tree
                         AllNodes.Add(tree);
-                    }
                 }
+            }
                 catch (Exception e)
                 {
                     if (nameOfFile != null)

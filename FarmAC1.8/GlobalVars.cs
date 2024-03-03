@@ -1,3 +1,4 @@
+#define LocalServer
 using System.Collections.Generic;
 using System.Xml;
 using System;
@@ -65,6 +66,11 @@ public class GlobalVars
     private Stopwatch sw;
     //! Summary data are output to this file
     System.IO.StreamWriter SummaryExcel;
+
+#if LocalServer
+    string localServerDirectory = "c:\\Users\\au224222\\source\\repos\\FarmAC_MAJ\\bin\\";
+    public string GetlocalServerDirectory() { return localServerDirectory; }
+#endif
     //! Default constructor.
     /*!
       set header variables to false .
@@ -639,7 +645,15 @@ public class GlobalVars
         public void OpenDebugFile(string afilename)
         {
             SetdebugFileName(afilename);
-            debugfile = new System.IO.StreamWriter(debugFileName);
+            try
+            {
+                debugfile = new System.IO.StreamWriter(debugFileName);
+            }
+            catch
+            {
+                debugfile.Close();
+                debugfile = new System.IO.StreamWriter(debugFileName);
+            }
         }
         public void CloseDebugFile()
         {
@@ -1697,12 +1711,12 @@ public class GlobalVars
     private XmlWriter writer;
     //   public XElement writerCtool;
     //public XmlWriter writerCtool;
-    private System.IO.StreamWriter tabFile;
-    private System.IO.StreamWriter DebugFile;
-    private System.IO.StreamWriter FieldFile;
-    private System.IO.StreamWriter livestockFile;
-    private System.IO.StreamWriter CtoolFile;
-    private System.IO.StreamWriter CropFile;
+    private System.IO.StreamWriter tabFile=null;
+    private System.IO.StreamWriter DebugFile = null;
+    private System.IO.StreamWriter FieldFile = null;
+    private System.IO.StreamWriter livestockFile = null;
+    private System.IO.StreamWriter CtoolFile = null;
+    private System.IO.StreamWriter CropFile = null;
     private string FieldfileName;
     private string CtoolfileName;
     private string DebugfileName;
@@ -1725,8 +1739,18 @@ public class GlobalVars
     {
         if (Writeoutputxlm)
         {
-            writer = XmlWriter.Create(outputName);
-            writer.WriteStartDocument();
+            if (writer == null)
+            {
+                try
+                {
+                    writer = XmlWriter.Create(outputName);
+                    writer.WriteStartDocument();
+                }
+                catch (Exception e)
+                {
+                    writer.Close();
+                }
+            }
         }
         return writer;
     }
@@ -2157,7 +2181,15 @@ public class GlobalVars
     {
         string tabfileName = outputName + ".xls";
         if (Writeoutputxls)
-            tabFile = new System.IO.StreamWriter(tabfileName);
+            try
+            {
+                tabFile = new System.IO.StreamWriter(tabfileName);
+            }
+            catch (Exception e)
+            {
+                tabFile.Close();
+                tabFile = new System.IO.StreamWriter(tabfileName);
+            }
         FieldfileName = outputName + "Fieldfile.xls";
         if (File.Exists(FieldfileName))
             File.Delete(FieldfileName);
@@ -2178,7 +2210,7 @@ public class GlobalVars
             if (usedField == false)
                 FieldFile = new System.IO.StreamWriter(FieldfileName);
             else
-                FieldFile = File.AppendText(FieldfileName);
+                FieldFile = File.AppendText(FieldfileName) ;
             usedField = true;
         }
     }
@@ -2190,7 +2222,7 @@ public class GlobalVars
     {
         try  //closing the crop output file
         {
-            if (WriteField)
+            if (WriteField&&FieldFile!=null)
                 FieldFile.Close();
         }
         catch (Exception e)
@@ -2216,7 +2248,7 @@ public class GlobalVars
             if (usedCrop == false)
                 CropFile = new System.IO.StreamWriter(cropfileName);
             else
-                CropFile = File.AppendText(cropfileName);
+                CropFile = File.AppendText(cropfileName) ;
             usedField = true;
         }
     }
@@ -2228,7 +2260,7 @@ public class GlobalVars
     {
         try
         {
-            if (WriteCrop)
+            if (WriteCrop && CropFile != null)
                 CropFile.Close();
         }
         catch
@@ -2296,8 +2328,17 @@ public class GlobalVars
     public void OpenDebugFile()
     {
         if (WriteDebug)
-            DebugFile = new System.IO.StreamWriter(DebugfileName);
-
+        {
+            try
+            {
+                DebugFile = new System.IO.StreamWriter(DebugfileName) ;
+            }
+            catch
+            {
+                DebugFile.Close();
+                DebugFile = new System.IO.StreamWriter(DebugfileName) ;
+            }
+        }
     }
     //!  Close Debug Files. 
     public void CloseDebugFile()
@@ -2305,7 +2346,7 @@ public class GlobalVars
 
         try  //closing the debug file
         {
-            if (WriteDebug)
+            if (WriteDebug && DebugFile != null)
             {
                 DebugFile.Write(headerDebug);
                 DebugFile.Write(dataDebug);
@@ -2365,21 +2406,24 @@ public class GlobalVars
     public void OpenCtoolFile()
     {
         if (Writectoolxls)
-            CtoolFile = new System.IO.StreamWriter(CtoolfileName);
-        /*        if (usedCtoolFile == false)
-                    CtoolFile = new System.IO.StreamWriter(CtoolfileName);
-                else
-                    CtoolFile = File.AppendText(CtoolfileName);
-                usedCtoolFile = true;
-              */
-
+        {
+            try
+            {
+                CtoolFile = new System.IO.StreamWriter(CtoolfileName);
+            }
+            catch
+            {
+                CtoolFile.Close();
+                CtoolFile = new System.IO.StreamWriter(CtoolfileName) ;
+            }
+        }
     }
     //!  Close CTool File. 
     public void CloseCtoolFile()
     {
         try  //closing the CTOOL output file
         {
-            if (Writectoolxls)
+            if (Writectoolxls && CtoolFile != null)
                 CtoolFile.Close();
         }
         catch (Exception e)
@@ -2394,14 +2438,24 @@ public class GlobalVars
     {
         headerLivestock = false;
         if (Writelivestock)
-            livestockFile = new System.IO.StreamWriter(livestockfileName);
+        {
+            try
+            {
+                livestockFile = new System.IO.StreamWriter(livestockfileName) ;
+            }
+            catch
+            {
+                livestockFile.Close();
+                livestockFile = new System.IO.StreamWriter(livestockfileName) ;
+            }
+        }
     }
     //!  Close Livestock File. 
     public void CloseLivestockFile()
     {
         try  //closing the livestock output file
         {
-            if (Writelivestock)
+            if (Writelivestock && livestockFile != null)
                 livestockFile.Close();
         }
         catch (Exception e)
@@ -2416,7 +2470,7 @@ public class GlobalVars
     {
         try //try to close output Excel file
         {
-            if (Writeoutputxls)
+            if (Writeoutputxls && tabFile!=null)
                 tabFile.Close();
         }
         catch (Exception e)
@@ -2444,11 +2498,7 @@ public class GlobalVars
         {
             if (logFileStream != null)
                 log(erroMsg + " " + stackTrace, -1);
-            CloseOutputXML();
-            CloseFieldFile();
-            CloseLivestockFile();
-            CloseDebugFile();
-            closeSummaryExcel();
+            CloseAllFiles();
             if (!erroMsg.Contains("farm Fail"))
             {
                 if (returnErrorMessage)
@@ -2464,8 +2514,6 @@ public class GlobalVars
                 {
                     Console.WriteLine(GlobalVars.Instance.GeterrorFileName());
                     System.IO.StreamWriter files = new System.IO.StreamWriter(GlobalVars.Instance.GeterrorFileName());
-                    files.WriteLine(erroMsg + " " + stackTrace);
-                    files.Close();
                     Console.WriteLine(erroMsg + " " + stackTrace);
                     sw.Stop();
                     Console.WriteLine("RunTime (hrs:mins:secs) " + sw.Elapsed);
@@ -2478,14 +2526,7 @@ public class GlobalVars
         {
             try
             {
-                CloseOutputXML();
-                CloseOutputTabFile();
-                CloseFieldFile();
-                CloseLivestockFile();
-                CloseCtoolFile();
-                CloseDebugFile();
-                closeSummaryExcel();
-            }
+                CloseAllFiles();            }
             catch (Exception e)
             {
                 Console.WriteLine("Exit without trapping error ");
@@ -2496,7 +2537,19 @@ public class GlobalVars
         if (logFileStream != null)
             logFileStream.Close();
         if (stopOnException == true)
-            throw new System.ArgumentException("farm Fail", "farm Fail");
+            throw new System.ArgumentException("farm Fail", erroMsg);
+    }
+
+    public void CloseAllFiles()
+    {
+        CloseOutputXML();
+        CloseOutputTabFile();
+        CloseFieldFile();
+        CloseLivestockFile();
+        CloseCtoolFile();
+        CloseDebugFile();
+        closeSummaryExcel();
+        CloseCropFile();
     }
     public theManureExchangeClass theManureExchange;
     //!  Initialise Excreta Exchange.
@@ -3014,14 +3067,24 @@ public void CloseLogFile()
     public void openSummaryExcel(string outputDir, string scenarioNr, string farmNr)
     {
         if (WriteSummaryExcel)
-            SummaryExcel = new System.IO.StreamWriter(outputDir + "SummaryExcel" + farmNr + "_" + scenarioNr + ".xls");
+        {
+            try
+            {
+                SummaryExcel = new System.IO.StreamWriter(outputDir + "SummaryExcel" + farmNr + "_" + scenarioNr + ".xls");
+            }
+            catch
+            {
+                SummaryExcel.Dispose();
+                SummaryExcel = new System.IO.StreamWriter(outputDir + "SummaryExcel" + farmNr + "_" + scenarioNr + ".xls");
+            }
+        }
     }
     //!  Close Summary Excel. 
     public void closeSummaryExcel()
     {
         try
         {
-            if (WriteSummaryExcel)
+            if (WriteSummaryExcel && SummaryExcel != null)
                 SummaryExcel.Close();
         }
         catch (Exception e)

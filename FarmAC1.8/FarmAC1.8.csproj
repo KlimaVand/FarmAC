@@ -52,16 +52,16 @@
     <Compile Include="FileInformation.cs" />
     <Compile Include="GlobalVars.cs" />
     <Compile Include="Housing.cs" />
-    <Compile Include="layerClass.cs" />
     <Compile Include="Livestock.cs" />
     <Compile Include="manure.cs" />
     <Compile Include="ManureStore.cs" />
     <Compile Include="model.cs" />
     <Compile Include="Node.cs" />
-    <Compile Include="pool.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="simpleSoil.cs" />
+    <Compile Include="simplesoilModel\layerClass.cs" />
+    <Compile Include="simplesoilModel\pool.cs" />
+    <Compile Include="simplesoilModel\simpleSoil.cs" />
     <Compile Include="SoilClayer.cs" />
     <Compile Include="timeClass.cs" />
   </ItemGroup>
