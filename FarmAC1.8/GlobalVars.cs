@@ -2179,7 +2179,7 @@ public class GlobalVars
     */
     public void OpenOutputTabFile(string outputName, string output)
     {
-        string tabfileName = outputName + ".xls";
+        string tabfileName = outputName + ".csv";
         if (Writeoutputxls)
             try
             {
@@ -2190,13 +2190,13 @@ public class GlobalVars
                 tabFile.Close();
                 tabFile = new System.IO.StreamWriter(tabfileName);
             }
-        FieldfileName = outputName + "Fieldfile.xls";
+        FieldfileName = outputName + "Fieldfile.csv";
         if (File.Exists(FieldfileName))
             File.Delete(FieldfileName);
-        livestockfileName = outputName + "livetockfile.xls";
-        CtoolfileName = outputName + "CtoolFile.xls";
-        DebugfileName = outputName + "Debug.xls";
-        cropfileName = outputName + "Crop.xls";
+        livestockfileName = outputName + "livetockfile.csv";
+        CtoolfileName = outputName + "CtoolFile.csv";
+        DebugfileName = outputName + "Debug.csv";
+        cropfileName = outputName + "Crop.csv";
     }
     static bool usedField = false;
     //!  Open Field File. 
@@ -3070,12 +3070,12 @@ public void CloseLogFile()
         {
             try
             {
-                SummaryExcel = new System.IO.StreamWriter(outputDir + "SummaryExcel" + farmNr + "_" + scenarioNr + ".xls");
+                SummaryExcel = new System.IO.StreamWriter(outputDir + "SummaryExcel" + farmNr + "_" + scenarioNr + ".csv");
             }
             catch
             {
                 SummaryExcel.Dispose();
-                SummaryExcel = new System.IO.StreamWriter(outputDir + "SummaryExcel" + farmNr + "_" + scenarioNr + ".xls");
+                SummaryExcel = new System.IO.StreamWriter(outputDir + "SummaryExcel" + farmNr + "_" + scenarioNr + ".csv");
             }
         }
     }
