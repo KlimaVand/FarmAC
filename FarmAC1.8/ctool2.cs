@@ -568,7 +568,7 @@ public class ctool2
                 double temp = Temperature(meanTemperature[month - 1], julianDay, depthInLayer, amplitude, offset);
                 double tempCofficent = temperatureCoefficent(temp);
                 theClayers[j].layerDynamics(timestep, j, FOMdecompositionrate, HUMdecompositionrate, ROMdecompositionrate,
-                    tF, fCO2, ROMificationfraction,tempCofficent, droughtIndex[i], FOMtransportIn, ref FOMtransportOut, 
+                    tF, fCO2, ROMificationfraction,tempCofficent, droughtIndex[month-1], FOMtransportIn, ref FOMtransportOut, 
                     ref FOMCO2, HUMtransportIn, ref HUMtransportOut, ref HUMCO2, ROMtransportIn, ref ROMtransportOut, ref ROMCO2,
                         BiochartransportIn, ref BiochartransportOut, ref BiocharCO2,ref newHUM, ref newROM);
 
