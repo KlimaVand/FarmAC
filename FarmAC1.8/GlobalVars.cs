@@ -1220,9 +1220,9 @@ public class GlobalVars
     /*!
       \param path a string value for path.
     */
-    public void seterrorFileName(string path)
+    public void seterrorFileName(string nameOfErrorFile)
     {
-        errorFileName = path;
+        errorFileName = nameOfErrorFile;
     }
     public string GeterrorFileName() { return errorFileName; }
     public const int totalNumberLivestockCategories = 1;
@@ -1524,6 +1524,7 @@ public class GlobalVars
         {
             for (int i = 0; i < manuresProduced.Count; i++)
                 manuresUsed.Add(new manure(manuresProduced[i]));
+            
             for (int i = 0; i < manuresImported.Count; i++)
             {
                 bool gotit = false;
@@ -1554,7 +1555,6 @@ public class GlobalVars
             }
             GlobalVars.Instance.writeStartTab("theManureExchangeClass");
             GlobalVars.Instance.writeStartTab("producedManure");
-
             for (int i = 0; i < manuresProduced.Count; i++)
             {
                 manuresProduced[i].Write("Produced");
@@ -1708,7 +1708,7 @@ public class GlobalVars
         }
 
     }///end of manure exchange
-    private XmlWriter writer;
+    private XmlWriter theXMLwriter;
     //   public XElement writerCtool;
     //public XmlWriter writerCtool;
     private System.IO.StreamWriter tabFile=null;
@@ -1717,11 +1717,14 @@ public class GlobalVars
     private System.IO.StreamWriter livestockFile = null;
     private System.IO.StreamWriter CtoolFile = null;
     private System.IO.StreamWriter CropFile = null;
+    private System.IO.StreamWriter ErrorFile = null;
     private string FieldfileName;
     private string CtoolfileName;
     private string DebugfileName;
     private string livestockfileName;
     private string cropfileName;
+    private string tabfileName;
+    private string SummaryExcelFileName;
     string FieldHeaderName;
     string FieldHeaderUnits;
     string CtoolHeaderName;
@@ -1730,29 +1733,35 @@ public class GlobalVars
     string livestockHeaderUnits;
     string cropHeaderName;
     string cropHeaderUnits;
+    
+    public void OpenErrorFile()
+    {
+        ErrorFile= new System.IO.StreamWriter(errorFileName);
+    }
+    
     //!  open Output XML. Taking one argument and return a XMLWriter.
     /*!
       \param outputName, a string argument.
       \return a XMLWriter instance.
     */
-    public XmlWriter OpenOutputXML(string outputName)
+    public XmlWriter OpenOutputXML(string outputDir, string outputName)
     {
         if (Writeoutputxlm)
         {
-            if (writer == null)
+            if (theXMLwriter == null)
             {
                 try
                 {
-                    writer = XmlWriter.Create(outputName);
-                    writer.WriteStartDocument();
+                    theXMLwriter = XmlWriter.Create(outputDir+outputName+".xml");
+                    theXMLwriter.WriteStartDocument();
                 }
                 catch (Exception e)
                 {
-                    writer.Close();
+                    Error(e.Message);
                 }
             }
         }
-        return writer;
+        return theXMLwriter;
     }
     //!  Close Output XML. 
     /*!
@@ -1764,8 +1773,8 @@ public class GlobalVars
         {
             if (Writeoutputxlm)
             {
-                writer.WriteEndDocument();
-                writer.Close();
+                theXMLwriter.WriteEndDocument();
+                theXMLwriter.Close();
             }
         }
         catch (Exception e)
@@ -1786,7 +1795,7 @@ public class GlobalVars
         if (Writeoutputxls)
             tabFile.Write(name + "\n");
         if (Writeoutputxlm)
-            writer.WriteStartElement(name);
+            theXMLwriter.WriteStartElement(name);
 
     }
     //!  Write EndTab. Taking one argument. 
@@ -1796,7 +1805,7 @@ public class GlobalVars
     public void writeEndTab()
     {
         if (Writeoutputxlm)
-            writer.WriteEndElement();
+            theXMLwriter.WriteEndElement();
     }
     //!  Write Information to Files (for boolean values). Taking five arguments. 
     /*!
@@ -1846,23 +1855,23 @@ public class GlobalVars
     {
         if (Writeoutputxlm)
         {
-            writer.WriteStartElement(name);
-            writer.WriteStartElement("Description");
-            writer.WriteValue(Description);
-            writer.WriteEndElement();
-            writer.WriteStartElement("Units");
-            writer.WriteValue(Units);
-            writer.WriteEndElement();
-            writer.WriteStartElement("Name");
-            writer.WriteValue(name);
-            writer.WriteEndElement();
-            writer.WriteStartElement("Value");
-            writer.WriteValue(value);
-            writer.WriteEndElement();
-            writer.WriteStartElement("StringUI");
-            writer.WriteValue(name + parens);
-            writer.WriteEndElement();
-            writer.WriteEndElement();
+            theXMLwriter.WriteStartElement(name);
+            theXMLwriter.WriteStartElement("Description");
+            theXMLwriter.WriteValue(Description);
+            theXMLwriter.WriteEndElement();
+            theXMLwriter.WriteStartElement("Units");
+            theXMLwriter.WriteValue(Units);
+            theXMLwriter.WriteEndElement();
+            theXMLwriter.WriteStartElement("Name");
+            theXMLwriter.WriteValue(name);
+            theXMLwriter.WriteEndElement();
+            theXMLwriter.WriteStartElement("Value");
+            theXMLwriter.WriteValue(value);
+            theXMLwriter.WriteEndElement();
+            theXMLwriter.WriteStartElement("StringUI");
+            theXMLwriter.WriteValue(name + parens);
+            theXMLwriter.WriteEndElement();
+            theXMLwriter.WriteEndElement();
         }
         if (Writeoutputxls)
         {
@@ -2172,31 +2181,46 @@ public class GlobalVars
         return node;
 
     }
+
     //!  Open output tab files. Taking two arguments. 
     /*!
       \param outputName, a string argument.
       \param output, a string argument.
     */
-    public void OpenOutputTabFile(string outputName, string output)
+    public void OpenOutputFiles(string outputName, string outputDir)
     {
-        string tabfileName = outputName + ".csv";
+        OpenOutputXML(outputDir, outputName);
+        tabfileName = outputDir + outputName + ".csv";
+        OpenTabfile();
+         FieldfileName = outputName + "Fieldfile.csv";
+        OpenFieldFile();
+        livestockfileName = outputName + "livetockfile.csv";
+        OpenLivestockFile();
+        CtoolfileName = outputName + "CtoolFile.csv";
+        OpenCtoolFile();
+        DebugfileName = outputName + "Debug.csv";
+        OpenDebugFile();
+        cropfileName = outputName + "Crop.csv";
+        OpenCropFile();
+        openSummaryExcel(outputDir, outputName);
+
+    }
+
+
+    public void OpenTabfile()
+    {
         if (Writeoutputxls)
+        {
             try
             {
                 tabFile = new System.IO.StreamWriter(tabfileName);
             }
             catch (Exception e)
             {
-                tabFile.Close();
-                tabFile = new System.IO.StreamWriter(tabfileName);
+                GlobalVars.Instance.Error("Unable to open " + tabfileName, e.StackTrace);
             }
-        FieldfileName = outputName + "Fieldfile.csv";
-        if (File.Exists(FieldfileName))
-            File.Delete(FieldfileName);
-        livestockfileName = outputName + "livetockfile.csv";
-        CtoolfileName = outputName + "CtoolFile.csv";
-        DebugfileName = outputName + "Debug.csv";
-        cropfileName = outputName + "Crop.csv";
+        }
+
     }
     static bool usedField = false;
     //!  Open Field File. 
@@ -2207,11 +2231,18 @@ public class GlobalVars
     {
         if (WriteField)
         {
-            if (usedField == false)
-                FieldFile = new System.IO.StreamWriter(FieldfileName);
-            else
-                FieldFile = File.AppendText(FieldfileName) ;
-            usedField = true;
+            try
+            {
+                if (usedField == false)
+                    FieldFile = new System.IO.StreamWriter(FieldfileName);
+                else
+                    FieldFile = File.AppendText(FieldfileName);
+                usedField = true;
+            }
+            catch (Exception e)
+            {
+                Error("Failed to open field file", e.StackTrace);
+            }
         }
     }
     //!  Close Field File. 
@@ -2245,11 +2276,18 @@ public class GlobalVars
     {
         if (WriteCrop)
         {
-            if (usedCrop == false)
-                CropFile = new System.IO.StreamWriter(cropfileName);
-            else
-                CropFile = File.AppendText(cropfileName) ;
-            usedField = true;
+            try
+            {
+                if (usedCrop == false)
+                    CropFile = new System.IO.StreamWriter(cropfileName);
+                else
+                    CropFile = File.AppendText(cropfileName);
+                usedField = true;
+            }
+            catch (Exception e)
+            {
+                Error("Failed to open crop file", e.StackTrace);
+            }
         }
     }
     //!  Close Crop File. 
@@ -2263,8 +2301,9 @@ public class GlobalVars
             if (WriteCrop && CropFile != null)
                 CropFile.Close();
         }
-        catch
+        catch (Exception e)
         {
+            Error("Failed to close crop file", e.StackTrace);
         }
     }
     //!  Write Crop Files (for integer values). Taking five arguments. 
@@ -2443,10 +2482,9 @@ public class GlobalVars
             {
                 livestockFile = new System.IO.StreamWriter(livestockfileName) ;
             }
-            catch
+            catch (Exception e)
             {
-                livestockFile.Close();
-                livestockFile = new System.IO.StreamWriter(livestockfileName) ;
+                Error("Failed to open livestock file", e.StackTrace);
             }
         }
     }
@@ -2492,33 +2530,42 @@ public class GlobalVars
      \param stackTrace, a string argument.
      \param stopOnException, a boolean argument. 
    */
-    public void Error(string erroMsg, string stackTrace = "", bool stopOnException = true)
+    public void Error(string errorMsg, string stackTrace = "", bool stopOnException = true)
     {
         if (stopOnException == true)
         {
             if (logFileStream != null)
-                log(erroMsg + " " + stackTrace, -1);
+                log(errorMsg + " " + stackTrace, -1);
+            OpenErrorFile();
+            ErrorFile.Write(errorMsg);
+            ErrorFile.Close();
             CloseAllFiles();
-            if (!erroMsg.Contains("farm Fail"))
+            if (!errorMsg.Contains("farm Fail"))
             {
                 if (returnErrorMessage)
                 {
-                    AnimalChange.model.errorMessageReturn = " " + erroMsg + " " + stackTrace;
-                    Console.WriteLine(erroMsg + " " + stackTrace);
-                    sw.Stop();
-                    Console.WriteLine("RunTime (hrs:mins:secs) " + sw.Elapsed);
-                    if (GlobalVars.Instance.getPauseBeforeExit())
-                        Console.Read();
+                    AnimalChange.model.errorMessageReturn = " " + errorMsg + " " + stackTrace;
+                    if (logScreen)
+                    {
+                        Console.WriteLine(errorMsg + " " + stackTrace);
+                        sw.Stop();
+                        Console.WriteLine("RunTime (hrs:mins:secs) " + sw.Elapsed);
+                        if (GlobalVars.Instance.getPauseBeforeExit())
+                            Console.Read();
+                    }
                 }
                 else
                 {
-                    Console.WriteLine(GlobalVars.Instance.GeterrorFileName());
-                    System.IO.StreamWriter files = new System.IO.StreamWriter(GlobalVars.Instance.GeterrorFileName());
-                    Console.WriteLine(erroMsg + " " + stackTrace);
-                    sw.Stop();
-                    Console.WriteLine("RunTime (hrs:mins:secs) " + sw.Elapsed);
-                    if (GlobalVars.Instance.getPauseBeforeExit())
-                        Console.Read();
+                    if (logScreen)
+                    {
+                        Console.WriteLine(GlobalVars.Instance.GeterrorFileName());
+                        System.IO.StreamWriter files = new System.IO.StreamWriter(GlobalVars.Instance.GeterrorFileName());
+                        Console.WriteLine(errorMsg + " " + stackTrace);
+                        sw.Stop();
+                        Console.WriteLine("RunTime (hrs:mins:secs) " + sw.Elapsed);
+                        if (GlobalVars.Instance.getPauseBeforeExit())
+                            Console.Read();
+                    }
                 }
             }
         }
@@ -2526,18 +2573,20 @@ public class GlobalVars
         {
             try
             {
-                CloseAllFiles();            }
+                CloseAllFiles();
+            }
             catch (Exception e)
             {
-                Console.WriteLine("Exit without trapping error ");
-                Console.WriteLine(erroMsg + " " + stackTrace);
-                Console.Read();
+                if (logScreen)
+                {
+                    Console.WriteLine("Exit without trapping error ");
+                    Console.WriteLine(errorMsg + " " + stackTrace);
+                    Console.Read();
+                }
             }
         }
-        if (logFileStream != null)
-            logFileStream.Close();
         if (stopOnException == true)
-            throw new System.ArgumentException("farm Fail", erroMsg);
+            throw new System.ArgumentException("farm Fail", errorMsg);
     }
 
     public void CloseAllFiles()
@@ -2548,7 +2597,7 @@ public class GlobalVars
         CloseLivestockFile();
         CloseCtoolFile();
         CloseDebugFile();
-        closeSummaryExcel();
+        CloseSummaryExcel();
         CloseCropFile();
     }
     public theManureExchangeClass theManureExchange;
@@ -3034,6 +3083,10 @@ public void CloseLogFile()
 #endif
     }
 
+    public void OpenLogfile(string logfilename)
+    {
+        logFileStream = new System.IO.StreamWriter(logfilename);
+    }
     //!  Write Summary Excel. Taking three arguments.
     /*!
      \param information, a string argument.
@@ -3064,23 +3117,22 @@ public void CloseLogFile()
      \param scenarioNr, a string argument.
      \param farmNr, a string argument.
   */
-    public void openSummaryExcel(string outputDir, string scenarioNr, string farmNr)
+    public void openSummaryExcel(string outputDir, string filename)
     {
         if (WriteSummaryExcel)
         {
             try
             {
-                SummaryExcel = new System.IO.StreamWriter(outputDir + "SummaryExcel" + farmNr + "_" + scenarioNr + ".csv");
+                SummaryExcel = new System.IO.StreamWriter(outputDir + "SummaryExcel" + filename + ".csv");
             }
-            catch
+            catch (Exception e)
             {
-                SummaryExcel.Dispose();
-                SummaryExcel = new System.IO.StreamWriter(outputDir + "SummaryExcel" + farmNr + "_" + scenarioNr + ".csv");
+                Error(e.Message);
             }
         }
     }
     //!  Close Summary Excel. 
-    public void closeSummaryExcel()
+    public void CloseSummaryExcel()
     {
         try
         {
@@ -3131,5 +3183,10 @@ public void CloseLogFile()
                 + alpha_2 * tor_2* (1 - Math.Exp(-(timeHorizon - emissionYear) / tor_2))
                 + alpha_3 * tor_3* (1 - Math.Exp(-(timeHorizon - emissionYear) / tor_3));
         return retVal;
+    }
+
+    public void OpenAllOutputFiles()
+    {
+
     }
 }

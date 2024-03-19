@@ -18,16 +18,8 @@ namespace AnimalChange
     //! Contains the main functions for controlling the model
     class model 
     {
-        //args[0] and args[1] are farm number and scenario number respectively
-        //if args[2] is 1, the energy demand of livestock must be met (0 is used when reporting current energy balance of livestock to users)
-        //if args[3] is 1, the crop model requires the modelled production of grazed DM to match the expected production. If =0, grazed DM will be imported if there is a deficit
-        //if args[4] is -1, the model will spinup for the years in the spinupYearsBaseLine parameter then run a baseline scenario and generate a Ctool data transfer file
-        //if args[4] is a positive integer and the spinupYearsNonBaseLine parameter is zero, the model will read Ctool data from the Ctool data transfer file. If spinupYearsNonBaseLine is not zero, the model will spin up for spinupYearsNonBaseLine years then run the scenario
-        // So to just calculate the animal production, set the farm file in system.xml to "farm.xml" and the args to <farm number> <scenario number> "0" "0" "-1"
-        //if the number of arguments are 6 instead of 5, the errormessages will be returned as a string instead of being written to the error-file
-
-
-    public static string errorMessageReturn = "";
+        List<FarmClass> theFarms;
+        public static string errorMessageReturn = "";
         //! If errors are to be read by the server, this function is used to access the string.
         /*!
          \return the error message as a string value.
@@ -36,6 +28,14 @@ namespace AnimalChange
         {
             get { return errorMessageReturn; }
         }
+        //args[0] and args[1] are farm number and scenario number respectively
+        //if args[2] is 1, the energy demand of livestock must be met (0 is used when reporting current energy balance of livestock to users)
+        //if args[3] is 1, the crop model requires the modelled production of grazed DM to match the expected production. If =0, grazed DM will be imported if there is a deficit
+        //if args[4] is -1, the model will spinup for the years in the spinupYearsBaseLine parameter then run a baseline scenario and generate a Ctool data transfer file
+        //if args[4] is a positive integer and the spinupYearsNonBaseLine parameter is zero, the model will read Ctool data from the Ctool data transfer file. If spinupYearsNonBaseLine is not zero, the model will spin up for spinupYearsNonBaseLine years then run the scenario
+        // So to just calculate the animal production, set the farm file in system.xml to "farm.xml" and the args to <farm number> <scenario number> "0" "0" "-1"
+        //if the number of arguments are 6 instead of 5, the errormessages will be returned as a string instead of being written to the error-file
+
         //! This function controls the model run.
         /*!
          \param args arguments sent by the call to initiate the model, as a string argument.
@@ -59,43 +59,61 @@ namespace AnimalChange
                 system[1] = "systemAlternative.xml";
                 FileInformation settings = new FileInformation(system);
                 settings.setPath("CommonSettings(-1)");
+                string outputDir = String.Copy(settings.getItemString("alternativePath")); ;
                 //determine whether logging will occur and how
                 bool logFile = settings.getItemBool("logFile", false);
+                string logfilename = "";
+                if (logFile)  //open log file at alternative location
+                {
+                    logfilename = outputDir + "\\log.txt";
+                    GlobalVars.Instance.OpenLogfile(logfilename);
+                }
                 bool logScreen = settings.getItemBool("logScreen", false);
                 //sets level of reporting from model run
                 int verbosity = settings.getItemInt("verbosityLevel", false);
                 //read whether output files should be created
                 //output results as xml file
                 bool outputxlm = false;// settings.getItemBool("outputxlm", false);
-                                       //output results as Excel file
+               //output results as Excel file
                 bool outputxls = settings.getItemBool("outputxls", false);
                 //output results from soil carbon model as xml file
                 bool ctooltxlm = settings.getItemBool("ctooltxlm", false);
                 //output results from soil carbon model as Excel file
                 bool ctoolxls = settings.getItemBool("ctoolxls", false);
-                //create file for outputs during debugging. Contents can vary
+                //Check if need to create file for outputs during debugging. Contents can vary
                 bool Debug = settings.getItemBool("Debug", false);
-                //
+                // Check if need to create output file for livestock data
                 bool livestock = settings.getItemBool("livestock", false);
-                //
+                //Check if need to create output file for plant data
                 bool Plant = settings.getItemBool("Plant", false);
+                // Check if need to create file for summary output data
                 bool SummaryExcel = settings.getItemBool("SummaryExcel", false);
 
                 if (verbosity == -1)
                     verbosity = 5;
                 int minSetting = 99, maxSetting = 0;
-                //see how many farms need to be simulated
+                //see how many farms need to be simulated. This is only relevant when running the model locally (not called from user interface)
                 settings.setPath("settings");
                 settings.getSectionNumber(ref minSetting, ref maxSetting);
                 if (minSetting == 99 && maxSetting == 0)
                 {
                     GlobalVars.Instance.log("No farms to simulate found in system.xml", -1);
-                    Console.Write("No farms to simulate found in system.xml");
-                    Console.ReadKey();
+                    if (logScreen)
+                    {
+                        Console.Write("No farms to simulate found in system.xml");
+                        Console.ReadKey();
+                    }
+                    GlobalVars.Instance.Error("No farms to simulate found in system.xml");
                 }
-                string outputDir;
+                else
+                {
+                    theFarms = new List<FarmClass>();
+                    GlobalVars.Instance.CloseLogFile();  //close log file at alternative location. Log files may be opened for each farm
+                }
                 for (int settingsID = minSetting; settingsID <= maxSetting; settingsID++)
                 {
+                    FarmClass aFarm = new FarmClass();
+                    theFarms.Add(aFarm);
                     GlobalVars.Instance.reset(settingsID.ToString());
                     GlobalVars.Instance.logFile = logFile;
                     GlobalVars.Instance.logScreen = logScreen;
@@ -110,24 +128,27 @@ namespace AnimalChange
                     GlobalVars.Instance.WriteField = Plant;
                     GlobalVars.Instance.WriteCrop = Plant;
                     GlobalVars.Instance.WriteSummaryExcel = SummaryExcel;
+                    string farmAndScenario= "";
                     if (args.Length != 5 && args.Length != 0 && args.Length != 6)
                     {
-                        GlobalVars.Instance.log("missing arguments in arg list", 5);
-                        Environment.Exit(0);
+                        GlobalVars.Instance.log("Missing arguments in arg list", 5);
+                        GlobalVars.Instance.Error("Missing arguments in arg list");
                     }
                     //This code is called when the model is initiated by a call from the web interface on the server
                     if (args.Length == 5 || args.Length == 6)                //the errormessages will be returned as a string instead of being written to the error-file
                     {
+                        farmAndScenario = args[0] + "_" + args[1];
                         if (args[2].CompareTo("1") == 0) //if args[2] = 1, the full model is run
                             GlobalVars.Instance.setRunFullModel(true);
                         else if (args[2].CompareTo("0") == 0)
                             GlobalVars.Instance.setRunFullModel(false);   //used when reporting current energy balance of livestock to users
                         else
                         {
-                            GlobalVars.Instance.log("invalid input", 5);
-                            Environment.Exit(1);
+                            GlobalVars.Instance.log("Invalid args input", 5);
+                            GlobalVars.Instance.Error("Invalid args input");
                         }
-
+                        // Setting args[3] to false means the production and consumption of grazed feed does not need to balance (within error margin).
+                        // Setting this to false should only be done when wishing to adjust other aspects of the farm, before finally adjusting the grazing feed balance
                         if (args[3].CompareTo("1") == 0)
                             GlobalVars.Instance.SetstrictGrazing(true);
                         else if (args[3].CompareTo("0") == 0)
@@ -135,9 +156,8 @@ namespace AnimalChange
                         else
                         {
                             GlobalVars.Instance.log("invalid input", 5);
-                            Environment.Exit(1);
+                            GlobalVars.Instance.Error("Missing arguments in arg list");
                         }
-
                         GlobalVars.Instance.reuseCtoolData = Convert.ToInt32(args[4]);
                         if (args.Length == 6)
                         {
@@ -145,7 +165,7 @@ namespace AnimalChange
                             GlobalVars.Instance.returnErrorMessage = true;
                         }
                     }
-                    else  //model is called directly
+                    else  //model is called directly from OS or IDE
                     {
                         GlobalVars.Instance.SetstrictGrazing(true);
                         GlobalVars.Instance.setRunFullModel(true);
@@ -157,6 +177,7 @@ namespace AnimalChange
                             settings.Identity.Add(settingsID);
                             GlobalVars.Instance.reuseCtoolData = settings.getItemInt("Adaptation", false);
                         }
+                        farmAndScenario = settings.getItemString("farm");
                     }
 
                     if (settings.Identity.Count == 1)
@@ -164,30 +185,25 @@ namespace AnimalChange
                     if (settings.doesIDExist(settingsID))
                     {
                         settings.setPath("settings(" + settingsID.ToString() + ")");
-                        if (!Directory.Exists(settings.getItemString("outputDir")))
-                        {
-                            Directory.CreateDirectory(settings.getItemString("outputDir"));
-                        }
-
+                        outputDir = String.Copy(settings.getItemString("outputDir"));
+                        if (!Directory.Exists(outputDir))
+                            Directory.CreateDirectory(outputDir);
                         if (args.Length != 0 && args[0].CompareTo("-1") != 0)
-                            GlobalVars.Instance.seterrorFileName(settings.getItemString("outputDir") + "error" + "_" + args[0] + "_" + args[1] + ".txt");
+                            GlobalVars.Instance.seterrorFileName(outputDir + "error" + "_" + args[0] + "_" + args[1] + ".txt");
                         else
-                            GlobalVars.Instance.seterrorFileName(settings.getItemString("outputDir") + "error.txt");
-
-
-                        //GlobalVars.Instance.setHandOverData(settings.getItemString("outputDir") + "dataCtool" + "_" + args[0] + "_" + args[1] + ".txt");
-                        outputDir = settings.getItemString("outputDir");
-                        string logfilename = "";
-                        if (args.Count() == 0)
+                            GlobalVars.Instance.seterrorFileName(outputDir + "error.txt");
+                        if (args.Count() == 0)  //called from OS or IDE
                         {
                             try
                             {
                                 logfilename = outputDir + "\\log.txt";
+                                if (File.Exists(logfilename))
+                                    File.Delete(logfilename);
                                 GlobalVars.Instance.logFileStream = new System.IO.StreamWriter(logfilename);
                             }
-                            catch
+                            catch (Exception e)
                             {
-                                GlobalVars.Instance.logFileStream.Close();
+                                //GlobalVars.Instance.Error("Failed to open log file",e.StackTrace);
                             }
                         }
                         else
@@ -197,27 +213,22 @@ namespace AnimalChange
                                 logfilename = outputDir + "log" + args[0] + "_" + args[1] + ".txt";
                                 GlobalVars.Instance.logFileStream = new System.IO.StreamWriter(logfilename) ;
                             }
-                            catch
+                            catch (Exception e)
                             {
-                                GlobalVars.Instance.logFileStream.Close();
+                                GlobalVars.Instance.Error("Failed to open log file", e.StackTrace);
                             }
                         }
                         string[] file = fileName(args, settings, "constants");
                         GlobalVars.Instance.setConstantFilePath(file);
-
                         string farmName = settings.getItemString("farm");
+
                         //this code section expects the 'farm' tag in system.xml to consist of a full file name (path + filename.xxx). 
                         //The model will look for input in path + filename + "_" + args[0] + "_" + args[1].xxx
                         //note that the farm file in system.xml must be called "farm.xml" for this to work
                         if (args.Length != 0 && args[0].CompareTo("-1") != 0)
                         {
-                            //string[] names = farmName.Split('_');
-
-                            //farmName = names[0] + "_" + args[0] + "_" +  names[names.Count() - 1];
                             string[] names = farmName.Split('.');
-
                             farmName = getPath(farmName) + "_" + args[0] + "_" + args[1] + "." + names[names.Count() - 1];
-
                         }
                         //Set up paths for file names
                         string[] farmNames = new string[2];
@@ -263,10 +274,12 @@ namespace AnimalChange
                                     farmInformation.setPath(newPath);
                                     int zoneNr = farmInformation.getItemInt("AgroEcologicalZone");
                                     GlobalVars.Instance.SetZone(zoneNr);
-                                    int FarmTyp = farmInformation.getItemInt("FarmType");
-                                    if (FarmTyp > 3)
+                                    int FarmType = farmInformation.getItemInt("FarmType");
+                                    if (FarmType > 3)
                                         GlobalVars.Instance.Error("Farmtype not supported");
-                                    GlobalVars.Instance.theZoneData.readZoneSpecificData(zoneNr, FarmTyp);
+                                    else
+                                        aFarm.SetFarmType(FarmType);
+                                    GlobalVars.Instance.theZoneData.readZoneSpecificData(zoneNr, FarmType);
                                     double Ndep = farmInformation.getItemDouble("Value", newPath + ".NDepositionRate(-1)");
                                     GlobalVars.Instance.theZoneData.SetNdeposition(Ndep);
                                     //start dealing with the different scenarios (must at least be a baseline scenario)
@@ -292,35 +305,29 @@ namespace AnimalChange
                                         GlobalVars.Instance.log("Starting farm " + farmNr.ToString() + " scenario nr " + ScenarioNr, 0);
                                         if (args.Length == 0)  //Set location of soil carbon pool data
                                         {
-                                            GlobalVars.Instance.setReadHandOverData(settings.getItemString("outputDir") + "dataCtool" + "_" + farmNr + "_" + GlobalVars.Instance.reuseCtoolData + ".txt");
-                                            GlobalVars.Instance.setWriteHandOverData(settings.getItemString("outputDir") + "dataCtool" + "_" + farmNr + "_" + ScenarioNr.ToString() + ".txt");
+                                            GlobalVars.Instance.setReadHandOverData(outputDir + "dataCtool" + "_" + farmNr + "_" + GlobalVars.Instance.reuseCtoolData + ".txt");
+                                            GlobalVars.Instance.setWriteHandOverData(outputDir + "dataCtool" + "_" + farmNr + "_" + ScenarioNr.ToString() + ".txt");
                                         }
                                         else
                                         {
-                                            GlobalVars.Instance.setReadHandOverData(settings.getItemString("outputDir") + "dataCtool" + "_" + args[0] + "_" + args[4] + ".txt");
-                                            GlobalVars.Instance.setWriteHandOverData(settings.getItemString("outputDir") + "dataCtool" + "_" + args[0] + "_" + args[1] + ".txt");
+                                            GlobalVars.Instance.setReadHandOverData(outputDir + "dataCtool" + "_" + args[0] + "_" + args[4] + ".txt");
+                                            GlobalVars.Instance.setWriteHandOverData(outputDir + "dataCtool" + "_" + args[0] + "_" + args[1] + ".txt");
                                         }
-
-                                        GlobalVars.Instance.openSummaryExcel(settings.getItemString("outputDir"), ScenarioNr.ToString(), farmNr.ToString());
                                         int soilTypeCount = 0;
 
                                         if (farmInformation.doesIDExist(settingsnr))
                                         {
-
                                             string outputName;
                                             if ((GlobalVars.Instance.reuseCtoolData == -1) && (args.Length == 0))
-                                                outputName = settings.getItemString("outputDir") + "outputFarm" + farmNr.ToString() + "BaselineScenarioNr" + ScenarioNr.ToString() + ".xml";
+                                                outputName = "outputFarm" + farmNr.ToString() + "BaselineScenarioNr" + ScenarioNr.ToString();
                                             else
-                                                outputName = settings.getItemString("outputDir") + "outputFarm" + farmNr.ToString() + "ScenarioNr" + ScenarioNr.ToString() + ".xml";
+                                                outputName = "outputFarm" + farmNr.ToString() + "ScenarioNr" + ScenarioNr.ToString();
 
-                                            XmlWriter writer = GlobalVars.Instance.OpenOutputXML(outputName);
+                                            //GlobalVars.Instance.OpenOutputXML(outputDir,outputName);
 
-                                            outputName = getPath(outputName);
-                                            GlobalVars.Instance.OpenOutputTabFile(outputName, settings.getItemString("outputDir"));
-                                            GlobalVars.Instance.OpenDebugFile();
-                                            GlobalVars.Instance.OpenCropFile();
-
-                                            //writer.WriteStartDocument();
+                                            //outputName = getPath(outputName);
+                                            GlobalVars.Instance.OpenOutputFiles(outputName,outputDir);
+                                            //theXMLwriter.WriteStartDocument();
                                             GlobalVars.Instance.writeStartTab("Farm");
 
                                             GlobalVars.Instance.initialiseExcretaExchange();
@@ -338,332 +345,30 @@ namespace AnimalChange
                                             energySystem = farmInformation.getItemInt("Value");
                                             GlobalVars.Instance.setcurrentEnergySystem(energySystem);
                                             GlobalVars.Instance.OpenCtoolFile();
-                                            List<CropSequenceClass> rotationList = new List<CropSequenceClass>();
-                                            int minRotation = 99, maxRotation = 0;
-                                            //if (GlobalVars.Instance.getRunFullModel())
-                                            //{
-                                            //do cropped area first
+
                                             if (GlobalVars.Instance.GetstrictGrazing() == true)
                                             {
-                                                string RotationPath = newPath + "(" + ScenarioNr.ToString() + ").Rotation";
-                                                farmInformation.setPath(RotationPath);
-
-                                                farmInformation.getSectionNumber(ref minRotation, ref maxRotation);
-                                                //read data for each crop sequence
-                                                for (int rotationID = minRotation; rotationID <= maxRotation; rotationID++)
-                                                {
-                                                    if (farmInformation.doesIDExist(rotationID))
-                                                    {
-                                                        CropSequenceClass anExample = new CropSequenceClass(RotationPath, rotationID, zoneNr, FarmTyp,
-                                                            "farmnr" + farmNr.ToString() + "_ScenarioNr" + ScenarioNr.ToString() + "_CropSequenceClass" +
-                                                            rotationID.ToString(), soilTypeCount);
-                                                        areaWeightedDuration += anExample.getArea() * anExample.GetlengthOfSequence();
-                                                        anExample.calcGrazedFeedItems();
-                                                        farmArea += anExample.getArea();
-                                                        if (GlobalVars.Instance.GetlockSoilTypes())
-                                                            soilTypeCount++;
-                                                        else
-                                                            anExample.SetsoilTypeCount(anExample.GetsoiltypeNo());
-                                                        rotationList.Add(anExample);
-                                                    }
-                                                }
-                                                //execute this if the soil carbon pool data needs to be read from file (i.e. not the baseline scenario)
-                                                if (GlobalVars.Instance.reuseCtoolData != -1)
-                                                {
-                                                    double[] oldArea = new double[20];
-                                                    double[] newArea = new double[20];
-                                                    for (int i = 0; i < 20; i++)
-                                                    {
-                                                        oldArea[i] = 0;
-                                                        newArea[i] = 0;
-                                                    }
-                                                    for (int i = 0; i < rotationList.Count; i++)
-                                                    {
-                                                        int soilNr = 0;
-                                                        if (GlobalVars.Instance.GetlockSoilTypes())
-                                                            soilNr = rotationList[i].GetsoilTypeCount();
-                                                        else
-                                                            soilNr = rotationList[i].GetsoiltypeNo();
-                                                        newArea[soilNr] += rotationList[i].getArea();
-                                                    }
-                                                    string[] lines = null;
-                                                    try
-                                                    {
-                                                        lines = System.IO.File.ReadAllLines(GlobalVars.Instance.getReadHandOverData());
-                                                    }
-                                                    catch
-                                                    {
-                                                        GlobalVars.Instance.Error("could not find CTool handover data " + GlobalVars.Instance.getReadHandOverData());
-                                                    }
-
-                                                    for (int j = 0; j < lines.Length; j++)
-                                                    {
-                                                        string[] tmp = lines[j].Split('\t');
-
-                                                        int soilNr = Convert.ToInt32(tmp[0]);
-                                                        oldArea[soilNr] += Convert.ToDouble(tmp[11]);
-                                                    }
-                                                    for (int j = 0; j < 20; j++)
-                                                    {
-                                                        if (oldArea[j] != newArea[j])
-                                                        {
-                                                            GlobalVars.Instance.Error("area for soil type " + j.ToString() + " in scenario does not match area in Baseline scenario");
-                                                        }
-                                                    }
-
-                                                }
-                                                if (farmArea > 0)
-                                                    areaWeightedDuration /= farmArea;
-                                                else
-                                                    areaWeightedDuration = 1;
-                                            }
-                                            GlobalVars.Instance.theZoneData.SetaverageYearsToSimulate(areaWeightedDuration);
-                                            //}
-
-                                            // temporary location
-                                            List<manureStore> listOfManurestores = new List<manureStore>();
-                                            List<housing> listOfHousing = new List<housing>();
-
-                                            ///start of livestock section
-                                            string LivestockPath = newPath + "(" + ScenarioNr.ToString() + ").Livestock";
-                                            farmInformation.setPath(LivestockPath);
-
-                                            List<livestock> listOfLivestock = new List<livestock>();
-                                            ///read the livestock details from file
-                                            int minLivestock = 99, maxLivestock = 0;
-
-                                            farmInformation.getSectionNumber(ref minLivestock, ref maxLivestock);
-                                            for (int LiveStockID = minLivestock; LiveStockID <= maxLivestock; LiveStockID++)
-                                            {
-
-                                                if (farmInformation.doesIDExist(LiveStockID))
-                                                {
-                                                    livestock anAnimal = new livestock(LivestockPath, LiveStockID, zoneNr, "farmnr" + farmNr.ToString() + "_ScenarioNr" + ScenarioNr.ToString() + "_livestock" + LiveStockID.ToString());
-                                                    anAnimal.GetAllFeedItemsUsed();
-                                                    listOfLivestock.Add(anAnimal);
-                                                }
-                                            }
-
-                                            ///calculate composition of bedding material
-                                            GlobalVars.Instance.CalcbeddingMaterial(rotationList);
-
-                                            ///read details of any manure stores that do not receive manure from livestock on the farm
-                                            string ManureStoragePath = newPath + "(" + ScenarioNr.ToString() + ").ManureStorage";
-                                            farmInformation.setPath(ManureStoragePath);
-                                            //
-                                            int minManureStorage = 99, maxManureStorage = 0;
-
-                                            farmInformation.getSectionNumber(ref minManureStorage, ref maxManureStorage);
-                                            for (int ManureStorageID = minManureStorage; ManureStorageID <= maxManureStorage; ManureStorageID++)
-                                            {
-                                                if (farmInformation.doesIDExist(ManureStorageID))
-                                                {
-                                                    manureStore amanurestore = new manureStore(ManureStoragePath, ManureStorageID, zoneNr, "farmnr" + farmNr.ToString() + "_ScenarioNr" + ScenarioNr.ToString() + "_manureStore" + ManureStorageID.ToString());
-                                                    listOfManurestores.Add(amanurestore);
-                                                }
-                                            }
-
-                                            ///get details of animal housing (for each livestock category)
-                                            for (int i = 0; i < listOfLivestock.Count(); i++)
-                                            {
-                                                livestock anAnimalCategory = listOfLivestock[i];
-                                                for (int j = 0; j < anAnimalCategory.GethousingDetails().Count(); j++)
-                                                {
-                                                    int housingType = anAnimalCategory.GethousingDetails()[j].GetHousingType();
-                                                    double proportionOfTime = anAnimalCategory.GethousingDetails()[j].GetpropTime();
-                                                    housing aHouse = new housing(housingType, anAnimalCategory, j, zoneNr, "farmnr" + farmNr.ToString() + "_ScenarioNr" + ScenarioNr.ToString() + "_housingi" + i.ToString() + "_housingj" + j.ToString());
-                                                    listOfHousing.Add(aHouse);
-                                                    //storage for manure produced in housing is initiated in the housing module
-                                                    for (int k = 0; k < aHouse.GetmanurestoreDetails().Count; k++)
-                                                    {
-                                                        manureStore aManureStore = aHouse.GetmanurestoreDetails()[k].GettheStore();
-                                                        aManureStore.SettheHousing(aHouse);
-                                                        listOfManurestores.Add(aManureStore);
-                                                    }
-                                                }
-                                            }
-                                            //Run the livestock models
-                                            for (int i = 0; i < listOfLivestock.Count; i++)
-                                            {
-                                                livestock anAnimal = listOfLivestock[i];
-                                                //Run if the livestock are ruminants
-                                                if (anAnimal.GetisRuminant())
-                                                {
-                                                    anAnimal.DoRuminant();
-                                                    if ((GlobalVars.Instance.getRunFullModel()) &&
-                                                            ((anAnimal.GetpropDMgrazed() > 0) && (maxRotation == 0)))
-                                                    {
-                                                        string messageString = ("Error - livestock are indicated as grazing but there are no fields to graze");
-                                                        GlobalVars.Instance.Error(messageString);
-                                                    }
-                                                }
-                                                else if (anAnimal.GetspeciesGroup() == 2)  //run the pig model
-                                                {
-                                                    anAnimal.DoPig();
-                                                }
-
-                                            }
-                                            for (int i = 0; i < listOfHousing.Count; i++)  //simulate each of the animal houses
-                                            {
-                                                housing ahouse = listOfHousing[i];
-                                                ahouse.DoHousing();
-                                            }
-
-                                            GlobalVars.Instance.theManureExchange = new GlobalVars.theManureExchangeClass();
-                                            for (int i = 0; i < listOfManurestores.Count; i++)  //simulate each of the manure stores
-                                            {
-                                                manureStore amanurestore2 = listOfManurestores[i];
-                                                amanurestore2.DoManurestore();
-                                            }
-
+                                                aFarm.SetupRotation(farmInformation, newPath, zoneNr, farmNr, ScenarioNr, FarmType, soilTypeCount);
+                                                aFarm.SetupLivestockAndManure(farmInformation, zoneNr, farmNr, newPath, ScenarioNr);
                                             if (!GlobalVars.Instance.getRunFullModel()) //only called when only the livestock excretion is needed
                                             {
-                                                GlobalVars.Instance.CalcAllFeedAndProductsPotential(rotationList);
+                                                GlobalVars.Instance.CalcAllFeedAndProductsPotential(aFarm.GetRotationList());
                                                 //write output to xml file
                                                 GlobalVars.Instance.writeGrazedItems();
-                                                for (int i = 0; i < listOfHousing.Count; i++)
-                                                {
-                                                    listOfHousing[i].Write();
-                                                }
-
-                                                for (int i = 0; i < listOfManurestores.Count; i++)
-                                                {
-                                                    manureStore amanurestore2 = listOfManurestores[i];
-                                                    amanurestore2.Write();
-                                                }
-                                                GlobalVars.Instance.OpenLivestockFile();
-                                                for (int i = 0; i < listOfLivestock.Count; i++)
-                                                {
-                                                    livestock anAnimal = listOfLivestock[i];
-                                                    anAnimal.Write();
-                                                    anAnimal.WriteLivestockFile();
-                                                }
-                                                for (int rotationID = 0; rotationID < rotationList.Count; rotationID++)
-                                                    rotationList[rotationID].CalcManureForAllCrops();
-                                                GlobalVars.Instance.CloseLivestockFile();
-                                                GlobalVars.Instance.Write(false);
-                                                GlobalVars.Instance.CloseOutputTabFile();
-                                                GlobalVars.Instance.CloseOutputXML();
-                                                GlobalVars.Instance.log(GlobalVars.Instance.getRunFullModel().ToString(), 5);
-                                                GlobalVars.Instance.CloseLogFile();
-                                                GlobalVars.Instance.CloseCtoolFile();
+                                                aFarm.WriteLivestockAndManure();
                                             }
 
                                             else
                                             {
-                                                GlobalVars.Instance.OpenFieldFile();
-
-                                                for (int rotationID = 0; rotationID < rotationList.Count; rotationID++)
-                                                {
-                                                    rotationList[rotationID].CalcModelledYield();
-                                                    rotationList[rotationID].CheckYields();
-                                                    GlobalVars.Instance.log("Seq " + rotationID.ToString() + " DM " + rotationList[rotationID].GetDMYield().ToString(), 5);
-                                                    GlobalVars.Instance.log("Seq " + rotationID.ToString() + " C " + rotationList[rotationID].getCHarvested().ToString(), 5);
-                                                }
-                                                GlobalVars.Instance.CloseFieldFile();
-                                                GlobalVars.Instance.CloseCropFile();
-                                                //
-                                                GlobalVars.Instance.CheckGrazingData();
-
-                                                //Begin output routines
-
-                                                farmBalanceClass theBalances = new farmBalanceClass("farmnr" + farmNr.ToString() + "_ScenarioNr" + ScenarioNr.ToString() + "FarmBalance_1");
-                                                theBalances.DoFarmBalances(rotationList, listOfLivestock, listOfHousing, listOfManurestores);
-
-                                                //write output to xml file
-                                                if (GlobalVars.Instance.getRunFullModel() == false)
-                                                {
-                                                    for (int i = 0; i < listOfHousing.Count; i++)
-                                                        listOfHousing[i].Write();
-                                                }
-
-                                                for (int i = 0; i < listOfManurestores.Count; i++)
-                                                {
-                                                    manureStore amanurestore2 = listOfManurestores[i];
-                                                    if (GlobalVars.Instance.getRunFullModel() == false)
-                                                        amanurestore2.Write();
-                                                    else
-                                                    {
-                                                        amanurestore2.Write();
-                                                        GlobalVars.Instance.writeEndTab();
-                                                        GlobalVars.Instance.writeEndTab();
-                                                    }
-                                                }
-                                                //if (((listOfHousing.Count() == 0) && (listOfLivestock.Count > 0))) //there are grazing animals that are not housed
-                                                {
-                                                    for (int i = 0; i < listOfLivestock.Count; i++)
-                                                    {
-                                                        livestock anAnimal = listOfLivestock[i];
-                                                        if (anAnimal.GethousingDetails().Count == 0)
-                                                        {
-                                                            anAnimal.Write();
-                                                            GlobalVars.Instance.writeEndTab();
-                                                        }
-                                                    }
-                                                }
-
-
-                                                GlobalVars.Instance.OpenFieldFile();
-                                                //Jonas - please get this to work
-                                                FileInformation constfile = new FileInformation(GlobalVars.Instance.getConstantFilePath());
-                                                constfile.setPath("constants(0).WriteCropSeq(-1)");
-                                                bool writeCropSeqDetails = constfile.getItemBool("Value", false);
-                                                if (writeCropSeqDetails)
-                                                {
-                                                    for (int i = 0; i < rotationList.Count; i++)
-                                                    {
-                                                        CropSequenceClass rotation = rotationList[i];
-                                                        rotation.Write();
-                                                    }
-                                                }
-
-                                                GlobalVars.Instance.CloseFieldFile();
-
-                                                GlobalVars.Instance.CalcAllFeedAndProductsPotential(rotationList);
-                                                GlobalVars.Instance.Write(true);
-                                                GlobalVars.Instance.writeStartTab("ExpectedYield");
-                                                for (int i = 0; i < rotationList.Count; i++)
-                                                    rotationList[i].processExpectedYieldForOutput("ExpectedYield0_CropSequenceClass" + i.ToString());
-                                                GlobalVars.Instance.writeEndTab();
-                                                GlobalVars.Instance.CloseOutputXML();
-                                                GlobalVars.Instance.CloseOutputTabFile();
-                                                GlobalVars.Instance.CloseLogFile();
-                                                GlobalVars.Instance.OpenLivestockFile();
-                                                for (int i = 0; i < listOfLivestock.Count; i++)
-                                                {
-                                                    livestock anAnimal = listOfLivestock[i];
-                                                    anAnimal.WriteLivestockFile();
-
-                                                }
-                                                GlobalVars.Instance.CloseLivestockFile();
-                                                GlobalVars.Instance.CloseCtoolFile();
-                                                if (GlobalVars.Instance.Writectoolxlm)
-                                                {
-                                                    XmlWriter writerCtool;
-                                                    writerCtool = XmlWriter.Create(outputName + "CtoolFile.xml");
-                                                    XElement fileCtool = new XElement("file");
-                                                    for (int i = 0; i < rotationList.Count(); i++)
-                                                    {
-                                                        XElement rotation = new XElement("rotation");
-                                                        rotation.Add(rotationList[i].node);
-                                                        fileCtool.Add(rotation);
-
-                                                    }
-                                                    fileCtool.Save(writerCtool);
-                                                    writerCtool.Close();
-                                                }
-
-                                                if (GlobalVars.Instance.reuseCtoolData == -1)
-                                                {
-                                                    writeCtoolData(rotationList);
-                                                    //GlobalVars.Instance.CloseFieldFile();
-                                                }
+                                                aFarm.RunFarm();
+                                                aFarm.WriteLivestockAndManure();
+                                                aFarm.WriteRotation(outputDir+outputName);
+                                                aFarm.WriteFarm(farmNr,ScenarioNr);
+                                                GlobalVars.Instance.writeEndTab();}
                                             }
-                                            GlobalVars.Instance.closeSummaryExcel();
-                                            GlobalVars.Instance.CloseDebugFile();
                                         }//end of scenario exists
                                         long ticks = DateTime.UtcNow.Ticks;
-                                        System.IO.File.WriteAllText(outputDir + "done" + farmNr.ToString() + "ScenarioNr" + ScenarioNr.ToString() + ".txt", ticks.ToString());
+                                        //System.IO.File.WriteAllText(outputDir + "done" + farmNr.ToString() + "ScenarioNr" + ScenarioNr.ToString() + ".txt", ticks.ToString());
                                     }//end of scenario
                                 }//end of farm exists
                             }
@@ -676,7 +381,10 @@ namespace AnimalChange
                                 GlobalVars.Instance.Error(e.Message, e.StackTrace, true);
                             }
                         }
-                        GlobalVars.Instance.theZoneData.CloseDebugFile();
+                        //GlobalVars.Instance.theZoneData.CloseDebugFile();
+                        //GlobalVars.Instance.CloseLogFile();
+                        GlobalVars.Instance.CloseAllFiles();
+                        GlobalVars.Instance.CloseLogFile();  //close log file 
                     }
                     Console.WriteLine("Finished after running " + (settingsID + 1).ToString() + " scenarios");
                     timer.Stop();
@@ -685,8 +393,8 @@ namespace AnimalChange
 
                     // Format and display the TimeSpan value. 
                     string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-                        ts.Hours, ts.Minutes, ts.Seconds,
-                        ts.Milliseconds / 10);
+                    ts.Hours, ts.Minutes, ts.Seconds,
+                    ts.Milliseconds / 10);
                     Console.WriteLine("RunTime (hrs:mins:secs) " + elapsedTime);
                     Console.WriteLine();
                     //Console.WriteLine("Time elapsed = ");
@@ -698,70 +406,8 @@ namespace AnimalChange
                 string errorString = e.Message;
             }
         }
-        //! A normal member. Write Ctool C and N data to file, for use in scenarios. Taking one argument.
-        /*!
-         \param rotationList, one list argument that points to CropSequenceClass.
-        */
-       
-        void writeCtoolData(List<CropSequenceClass> rotationList)
-        {
-            double[] rotarea = new double[20];
-            double[] fomcLayer1 = new double[20];
-            double[] fomcLayer2 = new double[20];
-            double[] humcLayer1 = new double[20];
-            double[] humcLayer2 = new double[20];
-            double[] romcLayer1 = new double[20];
-            double[] romcLayer2 = new double[20];
-            double[] biocharcLayer1 = new double[20];
-            double[] biocharcLayer2 = new double[20];
-            double[] FOMn = new double[20];
-            double[] rotresidualMineralN = new double[20];
-            for (int soilNo = 0; soilNo < 20; soilNo++)
-            {
-                rotarea[soilNo] = 0;
-                fomcLayer1[soilNo] = 0;
-                fomcLayer2[soilNo] = 0;
-                humcLayer1[soilNo] = 0;
-                humcLayer2[soilNo] = 0;
-                romcLayer1[soilNo] = 0;
-                romcLayer2[soilNo] = 0;
-                FOMn[soilNo] = 0;
-                rotresidualMineralN[soilNo] = 0;
-            }
-            for (int i = 0; i < rotationList.Count; i++)
-            {
-                CropSequenceClass rotation = rotationList[i];
-                int soiltypeNo = 0;
-                if (GlobalVars.Instance.GetlockSoilTypes())
-                    soiltypeNo = rotation.GetsoilTypeCount();
-                else
-                    soiltypeNo = rotation.GetsoiltypeNo();
-                rotarea[soiltypeNo] += rotation.getArea();
-                fomcLayer1[soiltypeNo] += rotation.aModel.GettheClayers()[0].getFOM() * rotation.getArea();
-                fomcLayer2[soiltypeNo] += rotation.aModel.GettheClayers()[1].getFOM() * rotation.getArea();
-                humcLayer1[soiltypeNo] += rotation.aModel.GettheClayers()[0].getHUM() * rotation.getArea();
-                humcLayer2[soiltypeNo] += rotation.aModel.GettheClayers()[1].getHUM() * rotation.getArea();
-                romcLayer1[soiltypeNo] += rotation.aModel.GettheClayers()[0].getROM() * rotation.getArea();
-                romcLayer2[soiltypeNo] += rotation.aModel.GettheClayers()[1].getROM() * rotation.getArea();
-                biocharcLayer1[soiltypeNo] += rotation.aModel.GettheClayers()[0].getBiochar() * rotation.getArea();
-                biocharcLayer2[soiltypeNo] += rotation.aModel.GettheClayers()[1].getBiochar() * rotation.getArea();
-                FOMn[soiltypeNo] += rotation.aModel.FOMn * rotation.getArea();
-                rotresidualMineralN[soiltypeNo] += rotation.GetResidualSoilMineralN();
-            }
-            System.IO.StreamWriter extraCtoolData = new System.IO.StreamWriter(GlobalVars.Instance.getWriteHandOverData());
-            for (int soilNo = 0; soilNo < 20; soilNo++)
-            {
-                if (rotarea[soilNo] > 0)
-                {
-                    extraCtoolData.WriteLine(soilNo.ToString() + '\t' + (fomcLayer1[soilNo] / rotarea[soilNo]).ToString() + '\t' + (fomcLayer2[soilNo] / rotarea[soilNo]).ToString()
-                        + '\t' + (humcLayer1[soilNo] / rotarea[soilNo]).ToString() + '\t' + (humcLayer2[soilNo] / rotarea[soilNo]).ToString()
-                        + '\t' + (romcLayer1[soilNo] / rotarea[soilNo]).ToString() + '\t' + (romcLayer2[soilNo] / rotarea[soilNo]).ToString()
-                        + '\t' + (biocharcLayer1[soilNo] / rotarea[soilNo]).ToString() + '\t' + (biocharcLayer2[soilNo] / rotarea[soilNo]).ToString()
-                        + '\t' + FOMn[soilNo] / rotarea[soilNo] + '\t' + rotresidualMineralN[soilNo] / rotarea[soilNo] + '\t' + rotarea[soilNo]);
-                }
-            }
-            extraCtoolData.Close();
-        }
+
+
         //! A normal member. get Path. Taking one argument and returning string value.
         /*!
          \param oldSPath, one string argument.
@@ -835,69 +481,6 @@ namespace AnimalChange
 
 
         }
-        //! A normal member.Write output. Taking four arguments.
-        /*!
-         \param listOfManurestores, one list argument that points to manureStore class.
-         \param listOfHousing, one list argument that points to housing class.
-         \param listOfLivestock, one list argument that points to livestock class.
-         \param rotationList, one list argument that points to CropSequenceClass class.
-        */
-        //public void writeOutput(List<manureStore> listOfManurestores, List<housing> listOfHousing, List<livestock> listOfLivestock,
-        //    List<CropSequenceClass> rotationList)
-        //{
-        //    //write output to xml file
-        //    if (GlobalVars.Instance.getRunFullModel() == false)
-        //    {
-        //        for (int i = 0; i < listOfHousing.Count; i++)
-        //        {
-        //            listOfHousing[i].Write();
-        //        }
-        //    }
-        //    for (int i = 0; i < listOfManurestores.Count; i++)
-        //    {
-        //        manureStore amanurestore2 = listOfManurestores[i];
-        //        if (GlobalVars.Instance.getRunFullModel() == false)
-        //            amanurestore2.Write();
-        //        else
-        //        {
-        //            amanurestore2.Write();
-        //            GlobalVars.Instance.writeEndTab();
-        //            GlobalVars.Instance.writeEndTab();
-        //        }
-        //    }
-        //    if (GlobalVars.Instance.getRunFullModel() == false)
-        //    {
-        //        for (int i = 0; i < listOfLivestock.Count; i++)
-        //        {
-        //            livestock anAnimal = listOfLivestock[i];
-        //            anAnimal.Write();
-        //        }
-        //    }
-        //    GlobalVars.Instance.OpenFieldFile();
-        //    GlobalVars.Instance.OpenCropFile();
-        //    GlobalVars.Instance.OpenLivestockFile();
-        //    GlobalVars.Instance.CloseFieldFile();
-        //    GlobalVars.Instance.CloseLivestockFile();
-        //    GlobalVars.Instance.CalcAllFeedAndProductsPotential(rotationList);
-        //    GlobalVars.Instance.Write(true);
-        //    GlobalVars.Instance.writeStartTab("ExpectedYield");
-        //    for (int i = 0; i < rotationList.Count; i++)
-        //    {
-        //        rotationList[i].processExpectedYieldForOutput("ExpectedYield(0)_crop" + i.ToString());
-        //    }
-        //    GlobalVars.Instance.writeEndTab();
-        //    GlobalVars.Instance.CloseOutputXML();
-        //    GlobalVars.Instance.CloseOutputTabFile();
-        //}
-        //static string[] argsthread;
-        //internal static void setup(string[] args)
-        //{
-        //    argsthread = args;
-        //}
-        //internal void run()
-        //{
-        //    run(argsthread);
-        //}
     }
 
 }

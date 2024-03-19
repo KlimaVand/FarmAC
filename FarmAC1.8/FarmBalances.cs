@@ -395,11 +395,15 @@ class farmBalanceClass
             CropNuptake+= rotationList[rotationID - 1].GetCropNuptake() / rotationList[rotationID - 1].GetlengthOfSequence();
             CinImportedFertiliser+= rotationList[rotationID - 1].GetFertiliserC() / rotationList[rotationID - 1].GetlengthOfSequence();
         }
-        for (int i = 0; i < GlobalVars.Instance.theManureExchange.GetmanuresImported().Count; i++)
+        if (GlobalVars.Instance.theManureExchange != null)
         {
-            Cmanimp += GlobalVars.Instance.theManureExchange.GetmanuresImported()[i].GetTotalC();
+            for (int i = 0; i < GlobalVars.Instance.theManureExchange.GetmanuresImported().Count; i++)
+            {
+                Cmanimp += GlobalVars.Instance.theManureExchange.GetmanuresImported()[i].GetTotalC();
+            }
         }
-        
+        else Cmanimp = 0.0;
+
         GlobalVars.product compositeProductImported = GlobalVars.Instance.GetPlantProductImports();
         CPlantProductImported = compositeProductImported.composition.Getamount() * compositeProductImported.composition.GetC_conc();
         CinImportedBedding = GlobalVars.Instance.GetthebeddingMaterial().Getamount() *

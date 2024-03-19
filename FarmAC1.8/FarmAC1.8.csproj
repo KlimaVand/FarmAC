@@ -47,6 +47,7 @@
     <Compile Include="CropSequenceClass.cs" />
     <Compile Include="ctool2.cs" />
     <Compile Include="FarmBalances.cs" />
+    <Compile Include="FarmClass.cs" />
     <Compile Include="feedItem.cs" />
     <Compile Include="fertRecord.cs" />
     <Compile Include="FileInformation.cs" />

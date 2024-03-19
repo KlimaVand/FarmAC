@@ -2,6 +2,32 @@
 <xml>
   <settings>
     <Identity>0</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\farm_67906_1.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>Bare soil</Note>
+  </settings>
+  <settings>
+    <Identity>1</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\farm_67906_1.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>1</Adaptation>
+    <Note>Bare soil</Note>
+  </settings>
+  <settings1>
+    <Identity>0</Identity>
     <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\C_sequestration\constants.xml </constants>
     <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\C_sequestration\parameters.xml</parameters>
     <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\C_sequestration\farm_67893_1.xml</farm>
@@ -12,7 +38,7 @@
     <stopOnError>true</stopOnError>
     <Adaptation>-1</Adaptation>
     <Note>Test sugar beet</Note>
-  </settings>
+  </settings1>
   <settings1>
     <Identity>7</Identity>
     <constants>c:\Home\Projects\M4Models\Case study farms\Modelling\SWE\Dairy\79000\constants.xml </constants>
