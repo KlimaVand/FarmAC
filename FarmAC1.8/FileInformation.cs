@@ -400,12 +400,13 @@ public class FileInformation
       \param stopOnError if true, the program will stop if there is an error. Set false for optional variables.
       \return the parameter as a boolean.
     */
-    public bool getItemBool(string itemName, bool stopOnError = true)
+    public bool getItemBool(string itemName, bool stopOnError = true, bool defaultValue = false)
     {
+        bool ret_val = defaultValue;
         string stuff = getItemString(itemName, stopOnError);
         if (stuff.CompareTo("nothing") != 0)
-            return Convert.ToBoolean(stuff);
-        else return true;
+            ret_val=Convert.ToBoolean(stuff);
+        return ret_val;
     }
 
     //!  Finds the itemName in xml in the xml file at path and returning it as an int. Taking three arguments.

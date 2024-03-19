@@ -56,6 +56,11 @@
     <alternativePath>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\</alternativePath>
     <verbosityLevel>5</verbosityLevel>
     <logFile>true</logFile>
+    <Debug>true</Debug>
+    <SummaryExcel>true</SummaryExcel>
+    <livestock>true</livestock>
+    <Plant>true</Plant>
+    <ctoolxls>true</ctoolxls>
     <logScreen>true</logScreen>
   </CommonSettings>
 </xml>

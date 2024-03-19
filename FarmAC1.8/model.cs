@@ -73,7 +73,7 @@ namespace AnimalChange
                 int verbosity = settings.getItemInt("verbosityLevel", false);
                 //read whether output files should be created
                 //output results as xml file
-                bool outputxlm = false;// settings.getItemBool("outputxlm", false);
+                bool outputxlm = settings.getItemBool("outputxlm", false);
                //output results as Excel file
                 bool outputxls = settings.getItemBool("outputxls", false);
                 //output results from soil carbon model as xml file
@@ -203,7 +203,7 @@ namespace AnimalChange
                             }
                             catch (Exception e)
                             {
-                                //GlobalVars.Instance.Error("Failed to open log file",e.StackTrace);
+                                GlobalVars.Instance.Error("Failed to open log file",e.StackTrace);
                             }
                         }
                         else
@@ -323,9 +323,6 @@ namespace AnimalChange
                                             else
                                                 outputName = "outputFarm" + farmNr.ToString() + "ScenarioNr" + ScenarioNr.ToString();
 
-                                            //GlobalVars.Instance.OpenOutputXML(outputDir,outputName);
-
-                                            //outputName = getPath(outputName);
                                             GlobalVars.Instance.OpenOutputFiles(outputName,outputDir);
                                             //theXMLwriter.WriteStartDocument();
                                             GlobalVars.Instance.writeStartTab("Farm");
@@ -344,8 +341,6 @@ namespace AnimalChange
                                             farmInformation.PathNames.Add("EnergySystem");
                                             energySystem = farmInformation.getItemInt("Value");
                                             GlobalVars.Instance.setcurrentEnergySystem(energySystem);
-                                            GlobalVars.Instance.OpenCtoolFile();
-
                                             if (GlobalVars.Instance.GetstrictGrazing() == true)
                                             {
                                                 aFarm.SetupRotation(farmInformation, newPath, zoneNr, farmNr, ScenarioNr, FarmType, soilTypeCount);
@@ -357,7 +352,6 @@ namespace AnimalChange
                                                 GlobalVars.Instance.writeGrazedItems();
                                                 aFarm.WriteLivestockAndManure();
                                             }
-
                                             else
                                             {
                                                 aFarm.RunFarm();

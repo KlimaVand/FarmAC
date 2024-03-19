@@ -642,26 +642,26 @@ public class GlobalVars
         public void SetNdeposition(double aVal) { Ndeposition = aVal; }
         public double GetNdeposition() { return Ndeposition; }
 
-        public void OpenDebugFile(string afilename)
-        {
-            SetdebugFileName(afilename);
-            try
-            {
-                debugfile = new System.IO.StreamWriter(debugFileName);
-            }
-            catch
-            {
-                debugfile.Close();
-                debugfile = new System.IO.StreamWriter(debugFileName);
-            }
-        }
-        public void CloseDebugFile()
-        {
-            if (debugfile!=null)
-            {
-                debugfile.Close();
-            }
-        }
+        //public void OpenDebugFile(string afilename)
+        //{
+        //    SetdebugFileName(afilename);
+        //    try
+        //    {
+        //        debugfile = new System.IO.StreamWriter(debugFileName);
+        //    }
+        //    catch
+        //    {
+        //        debugfile.Close();
+        //        debugfile = new System.IO.StreamWriter(debugFileName);
+        //    }
+        //}
+        //public void CloseDebugFile()
+        //{
+        //    if (debugfile!=null)
+        //    {
+        //        debugfile.Close();
+        //    }
+        //}
 
         public void WriteToDebug(string aString)
         {
@@ -3183,10 +3183,5 @@ public void CloseLogFile()
                 + alpha_2 * tor_2* (1 - Math.Exp(-(timeHorizon - emissionYear) / tor_2))
                 + alpha_3 * tor_3* (1 - Math.Exp(-(timeHorizon - emissionYear) / tor_3));
         return retVal;
-    }
-
-    public void OpenAllOutputFiles()
-    {
-
     }
 }

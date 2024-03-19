@@ -237,12 +237,7 @@ public class FarmClass
     }
     public void WriteRotation(string outputName)
     {
-        //GlobalVars.Instance.OpenFieldFile();
-        //Jonas - please get this to work
-        FileInformation constfile = new FileInformation(GlobalVars.Instance.getConstantFilePath());
-        constfile.setPath("constants(0).WriteCropSeq(-1)");
-        bool writeCropSeqDetails = constfile.getItemBool("Value", false);
-        if (writeCropSeqDetails)
+        if (GlobalVars.Instance.WriteField)
         {
             for (int i = 0; i < rotationList.Count; i++)
             {
@@ -258,7 +253,6 @@ public class FarmClass
         for (int i = 0; i < rotationList.Count; i++)
             rotationList[i].processExpectedYieldForOutput("ExpectedYield0_CropSequenceClass" + i.ToString());
 
-//        GlobalVars.Instance.CloseCtoolFile();
         if (GlobalVars.Instance.Writectoolxlm)
         {
             XmlWriter writerCtool;
@@ -277,7 +271,6 @@ public class FarmClass
         if (GlobalVars.Instance.reuseCtoolData == -1)
         {
             writeCtoolData(rotationList);
-            //GlobalVars.Instance.CloseFieldFile();
         }
     }
     void writeCtoolData(List<CropSequenceClass> rotationList)
