@@ -246,7 +246,6 @@ public class FarmClass
             }
         }
 
-      //  GlobalVars.Instance.CloseFieldFile();
         GlobalVars.Instance.CalcAllFeedAndProductsPotential(rotationList);
         GlobalVars.Instance.Write(true);
         GlobalVars.Instance.writeStartTab("ExpectedYield");

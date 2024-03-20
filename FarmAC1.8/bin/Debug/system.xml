@@ -60,6 +60,7 @@
     <SummaryExcel>true</SummaryExcel>
     <livestock>true</livestock>
     <Plant>true</Plant>
+    <outputxls>true</outputxls>
     <ctoolxls>true</ctoolxls>
     <logScreen>true</logScreen>
   </CommonSettings>

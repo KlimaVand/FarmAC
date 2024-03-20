@@ -2192,15 +2192,15 @@ public class GlobalVars
         OpenOutputXML(outputDir, outputName);
         tabfileName = outputDir + outputName + ".csv";
         OpenTabfile();
-         FieldfileName = outputName + "Fieldfile.csv";
+         FieldfileName = outputDir + outputName + "Fieldfile.csv";
         OpenFieldFile();
-        livestockfileName = outputName + "livetockfile.csv";
+        livestockfileName = outputDir + outputName + "livetockfile.csv";
         OpenLivestockFile();
-        CtoolfileName = outputName + "CtoolFile.csv";
+        CtoolfileName = outputDir + outputName + "CtoolFile.csv";
         OpenCtoolFile();
-        DebugfileName = outputName + "Debug.csv";
+        DebugfileName = outputDir + outputName + "Debug.csv";
         OpenDebugFile();
-        cropfileName = outputName + "Crop.csv";
+        cropfileName = outputDir + outputName + "Crop.csv";
         OpenCropFile();
         openSummaryExcel(outputDir, outputName);
 
