@@ -4,7 +4,7 @@
     <Identity>0</Identity>
     <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\constants.xml </constants>
     <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\farm_67906_1.xml</farm>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\67943\farm_67943_32.xml</farm>
     <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
     <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\feedstuff.xml</feedItems>
     <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\output\</outputDir>
@@ -13,7 +13,20 @@
     <Adaptation>-1</Adaptation>
     <Note>Bare soil</Note>
   </settings>
-  <settings>
+  <settings1>
+    <Identity>0</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\farm_67906_1.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>Bare soil</Note>
+  </settings1>
+  <settings1>
     <Identity>1</Identity>
     <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\constants.xml </constants>
     <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\parameters.xml</parameters>
@@ -25,7 +38,7 @@
     <stopOnError>true</stopOnError>
     <Adaptation>1</Adaptation>
     <Note>Bare soil</Note>
-  </settings>
+  </settings1>
   <settings1>
     <Identity>0</Identity>
     <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\C_sequestration\constants.xml </constants>

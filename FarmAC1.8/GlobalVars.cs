@@ -142,9 +142,10 @@ public class GlobalVars
         ManureType[24] = 3;
         return ManureType[StorageID];
     }
+
     //! A structure grazedItem.
     /*!
-      Stores information used to identify the contribution of grazed DM 
+        Stores information used to identify the contribution of grazed DM 
     * and to enable the distribution of excreta and emissions to grazed fields.
     */
     public struct grazedItem
@@ -642,26 +643,52 @@ public class GlobalVars
         public void SetNdeposition(double aVal) { Ndeposition = aVal; }
         public double GetNdeposition() { return Ndeposition; }
 
-        //public void OpenDebugFile(string afilename)
-        //{
-        //    SetdebugFileName(afilename);
-        //    try
-        //    {
-        //        debugfile = new System.IO.StreamWriter(debugFileName);
-        //    }
-        //    catch
-        //    {
-        //        debugfile.Close();
-        //        debugfile = new System.IO.StreamWriter(debugFileName);
-        //    }
-        //}
-        //public void CloseDebugFile()
-        //{
-        //    if (debugfile!=null)
-        //    {
-        //        debugfile.Close();
-        //    }
-        //}
+        public int GetTypeOfManureApplied(int ManureType, int speciesGroup)
+        {
+            int ret_val = 0;
+            int maxManure = theFertManData.Count;
+            for (int j = 0; j < maxManure; j++)
+            {
+                int tmpType = theFertManData[j].manureType;  //type of manure storage
+                int tmpSpecies = theFertManData[j].speciesGroup;
+                bool isManureTypeSame;
+                if (ManureType == 1 && tmpType == 2)
+                    isManureTypeSame = true;
+                else if (ManureType == 2 && tmpType == 1)
+                    isManureTypeSame = true;
+                else if (ManureType == 3 && tmpType == 4)
+                    isManureTypeSame = true;
+                else if (ManureType == 4 && tmpType == 3)
+                    isManureTypeSame = true;
+                else if (ManureType == 6 && tmpType == 9)
+                    isManureTypeSame = true;
+                else if (ManureType == 9 && tmpType == 6)
+                    isManureTypeSame = true;
+                else if (ManureType == 7 && tmpType == 10)
+                    isManureTypeSame = true;
+                else if (ManureType == 10 && tmpType == 7)
+                    isManureTypeSame = true;
+                else if (ManureType == 8 && tmpType == 12)
+                    isManureTypeSame = true;
+                else if (ManureType == 12 && tmpType == 8)
+                    isManureTypeSame = true;
+                else if (ManureType == 13 && tmpType == 14)
+                    isManureTypeSame = true;
+                else if (ManureType == 14 && tmpType == 13)
+                    isManureTypeSame = true;
+                else
+                    isManureTypeSame = false;
+
+                if (tmpType == ManureType || isManureTypeSame) //have found the correct manure type
+                {
+                    if ((tmpSpecies == speciesGroup) || (tmpType == 5))
+                    {
+                        ret_val = j;
+                    }
+                }
+            }
+            return ret_val;
+        }
 
         public void WriteToDebug(string aString)
         {

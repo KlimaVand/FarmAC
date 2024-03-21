@@ -1859,130 +1859,92 @@ public class CropClass
             double manureDM = 5.0;
             double EFNH3TotalN = 0;//emission factor as proportion of total N i.e. kg NH3-N/kg total N
             double EFNH3TAN = 0;//emission factor as proportion of TAN i.e. kg NH3-N/kg total ammoniacal N
-            int maxManure = 0;
-            maxManure = GlobalVars.Instance.theZoneData.theFertManData.Count;
-            bool gotit = false;
-            for (int j = 0; j < maxManure; j++)
+            int j=GlobalVars.Instance.theZoneData.GetTypeOfManureApplied(ManureType, speciesGroup);
+            if (j!=0)
             {
-                int tmpType = GlobalVars.Instance.theZoneData.theFertManData[j].manureType;  //type of manure storage
-                int tmpSpecies = GlobalVars.Instance.theZoneData.theFertManData[j].speciesGroup;
-                bool isManureTypeSame;
-                if (ManureType == 1 && tmpType == 2)
-                        isManureTypeSame= true;
-                else if (ManureType == 2 && tmpType == 1)
-                    isManureTypeSame = true;
-                else if (ManureType == 3 && tmpType == 4)
-                    isManureTypeSame = true;
-                else if (ManureType == 4 && tmpType == 3)
-                    isManureTypeSame = true;
-                else if (ManureType == 6 && tmpType == 9)
-                    isManureTypeSame = true;
-                else if (ManureType == 9 && tmpType == 6)
-                    isManureTypeSame = true;
-                else if (ManureType == 7 && tmpType == 10)
-                    isManureTypeSame = true;
-                else if (ManureType == 10 && tmpType == 7)
-                    isManureTypeSame = true;
-                else if (ManureType == 8 && tmpType == 12)
-                    isManureTypeSame = true;
-                else if (ManureType == 12 && tmpType == 8)
-                    isManureTypeSame = true;
-                else if (ManureType == 13 && tmpType == 14)
-                    isManureTypeSame = true;
-                else if (ManureType == 14 && tmpType == 13)
-                    isManureTypeSame = true;
-                    else
-                    isManureTypeSame = false;
-
-                if (tmpType == ManureType||isManureTypeSame) //have found the correct manure type
+                switch (GlobalVars.Instance.getcurrentInventorySystem())
                 {
-                    if ((tmpSpecies == speciesGroup) || (tmpType == 5))
-                    {
-                        switch (GlobalVars.Instance.getcurrentInventorySystem())
+                    case 1://UNECE with modifications
+                        ALFAM emissionEvent = new ALFAM();
+                        switch (ManureType)
                         {
-                            case 1://UNECE with modifications
-                                ALFAM emissionEvent = new ALFAM();
-                                switch (ManureType)
-                                {
-                                    case 1:
-                                        emissionEvent.initialise(0, airTemperature, 2.0, speciesGroup, manureDM, 2.2, 25.0, 1, 148.0);
-                                        EFNH3TAN = emissionEvent.ALFAM_volatilisation();
-                                        break;
-                                    case 2:
-                                        emissionEvent.initialise(0, airTemperature, 2.0, speciesGroup, manureDM, 2.2, 25.0, 1, 148.0);
-                                        EFNH3TAN = emissionEvent.ALFAM_volatilisation();
-                                        break;
-                                    case 3:
-                                        EFNH3TotalN = GlobalVars.Instance.theZoneData.theFertManData[j].EFNH3FieldTier2;//Tier 2 EF is proportion of total N
-                                        break;
-                                    case 4:
-                                        EFNH3TotalN = GlobalVars.Instance.theZoneData.theFertManData[j].EFNH3FieldTier2;//Tier 2 EF is proportion of total N
-                                        break;
-                                    case 5:
-                                        emissionEvent.initialise(0, airTemperature, 2.0, speciesGroup, manureDM, 2.2, 25.0, 1, 148.0);
-                                        EFNH3TAN = emissionEvent.ALFAM_volatilisation();
-                                        break;
-                                    case 6:
-                                        emissionEvent.initialise(0, airTemperature, 2.0, speciesGroup, manureDM, 2.2, 25.0, 1, 148.0);
-                                        EFNH3TAN = emissionEvent.ALFAM_volatilisation();
-                                        break;
-                                    case 7:
-                                        EFNH3TotalN = GlobalVars.Instance.theZoneData.theFertManData[j].EFNH3FieldTier2;//Tier 2 EF is proportion of total N
-                                        break;
-                                    case 8:
-                                        EFNH3TotalN = GlobalVars.Instance.theZoneData.theFertManData[j].EFNH3FieldTier2;//Tier 2 EF is proportion of total N
-                                        break;
-                                    case 9:
-                                        emissionEvent.initialise(0, airTemperature, 2.0, speciesGroup, manureDM, 2.2, 25.0, 1, 148.0);
-                                        EFNH3TAN = emissionEvent.ALFAM_volatilisation();
-                                        break;
-                                    case 10:
-                                        EFNH3TotalN = GlobalVars.Instance.theZoneData.theFertManData[j].EFNH3FieldTier2;//Tier 2 EF is proportion of total N
-                                        break;
-                                    case 12:
-                                        EFNH3TotalN = GlobalVars.Instance.theZoneData.theFertManData[j].EFNH3FieldTier2;//Tier 2 EF is proportion of total N
-                                        break;
-                                    case 13:
-                                        EFNH3TotalN = GlobalVars.Instance.theZoneData.theFertManData[j].EFNH3FieldTier2;//Tier 2 EF is proportion of total N
-                                        break;
-                                    case 14:
-                                        EFNH3TotalN = GlobalVars.Instance.theZoneData.theFertManData[j].EFNH3FieldTier2;//Tier 2 EF is proportion of total N
-                                        break;
-                                    default:
-                                        break;
-
-                                }
-                                if (EFNH3TotalN > 0) //then need to convert EF based on total N to an EF based on TAN
-                                {
-                                    //Revised NH3 emission
-                                    double temp = aManure.GetTotalN() / aManure.GetTAN();
-                                    NH3EmissionFactor = EFNH3TotalN * temp;
-                                    //end revised NH3 emission
-                                }
-                                else
-                                    NH3EmissionFactor = EFNH3TAN;
-                                gotit = true;
+                            case 1:
+                                emissionEvent.initialise(0, airTemperature, 2.0, speciesGroup, manureDM, 2.2, 25.0, 1, 148.0);
+                                EFNH3TAN = emissionEvent.ALFAM_volatilisation();
                                 break;
-                            case 2: //IPCC
-                                EFNH3TotalN = GlobalVars.Instance.theZoneData.theFertManData[j].EFNH3FieldTier2;//Tier 2 EF is proportion of total N            NH3EmissionFactor = EFNH3TotalN;
-                                NH3EmissionFactor = EFNH3TotalN;
-                                gotit = true;
+                            case 2:
+                                emissionEvent.initialise(0, airTemperature, 2.0, speciesGroup, manureDM, 2.2, 25.0, 1, 148.0);
+                                EFNH3TAN = emissionEvent.ALFAM_volatilisation();
                                 break;
                             case 3:
-                                double refEFNH3 = GlobalVars.Instance.theZoneData.theFertManData[j].fertManNH3EmissionFactor;
-                                double HousingRefTemp = GlobalVars.Instance.theZoneData.theFertManData[j].fertManNH3EmissionFactorHousingRefTemperature;
-                                double actualTemp = GlobalVars.Instance.Temperature(GlobalVars.Instance.theZoneData.GetaverageAirTemperature(),
-                                    0.0, manureApplied[i].GetdayOfApplication(), 0.0, GlobalVars.Instance.theZoneData.GetairtemperatureAmplitude(), GlobalVars.Instance.theZoneData.GetairtemperatureOffset());
-                                double KHtheta = Math.Pow(10, -1.69 + 1447.7 / (actualTemp + GlobalVars.absoluteTemp));
-                                double KHref = Math.Pow(10, -1.69 + 1447.7 / (HousingRefTemp + GlobalVars.absoluteTemp));
-                                NH3EmissionFactor = (KHref / KHtheta) * refEFNH3;
-                                gotit = true;
+                                EFNH3TotalN = GlobalVars.Instance.theZoneData.theFertManData[j].EFNH3FieldTier2;//Tier 2 EF is proportion of total N
                                 break;
-                        }//end switch of inventory system
-                    }
-                }
+                            case 4:
+                                EFNH3TotalN = GlobalVars.Instance.theZoneData.theFertManData[j].EFNH3FieldTier2;//Tier 2 EF is proportion of total N
+                                break;
+                            case 5:
+                                emissionEvent.initialise(0, airTemperature, 2.0, speciesGroup, manureDM, 2.2, 25.0, 1, 148.0);
+                                EFNH3TAN = emissionEvent.ALFAM_volatilisation();
+                                break;
+                            case 6:
+                                emissionEvent.initialise(0, airTemperature, 2.0, speciesGroup, manureDM, 2.2, 25.0, 1, 148.0);
+                                EFNH3TAN = emissionEvent.ALFAM_volatilisation();
+                                break;
+                            case 7:
+                                EFNH3TotalN = GlobalVars.Instance.theZoneData.theFertManData[j].EFNH3FieldTier2;//Tier 2 EF is proportion of total N
+                                break;
+                            case 8:
+                                EFNH3TotalN = GlobalVars.Instance.theZoneData.theFertManData[j].EFNH3FieldTier2;//Tier 2 EF is proportion of total N
+                                break;
+                            case 9:
+                                emissionEvent.initialise(0, airTemperature, 2.0, speciesGroup, manureDM, 2.2, 25.0, 1, 148.0);
+                                EFNH3TAN = emissionEvent.ALFAM_volatilisation();
+                                break;
+                            case 10:
+                                EFNH3TotalN = GlobalVars.Instance.theZoneData.theFertManData[j].EFNH3FieldTier2;//Tier 2 EF is proportion of total N
+                                break;
+                            case 12:
+                                EFNH3TotalN = GlobalVars.Instance.theZoneData.theFertManData[j].EFNH3FieldTier2;//Tier 2 EF is proportion of total N
+                                break;
+                            case 13:
+                                EFNH3TotalN = GlobalVars.Instance.theZoneData.theFertManData[j].EFNH3FieldTier2;//Tier 2 EF is proportion of total N
+                                break;
+                            case 14:
+                                EFNH3TotalN = GlobalVars.Instance.theZoneData.theFertManData[j].EFNH3FieldTier2;//Tier 2 EF is proportion of total N
+                                break;
+                            default:
+                                break;
+
+                        }
+                        if (EFNH3TotalN > 0) //then need to convert EF based on total N to an EF based on TAN
+                        {
+                            //Revised NH3 emission
+                            double temp = aManure.GetTotalN() / aManure.GetTAN();
+                            NH3EmissionFactor = EFNH3TotalN * temp;
+                            //end revised NH3 emission
+                        }
+                        else
+                            NH3EmissionFactor = EFNH3TAN;
+                        //                                gotit = true;
+                        break;
+                    case 2: //IPCC
+                        EFNH3TotalN = GlobalVars.Instance.theZoneData.theFertManData[j].EFNH3FieldTier2;//Tier 2 EF is proportion of total N            NH3EmissionFactor = EFNH3TotalN;
+                        NH3EmissionFactor = EFNH3TotalN;
+                        //gotit = true;
+                        break;
+                    case 3:
+                        double refEFNH3 = GlobalVars.Instance.theZoneData.theFertManData[j].fertManNH3EmissionFactor;
+                        double HousingRefTemp = GlobalVars.Instance.theZoneData.theFertManData[j].fertManNH3EmissionFactorHousingRefTemperature;
+                        double actualTemp = GlobalVars.Instance.Temperature(GlobalVars.Instance.theZoneData.GetaverageAirTemperature(),
+                            0.0, manureApplied[i].GetdayOfApplication(), 0.0, GlobalVars.Instance.theZoneData.GetairtemperatureAmplitude(), GlobalVars.Instance.theZoneData.GetairtemperatureOffset());
+                        double KHtheta = Math.Pow(10, -1.69 + 1447.7 / (actualTemp + GlobalVars.absoluteTemp));
+                        double KHref = Math.Pow(10, -1.69 + 1447.7 / (HousingRefTemp + GlobalVars.absoluteTemp));
+                        NH3EmissionFactor = (KHref / KHtheta) * refEFNH3;
+                        //gotit = true;
+                        break;
+                }//end switch of inventory system
             }
-            if (!gotit)
+            else
             {
                 string messageString = ("Error - unable to find ammonia emission factor for a field-applied manure\n");
                 messageString += " Manure name " + aManure.Getname() + " ManureType = " + ManureType + " SpeciesGroup = " + speciesGroup + " \n";
@@ -1995,13 +1957,13 @@ public class CropClass
 
             double NH3ReductionFactor = 0;
             int maxApps = GlobalVars.Instance.theZoneData.themanureAppData.Count;
-            gotit = false;
-            for (int j = 0; j < maxApps; j++)
+            bool gotit = false;
+            for (int k = 0; k < maxApps; k++)
             {
-                string tmpName = GlobalVars.Instance.theZoneData.themanureAppData[j].name;
+                string tmpName = GlobalVars.Instance.theZoneData.themanureAppData[k].name;
                 if (tmpName == applicType)
                 {
-                    NH3ReductionFactor = GlobalVars.Instance.theZoneData.themanureAppData[j].NH3EmissionReductionFactor;
+                    NH3ReductionFactor = GlobalVars.Instance.theZoneData.themanureAppData[k].NH3EmissionReductionFactor;
                     gotit = true;
                     break;
                 }
@@ -2037,6 +1999,12 @@ public class CropClass
                 aManure.SetTAN(0.0);
                 aManure.SetlabileOrganicN(aManure.GetlabileOrganicN() - tmpNH3emission);
             }
+            Console.WriteLine(duration.ToString()+ " " + dayNo.ToString());
+            if (dayNo >= duration)
+            {
+                Console.Write("");
+                dayNo = (int)manureApplied[i].GetRelativeDay(getStartLongTime());
+            }
             manureTAN[dayNo] += aManure.GetTAN();
             manureFOMCsurface[dayNo] += aManure.GetdegC() + aManure.GetnonDegC();
             manureHUMCsurface[dayNo] += aManure.GethumicC();
@@ -2045,8 +2013,14 @@ public class CropClass
             manureHUMNsurface[dayNo] += aManure.GethumicN();
             totManureCapplied += aManure.GetdegC() + aManure.GetnonDegC() + aManure.GethumicC();
             GlobalVars.Instance.log(manureFOMNsurface[dayNo].ToString(), 5);
-        }
+        }//end of each manure application
     }
+    //!  Calculate the fluxes associated with fertiliser applications. 
+    /*!
+     * Calculates the NH3 emission and the amount of fertiliser N entering the soil
+    */
+
+
 
     //!  Calculate the fluxes associated with fertiliser applications. 
     /*!
@@ -2598,7 +2572,7 @@ public class CropClass
         }
         return 0;
     }
-    //!  Adjsut the dates of the crop so fertiliser and manure can be applied according to the day number (counting from the start of the crop) rather than calendar date. 
+    //!  Adjust the dates of the crop so fertiliser and manure can be applied according to the day number (counting from the start of the crop) rather than calendar date. 
     /*!
      \param firstYear the first calendar year of the crop as an integer.
     */
@@ -2623,12 +2597,21 @@ public class CropClass
                 yearOfApplication = GetStartYear();
             }
             int dayOfApplication = (int)Math.Round(monthOfApplication * 30.416 + 15);
-            if ((monthOfApplication==0)&&(dayOfApplication<GetStartDay()))
+            if ((monthOfApplication==0)&&(dayOfApplication<GetStartDay()))  //if an application in middle of month would be before the crop has started
                 dayOfApplication = GetStartDay();
-            fertiliserApplied[i].SetdayOfApplication(dayOfApplication);
-            if (fertiliserApplied[i].GetdayOfApplication() > duration)
-                fertiliserApplied[i].SetdayOfApplication((int)duration);
-            fertiliserApplied[i].SetapplicDate(GetfertiliserApplied()[i].GetdayOfApplication(), GetfertiliserApplied()[i].GetMonth_applied(), yearOfApplication, false);
+            fertiliserApplied[i].SetdayOfApplication(dayOfApplication);  //dayOfApplication counts relative to the first day the crop is established
+            fertiliserApplied[i].SetapplicDate(1, GetfertiliserApplied()[i].GetMonth_applied(), yearOfApplication, false);
+            int dayInMonth = 0;
+            if (fertiliserApplied[i].GetdayOfApplication() > duration)  //this should not happen
+            {
+                string errorMsg = "Fertiliser applied after end of crop for " + Getname() + " in " + GetfertiliserApplied()[i].GetDate().ToString();
+                GlobalVars.Instance.Error(errorMsg);
+            }
+            else
+            {
+                dayInMonth = dayOfApplication - (int) (fertiliserApplied[i].GetDate().getLongTime() - getStartLongTime());
+                fertiliserApplied[i].SetapplicDate(dayInMonth, fertiliserApplied[i].GetDate().GetMonth(), fertiliserApplied[i].GetDate().GetYear(), false);
+            }
         }
         for (int i = 0; i < manureApplied.Count; i++)
         {
@@ -2647,10 +2630,19 @@ public class CropClass
             int dayOfApplication = (int)Math.Round(monthOfApplication * 30.416 + 15);
             if ((monthOfApplication == 0) && (dayOfApplication < GetStartDay()))
                 dayOfApplication = GetStartDay();
-            manureApplied[i].SetdayOfApplication(dayOfApplication);
-            if (manureApplied[i].GetdayOfApplication() > duration)
-                manureApplied[i].SetdayOfApplication((int)duration);
-            manureApplied[i].SetapplicDate(manureApplied[i].GetdayOfApplication(), manureApplied[i].GetMonth_applied(), yearOfApplication, false);
+            manureApplied[i].SetdayOfApplication(dayOfApplication);  //dayOfApplication counts relative to the first day the crop is established
+            manureApplied[i].SetapplicDate(1, GetmanureApplied()[i].GetMonth_applied(), yearOfApplication, false);
+            int dayInMonth = 0;
+            if (manureApplied[i].GetdayOfApplication() > duration)  //this should not happen
+            {
+                string errorMsg = "Manure applied after end of crop for " + Getname() + " in " + GetfertiliserApplied()[i].GetDate().ToString();
+                GlobalVars.Instance.Error(errorMsg);
+            }
+            else
+            {
+                dayInMonth = dayOfApplication - (int)(manureApplied[i].GetDate().getLongTime() - getStartLongTime());
+                manureApplied[i].SetapplicDate(dayInMonth, manureApplied[i].GetDate().GetMonth(), manureApplied[i].GetDate().GetYear(), false);
+            }
         }
     }
     //!  Check Crop C Balance. 

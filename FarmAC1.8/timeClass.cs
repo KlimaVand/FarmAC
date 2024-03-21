@@ -61,6 +61,11 @@ public class timeClass
         }
         else
             day = aday;
+        if ((aday <= 0) || (aday> 31))
+        {
+            GlobalVars.Instance.Error("Attempt to set day to <1 or >31");
+            return false;
+        }
         if ((amonth <= 0) || (amonth > 12))
         {
             GlobalVars.Instance.Error("Attempt to set month to <1 or >12");

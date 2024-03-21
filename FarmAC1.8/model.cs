@@ -324,7 +324,7 @@ namespace AnimalChange
                                                 outputName = "outputFarm" + farmNr.ToString() + "ScenarioNr" + ScenarioNr.ToString();
 
                                             GlobalVars.Instance.OpenOutputFiles(outputName,outputDir);
-                                            //theXMLwriter.WriteStartDocument();
+
                                             GlobalVars.Instance.writeStartTab("Farm");
 
                                             GlobalVars.Instance.initialiseExcretaExchange();
@@ -362,7 +362,6 @@ namespace AnimalChange
                                             }
                                         }//end of scenario exists
                                         long ticks = DateTime.UtcNow.Ticks;
-                                        //System.IO.File.WriteAllText(outputDir + "done" + farmNr.ToString() + "ScenarioNr" + ScenarioNr.ToString() + ".txt", ticks.ToString());
                                     }//end of scenario
                                 }//end of farm exists
                             }
