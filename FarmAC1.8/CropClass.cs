@@ -2599,10 +2599,10 @@ public class CropClass
                 GlobalVars.Instance.Error(errorMsg);
             }
         }
-        Console.WriteLine(" init start yr " + GetStartYear().ToString() + " init end " + GetEndYear().ToString());
-        SetStartYear(GetStartYear() - firstYear);
-        SetEndYear(GetEndYear() - firstYear);
-        Console.WriteLine(" fin start yr " + GetStartYear().ToString() + " fin end " + GetEndYear().ToString());
+        //Console.WriteLine(" init start yr " + GetStartYear().ToString() + " init end " + GetEndYear().ToString());
+        SetStartYear(GetStartYear() - firstYear + 1);
+        SetEndYear(GetEndYear() - firstYear + 1);
+        //Console.WriteLine(" fin start yr " + GetStartYear().ToString() + " fin end " + GetEndYear().ToString());
     }
     //!  Check Crop C Balance. 
     /*!
