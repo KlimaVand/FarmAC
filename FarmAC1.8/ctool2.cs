@@ -465,42 +465,45 @@ public class ctool2
                 }
                 else
                     printValues = false;
-                GlobalVars.Instance.writeCtoolFile("CropSeqID", "CropSeqID", "CropSeqID", CropSeqID, parens, printValues, printUnits, 0);
-                GlobalVars.Instance.writeCtoolFile("startDay", "startDay", "day", startDay.ToString(), parens, printValues, printUnits, 0);
-                GlobalVars.Instance.writeCtoolFile("endDay", "endDay", "day", endDay.ToString(), parens, printValues, printUnits, 0);
+                if (writeOutput)
+                {
+                    GlobalVars.Instance.writeCtoolFile("CropSeqID", "CropSeqID", "CropSeqID", CropSeqID, parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("startDay", "startDay", "day", startDay.ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("endDay", "endDay", "day", endDay.ToString(), parens, printValues, printUnits, 0);
 
-                GlobalVars.Instance.writeCtoolFile("FOMCStoredStart", "Initial C FOM", "MgC/ha", GetFOMCStored().ToString(), parens, printValues, printUnits, 0);
-                GlobalVars.Instance.writeCtoolFile("HUMCStoredStart", "Initial C HUM", "MgC/ha", GetHUMCStored().ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("ROMCStoredStart", "Initial C ROM", "MgC/ha", GetROMCStored().ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("BiocharCStoredStart", "Initial C ROM", "MgC/ha", GetBiocharCStored().ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("FOMnStoredStart", "Initial N FOM", "MgN/ha", GetFOMn().ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("HUMnStoredStart", "Initial N HUM", "MgN/ha", GetHUMn().ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("ROMnStoredStart", "Initial N ROM", "MgN/ha", GetROMn().ToString(), parens, printValues, printUnits,0);
+                    GlobalVars.Instance.writeCtoolFile("FOMCStoredStart", "Initial C FOM", "MgC/ha", GetFOMCStored().ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("HUMCStoredStart", "Initial C HUM", "MgC/ha", GetHUMCStored().ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("ROMCStoredStart", "Initial C ROM", "MgC/ha", GetROMCStored().ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("BiocharCStoredStart", "Initial C ROM", "MgC/ha", GetBiocharCStored().ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("FOMnStoredStart", "Initial N FOM", "MgN/ha", GetFOMn().ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("HUMnStoredStart", "Initial N HUM", "MgN/ha", GetHUMn().ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("ROMnStoredStart", "Initial N ROM", "MgN/ha", GetROMn().ToString(), parens, printValues, printUnits, 0);
 
-                GlobalVars.Instance.writeCtoolFile("FOMC_InputThisCrop", "FOM_C_input", "MgC/ha/period", FOMC_InputThisCrop.ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("HUMC_InputThisCrop", "HUM_C_input", "MgC/ha/period", HUMC_InputThisCrop.ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("BiocharC_InputThisCrop", "Biochar_C_input", "MgC/ha/period", BiocharC_InputThisCrop.ToString(), parens, printValues, printUnits, 0);
-                GlobalVars.Instance.writeCtoolFile("CO2Emission", "CO2_C_emission", "MgC/ha/period", CO2Emission.ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("balance", "balance", "MgC/ha/period", balance.ToString(), parens, printValues, printUnits,0);
+                    GlobalVars.Instance.writeCtoolFile("FOMC_InputThisCrop", "FOM_C_input", "MgC/ha/period", FOMC_InputThisCrop.ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("HUMC_InputThisCrop", "HUM_C_input", "MgC/ha/period", HUMC_InputThisCrop.ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("BiocharC_InputThisCrop", "Biochar_C_input", "MgC/ha/period", BiocharC_InputThisCrop.ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("CO2Emission", "CO2_C_emission", "MgC/ha/period", CO2Emission.ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("balance", "balance", "MgC/ha/period", balance.ToString(), parens, printValues, printUnits, 0);
 
-                GlobalVars.Instance.writeCtoolFile("FOMCStoredEnd", "Final_C_FOM", "MgC/ha", GetFOMCStored().ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("HUMCStoredEnd", "Final_C_HUM", "MgC/ha", GetHUMCStored().ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("ROMCStoredEnd", "Final_C_ROM", "MgC/ha", GetROMCStored().ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("BiocharCStoredEnd", "Final_C_ROM", "MgC/ha", GetBiocharCStored().ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("SoilOrganicCarbon", "Final_C_Total", "MgC/ha", GetCStored().ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("FOMnStoredEnd", "Final_N_FOM", "MgN/ha", GetFOMn().ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("HUMnStoredEnd", "Final_N_HUM", "MgN/ha", GetHUMn().ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("ROMnStoredEnd", "Final_N_ROM", "MgN/ha", GetROMn().ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("Total_soil_N", "Total_soilN_Total", "MgN/ha", GetFOMn() + GetHUMn() + GetROMn(), parens, printValues, printUnits,0);
+                    GlobalVars.Instance.writeCtoolFile("FOMCStoredEnd", "Final_C_FOM", "MgC/ha", GetFOMCStored().ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("HUMCStoredEnd", "Final_C_HUM", "MgC/ha", GetHUMCStored().ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("ROMCStoredEnd", "Final_C_ROM", "MgC/ha", GetROMCStored().ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("BiocharCStoredEnd", "Final_C_ROM", "MgC/ha", GetBiocharCStored().ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("SoilOrganicCarbon", "Final_C_Total", "MgC/ha", GetCStored().ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("FOMnStoredEnd", "Final_N_FOM", "MgN/ha", GetFOMn().ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("HUMnStoredEnd", "Final_N_HUM", "MgN/ha", GetHUMn().ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("ROMnStoredEnd", "Final_N_ROM", "MgN/ha", GetROMn().ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("Total_soil_N", "Total_soilN_Total", "MgN/ha", GetFOMn() + GetHUMn() + GetROMn(), parens, printValues, printUnits, 0);
 
-                GlobalVars.Instance.writeCtoolFile("FOMNInput", "FOMNin", "MgN/ha/period", FOMNInput.ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("HUMNInput", "HUMNin", "MgN/ha/period", 0.ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("Nmin", "Nmin", "MgN/ha/period", Nmin.ToString(), parens, printValues, printUnits,0);
+                    GlobalVars.Instance.writeCtoolFile("FOMNInput", "FOMNin", "MgN/ha/period", FOMNInput.ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("HUMNInput", "HUMNin", "MgN/ha/period", 0.ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("Nmin", "Nmin", "MgN/ha/period", Nmin.ToString(), parens, printValues, printUnits, 0);
 
-                GlobalVars.Instance.writeCtoolFile("Org_N_leached", "Org_N_leached", "MgN/ha/period", Nleached.ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("NStart", "NStart", "MgN/ha", NStart.ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("Nend", "Nend", "MgN/ha", 0.ToString(), parens, printValues, printUnits,0);
-                GlobalVars.Instance.writeCtoolFile("FOMnmineralised", "FOMnmineralised", "MgN/ha/period", FOMnmineralised, parens, printValues, printUnits,1);
+                    GlobalVars.Instance.writeCtoolFile("Org_N_leached", "Org_N_leached", "MgN/ha/period", Nleached.ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("NStart", "NStart", "MgN/ha", NStart.ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("Nend", "Nend", "MgN/ha", 0.ToString(), parens, printValues, printUnits, 0);
+                    GlobalVars.Instance.writeCtoolFile("FOMnmineralised", "FOMnmineralised", "MgN/ha/period", FOMnmineralised, parens, printValues, printUnits, 1);
+                }
             }
         }
         //Calculate the maximum and minimum air temperature

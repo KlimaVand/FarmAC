@@ -121,7 +121,7 @@ public class timeClass
     /*!
       \return month as an integer value.
     */
-    public int GetMonth() { return month; }
+    public int GetMonth()  { return month; }
     //! Set the day. 
     /*!
       \param aVal, day an integer argument.

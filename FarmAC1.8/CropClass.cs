@@ -2094,7 +2094,7 @@ public class CropClass
                 GlobalVars.Instance.Error("NH3 not found in parameter file for " + fertilizerName);
             double tmpNH3emission = NH3EmissionFactor * Napplied;
             fertiliserNH3emission += tmpNH3emission;
-            int applicDay = (int)(fertiliserApplied[i].GetDate().getLongTime() - theStartDate.getLongTime());
+            int applicDay = fertiliserApplied[i].GetdayOfApplication();
             if ((applicDay < 0) || (applicDay > duration))
             {
                 string messageString = ("Error - Fertiliser applied outside crop period\n");
@@ -2578,72 +2578,31 @@ public class CropClass
     */
     public void AdjustDates(int firstYear)
     {
-        //Console.WriteLine(" init start yr " + GetStartYear().ToString() + " init end " + GetEndYear().ToString());
-        SetEndYear(GetEndYear() - firstYear + 1);
-        SetStartYear(GetStartYear()-firstYear+1);
-        //Console.WriteLine(" fin start yr " + GetStartYear().ToString() + " fin end " + GetEndYear().ToString());
+        bool ret_val = true;
         for (int i = 0; i < GetfertiliserApplied().Count; i++)
         {
-            int monthOfApplication = 0 ;
-            int yearOfApplication;
-            if (fertiliserApplied[i].GetMonth_applied() < GetStartMonth())
-            {
-                monthOfApplication = GetfertiliserApplied()[i].GetMonth_applied() + 12 - GetStartMonth();
-                yearOfApplication = GetEndYear();
-            }
-            else
-            {
-                monthOfApplication = GetfertiliserApplied()[i].GetMonth_applied() - GetStartMonth();
-                yearOfApplication = GetStartYear();
-            }
-            int dayOfApplication = (int)Math.Round(monthOfApplication * 30.416 + 15);
-            if ((monthOfApplication==0)&&(dayOfApplication<GetStartDay()))  //if an application in middle of month would be before the crop has started
-                dayOfApplication = GetStartDay();
-            fertiliserApplied[i].SetdayOfApplication(dayOfApplication);  //dayOfApplication counts relative to the first day the crop is established
-            fertiliserApplied[i].SetapplicDate(1, GetfertiliserApplied()[i].GetMonth_applied(), yearOfApplication, false);
-            int dayInMonth = 0;
-            if (fertiliserApplied[i].GetdayOfApplication() > duration)  //this should not happen
+            fertRecord aRecord = fertiliserApplied[i];
+            ret_val = aRecord.AdjustDates(GettheStartDate(), GettheEndDate());
+            if (!ret_val)  //this should not happen
             {
                 string errorMsg = "Fertiliser applied after end of crop for " + Getname() + " in " + GetfertiliserApplied()[i].GetDate().ToString();
                 GlobalVars.Instance.Error(errorMsg);
             }
-            else
-            {
-                dayInMonth = dayOfApplication - (int) (fertiliserApplied[i].GetDate().getLongTime() - getStartLongTime());
-                fertiliserApplied[i].SetapplicDate(dayInMonth, fertiliserApplied[i].GetDate().GetMonth(), fertiliserApplied[i].GetDate().GetYear(), false);
-            }
         }
         for (int i = 0; i < manureApplied.Count; i++)
         {
-            int monthOfApplication;
-            int yearOfApplication;
-            if (manureApplied[i].GetMonth_applied() < GetStartMonth())
+            fertRecord aRecord = manureApplied[i];
+            ret_val = aRecord.AdjustDates(GettheStartDate(), GettheEndDate());
+            if (!ret_val)  //this should not happen
             {
-               monthOfApplication = manureApplied[i].GetMonth_applied() + 12 - GetStartMonth();
-               yearOfApplication = GetEndYear();
-            }
-            else
-            {
-               monthOfApplication = manureApplied[i].GetMonth_applied() - GetStartMonth();
-               yearOfApplication = GetStartYear();
-            }
-            int dayOfApplication = (int)Math.Round(monthOfApplication * 30.416 + 15);
-            if ((monthOfApplication == 0) && (dayOfApplication < GetStartDay()))
-                dayOfApplication = GetStartDay();
-            manureApplied[i].SetdayOfApplication(dayOfApplication);  //dayOfApplication counts relative to the first day the crop is established
-            manureApplied[i].SetapplicDate(1, GetmanureApplied()[i].GetMonth_applied(), yearOfApplication, false);
-            int dayInMonth = 0;
-            if (manureApplied[i].GetdayOfApplication() > duration)  //this should not happen
-            {
-                string errorMsg = "Manure applied after end of crop for " + Getname() + " in " + GetfertiliserApplied()[i].GetDate().ToString();
+                string errorMsg = "Manure applied after end of crop for " + Getname() + " in " + GetmanureApplied()[i].GetDate().ToString();
                 GlobalVars.Instance.Error(errorMsg);
             }
-            else
-            {
-                dayInMonth = dayOfApplication - (int)(manureApplied[i].GetDate().getLongTime() - getStartLongTime());
-                manureApplied[i].SetapplicDate(dayInMonth, manureApplied[i].GetDate().GetMonth(), manureApplied[i].GetDate().GetYear(), false);
-            }
         }
+        Console.WriteLine(" init start yr " + GetStartYear().ToString() + " init end " + GetEndYear().ToString());
+        SetStartYear(GetStartYear() - firstYear);
+        SetEndYear(GetEndYear() - firstYear);
+        Console.WriteLine(" fin start yr " + GetStartYear().ToString() + " fin end " + GetEndYear().ToString());
     }
     //!  Check Crop C Balance. 
     /*!

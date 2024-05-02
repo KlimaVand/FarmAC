@@ -492,6 +492,29 @@ public class GlobalVars
         double retVal = litres * (0.383 * percentFat + 0.242 * percentProtein + 0.7832) / 3.1138;
         return retVal;
     }
+
+
+    public bool getWriteoutputxlm() { return Writeoutputxlm; }
+    //! If true, full results will be written to an output Excel (csv) file
+    public bool getWriteoutputxls() { return Writeoutputxls; }
+    //! If true, the C-Tool results will be written to an output xml file
+    public bool getWritectoolxlm() { return Writectoolxlm; }
+    //! If true, the C-Tool results will be written to an output Excel file
+    public bool getWritectoolxls() { return Writectoolxls; }
+    //! If true, the some results will be written to an output Excel file (used for debugging)
+    public bool getWriteDebug() {return WriteDebug; }
+    //! If true, the livestock results will be written to an Excel file
+    public bool getWritelivestock() { return Writelivestock; }
+    //! If true, the field results will be written to an Excel file
+    public bool getWriteField() { return WriteField; }
+    //! If true, the crop results will be written to an Excel file
+    public bool getWriteCrop() { return WriteCrop; }
+    //! If true, summary results will be written to an Excel file
+    public bool getWriteSummaryExcel() { return WriteSummaryExcel; }
+
+
+
+
     //! A structure zoneSpecificData.
     /*!
       more details.
