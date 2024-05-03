@@ -2664,4 +2664,62 @@ public class CropSequenceClass
             }
         }
     }
+    //!  Write contents of soil pools to file at the end of a Baseline simulation
+    /*
+     * Data will be used to initiate the soil pools when implementing scenarios
+    */
+    public void writeCtoolData(System.IO.StreamWriter extraCtoolData)
+    {
+        double[] rotarea = new double[20];
+        double[] fomcLayer1 = new double[20];
+        double[] fomcLayer2 = new double[20];
+        double[] humcLayer1 = new double[20];
+        double[] humcLayer2 = new double[20];
+        double[] romcLayer1 = new double[20];
+        double[] romcLayer2 = new double[20];
+        double[] biocharcLayer1 = new double[20];
+        double[] biocharcLayer2 = new double[20];
+        double[] FOMn = new double[20];
+        double[] rotresidualMineralN = new double[20];
+        for (int soilNo = 0; soilNo < 20; soilNo++)
+        {
+            rotarea[soilNo] = 0;
+            fomcLayer1[soilNo] = 0;
+            fomcLayer2[soilNo] = 0;
+            humcLayer1[soilNo] = 0;
+            humcLayer2[soilNo] = 0;
+            romcLayer1[soilNo] = 0;
+            romcLayer2[soilNo] = 0;
+            FOMn[soilNo] = 0;
+            rotresidualMineralN[soilNo] = 0;
+        }
+        int soiltypeNo = 0;
+        if (GlobalVars.Instance.GetlockSoilTypes())
+            soiltypeNo = GetsoilTypeCount();
+        else
+            soiltypeNo = GetsoiltypeNo();
+        rotarea[soiltypeNo] += getArea();
+        fomcLayer1[soiltypeNo] += aModel.GettheClayers()[0].getFOM() * getArea();
+        fomcLayer2[soiltypeNo] += aModel.GettheClayers()[1].getFOM() * getArea();
+        humcLayer1[soiltypeNo] += aModel.GettheClayers()[0].getHUM() * getArea();
+        humcLayer2[soiltypeNo] += aModel.GettheClayers()[1].getHUM() * getArea();
+        romcLayer1[soiltypeNo] += aModel.GettheClayers()[0].getROM() * getArea();
+        romcLayer2[soiltypeNo] += aModel.GettheClayers()[1].getROM() * getArea();
+        biocharcLayer1[soiltypeNo] += aModel.GettheClayers()[0].getBiochar() * getArea();
+        biocharcLayer2[soiltypeNo] += aModel.GettheClayers()[1].getBiochar() * getArea();
+        FOMn[soiltypeNo] += aModel.FOMn * getArea();
+        rotresidualMineralN[soiltypeNo] += GetResidualSoilMineralN();
+        for (int soilNo = 0; soilNo < 20; soilNo++)
+        {
+            if (rotarea[soilNo] > 0)
+            {
+                extraCtoolData.WriteLine(soilNo.ToString() + '\t' + (fomcLayer1[soilNo] / rotarea[soilNo]).ToString() + '\t' + (fomcLayer2[soilNo] / rotarea[soilNo]).ToString()
+                    + '\t' + (humcLayer1[soilNo] / rotarea[soilNo]).ToString() + '\t' + (humcLayer2[soilNo] / rotarea[soilNo]).ToString()
+                    + '\t' + (romcLayer1[soilNo] / rotarea[soilNo]).ToString() + '\t' + (romcLayer2[soilNo] / rotarea[soilNo]).ToString()
+                    + '\t' + (biocharcLayer1[soilNo] / rotarea[soilNo]).ToString() + '\t' + (biocharcLayer2[soilNo] / rotarea[soilNo]).ToString()
+                    + '\t' + FOMn[soilNo] / rotarea[soilNo] + '\t' + rotresidualMineralN[soilNo] / rotarea[soilNo] + '\t' + rotarea[soilNo]);
+            }
+        }
+
+    }
 }

@@ -2283,6 +2283,7 @@ public class GlobalVars
         {
             try
             {
+                usedField = false;
                 if (usedField == false)
                     FieldFile = new System.IO.StreamWriter(FieldfileName);
                 else

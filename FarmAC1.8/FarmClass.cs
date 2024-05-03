@@ -52,6 +52,7 @@ public class FarmClass
             }
         }
         //execute this if the soil carbon pool data needs to be read from file (i.e. not the baseline scenario)
+        //this code checks to make sure that the field areas have not been changed between the Baseline and mitigation scenarios
         if (GlobalVars.Instance.reuseCtoolData != -1)
         {
             double[] oldArea = new double[20];
@@ -274,60 +275,11 @@ public class FarmClass
     }
     void writeCtoolData(List<CropSequenceClass> rotationList)
     {
-        double[] rotarea = new double[20];
-        double[] fomcLayer1 = new double[20];
-        double[] fomcLayer2 = new double[20];
-        double[] humcLayer1 = new double[20];
-        double[] humcLayer2 = new double[20];
-        double[] romcLayer1 = new double[20];
-        double[] romcLayer2 = new double[20];
-        double[] biocharcLayer1 = new double[20];
-        double[] biocharcLayer2 = new double[20];
-        double[] FOMn = new double[20];
-        double[] rotresidualMineralN = new double[20];
-        for (int soilNo = 0; soilNo < 20; soilNo++)
-        {
-            rotarea[soilNo] = 0;
-            fomcLayer1[soilNo] = 0;
-            fomcLayer2[soilNo] = 0;
-            humcLayer1[soilNo] = 0;
-            humcLayer2[soilNo] = 0;
-            romcLayer1[soilNo] = 0;
-            romcLayer2[soilNo] = 0;
-            FOMn[soilNo] = 0;
-            rotresidualMineralN[soilNo] = 0;
-        }
+        System.IO.StreamWriter extraCtoolData = new System.IO.StreamWriter(GlobalVars.Instance.getWriteHandOverData());
         for (int i = 0; i < rotationList.Count; i++)
         {
             CropSequenceClass rotation = rotationList[i];
-            int soiltypeNo = 0;
-            if (GlobalVars.Instance.GetlockSoilTypes())
-                soiltypeNo = rotation.GetsoilTypeCount();
-            else
-                soiltypeNo = rotation.GetsoiltypeNo();
-            rotarea[soiltypeNo] += rotation.getArea();
-            fomcLayer1[soiltypeNo] += rotation.aModel.GettheClayers()[0].getFOM() * rotation.getArea();
-            fomcLayer2[soiltypeNo] += rotation.aModel.GettheClayers()[1].getFOM() * rotation.getArea();
-            humcLayer1[soiltypeNo] += rotation.aModel.GettheClayers()[0].getHUM() * rotation.getArea();
-            humcLayer2[soiltypeNo] += rotation.aModel.GettheClayers()[1].getHUM() * rotation.getArea();
-            romcLayer1[soiltypeNo] += rotation.aModel.GettheClayers()[0].getROM() * rotation.getArea();
-            romcLayer2[soiltypeNo] += rotation.aModel.GettheClayers()[1].getROM() * rotation.getArea();
-            biocharcLayer1[soiltypeNo] += rotation.aModel.GettheClayers()[0].getBiochar() * rotation.getArea();
-            biocharcLayer2[soiltypeNo] += rotation.aModel.GettheClayers()[1].getBiochar() * rotation.getArea();
-            FOMn[soiltypeNo] += rotation.aModel.FOMn * rotation.getArea();
-            rotresidualMineralN[soiltypeNo] += rotation.GetResidualSoilMineralN();
-        }
-        System.IO.StreamWriter extraCtoolData = new System.IO.StreamWriter(GlobalVars.Instance.getWriteHandOverData());
-        for (int soilNo = 0; soilNo < 20; soilNo++)
-        {
-            if (rotarea[soilNo] > 0)
-            {
-                extraCtoolData.WriteLine(soilNo.ToString() + '\t' + (fomcLayer1[soilNo] / rotarea[soilNo]).ToString() + '\t' + (fomcLayer2[soilNo] / rotarea[soilNo]).ToString()
-                    + '\t' + (humcLayer1[soilNo] / rotarea[soilNo]).ToString() + '\t' + (humcLayer2[soilNo] / rotarea[soilNo]).ToString()
-                    + '\t' + (romcLayer1[soilNo] / rotarea[soilNo]).ToString() + '\t' + (romcLayer2[soilNo] / rotarea[soilNo]).ToString()
-                    + '\t' + (biocharcLayer1[soilNo] / rotarea[soilNo]).ToString() + '\t' + (biocharcLayer2[soilNo] / rotarea[soilNo]).ToString()
-                    + '\t' + FOMn[soilNo] / rotarea[soilNo] + '\t' + rotresidualMineralN[soilNo] / rotarea[soilNo] + '\t' + rotarea[soilNo]);
-            }
+            rotation.writeCtoolData(extraCtoolData);
         }
         extraCtoolData.Close();
     }
