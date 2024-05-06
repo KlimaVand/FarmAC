@@ -468,7 +468,7 @@ namespace AnimalChange
             else
             {
                 names[0] = settings.getItemString(file);
-                names[1] = getPath(settings.getItemString(file)) + "Alternative.xml"; ;
+                names[1] = getPath(settings.getItemString(file)) + "Alternative.xml";
             }
             return names;
 

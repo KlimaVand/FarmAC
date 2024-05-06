@@ -2567,7 +2567,7 @@ public class CropSequenceClass
         double cropDuration = theCrops[cropNo].getDuration();
         while (k < cropDuration)
         {
-            if ((k == 95) && (cropNo == 0))
+            if ((k == 25) && (cropNo == 0))
                 Console.Write("");
             double currentLAI = theCrops[cropNo].CalculateLAI(k);
             double rootingDepth = theCrops[cropNo].CalculateRootingDepth(k);

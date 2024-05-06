@@ -3,8 +3,8 @@
   <settings>
     <Identity>0</Identity>
     <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Biobase\farm_67916_1.xml</farm>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Biobase\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Biobase\farm_67958_1.xml</farm>
     <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
     <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\feedstuff.xml</feedItems>
     <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\output\</outputDir>
@@ -13,10 +13,10 @@
     <Adaptation>-1</Adaptation>
     <Note>Test sugar beet</Note>
   </settings>
-  <settings1>
+  <settings>
     <Identity>1</Identity>
     <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\parameters.xml</parameters>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Biobase\parameters.xml</parameters>
     <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Biobase\farm_67958_1.xml</farm>
     <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
     <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\feedstuff.xml</feedItems>
@@ -25,7 +25,7 @@
     <stopOnError>true</stopOnError>
     <Adaptation>1</Adaptation>
     <Note>Test sugar beet</Note>
-  </settings1>
+  </settings>
   <CommonSettings>
     <alternativePath>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\</alternativePath>
     <verbosityLevel>5</verbosityLevel>
