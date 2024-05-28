@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Linq;
 
+/*! A class that owns and controls all farm components */
 public class FarmClass
 {
 	List<CropSequenceClass> rotationList;
@@ -10,10 +11,14 @@ public class FarmClass
     List<manureStore> listOfManurestores;
     List<housing> listOfHousing;
     farmBalanceClass theBalances;
+    //!Farm area (ha)
     double farmArea;
     int FarmType;
-    int farmNo;
-    int scenarioNo;
+    //! Farm number allocated from xml file name
+    int FarmNo;
+    //! Scenario number allocated from xml file name
+    int ScenarioNo;
+    //!  FarmClass constructor.
     public FarmClass()
 	{
         listOfManurestores = new List<manureStore>();
@@ -21,11 +26,27 @@ public class FarmClass
         listOfLivestock = new List<livestock>();
         rotationList = new List<CropSequenceClass>();
     }
+    //!  Get list of all crop sequences on the farm.
+    /*!
+      \return a list of CropSequenceClass
+    */
+
     public List<CropSequenceClass> GetRotationList() { return rotationList; }
+    //! Set the farm type
     public void SetFarmType(int aType) { FarmType = aType; }
-    public void SetFarmNo(int aNum) { farmNo = aNum; }
-    public void SetScenarioNo(int aNum) { scenarioNo = aNum; }
-    public double SetupRotation(FileInformation farmInformation, string newPath, int zoneNr, int farmNr, int ScenarioNr, int FarmTyp,
+    public void SetFarmNo(int aNum) { FarmNo = aNum; }
+    public void SetScenarioNo(int aNum) { ScenarioNo = aNum; }
+    //!  Create the list of crop sequences on the farm.
+    /*!
+    \param farmInformation points to the FileInformation class used for reading data
+    \param newPath string containing the path for the input files
+    \param zoneNr the climate zone number as an integer
+    \param farmNr farm number as an integer
+    \param ScenarioNr scenario number as an integer
+    \param FarmTyp farm type as an integer
+    \param soilTypeCount number of soil types available as an integer
+    */
+    public void SetupRotation(FileInformation farmInformation, string newPath, int zoneNr, int farmNr, int ScenarioNr, int FarmTyp,
         int soilTypeCount)
     {
         double areaWeightedDuration = 0.0;
@@ -81,14 +102,14 @@ public class FarmClass
                 GlobalVars.Instance.Error("could not find CTool handover data " + GlobalVars.Instance.getReadHandOverData());
             }
 
-            for (int j = 0; j < lines.Length; j++)
+            for (int j = 1; j < lines.Length; j++)
             {
                 string[] tmp = lines[j].Split('\t');
 
                 int soilNr = Convert.ToInt32(tmp[0]);
                 oldArea[soilNr] += Convert.ToDouble(tmp[11]);
             }
-            for (int j = 0; j < 20; j++)
+            for (int j = 1; j < 20; j++)
             {
                 if (oldArea[j] != newArea[j])
                 {
@@ -104,8 +125,15 @@ public class FarmClass
         GlobalVars.Instance.theZoneData.SetaverageYearsToSimulate(areaWeightedDuration);
         ///calculate composition of bedding material
         GlobalVars.Instance.CalcbeddingMaterial(rotationList);
-        return areaWeightedDuration;
     }
+    //!  Create the list of livestock and manure management facilities on the farm.
+    /*!
+    \param farmInformation points to the FileInformation class used for reading data
+    \param zoneNr the climate zone number as an integer
+    \param farmNr farm number as an integer
+    \param newPath string containing the path for the input files
+    \param ScenarioNr scenario number as an integer
+    */
     public void SetupLivestockAndManure(FileInformation farmInformation, int zoneNr, int farmNr, string newPath, int ScenarioNr)
     {
         //start of livestock section
@@ -161,6 +189,7 @@ public class FarmClass
             }
         }
     }
+    //!  Run the simulation for the farm.
     public void RunFarm()
     {
         //Run the livestock models
@@ -196,11 +225,20 @@ public class FarmClass
         }
         DoRotations();
     }
-    public void WriteFarm(int farmNr,int ScenarioNr)
+    //! Create and calculate the nutrient balances for the farm.
+    /*!
+    \param farmInformation points to the FileInformation class used for reading data
+    \param zoneNr the climate zone number as an integer
+    \param farmNr farm number as an integer
+    \param newPath string containing the path for the input files
+    \param ScenarioNr scenario number as an integer
+    */
+    public void CreateFarmBalances()
     {
-        farmBalanceClass theBalances = new farmBalanceClass("farmnr" + farmNr.ToString() + "_ScenarioNr" + ScenarioNr.ToString() + "FarmBalance_1");
+        theBalances = new farmBalanceClass("farmnr" + FarmNo.ToString() + "_ScenarioNr" + ScenarioNo.ToString() + "FarmBalance_1");
         theBalances.DoFarmBalances(rotationList, listOfLivestock, listOfHousing, listOfManurestores);
     }
+    //!  Run the simulations for all crop sequences on the farm.
     public void DoRotations()
     {
         for (int rotationID = 0; rotationID < rotationList.Count; rotationID++)
@@ -213,6 +251,7 @@ public class FarmClass
         GlobalVars.Instance.CheckGrazingData();
 
     }
+    //! Write the nutrient balances for the livestock and manure management.
     public void WriteLivestockAndManure()
     {
         for (int i = 0; i < listOfHousing.Count; i++)
@@ -236,6 +275,7 @@ public class FarmClass
         //GlobalVars.Instance.CloseLivestockFile();
         GlobalVars.Instance.Write(false);
     }
+    //! Write the nutrient balances for the crop sequences.
     public void WriteRotation(string outputName)
     {
         if (GlobalVars.Instance.WriteField)
@@ -273,6 +313,13 @@ public class FarmClass
             writeCtoolData(rotationList);
         }
     }
+
+    //! Write the nutrient balances for the farm.
+    public void WriteFarmBalances()
+    {
+        theBalances.WriteFarmBalances(rotationList, listOfLivestock);
+    }
+
     void writeCtoolData(List<CropSequenceClass> rotationList)
     {
         System.IO.StreamWriter extraCtoolData = new System.IO.StreamWriter(GlobalVars.Instance.getWriteHandOverData());

@@ -1293,7 +1293,7 @@ public class CropClass
     //}
     //! Get the crop management parameters
     /*!
-      \param path, path for the input file as a string arguemnt.
+      \param path, path for the input file as a string argument.
       \param index, number of the crop in the crop sequence as an integer argument.
       \param zoneNr, agroecological zone number an integer argument.
     */
@@ -1421,6 +1421,7 @@ public class CropClass
             CconcBelowGroundResidues = cropParamFile.getItemDouble("Value");
             cropParamFile.setPath(tmpPath + ".BelowGroundCtoN(-1)");
             CtoNBelowGroundResidues = cropParamFile.getItemDouble("Value");
+
             cropParamFile.setPath(tmpPath + ".MaximumRootingDepth(-1)");
             MaximumRootingDepth = cropParamFile.getItemDouble("Value");
             cropParamFile.setPath(tmpPath + ".Irrigation(-1).irrigationThreshold(-1)");

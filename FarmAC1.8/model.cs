@@ -270,6 +270,7 @@ namespace AnimalChange
                             {
                                 if (farmInformation.doesIDExist(farmNr))
                                 {
+                                    aFarm.SetFarmNo(farmNr);
                                     string newPath = "Farm(" + farmNr.ToString() + ")";
                                     farmInformation.setPath(newPath);
                                     int zoneNr = farmInformation.getItemInt("AgroEcologicalZone");
@@ -302,6 +303,8 @@ namespace AnimalChange
                                         }
                                         else
                                             ScenarioNr = Convert.ToInt32(args[1]);
+                                        aFarm.SetScenarioNo(ScenarioNr);
+
                                         GlobalVars.Instance.log("Starting farm " + farmNr.ToString() + " scenario nr " + ScenarioNr, 0);
                                         if (args.Length == 0)  //Set location of soil carbon pool data
                                         {
@@ -355,9 +358,10 @@ namespace AnimalChange
                                             else
                                             {
                                                 aFarm.RunFarm();
+                                                aFarm.CreateFarmBalances();
                                                 aFarm.WriteLivestockAndManure();
                                                 aFarm.WriteRotation(outputDir+outputName);
-                                                aFarm.WriteFarm(farmNr,ScenarioNr);
+                                                aFarm.WriteFarmBalances();
                                                 GlobalVars.Instance.writeEndTab();}
                                             }
                                         }//end of scenario exists

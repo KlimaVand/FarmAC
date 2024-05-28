@@ -2681,6 +2681,9 @@ public class CropSequenceClass
         double[] biocharcLayer2 = new double[20];
         double[] FOMn = new double[20];
         double[] rotresidualMineralN = new double[20];
+        extraCtoolData.WriteLine("soilNo" + '\t' + "fomcLayer1_kg_ha" + '\t' + "fomcLayer2_kg_ha" + '\t' + "humcLayer1_kg_ha" + '\t' + "humcLayer2_kg_ha" + '\t'
+                    + "romcLayer1_kg_ha" + '\t' + "romcLayer2_kg_ha" + '\t' + "biocharcLayer1_kg_ha" + '\t' + "biocharcLayer2_kg_ha" + '\t'
+                    + "FOMn_kg_ha" + '\t' + "rotresidualMineralN_kg_ha" + '\t' + "rotarea_ha");
         for (int soilNo = 0; soilNo < 20; soilNo++)
         {
             rotarea[soilNo] = 0;

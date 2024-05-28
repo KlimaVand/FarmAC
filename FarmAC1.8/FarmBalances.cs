@@ -4,6 +4,10 @@ using System.Xml;
 /*! FarmBalanceClass calculates and displays farm C, N and GHG balances, plus ancillary information*/
 class farmBalanceClass
 {
+    List<CropSequenceClass> rotationList;
+    List<livestock> listOfLivestock;
+    List<housing> listOfHousing;
+    List<manureStore> listOfManurestores;
     //! import of N in livestock feed (kg)
     double liveFeedImportN = 0;
     //!import of N in animal feed (kg)
@@ -844,7 +848,7 @@ class farmBalanceClass
         drainage /= agriculturalArea;
         double ConcentrateDMexported = GlobalVars.Instance.GetConcentrateExports();
         //! Write farm budgets to file
-        WriteFarmBalances(rotationList, listOfLivestock);
+//        WriteFarmBalances(rotationList, listOfLivestock);
     }
     //!  Write farm budgets to file
     /*!

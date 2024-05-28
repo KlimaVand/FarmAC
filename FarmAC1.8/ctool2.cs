@@ -192,7 +192,7 @@ public class ctool2
                 GlobalVars.Instance.Error("could not find CTool handover data " + GlobalVars.Instance.getReadHandOverData());
             }
             bool gotit=false;
-            for (int j = 0; j < lines.Length; j++)
+            for (int j = 1; j < lines.Length; j++)
             {
                 string[] data = lines[j].Split('\t');
                 if (soilTypeNo == Convert.ToDouble(data[0]))
