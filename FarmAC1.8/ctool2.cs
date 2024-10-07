@@ -134,6 +134,7 @@ public class ctool2
         amplitude = amplitudeIn;
         maxSoilDepth = maxSoilDepthIn;
         dampingDepth = dampingDepthIn;
+        offset = offsetIn;
         //!rho is the angular frequency of the harmonic oscillation in temperature (2*Pi/P in CTool paper) (1/(seconds per year)
         double rho = GlobalVars.Instance.Getrho();
         double Th_diff = GlobalVars.Instance.theZoneData.thesoilData[soilTypeNo].thermalDiff;
@@ -172,7 +173,7 @@ public class ctool2
         CtoNROM = GlobalVars.Instance.getCNhum();
 
         int NonBaselinespinupYears=0;
-        // Check to see if we need to read data from the baseline scenario that has been stored in a file
+        // Check to see if we need to read carbon data from the baseline scenario that has been stored in a file
         if (GlobalVars.Instance.reuseCtoolData != -1)
         {
             FileInformation file = new FileInformation(GlobalVars.Instance.getConstantFilePath());

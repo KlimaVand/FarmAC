@@ -6,10 +6,15 @@ using System.Xml.Linq;
 /*! A class that owns and controls all farm components */
 public class FarmClass
 {
+    //! List of crop sequences on the farm
 	List<CropSequenceClass> rotationList;
+    //! List of livestock on the farm
     List<livestock> listOfLivestock;
+    //! List of manure stores on the farm
     List<manureStore> listOfManurestores;
+    //! List of livestock housing on the farm
     List<housing> listOfHousing;
+    //! The farm nutrient balances
     farmBalanceClass theBalances;
     //!Farm area (ha)
     double farmArea;
@@ -320,6 +325,7 @@ public class FarmClass
         theBalances.WriteFarmBalances(rotationList, listOfLivestock);
     }
 
+    //! Write the soil carbon data for each crop sequence on the farm to file.
     void writeCtoolData(List<CropSequenceClass> rotationList)
     {
         System.IO.StreamWriter extraCtoolData = new System.IO.StreamWriter(GlobalVars.Instance.getWriteHandOverData());

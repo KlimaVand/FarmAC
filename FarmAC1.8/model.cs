@@ -326,7 +326,7 @@ namespace AnimalChange
                                             else
                                                 outputName = "outputFarm" + farmNr.ToString() + "ScenarioNr" + ScenarioNr.ToString();
 
-                                            GlobalVars.Instance.OpenOutputFiles(outputName,outputDir);
+                                            GlobalVars.Instance.OpenOutputFiles(outputName, outputDir);
 
                                             GlobalVars.Instance.writeStartTab("Farm");
 
@@ -348,21 +348,21 @@ namespace AnimalChange
                                             {
                                                 aFarm.SetupRotation(farmInformation, newPath, zoneNr, farmNr, ScenarioNr, FarmType, soilTypeCount);
                                                 aFarm.SetupLivestockAndManure(farmInformation, zoneNr, farmNr, newPath, ScenarioNr);
-                                            if (!GlobalVars.Instance.getRunFullModel()) //only called when only the livestock excretion is needed
-                                            {
-                                                GlobalVars.Instance.CalcAllFeedAndProductsPotential(aFarm.GetRotationList());
-                                                //write output to xml file
-                                                GlobalVars.Instance.writeGrazedItems();
-                                                aFarm.WriteLivestockAndManure();
-                                            }
-                                            else
-                                            {
-                                                aFarm.RunFarm();
-                                                aFarm.CreateFarmBalances();
-                                                aFarm.WriteLivestockAndManure();
-                                                aFarm.WriteRotation(outputDir+outputName);
-                                                aFarm.WriteFarmBalances();
-                                                GlobalVars.Instance.writeEndTab();}
+                                                if (!GlobalVars.Instance.getRunFullModel()) //only called when only the livestock excretion is needed
+                                                {
+                                                    GlobalVars.Instance.CalcAllFeedAndProductsPotential(aFarm.GetRotationList());
+                                                    //write output to xml file
+                                                    GlobalVars.Instance.writeGrazedItems();
+                                                    aFarm.WriteLivestockAndManure();
+                                                }
+                                                else
+                                                {
+                                                    aFarm.RunFarm();
+                                                    aFarm.CreateFarmBalances();
+                                                    aFarm.WriteLivestockAndManure();
+                                                    aFarm.WriteRotation(outputDir + outputName);
+                                                    aFarm.WriteFarmBalances();
+                                                    GlobalVars.Instance.writeEndTab(); }
                                             }
                                         }//end of scenario exists
                                         long ticks = DateTime.UtcNow.Ticks;

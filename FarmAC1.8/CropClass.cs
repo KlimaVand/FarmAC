@@ -1503,7 +1503,7 @@ public class CropClass
                 NinProduct += theProducts[i].GetExpectedYield() * theProducts[i].composition.GetN_conc();
                 NinSurfaceResidues += theProducts[i].GetExpectedYield() * theProducts[i].composition.GetN_conc() * propAboveGroundResidues[0];
             }
-            double adjustment = 1.0;// (1 - 0.5) / (theProducts[i].GetExpectedYield() / theProducts[i].GetPotential_yield());
+            double adjustment = 1.0;
             NinSubsurfaceResidues += theProducts[i].GetExpectedYield() * (GetCconcBelowGroundResidues() * GetpropBelowGroundResidues() * adjustment) / CtoNBelowGroundResidues;
         }
         uptakeN += NinProduct + NinSurfaceResidues + NinSubsurfaceResidues;

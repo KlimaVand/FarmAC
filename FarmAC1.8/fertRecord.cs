@@ -121,7 +121,7 @@ using System.Xml;
         else
         {
             monthOfApplication = GetMonth_applied() - cropStartMonth;
-            //yearOfApplication = GetStartYear() - firstYear;
+            yearOfApplication = cropStartDate.GetYear();
         }
         int dayOfApplication = (int)Math.Round(monthOfApplication * 30.416 + 15);
         int cropStartDay = cropStartDate.GetDay();
@@ -205,9 +205,9 @@ using System.Xml;
          * \param startDay, a long argument that points to timeClass startDate.
           \return a long value for startDay.       
         */
-        public long GetRelativeDay(long startDay)//timeClass startDate) 
+        public int GetRelativeDay(long startDay)//timeClass startDate) 
         {
-            long retVal = applicdate.getLongTime() - startDay;// startDate.getLongTime();
+            int retVal = Convert.ToInt32(applicdate.getLongTime() - startDay);// startDate.getLongTime();
 
             return retVal;
         }

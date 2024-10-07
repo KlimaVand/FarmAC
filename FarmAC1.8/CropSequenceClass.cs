@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Linq;
 using simplesoilModel;
-/*! A class that named CropSequenceClass. */
+/*! The CropSequenceClass contains a list of the crops in a single sequence
+ * A crop sequence represents in principle the sequence of crops on a single field but is normally used to represent a typical crop rotation
+ * The crop sequence must be closed i.e. the last date of a sequence must be on the day and month before the first date of the sequence
+ * This is necessary, since the model will normally need to repeat the sequence serially
+ * Bare soil is in this context, considered to be a crop
+ * */
 public class CropSequenceClass
 {
     //inputs
@@ -255,7 +260,7 @@ public class CropSequenceClass
                 theCrops.Add(aCrop);
             }
         }
-        //check for gaps in crop sequence
+        //check for gaps in crop sequence (start of new crop must be one day after the end of the previous crop)
         long startLongTime=0;
         long endLongTime=0;
         for (int i = 0; i < theCrops.Count; i++)
@@ -310,14 +315,8 @@ public class CropSequenceClass
             }
         }
 
-        lengthOfSequence = calculatelengthOfSequence();  //calculate length of sequence in years
-        //code for debugging
-        /* for (int i = 0; i < theCrops.Count; i++)
-         {
-             CropClass aCrop = theCrops[i];
-             //Console.WriteLine("before adjust "  + aCrop.Getidentity() +" " + identity.ToString() + " " + aCrop.getStartLongTime().ToString() + " " + aCrop.getEndLongTime().ToString());
-         }*/
-        if (GlobalVars.Instance.WriteCrop)
+        lengthOfSequence = calculatelengthOfSequence();  //calculate length of the input sequence in years
+        if (GlobalVars.Instance.WriteCrop)  
         {
             GlobalVars.Instance.WriteCropFile("Sequence_name", "Name of crop sequence", name, true, false);
             GlobalVars.Instance.WriteCropFile("Area", "ha", area, true, false);
@@ -327,7 +326,10 @@ public class CropSequenceClass
             }
             GlobalVars.Instance.WriteCropFile("", "", "", false, true);
         }
-
+        //If the duration of the simulation period is greater than the duration of the crop sequence, the crop sequence will need to be repeated x number of times
+        //This requires that the crop sequence is copied and loaded into a linear list, starting with the first crop of the sequence and finishing with the last crop of the last repeat
+        //e.g. sequence crop 1, crop2, crop 3 repeated three times needs to be listed as crop 1, crop2, crop 3, crop 1, crop2, crop 3, crop 1, crop2, crop 3.
+        //If the duration of the simulation period is not an exact multiple of the duration of the sequence, the simulation period is extended until it is
         List<CropClass> CopyOfPlants = new List<CropClass>();
         for (int i = 0; i < theCrops.Count; i++)
         {
@@ -363,23 +365,15 @@ public class CropSequenceClass
                             aCrop.SetEndYear(j + theCrops[i].GetStartYear());
                         else
                             aCrop.SetEndYear(j + theCrops[i].GetStartYear() + 1);
-
                         theCrops.Insert(j + i, aCrop);
-                        //GlobalVars.Instance.log(i.ToString() + " " + aCrop.getStartLongTime().ToString() + " " + aCrop.getEndLongTime().ToString(),3);
                     }
                 }
 
             }
         }
-
-        /*      for (int i = 0; i < theCrops.Count; i++)
-              {
-                  CropClass aCrop = theCrops[i];
-                  //Console.WriteLine("after adjust " + aCrop.Getidentity() +" " + identity.ToString() + " " + aCrop.getStartLongTime().ToString() + " " + aCrop.getEndLongTime().ToString());
-              }*/
         numCropsInSequence = theCrops.Count;
         AdjustDates(theCrops[0].GetStartYear());    //this converts from calendar year to zero base e.g. 2010 to 0, 2011 to 1 etc
-        lengthOfSequence = calculatelengthOfSequence();  //calculate length of sequence in years
+        lengthOfSequence = calculatelengthOfSequence();  //recalculate length of sequence in years
         int length = 0;
         if (GlobalVars.Instance.reuseCtoolData == -1)
             length = GlobalVars.Instance.GetadaptationTimePeriod();
@@ -455,14 +449,12 @@ public class CropSequenceClass
                 CopyOfPlants.Add(newClass);
             }
         }
-        for (int i = 0; i < CopyOfPlants.Count; i++)//adjust crop start and end dates so they run sequentially
+        for (int i = 0; i < CopyOfPlants.Count; i++)
         {
             CropClass acrop = CopyOfPlants[i];
-            //for debugging
-            //int currentStartYr = acrop.GetStartYear();
-            //int currentEndYr = acrop.GetEndYear();
             theCrops.Add(acrop);
         }
+        //End of loading the crops
 
         for (int i = 0; i < theCrops.Count; i++)
         {
@@ -471,12 +463,11 @@ public class CropSequenceClass
         for (int i = 0; i < theCrops.Count; i++)
         {
             CropClass aCrop = theCrops[i];
-            //GlobalVars.Instance.log(i.ToString() + " " + aCrop.GetStartYear().ToString() + " " + aCrop.GetEndYear().ToString());
             aCrop.setArea(area);
         }
         lengthOfSequence = calculatelengthOfSequence();  //recalculate length of sequence in years
         thesoilWaterModel = new simpleSoil();
-        //get the parameters for the sequence (this only relates to soil and could be simplified)
+        //get the parameters for the sequence
         getparameters(zoneNr);
         for (int i = 0; i < theCrops.Count; i++)
         {
@@ -484,7 +475,9 @@ public class CropSequenceClass
             aCrop.SetlengthOfSequence(lengthOfSequence);
         }
         //Now sort out the soil modelling
+        //This creates an instance of the modified version of the CTool model
         aModel = new ctool2(parens + "_1");
+        //Make sure the soil type information is present in the zonal data
         soiltypeNo = -1;
         for (int i = 0; i < GlobalVars.Instance.theZoneData.thesoilData.Count; i++)
         {
@@ -497,11 +490,7 @@ public class CropSequenceClass
             messageString += ("Crop sequence name = " + name);
             GlobalVars.Instance.Error(messageString);
         }
-        //! initial total C in the soil (used for spinning up the soil C model)
-        double initialC = 0;
-        //! initial FOM C input (used for spinning up the soil C model)
-        double initialFOM_Cinput = 0;
-
+        //Check to see if the crop rooting depth will be limited by soil depth (and issue a warning)
         double maxSoilDepth = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].GetSoilDepth();
         bool doneOnce = false;
         for (int i = 0; i < theCrops.Count; i++)
@@ -520,22 +509,30 @@ public class CropSequenceClass
             }
         }
 
-        initialC = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].theC_ToolData[FarmType - 1].initialC;
-        initialFOM_Cinput = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].theC_ToolData[FarmType - 1].InitialFOM;
-
+        //! initial total C in the soil (used for spinning up the soil C model)
+        double initialC = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].theC_ToolData[FarmType - 1].initialC;
+        //! initial FOM C input (used for spinning up the soil C model)
+        double initialFOM_Cinput = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].theC_ToolData[FarmType - 1].InitialFOM;
+        //! Initial C:N ratio of the fresh organic matter
         double InitialFOMCtoN = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].theC_ToolData[FarmType - 1].InitialFOMCtoN;
+        //!Clay fraction of the soil
         double ClayFraction = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].ClayFraction;
+        //!Damping depth (m) to be used in calculating the soil temperature at different depths in the soil
         double dampingDepth = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].GetdampingDepth();
-
+        //! Proportion of the organic matter that is initially present as humic organic matter in the upper soil layer
         double pHUMupperLayer = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].theC_ToolData[FarmType - 1].pHUMupperLayer;
+        //! Proportion of the organic matter that is initially present as humic organic matter in the lower soil layer
         double pHUMlowerLayer = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].theC_ToolData[FarmType - 1].pHUMlowerLayer;
+        //! C:N ratio of the humic and resistent organic mattr
         double InitialCtoN = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].theC_ToolData[FarmType - 1].InitialCtoN;
-
+        //!Average air temperature (used for spinning up)
         double[] averageAirTemperature = GlobalVars.Instance.theZoneData.airTemp;
+        //!The number of days that the 
         int offset = GlobalVars.Instance.theZoneData.GetairtemperatureOffset();
         double amplitude = GlobalVars.Instance.theZoneData.GetairtemperatureAmplitude();
         double mineralNFromSpinup = 0;
-        if (GlobalVars.Instance.GetlockSoilTypes())
+        //! Initialize the soil organic matter model
+        if (GlobalVars.Instance.GetlockSoilTypes())     //!if true, the C-TOOL pools for each crop sequence will be preserved but the areas must not change. If false, pools within a soil type will be merged and areas can change.            
             aModel.Initialisation(soilTypeCount, ClayFraction, offset, amplitude, maxSoilDepth, dampingDepth, initialC,
                 GlobalVars.Instance.getConstantFilePath(), GlobalVars.Instance.GeterrorFileName(), InitialCtoN,
                 pHUMupperLayer, pHUMlowerLayer, ref mineralNFromSpinup);
@@ -1129,7 +1126,7 @@ public class CropSequenceClass
         retVal = thesoilWaterModel.GetMaxPlantAvailableWater();
         return retVal;
     }
-    //!  Get Length of Cropping Period. Taking one arguemnt and 
+    //!  Get Length of Cropping Period.
     /*
      \param maxCrop  maximum number of crops to include in the calculation
      \return length of the cropping period (years)
@@ -1824,11 +1821,17 @@ public class CropSequenceClass
     public bool CheckRotationCBalance(int maxCrops)
     {
         bool retVal = true;
+        //!C in harvested plant material
         double harvestedC = 0;
+        //!C fixed from atmosphere
         double fixedC = 0;
+        //!C in manure applied
         double manureC = 0;
+        //!C in dung from grazing livestock
         double faecalC = 0;
+        //!C in urine  from grazing livestock
         double urineC = 0;
+        //!C lost through burning of crop residues
         double burntC = 0;
         double croppingPeriod = GetLengthCroppingPeriod(maxCrops);
         for (int i = 0; i < maxCrops; i++)
@@ -1860,10 +1863,11 @@ public class CropSequenceClass
             Write();
             GlobalVars.Instance.Error(messageString);
         }
-        double Charvested = getCHarvested();
-        double Cfixed = getCFixed();
+        /*double Charvested = getCHarvested();
+        double Cfixed = getCFixed();*/
+
         //! Cbalance (kg) should be zero or thereabouts
-        double Cbalance = ((Cfixed + manureC + faecalC + urineC - (soilCO2_CEmission + Cleached + CdeltaSoil + Charvested + burntC + residueCremaining))) / croppingPeriod;
+        double Cbalance = ((fixedC + manureC + faecalC + urineC - (soilCO2_CEmission + Cleached + CdeltaSoil + harvestedC + burntC + residueCremaining))) / croppingPeriod;
         double diffSeq = Cbalance / initialSoilC;
         errorPercent = 100 * diffSeq;
         if (Math.Abs(diffSeq) > tolerance)
@@ -2697,6 +2701,7 @@ public class CropSequenceClass
             rotresidualMineralN[soilNo] = 0;
         }
         int soiltypeNo = 0;
+        //!if true, the C-TOOL pools for each crop sequence will be preserved but the areas must not change. If false, pools within a soil type will be merged and areas can change.            
         if (GlobalVars.Instance.GetlockSoilTypes())
             soiltypeNo = GetsoilTypeCount();
         else
