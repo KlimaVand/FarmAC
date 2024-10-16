@@ -145,19 +145,21 @@ public class FarmClass
         string LivestockPath = newPath + "(" + ScenarioNr.ToString() + ").Livestock";
         farmInformation.setPath(LivestockPath);
         ///read the livestock details from file
-        int minLivestock = 99, maxLivestock = 0;
 
-        farmInformation.getSectionNumber(ref minLivestock, ref maxLivestock);
-        for (int LiveStockID = minLivestock; LiveStockID <= maxLivestock; LiveStockID++)
-        {
+        LoadLivestock(farmInformation, LivestockPath, zoneNr, farmNr, ScenarioNr);
+        //    int minLivestock = 99, maxLivestock = 0;
 
-            if (farmInformation.doesIDExist(LiveStockID))
-            {
-                livestock anAnimal = new livestock(LivestockPath, LiveStockID, zoneNr, "farmnr" + farmNr.ToString() + "_ScenarioNr" + ScenarioNr.ToString() + "_livestock" + LiveStockID.ToString());
-                anAnimal.GetAllFeedItemsUsed();
-                listOfLivestock.Add(anAnimal);
-            }
-        }
+        //farmInformation.getSectionNumber(ref minLivestock, ref maxLivestock);
+        //for (int LiveStockID = minLivestock; LiveStockID <= maxLivestock; LiveStockID++)
+        //{
+
+        //    if (farmInformation.doesIDExist(LiveStockID))
+        //    {
+        //        livestock anAnimal = new livestock(LivestockPath, LiveStockID, zoneNr, "farmnr" + farmNr.ToString() + "_ScenarioNr" + ScenarioNr.ToString() + "_livestock" + LiveStockID.ToString());
+        //        anAnimal.GetAllFeedItemsUsed();
+        //        listOfLivestock.Add(anAnimal);
+        //    }
+        //}
         ///read details of any manure stores that do not receive manure from livestock on the farm
         string ManureStoragePath = newPath + "(" + ScenarioNr.ToString() + ").ManureStorage";
         farmInformation.setPath(ManureStoragePath);
@@ -254,6 +256,28 @@ public class FarmClass
             GlobalVars.Instance.log("Seq " + rotationID.ToString() + " C " + rotationList[rotationID].getCHarvested().ToString(), 5);
         }
         GlobalVars.Instance.CheckGrazingData();
+
+    }
+
+    public void LoadLivestock(FileInformation farmInformation, string LivestockPath, int zoneNr, int farmNr, int ScenarioNr)
+    {
+        int minLivestock = 99, maxLivestock = 0;
+        farmInformation.getSectionNumber(ref minLivestock, ref maxLivestock);
+
+        for (int LiveStockID = minLivestock; LiveStockID <= maxLivestock; LiveStockID++)
+        {
+
+            if (farmInformation.doesIDExist(LiveStockID))
+            {
+                livestock anAnimal = new livestock(LivestockPath, LiveStockID, zoneNr, "farmnr" + farmNr.ToString() + "_ScenarioNr" + ScenarioNr.ToString() + "_livestock" + LiveStockID.ToString());
+                anAnimal.GetAllFeedItemsUsed();
+                listOfLivestock.Add(anAnimal);
+            }
+        }
+
+    }
+    public void CalcLivestockProduction()
+    {
 
     }
     //! Write the nutrient balances for the livestock and manure management.

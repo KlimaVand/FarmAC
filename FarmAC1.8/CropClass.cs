@@ -2583,7 +2583,7 @@ public class CropClass
         for (int i = 0; i < GetfertiliserApplied().Count; i++)
         {
             fertRecord aRecord = fertiliserApplied[i];
-            ret_val = aRecord.AdjustDates(GettheStartDate(), GettheEndDate());
+            ret_val = aRecord.AdjustDates(firstYear,GettheStartDate(), GettheEndDate());
             if (!ret_val)  //this should not happen
             {
                 string errorMsg = "Fertiliser applied after end of crop for " + Getname() + " in " + GetfertiliserApplied()[i].GetDate().ToString();
@@ -2593,7 +2593,7 @@ public class CropClass
         for (int i = 0; i < manureApplied.Count; i++)
         {
             fertRecord aRecord = manureApplied[i];
-            ret_val = aRecord.AdjustDates(GettheStartDate(), GettheEndDate());
+            ret_val = aRecord.AdjustDates(firstYear,GettheStartDate(), GettheEndDate());
             if (!ret_val)  //this should not happen
             {
                 string errorMsg = "Manure applied after end of crop for " + Getname() + " in " + GetmanureApplied()[i].GetDate().ToString();

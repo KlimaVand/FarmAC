@@ -107,29 +107,25 @@ using System.Xml;
             speciesGroup = theCropToBeCopied.speciesGroup;
             Units = theCropToBeCopied.Units;
         }
-    public bool AdjustDates(timeClass cropStartDate, timeClass cropEndDate)
+    public bool AdjustDates(int firstYear, timeClass cropStartDate, timeClass cropEndDate)
     {
         int monthOfApplication = 0;  //month from starting date of crop
-        int yearOfApplication;   //year from starting date of crop
-        int duration = (int)(cropEndDate.getLongTime() - cropStartDate.getLongTime());
         int cropStartMonth = cropStartDate.GetMonth();
         if (GetMonth_applied() < cropStartMonth)
         {
             monthOfApplication = GetMonth_applied() + 12 - cropStartMonth;
-            yearOfApplication = cropEndDate.GetYear();
         }
         else
         {
             monthOfApplication = GetMonth_applied() - cropStartMonth;
-            yearOfApplication = cropStartDate.GetYear();
         }
         int dayOfApplication = (int)Math.Round(monthOfApplication * 30.416 + 15);
         int cropStartDay = cropStartDate.GetDay();
         if ((monthOfApplication == 0) && (dayOfApplication < cropStartDay))  //if an application in middle of month would be before the crop has started
             dayOfApplication = cropStartDay;
         SetdayOfApplication(dayOfApplication);  //dayOfApplication counts relative to the first day the crop is established
-                                                                     //fertiliserApplied[i].SetapplicDate(1, GetfertiliserApplied()[i].GetMonth_applied(), yearOfApplication, false);
-        int dayInMonth = 0;
+        applicdate.SetYear(applicdate.GetYear() - firstYear);
+        int duration = (int)(cropEndDate.getLongTime() - cropStartDate.getLongTime());
         if (GetdayOfApplication() > duration)  //this should not happen
             return false;
         else

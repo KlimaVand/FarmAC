@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+  <settings>
+    <Identity>0</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\117051\\farm_117051_7.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\117051\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>Senegal intensive baseline</Note>
+  </settings>
+  <settings>
+    <Identity>1</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\farm_117051_7.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\117051\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>7</Adaptation>
+    <Note>Senegal intensive baseline</Note>
+  </settings>
+  <settings>
+    <Identity>2</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\farm_117052_5.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\117052\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>Senegal traditional baseline</Note>
+  </settings>
+  <settings>
+    <Identity>3</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\farm_117052_5.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\117052\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>5</Adaptation>
+    <Note>Senegal traditional baseline</Note>
+  </settings>
+  <settings>
+    <Identity>4</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\farm_117051_8.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\117051\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>7</Adaptation>
+    <Note>Senegal intensive Covering dung heap &amp; feed adjustment</Note>
+  </settings>
+  <settings>
+    <Identity>5</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\farm_67943_32.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\67943\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>De Marke baseline</Note>
+  </settings>
+  <settings>
+    <Identity>6</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\farm_67943_32.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\67943\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>32</Adaptation>
+    <Note>De Marke baseline</Note>
+  </settings>
+  <settings>
+    <Identity>7</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\farm_67943_33.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\67943\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>32</Adaptation>
+    <Note>De Marke baseline + biogas</Note>
+  </settings>
+  <settings>
+    <Identity>8</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\farm_67943_34.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\67943\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>32</Adaptation>
+    <Note>De Marke baseline + cover crop</Note>
+  </settings>
+  <settings>
+    <Identity>9</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\325078\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\325078\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\325078\farm_325078_5.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\325078\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\325078\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>Netherlands typical</Note>
+  </settings>
+  <settings>
+    <Identity>10</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\325078\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\325078\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\325078\farm_325078_5.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\325078\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\325078\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>5</Adaptation>
+    <Note>Netherlands typical</Note>
+  </settings>
+  <settings>
+    <Identity>11</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\325079\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\325079\farm_325079_38.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\325079\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>De Marke baseline</Note>
+  </settings>
+  <settings>
+    <Identity>12</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\325079\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\325079\farm_325079_38.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\NL\325079\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>38</Adaptation>
+    <Note>De Marke baseline</Note>
+  </settings>
+  <settings>
+    <Identity>13</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\78986\farm_78986_39.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\78986\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>Danish typical dairy</Note>
+  </settings>
+  <settings>
+    <Identity>14</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\78986\farm_78986_39.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\78986\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>39</Adaptation>
+    <Note>Danish typical dairy</Note>
+  </settings>
+  <settings>
+    <Identity>15</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\France\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\France\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\France\116362\farm_116362_32.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\France\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\France\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\France\116362\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>French dairy</Note>
+  </settings>
+  <settings>
+    <Identity>16</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\France\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\France\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\France\116362\farm_116362_32.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\France\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\France\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\France\116362\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>32</Adaptation>
+    <Note>French dairy</Note>
+  </settings>
+  <settings>
+    <Identity>17</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SCO\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SCO\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SCO\farm_116528_10.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SCO\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SCO\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SCO\116528\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>Scottish dairy</Note>
+  </settings>
+  <settings>
+    <Identity>17</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SCO\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SCO\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SCO\farm_116543_6.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SCO\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SCO\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SCO\116528\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>Scottish dairy</Note>
+  </settings>
+  <settings>
+    <Identity>18</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SCO\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SCO\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SCO\farm_116528_10.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SCO\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SCO\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SCO\116528\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>10</Adaptation>
+    <Note>Scottish dairy</Note>
+  </settings>
+  <settings>
+    <Identity>19</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SAfrica\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SAfrica\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SAfrica\812523\farm_812523_22.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SAfrica\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SAfrica\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\SAfrica\812523\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>South Africa</Note>
+  </settings>
+  <settings>
+    <Identity>19</Identity>
+    <constants>c:\Workspace\tools\annimalChange\tag\FarmACv1.8\inputFiles\constants.xml </constants>
+    <parameters>c:\Workspace\tools\annimalChange\tag\FarmACv1.8\inputFiles\parameters.xml</parameters>
+    <farm>c:\Workspace\tools\annimalChange\tag\FarmACv1.8\inputFiles\testFarms\farm_67957_1.xml</farm>
+    <fertAndManure>c:\Workspace\tools\annimalChange\tag\FarmACv1.8\inputFiles\fertMan.xml</fertAndManure>
+    <feedItems>c:\Workspace\tools\annimalChange\tag\FarmACv1.8\inputFiles\feedstuff.xml</feedItems>
+    <outputDir>c:\Workspace\tools\annimalChange\tag\FarmACv1.8\inputFiles\testFarms\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>Test sugar beet</Note>
+  </settings>
+  <settings>
+    <Identity>20</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\C_sequestration\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\C_sequestration\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\C_sequestration\farm_67893_1.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\C_sequestration\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\C_sequestration\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\C_sequestration\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>Test sugar beet</Note>
+  </settings>
+  <settings>
+    <Identity>21</Identity>
+    <constants>c:\Home\Projects\M4Models\Case study farms\Modelling\SWE\Dairy\79000\constants.xml </constants>
+    <parameters>c:\Home\Projects\M4Models\Case study farms\Modelling\SWE\Dairy\79000\parameters.xml</parameters>
+    <farm>c:\Home\Projects\M4Models\Case study farms\Modelling\SWE\Dairy\79000\farm_79000_1.xml</farm>
+    <fertAndManure>c:\Home\Projects\M4Models\Case study farms\Modelling\SWE\Dairy\79000\fertMan.xml</fertAndManure>
+    <feedItems>c:\Home\Projects\M4Models\Case study farms\Modelling\SWE\Dairy\79000\feedstuff.xml</feedItems>
+    <outputDir>c:\Home\Projects\M4Models\Case study farms\Modelling\SWE\Dairy\79000\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>Test sugar beet</Note>
+  </settings>
+  <CommonSettings>
+    <alternativePath>c:\Users\au224222\Dropbox\FarmAC\FarmAC\</alternativePath>
+    <verbosityLevel>5</verbosityLevel>
+    <logFile>true</logFile>
+    <logScreen>true</logScreen>
+  </CommonSettings>
+</xml>

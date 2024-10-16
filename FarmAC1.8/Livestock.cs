@@ -319,7 +319,7 @@ public class livestock
      \param zoneNr an integer argument containing the number of the agroecological zone.
      \param aparens a string argument.
     */
-        public livestock(string aPath, int id, int zoneNr, string aparens)
+        public livestock(string aPath, int id, int zoneNr, string aparens, bool include_manure = true)
     {
         parens = aparens;
         FileInformation livestockFile =new FileInformation(GlobalVars.Instance.getFarmFilePath());
@@ -460,62 +460,65 @@ public class livestock
                     maxNuseEfficiency = paramFile.getItemDouble("Value");
                 }
             }
-            // read in the type of housing used by the livestock
-            string housingPath = path + ".Housing";
-            min = 99;
-            max = 0;
-            livestockFile.setPath(housingPath);
-            livestockFile.getSectionNumber(ref min, ref max);
-            if (max > 0)
+            if (include_manure == true)
             {
-                double testPropTime = 0; //used to check that the proportions of time in all housing adds to 1.0
-                for (int i = min; i <= max; i++)
+                // read in the type of housing used by the livestock
+                string housingPath = path + ".Housing";
+                min = 99;
+                max = 0;
+                livestockFile.setPath(housingPath);
+                livestockFile.getSectionNumber(ref min, ref max);
+                if (max > 0)
                 {
-                    if (livestockFile.doesIDExist(i))
+                    double testPropTime = 0; //used to check that the proportions of time in all housing adds to 1.0
+                    for (int i = min; i <= max; i++)
                     {
-                        housingRecord newHouse = new housingRecord();
-                        newHouse.setparens(parens + "_housingRecord" + i.ToString());
-                        livestockFile.Identity.Add(i);
-                        newHouse.SetHousingType(livestockFile.getItemInt("HousingType"));
-                        newHouse.SetNameOfHousing(livestockFile.getItemString("NameOfHousing"));
-                        if (newHouse.GetHousingName() != "None") //then read in the manure storage that will take manure from the housing containing these animals 
+                        if (livestockFile.doesIDExist(i))
                         {
-                            newHouse.SetpropTime(livestockFile.getItemDouble("PropTime"));
-                            testPropTime += newHouse.GetpropTime();
-                            int maxManureRecipient = 0, minManureRecipient = 99;
-                            newHouse.Recipient = new List<ManureRecipient>();
-                            string RecipientPath = housingPath + '(' + i.ToString() + ").ManureRecipient";
-                            livestockFile.setPath(RecipientPath);
-                            livestockFile.getSectionNumber(ref minManureRecipient, ref maxManureRecipient);
-                            for (int j = minManureRecipient; j <= maxManureRecipient; j++)
+                            housingRecord newHouse = new housingRecord();
+                            newHouse.setparens(parens + "_housingRecord" + i.ToString());
+                            livestockFile.Identity.Add(i);
+                            newHouse.SetHousingType(livestockFile.getItemInt("HousingType"));
+                            newHouse.SetNameOfHousing(livestockFile.getItemString("NameOfHousing"));
+                            if (newHouse.GetHousingName() != "None") //then read in the manure storage that will take manure from the housing containing these animals 
                             {
-                                if (livestockFile.doesIDExist(j))
+                                newHouse.SetpropTime(livestockFile.getItemDouble("PropTime"));
+                                testPropTime += newHouse.GetpropTime();
+                                int maxManureRecipient = 0, minManureRecipient = 99;
+                                newHouse.Recipient = new List<ManureRecipient>();
+                                string RecipientPath = housingPath + '(' + i.ToString() + ").ManureRecipient";
+                                livestockFile.setPath(RecipientPath);
+                                livestockFile.getSectionNumber(ref minManureRecipient, ref maxManureRecipient);
+                                for (int j = minManureRecipient; j <= maxManureRecipient; j++)
                                 {
-                                    ManureRecipient newRecipient = new ManureRecipient();
-                                    newRecipient.setparens(parens + "_ManureRecipientI" + i.ToString() + "_ManureRecipientJ" + j.ToString());
-                                    livestockFile.Identity.Add(j);
-                                    int type = livestockFile.getItemInt("StorageType");
-                                    newRecipient.setManureStorageID(type);
-                                    string manurestoreName = livestockFile.getItemString("StorageName");
-                                    newRecipient.setManureStorageName(manurestoreName);
-                                    newHouse.Recipient.Add(newRecipient);
-                                    livestockFile.Identity.RemoveAt(livestockFile.Identity.Count - 1);
+                                    if (livestockFile.doesIDExist(j))
+                                    {
+                                        ManureRecipient newRecipient = new ManureRecipient();
+                                        newRecipient.setparens(parens + "_ManureRecipientI" + i.ToString() + "_ManureRecipientJ" + j.ToString());
+                                        livestockFile.Identity.Add(j);
+                                        int type = livestockFile.getItemInt("StorageType");
+                                        newRecipient.setManureStorageID(type);
+                                        string manurestoreName = livestockFile.getItemString("StorageName");
+                                        newRecipient.setManureStorageName(manurestoreName);
+                                        newHouse.Recipient.Add(newRecipient);
+                                        livestockFile.Identity.RemoveAt(livestockFile.Identity.Count - 1);
+                                    }
                                 }
+                                housingDetails.Add(newHouse);
+                                livestockFile.setPath(housingPath);
                             }
-                            housingDetails.Add(newHouse);
-                            livestockFile.setPath(housingPath);
-                        }
-                        else
-                        {
-                            testPropTime = 1.0;
-                            livestockFile.Identity.RemoveAt(livestockFile.Identity.Count - 1);
+                            else
+                            {
+                                testPropTime = 1.0;
+                                livestockFile.Identity.RemoveAt(livestockFile.Identity.Count - 1);
+                            }
                         }
                     }
-                }
-                if (testPropTime != 1.0)
-                {
-                    string messageString = ("Sum of proportions of time in different housing does not equal 1.0 ");
-                    GlobalVars.Instance.Error(messageString);
+                    if (testPropTime != 1.0)
+                    {
+                        string messageString = ("Sum of proportions of time in different housing does not equal 1.0 ");
+                        GlobalVars.Instance.Error(messageString);
+                    }
                 }
             }
             ///read livestock feed ration
@@ -531,7 +534,7 @@ public class livestock
                     ///find the feed code for the first feed item
                     feedItem newFeedItem = new feedItem(feeditemPath, i, true,parens+"_"+i.ToString());
                     //if there is no housing or corralling, all feed is fed at pasture
-                    if ((housingDetails.Count == 0) && (newFeedItem.GetisGrazed() == false))
+                    if (include_manure && (housingDetails.Count == 0) && (newFeedItem.GetisGrazed() == false))
                         newFeedItem.SetfedAtPasture(true);
                     feedRation.Add(newFeedItem); //add this feed item to ration list
                 }

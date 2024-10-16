@@ -373,7 +373,6 @@ public class CropSequenceClass
         }
         numCropsInSequence = theCrops.Count;
         AdjustDates(theCrops[0].GetStartYear());    //this converts from calendar year to zero base e.g. 2010 to 0, 2011 to 1 etc
-        lengthOfSequence = calculatelengthOfSequence();  //recalculate length of sequence in years
         int length = 0;
         if (GlobalVars.Instance.reuseCtoolData == -1)
             length = GlobalVars.Instance.GetadaptationTimePeriod();
@@ -391,14 +390,15 @@ public class CropSequenceClass
             startYr = lengthOfSequence + 1;
             endYr = lengthOfSequence + 1;
         }
-        //the following code works out how many times the crop sequence will be repeated and then loads all the instances of CropClass
+        //the following code works out how many times the crop sequence will be repeated and then loads all the instances of CropClass into the CopyOfPlants list
         repeats = (int)Math.Ceiling(((double)length) / ((double)lengthOfSequence));//number of times to repeat this sequence of crops
         for (int j = 0; j < repeats - 1; j++)
         {
+            //Go through the list of crops however many times as necessary, creating clones of the CropClass and loading them into CopyOfPlants list
+            //Adjust the start and end date information, so the crops in CopyOfPlants appear sequentially
             for (int i = 0; i < theCrops.Count; i++)
             {
                 CropClass newClass = new CropClass(theCrops[i]);
-                long days = theCrops[i].getEndLongTime() - theCrops[i].getStartLongTime();  //duration of the crop in days
                 int been = 0;
                 int cropStartYr = theCrops[i].GetStartYear();
                 int cropEndYr = theCrops[i].GetEndYear();
@@ -430,6 +430,7 @@ public class CropSequenceClass
                 }
                 newClass.SetStartYear(startYr);
                 newClass.SetEndYear(endYr);
+                //Need to adjust the dates of any fertilizer and manure applications
                 for (int k = 0; k < newClass.manureApplied.Count; k++)
                 {
                     if (newClass.manureApplied[k].applicdate.GetMonth() < newClass.GetStartMonth())
@@ -449,6 +450,7 @@ public class CropSequenceClass
                 CopyOfPlants.Add(newClass);
             }
         }
+        //Add the new sequence of crops onto the end of the theCrop list
         for (int i = 0; i < CopyOfPlants.Count; i++)
         {
             CropClass acrop = CopyOfPlants[i];
@@ -466,6 +468,7 @@ public class CropSequenceClass
             aCrop.setArea(area);
         }
         lengthOfSequence = calculatelengthOfSequence();  //recalculate length of sequence in years
+
         thesoilWaterModel = new simpleSoil();
         //get the parameters for the sequence
         getparameters(zoneNr);
@@ -1745,7 +1748,7 @@ public class CropSequenceClass
                     theCrops[i].DoCropInputs(false);
                 }
                 //Run the soil C and N model
-                RunCropCTool(false, false, i, Temperature, theCrops[i].GetdroughtFactorSoil(), 0, ref CropCinputToSoil, ref CropNinputToSoil, ref ManCinputToSoil, ref ManNinputToSoil,
+                RunCropCTool(GlobalVars.Instance.Writectoolxls, false, i, Temperature, theCrops[i].GetdroughtFactorSoil(), 0, ref CropCinputToSoil, ref CropNinputToSoil, ref ManCinputToSoil, ref ManNinputToSoil,
                     ref CropsoilCO2_CEmission, ref CropCleached, ref mineralisedN);
                 // for debugging
                 //if (mineralisedN < 0)
@@ -1780,7 +1783,7 @@ public class CropSequenceClass
             resetC_Tool();
 
             double[] Temperatures = GlobalVars.Instance.theZoneData.airTemp;
-            input Ctoolinput = RunCropCTool(false, true, i, Temperatures, theCrops[i].GetdroughtFactorSoil(), 0, ref CropCinputToSoil, ref CropNinputToSoil, ref ManCinputToSoil, ref ManNinputToSoil, ref CropsoilCO2_CEmission, ref CropCleached, ref mineralisedN);
+            input Ctoolinput = RunCropCTool(false, GlobalVars.Instance.Writectoolxls, i, Temperatures, theCrops[i].GetdroughtFactorSoil(), 0, ref CropCinputToSoil, ref CropNinputToSoil, ref ManCinputToSoil, ref ManNinputToSoil, ref CropsoilCO2_CEmission, ref CropCleached, ref mineralisedN);
             avgCinput += Ctoolinput.totCarbon;
             avgNinput += Ctoolinput.totNitrogen;
 
@@ -2196,7 +2199,7 @@ public class CropSequenceClass
         else
             file.setPath("constants(0).spinupYearsNonBaseLine(-1)");
         spinupYears = file.getItemInt("Value");
-
+        bool writeToFile = GlobalVars.Instance.Writectoolxls;
         double soilNmineralised = 0;
         if (spinupYears > 0)
         {
@@ -2246,7 +2249,7 @@ public class CropSequenceClass
 
                 double [] spindroughtFactorSoil = GlobalVars.Instance.theZoneData.GetdroughtIndex();
 
-                node.Add(aModel.Dynamics(true, 1, startDay + (j + 1) * 365, startDay - 1 + (j + 2) * 365, FOM_Cin, HUM_Cin, Biochar_Cin, fomnIn, cultivation, meanTemperature, spindroughtFactorSoil,
+                node.Add(aModel.Dynamics(writeToFile, 1, startDay + (j + 1) * 365, startDay - 1 + (j + 2) * 365, FOM_Cin, HUM_Cin, Biochar_Cin, fomnIn, cultivation, meanTemperature, spindroughtFactorSoil,
                         ref tempCchange, ref tempCO2Emission, ref tempCleached, ref Nmin, ref tempNleached, CropSeqID));
 
                 // GlobalVars.Instance.log(j.ToString() + " " + aModel.GetFOMCStored().ToString() + " " + aModel.GetHUMCStored().ToString() + " " + aModel.GetROMCStored().ToString() +
