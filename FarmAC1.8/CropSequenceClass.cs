@@ -2240,6 +2240,24 @@ public class CropSequenceClass
 
             double Nmin = 0;
 
+            double[] spindroughtFactorSoil = GlobalVars.Instance.theZoneData.GetdroughtIndex();
+            double[] dailyDroughtFactorSoil = new double[365];
+            double[] dailyTemperature = new double[365];
+            timeClass atimeClass = new timeClass();
+            int dayNo = 0;
+            for (int j = 0; j < 12; j++)
+            {
+                if (j == 11)
+                    Console.WriteLine();
+                for (int i = 0; i < atimeClass.GetDaysInMonth(j+1); i++)
+                {
+                    dailyDroughtFactorSoil[dayNo] = spindroughtFactorSoil[j];
+                    dailyTemperature[dayNo] = meanTemperature[j];
+                    Console.WriteLine(dayNo);
+                    dayNo += 1;
+                }
+            }
+
             for (int j = 0; j < spinupYears; j++)
             {
                 double tempCchange = 0;
@@ -2247,9 +2265,8 @@ public class CropSequenceClass
                 double tempCO2Emission = 0;
                 double tempCleached = 0;
 
-                double [] spindroughtFactorSoil = GlobalVars.Instance.theZoneData.GetdroughtIndex();
 
-                node.Add(aModel.Dynamics(writeToFile, 1, startDay + (j + 1) * 365, startDay - 1 + (j + 2) * 365, FOM_Cin, HUM_Cin, Biochar_Cin, fomnIn, cultivation, meanTemperature, spindroughtFactorSoil,
+                node.Add(aModel.Dynamics(writeToFile, 1, startDay + (j + 1) * 365, startDay - 1 + (j + 2) * 365, FOM_Cin, HUM_Cin, Biochar_Cin, fomnIn, cultivation, dailyTemperature, dailyDroughtFactorSoil,
                         ref tempCchange, ref tempCO2Emission, ref tempCleached, ref Nmin, ref tempNleached, CropSeqID));
 
                 // GlobalVars.Instance.log(j.ToString() + " " + aModel.GetFOMCStored().ToString() + " " + aModel.GetHUMCStored().ToString() + " " + aModel.GetROMCStored().ToString() +
@@ -2343,6 +2360,8 @@ public class CropSequenceClass
         double OMdepthDistribCoeff = 2 / ((double)numOfLayers);
         double OMtimeDistCoeff = 2 / (double)theCrops[cropNo].getDuration();
         double oldDayCum = 0;
+        if (cropNo==2)
+        Console.WriteLine(cropNo);
         //run the soil C and N model on a daily basis for the whole duration of the crop 
         for (int j = 0; j < lastDay; j++)
         {

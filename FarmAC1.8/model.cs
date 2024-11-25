@@ -327,7 +327,6 @@ namespace AnimalChange
                                                 outputName = "outputFarm" + farmNr.ToString() + "ScenarioNr" + ScenarioNr.ToString();
 
                                             GlobalVars.Instance.OpenOutputFiles(outputName, outputDir);
-
                                             GlobalVars.Instance.writeStartTab("Farm");
 
                                             GlobalVars.Instance.initialiseExcretaExchange();
@@ -348,6 +347,8 @@ namespace AnimalChange
                                             {
                                                 aFarm.SetupRotation(farmInformation, newPath, zoneNr, farmNr, ScenarioNr, FarmType, soilTypeCount);
                                                 aFarm.SetupLivestockAndManure(farmInformation, zoneNr, farmNr, newPath, ScenarioNr);
+                                                GlobalVars.Instance.theManureExchange = new GlobalVars.theManureExchangeClass();
+                                                //GlobalVars.Instance.setRunFullModel(false);
                                                 if (!GlobalVars.Instance.getRunFullModel()) //only called when only the livestock excretion is needed
                                                 {
                                                     GlobalVars.Instance.CalcAllFeedAndProductsPotential(aFarm.GetRotationList());

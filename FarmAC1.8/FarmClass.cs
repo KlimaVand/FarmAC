@@ -147,19 +147,6 @@ public class FarmClass
         ///read the livestock details from file
 
         LoadLivestock(farmInformation, LivestockPath, zoneNr, farmNr, ScenarioNr);
-        //    int minLivestock = 99, maxLivestock = 0;
-
-        //farmInformation.getSectionNumber(ref minLivestock, ref maxLivestock);
-        //for (int LiveStockID = minLivestock; LiveStockID <= maxLivestock; LiveStockID++)
-        //{
-
-        //    if (farmInformation.doesIDExist(LiveStockID))
-        //    {
-        //        livestock anAnimal = new livestock(LivestockPath, LiveStockID, zoneNr, "farmnr" + farmNr.ToString() + "_ScenarioNr" + ScenarioNr.ToString() + "_livestock" + LiveStockID.ToString());
-        //        anAnimal.GetAllFeedItemsUsed();
-        //        listOfLivestock.Add(anAnimal);
-        //    }
-        //}
         ///read details of any manure stores that do not receive manure from livestock on the farm
         string ManureStoragePath = newPath + "(" + ScenarioNr.ToString() + ").ManureStorage";
         farmInformation.setPath(ManureStoragePath);
@@ -224,7 +211,7 @@ public class FarmClass
             housing ahouse = listOfHousing[i];
             ahouse.DoHousing();
         }
-        GlobalVars.Instance.theManureExchange = new GlobalVars.theManureExchangeClass();
+//        GlobalVars.Instance.theManureExchange = new GlobalVars.theManureExchangeClass();
         for (int i = 0; i < listOfManurestores.Count; i++)  //simulate each of the manure stores
         {
             manureStore amanurestore2 = listOfManurestores[i];
