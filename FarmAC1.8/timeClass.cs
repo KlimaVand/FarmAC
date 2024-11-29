@@ -73,9 +73,9 @@ public class timeClass
         }
         else
             month = amonth;
-        if ((ayear <= 0) || (ayear > 2100))
+        if ((ayear < 0) || (ayear > 2100))
         {
-            GlobalVars.Instance.Error("Attempt to set year to <1 or >2100");
+            GlobalVars.Instance.Error("Attempt to set year to <0 or >2100");
             return false;
         }
         else
@@ -85,7 +85,7 @@ public class timeClass
     //! Get date as a long integer of days since year 0.
     public long getLongTime()
     {
-        long longTime = 365*(year-1);  // no leap years here!
+        long longTime = 365* year;  // no leap years here!
         for (int i = 0; i < month-1; i++)
         {
             longTime += tabDaysPerMonth[i];

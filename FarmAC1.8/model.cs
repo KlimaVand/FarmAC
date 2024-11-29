@@ -1,4 +1,5 @@
 ﻿//#define LocalServer
+#define test_runs
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,8 +56,14 @@ namespace AnimalChange
                 timer.Start();
                 //start reading the files controlling the execution
                 string[] system = new string[2];
+
+#if test_runs   //Run all test farms
+                system[0] = "system_test.xml";
+                system[1] = "system_testAlternative.xml";
+#else
                 system[0] = "system.xml";
                 system[1] = "systemAlternative.xml";
+#endif
                 FileInformation settings = new FileInformation(system);
                 settings.setPath("CommonSettings(-1)");
                 string outputDir = String.Copy(settings.getItemString("alternativePath")); ;
@@ -394,8 +401,6 @@ namespace AnimalChange
                     ts.Hours, ts.Minutes, ts.Seconds,
                     ts.Milliseconds / 10);
                     Console.WriteLine("RunTime (hrs:mins:secs) " + elapsedTime);
-                    Console.WriteLine();
-                    //Console.WriteLine("Time elapsed = ");
                     //
                 }
             }
@@ -403,6 +408,8 @@ namespace AnimalChange
             {
                 string errorString = e.Message;
             }
+            Console.Write("Press any key");
+            Console.Read();
         }
 
 

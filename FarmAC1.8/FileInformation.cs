@@ -499,7 +499,8 @@ public class FileInformation
             for (int i = 0; i < node.Count(); i++)
             {
                 //section found
-                if (PathNames[iteration].CompareTo(node.ElementAt(i).getNodeName().ToString()) == 0)
+                string testNodeName = node.ElementAt(i).getNodeName().ToString();
+                if (PathNames[iteration].CompareTo(testNodeName) == 0)
                 {
                     //finding the minimum and maximum section
                     List<Node> ting = node.ElementAt(i).SubNode;

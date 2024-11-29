@@ -2247,13 +2247,10 @@ public class CropSequenceClass
             int dayNo = 0;
             for (int j = 0; j < 12; j++)
             {
-                if (j == 11)
-                    Console.WriteLine();
                 for (int i = 0; i < atimeClass.GetDaysInMonth(j+1); i++)
                 {
                     dailyDroughtFactorSoil[dayNo] = spindroughtFactorSoil[j];
                     dailyTemperature[dayNo] = meanTemperature[j];
-                    Console.WriteLine(dayNo);
                     dayNo += 1;
                 }
             }
@@ -2264,7 +2261,6 @@ public class CropSequenceClass
                 double tempNleached = 0;
                 double tempCO2Emission = 0;
                 double tempCleached = 0;
-
 
                 node.Add(aModel.Dynamics(writeToFile, 1, startDay + (j + 1) * 365, startDay - 1 + (j + 2) * 365, FOM_Cin, HUM_Cin, Biochar_Cin, fomnIn, cultivation, dailyTemperature, dailyDroughtFactorSoil,
                         ref tempCchange, ref tempCO2Emission, ref tempCleached, ref Nmin, ref tempNleached, CropSeqID));
@@ -2360,8 +2356,6 @@ public class CropSequenceClass
         double OMdepthDistribCoeff = 2 / ((double)numOfLayers);
         double OMtimeDistCoeff = 2 / (double)theCrops[cropNo].getDuration();
         double oldDayCum = 0;
-        if (cropNo==2)
-        Console.WriteLine(cropNo);
         //run the soil C and N model on a daily basis for the whole duration of the crop 
         for (int j = 0; j < lastDay; j++)
         {
@@ -2593,8 +2587,8 @@ public class CropSequenceClass
         double cropDuration = theCrops[cropNo].getDuration();
         while (k < cropDuration)
         {
-            if ((k == 25) && (cropNo == 0))
-                Console.Write("");
+            //if ((k == 25) && (cropNo == 0))
+              //  Console.Write("");
             double currentLAI = theCrops[cropNo].CalculateLAI(k);
             double rootingDepth = theCrops[cropNo].CalculateRootingDepth(k);
             double precip = theCrops[cropNo].Getprecipitation(k);

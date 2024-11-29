@@ -1105,7 +1105,7 @@ public class CropClass
         {
             GlobalVars.Instance.Error("Incorrect date for end date for " + name);
         }
-        duration = theEndDate.getLongTime() - theStartDate.getLongTime() + 1;
+        duration = theEndDate.getLongTime() - theStartDate.getLongTime();
         if (duration <= 0)
         {
             string outputString = "negative duration in crop sequence name " + theCropSeqName + " crop name " + name;
@@ -2000,7 +2000,6 @@ public class CropClass
                 aManure.SetTAN(0.0);
                 aManure.SetlabileOrganicN(aManure.GetlabileOrganicN() - tmpNH3emission);
             }
-            Console.WriteLine(duration.ToString()+ " " + dayNo.ToString());
             if (dayNo >= duration)
             {
                 Console.Write("");
@@ -2288,8 +2287,6 @@ public class CropClass
     */
     public void CalcAvailableNandGrowth(ref double surplusMineralN, double thesoilNMineralisation, ref double relGrowth)
     {
-        if (theStartDate.getLongTime() == 345005)
-            Console.WriteLine();
         mineralNFromLastCrop = surplusMineralN;
         soilNMineralisation = thesoilNMineralisation;
         if (soilNMineralisation < 0)
@@ -2298,7 +2295,7 @@ public class CropClass
         double totmanureTAN = GetmanureTAN();
         double soilNSupply = mineralNFromLastCrop + soilNMineralisation;
         //calculate N deposition from atmosphere (kg/ha)
-        nAtm = (NDepositionRate/365) * (getEndLongTime() - getStartLongTime() + 1);
+        nAtm = (NDepositionRate/365) * (getEndLongTime() - getStartLongTime());
         //note tha N2O emissions are currently calculated after removal of NH3 emissions and without humic N
         double evenNSupply = urineNasFertilizer + soilNMineralisation + nAtm - urineNH3emission;
         relGrowth = 0;
@@ -2601,8 +2598,8 @@ public class CropClass
             }
         }
         //Console.WriteLine(" init start yr " + GetStartYear().ToString() + " init end " + GetEndYear().ToString());
-        SetStartYear(GetStartYear() - firstYear + 1);
-        SetEndYear(GetEndYear() - firstYear + 1);
+        SetStartYear(GetStartYear() - firstYear);
+        SetEndYear(GetEndYear() - firstYear);
         //Console.WriteLine(" fin start yr " + GetStartYear().ToString() + " fin end " + GetEndYear().ToString());
     }
     //!  Check Crop C Balance. 
@@ -2691,7 +2688,7 @@ public class CropClass
     */
     public double  CalcDuration()
     {
-        return duration = theEndDate.getLongTime() - theStartDate.getLongTime() + 1;
+        return duration = theEndDate.getLongTime() - theStartDate.getLongTime();
     }
     //!  Write results data to file
     public void Write()

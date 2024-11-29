@@ -444,7 +444,7 @@ public class ctool2
         CO2Emission = 0;
         Nleached = 0;
         Cleached = 0;
-        long iterations = endDay - startDay+1; //duration of period to simulate (days)
+        long iterations = endDay - startDay; //duration of period to simulate (days)
         double balance = 0;  //used to see if the budget is closed
         
         XElement ctoolData = new XElement("ctool"); 
