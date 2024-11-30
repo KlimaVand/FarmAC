@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<NewDataSet>
+  <Farm>
+    <Identity>67913</Identity>
+    <FarmNumber>67913</FarmNumber>
+    <FarmOwnerName>67913 Permanent grass, grazed by one dairy cow</FarmOwnerName>
+    <FarmOwnerAddress />
+    <FarmOwnerZipCode />
+    <FarmOwnerTown />
+    <FarmDescription />
+    <AgroEcologicalZone>1</AgroEcologicalZone>
+    <FarmType>3</FarmType>
+    <FarmTypeDescription>Kvægavler</FarmTypeDescription>
+    <SelectedScenario>
+      <Identity>2</Identity>
+      <FarmNumber>67913</FarmNumber>
+      <Name>No irrigation</Name>
+      <NumberOfScenario>2</NumberOfScenario>
+      <IS-ID>1</IS-ID>
+      <ES-ID>1</ES-ID>
+      <InventorySystem>
+        <Name>IPCC 2006 </Name>
+        <Value>1</Value>
+      </InventorySystem>
+      <Rotation>
+        <Identity>1</Identity>
+        <FarmNumber>67913</FarmNumber>
+        <ScenarioID>1</ScenarioID>
+        <NameOfRotation>1</NameOfRotation>
+        <Area>5</Area>
+        <SoilType>Coarse Sandy Soil</SoilType>
+        <Crop>
+          <Identity>1</Identity>
+          <NameOfCrop>Permanent grass</NameOfCrop>
+          <RotationID>1</RotationID>
+          <Start_day>29</Start_day>
+          <Start_month>4</Start_month>
+          <Start_year>2013</Start_year>
+          <End_day>2</End_day>
+          <End_month>8</End_month>
+          <End_year>2013</End_year>
+          <Irrigation>false</Irrigation>
+          <Fertilizer_applied>
+            <Identity>1</Identity>
+            <StorageID>31</StorageID>
+            <Name>Ammonium nitrate</Name>
+            <DeliveryID>5</DeliveryID>
+            <Unit>kg N/ha</Unit>
+            <Value>200</Value>
+            <N_Loss>4.4</N_Loss>
+            <Type>2</Type>
+            <Kg_N_Utilized>0</Kg_N_Utilized>
+            <Month_applied>5</Month_applied>
+            <RotationID>1</RotationID>
+            <FieldPlanRotationID>1</FieldPlanRotationID>
+            <MFId>0</MFId>
+            <Applic_technique_Fertilizer>
+              <NameS>Fertilizer spreading</NameS>
+              <NameI>5</NameI>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>1</FieldPlanRotationID>
+              <StorageID>31</StorageID>
+              <MFId>0</MFId>
+            </Applic_technique_Fertilizer>
+          </Fertilizer_applied>
+          <Fertilizer_applied>
+            <Identity>2</Identity>
+            <StorageID>31</StorageID>
+            <Name>Ammonium nitrate</Name>
+            <DeliveryID>5</DeliveryID>
+            <Unit>kg N/ha</Unit>
+            <Value>100</Value>
+            <N_Loss>2.2</N_Loss>
+            <Type>2</Type>
+            <Kg_N_Utilized>0</Kg_N_Utilized>
+            <Month_applied>7</Month_applied>
+            <RotationID>1</RotationID>
+            <FieldPlanRotationID>1</FieldPlanRotationID>
+            <MFId>1</MFId>
+            <Applic_technique_Fertilizer>
+              <NameS>Fertilizer spreading</NameS>
+              <NameI>5</NameI>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>1</FieldPlanRotationID>
+              <StorageID>31</StorageID>
+              <MFId>1</MFId>
+            </Applic_technique_Fertilizer>
+          </Fertilizer_applied>
+          <HarvestMethod>
+            <Value>Forage harvester</Value>
+            <Description>Forage harvesting</Description>
+            <Identity>1</Identity>
+            <RotationID>1</RotationID>
+          </HarvestMethod>
+          <Product>
+            <Identity>1</Identity>
+            <Name>Clover hay, low fodder index</Name>
+            <Amount>0</Amount>
+            <FeedCode>626</FeedCode>
+            <Harvested>Harvested</Harvested>
+            <RotationID>1</RotationID>
+            <FieldPlanRotationID>1</FieldPlanRotationID>
+            <Grazed>false</Grazed>
+            <Expected_yield>
+              <Value>0</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>1</FieldPlanRotationID>
+              <FeedstuffID>626</FeedstuffID>
+            </Expected_yield>
+            <Potential_yield>
+              <Value>8000</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>1</FieldPlanRotationID>
+              <FeedstuffID>626</FeedstuffID>
+            </Potential_yield>
+          </Product>
+        </Crop>
+        <Crop>
+          <Identity>2</Identity>
+          <NameOfCrop>Permanent grass</NameOfCrop>
+          <RotationID>1</RotationID>
+          <Start_day>3</Start_day>
+          <Start_month>8</Start_month>
+          <Start_year>2013</Start_year>
+          <End_day>29</End_day>
+          <End_month>9</End_month>
+          <End_year>2013</End_year>
+          <Irrigation>false</Irrigation>
+          <HarvestMethod>
+            <Value>Grazing</Value>
+            <Description>Grazing</Description>
+            <Identity>2</Identity>
+            <RotationID>1</RotationID>
+          </HarvestMethod>
+          <Product>
+            <Identity>2</Identity>
+            <Name>Grass, 12-15 cm grazed</Name>
+            <Amount>0</Amount>
+            <FeedCode>1465</FeedCode>
+            <Harvested>Harvested</Harvested>
+            <RotationID>1</RotationID>
+            <FieldPlanRotationID>2</FieldPlanRotationID>
+            <Grazed>true</Grazed>
+            <Expected_yield>
+              <Value>1500</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>2</FieldPlanRotationID>
+              <FeedstuffID>1465</FeedstuffID>
+            </Expected_yield>
+            <Potential_yield>
+              <Value>2000</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>2</FieldPlanRotationID>
+              <FeedstuffID>1465</FeedstuffID>
+            </Potential_yield>
+          </Product>
+        </Crop>
+        <Crop>
+          <Identity>3</Identity>
+          <NameOfCrop>Permanent grass</NameOfCrop>
+          <RotationID>1</RotationID>
+          <Start_day>30</Start_day>
+          <Start_month>9</Start_month>
+          <Start_year>2013</Start_year>
+          <End_day>28</End_day>
+          <End_month>4</End_month>
+          <End_year>2014</End_year>
+          <Irrigation>false</Irrigation>
+          <Manure_applied>
+            <Identity>1</Identity>
+            <StorageType>1</StorageType>
+            <Name>Cattle slurry</Name>
+            <DeliveryID>6</DeliveryID>
+            <Unit>kg N/ha</Unit>
+            <Value>78</Value>
+            <N_Loss>3.12</N_Loss>
+            <Type>1</Type>
+            <Kg_N_Utilized>0</Kg_N_Utilized>
+            <Month_applied>3</Month_applied>
+            <RotationID>1</RotationID>
+            <SpeciesGroup>1</SpeciesGroup>
+            <FieldPlanRotationID>3</FieldPlanRotationID>
+            <MFId>0</MFId>
+            <Applic_technique_Manure>
+              <NameS>Broadspread</NameS>
+              <NameI>6</NameI>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>3</FieldPlanRotationID>
+              <StorageID>1</StorageID>
+              <MFId>0</MFId>
+            </Applic_technique_Manure>
+          </Manure_applied>
+          <HarvestMethod>
+            <Value>Grazing</Value>
+            <Description>Grazing</Description>
+            <Identity>3</Identity>
+            <RotationID>1</RotationID>
+          </HarvestMethod>
+          <Product>
+            <Identity>4</Identity>
+            <Name>Grass, 12-15 cm incorporated</Name>
+            <Amount>0</Amount>
+            <FeedCode>2465</FeedCode>
+            <Harvested>Incorporated</Harvested>
+            <RotationID>1</RotationID>
+            <FieldPlanRotationID>3</FieldPlanRotationID>
+            <Grazed>false</Grazed>
+            <Expected_yield>
+              <Value>0</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>3</FieldPlanRotationID>
+              <FeedstuffID>2465</FeedstuffID>
+            </Expected_yield>
+            <Potential_yield>
+              <Value>1000</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>1</RotationID>
+              <FieldPlanRotationID>3</FieldPlanRotationID>
+              <FeedstuffID>2465</FeedstuffID>
+            </Potential_yield>
+          </Product>
+        </Crop>
+      </Rotation>
+      <Rotation>
+        <Identity>2</Identity>
+        <FarmNumber>67913</FarmNumber>
+        <ScenarioID>1</ScenarioID>
+        <NameOfRotation>2</NameOfRotation>
+        <Area>5</Area>
+        <SoilType>Coarse Sandy Soil</SoilType>
+        <Crop>
+          <Identity>1</Identity>
+          <NameOfCrop>Permanent grass</NameOfCrop>
+          <RotationID>2</RotationID>
+          <Start_day>29</Start_day>
+          <Start_month>4</Start_month>
+          <Start_year>2013</Start_year>
+          <End_day>29</End_day>
+          <End_month>9</End_month>
+          <End_year>2013</End_year>
+          <Irrigation>false</Irrigation>
+          <Fertilizer_applied>
+            <Identity>3</Identity>
+            <StorageID>31</StorageID>
+            <Name>Ammonium nitrate</Name>
+            <DeliveryID>5</DeliveryID>
+            <Unit>kg N/ha</Unit>
+            <Value>200</Value>
+            <N_Loss>4.4</N_Loss>
+            <Type>2</Type>
+            <Kg_N_Utilized>0</Kg_N_Utilized>
+            <Month_applied>4</Month_applied>
+            <RotationID>2</RotationID>
+            <FieldPlanRotationID>1</FieldPlanRotationID>
+            <MFId>0</MFId>
+            <Applic_technique_Fertilizer>
+              <NameS>Fertilizer spreading</NameS>
+              <NameI>5</NameI>
+              <RotationID>2</RotationID>
+              <FieldPlanRotationID>1</FieldPlanRotationID>
+              <StorageID>31</StorageID>
+              <MFId>0</MFId>
+            </Applic_technique_Fertilizer>
+          </Fertilizer_applied>
+          <Fertilizer_applied>
+            <Identity>4</Identity>
+            <StorageID>31</StorageID>
+            <Name>Ammonium nitrate</Name>
+            <DeliveryID>5</DeliveryID>
+            <Unit>kg N/ha</Unit>
+            <Value>100</Value>
+            <N_Loss>2.2</N_Loss>
+            <Type>2</Type>
+            <Kg_N_Utilized>0</Kg_N_Utilized>
+            <Month_applied>7</Month_applied>
+            <RotationID>2</RotationID>
+            <FieldPlanRotationID>1</FieldPlanRotationID>
+            <MFId>1</MFId>
+            <Applic_technique_Fertilizer>
+              <NameS>Fertilizer spreading</NameS>
+              <NameI>5</NameI>
+              <RotationID>2</RotationID>
+              <FieldPlanRotationID>1</FieldPlanRotationID>
+              <StorageID>31</StorageID>
+              <MFId>1</MFId>
+            </Applic_technique_Fertilizer>
+          </Fertilizer_applied>
+          <HarvestMethod>
+            <Value>Grazing</Value>
+            <Description>Grazing</Description>
+            <Identity>1</Identity>
+            <RotationID>2</RotationID>
+          </HarvestMethod>
+          <Product>
+            <Identity>3</Identity>
+            <Name>Grass, 12-15 cm grazed</Name>
+            <Amount>0</Amount>
+            <FeedCode>1465</FeedCode>
+            <Harvested>Harvested</Harvested>
+            <RotationID>2</RotationID>
+            <FieldPlanRotationID>1</FieldPlanRotationID>
+            <Grazed>true</Grazed>
+            <Expected_yield>
+              <Value>7000</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>2</RotationID>
+              <FieldPlanRotationID>1</FieldPlanRotationID>
+              <FeedstuffID>1465</FeedstuffID>
+            </Expected_yield>
+            <Potential_yield>
+              <Value>10000</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>2</RotationID>
+              <FieldPlanRotationID>1</FieldPlanRotationID>
+              <FeedstuffID>1465</FeedstuffID>
+            </Potential_yield>
+          </Product>
+        </Crop>
+        <Crop>
+          <Identity>2</Identity>
+          <NameOfCrop>Permanent grass</NameOfCrop>
+          <RotationID>2</RotationID>
+          <Start_day>30</Start_day>
+          <Start_month>9</Start_month>
+          <Start_year>2013</Start_year>
+          <End_day>28</End_day>
+          <End_month>4</End_month>
+          <End_year>2014</End_year>
+          <Irrigation>false</Irrigation>
+          <HarvestMethod>
+            <Value>Grazing</Value>
+            <Description>Grazing</Description>
+            <Identity>2</Identity>
+            <RotationID>2</RotationID>
+          </HarvestMethod>
+          <Product>
+            <Identity>5</Identity>
+            <Name>Grass, 12-15 cm incorporated</Name>
+            <Amount>0</Amount>
+            <FeedCode>2465</FeedCode>
+            <Harvested>Incorporated</Harvested>
+            <RotationID>2</RotationID>
+            <FieldPlanRotationID>2</FieldPlanRotationID>
+            <Grazed>false</Grazed>
+            <Expected_yield>
+              <Value>0</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>2</RotationID>
+              <FieldPlanRotationID>2</FieldPlanRotationID>
+              <FeedstuffID>2465</FeedstuffID>
+            </Expected_yield>
+            <Potential_yield>
+              <Value>1000</Value>
+              <Unit>kg DM/ha</Unit>
+              <RotationID>2</RotationID>
+              <FieldPlanRotationID>2</FieldPlanRotationID>
+              <FeedstuffID>2465</FeedstuffID>
+            </Potential_yield>
+          </Product>
+        </Crop>
+      </Rotation>
+      <Livestock>
+        <Identity>1</Identity>
+        <Species_group>1</Species_group>
+        <LivestockType>1</LivestockType>
+        <NameOfAnimals>Holstein types - dairy</NameOfAnimals>
+        <NumberOfAnimals>10.00</NumberOfAnimals>
+        <avgProductionMilk>8500</avgProductionMilk>
+        <avgProductionMeat>0</avgProductionMeat>
+        <ProductionLevel3>0</ProductionLevel3>
+        <ScenarioID>1</ScenarioID>
+        <HerdID>1</HerdID>
+        <itemFed>
+          <Identity>1</Identity>
+          <FeedCode>221</FeedCode>
+          <Name>Barley, husked</Name>
+          <Amount>6</Amount>
+          <Grazed>false</Grazed>
+          <LivestockType>1</LivestockType>
+          <Species_group>1</Species_group>
+          <HerdID>1</HerdID>
+          <Unit>kg DM/day</Unit>
+        </itemFed>
+        <itemFed>
+          <Identity>2</Identity>
+          <FeedCode>1465</FeedCode>
+          <Name>Grass, 12-15 cm grazed</Name>
+          <Amount>11.6</Amount>
+          <Grazed>true</Grazed>
+          <LivestockType>1</LivestockType>
+          <Species_group>1</Species_group>
+          <HerdID>1</HerdID>
+          <Unit>kg DM/day</Unit>
+        </itemFed>
+        <Housing>
+          <Identity>1</Identity>
+          <HousingType>3</HousingType>
+          <NameOfHousing>Cubical house - slatted floor</NameOfHousing>
+          <LivestockType>1</LivestockType>
+          <Species_group>1</Species_group>
+          <PropTime>1</PropTime>
+          <HerdID>1</HerdID>
+          <ManureRecipient>
+            <Identity>1</Identity>
+            <StorageType>1</StorageType>
+            <StorageName>Slurry tank without crust/cover</StorageName>
+            <Stable>3</Stable>
+            <HerdID>1</HerdID>
+            <LivestockType>1</LivestockType>
+            <Species_group>1</Species_group>
+          </ManureRecipient>
+        </Housing>
+      </Livestock>
+      <EnergySystem>
+        <Name>Metabolisable energy</Name>
+        <Value>1</Value>
+      </EnergySystem>
+    </SelectedScenario>
+    <NDepositionRate>
+      <Description>Rate of deposition of N from the atmosphere</Description>
+      <Value>0</Value>
+      <Units>Kg N/ha/year</Units>
+      <FarmNumber>67913</FarmNumber>
+    </NDepositionRate>
+  </Farm>
+</NewDataSet>
