@@ -339,11 +339,13 @@ public class FarmClass
     //! Write the soil carbon data for each crop sequence on the farm to file.
     void writeCtoolData(List<CropSequenceClass> rotationList)
     {
+        bool writeHeader = true;
         System.IO.StreamWriter extraCtoolData = new System.IO.StreamWriter(GlobalVars.Instance.getWriteHandOverData());
         for (int i = 0; i < rotationList.Count; i++)
         {
             CropSequenceClass rotation = rotationList[i];
-            rotation.writeCtoolData(extraCtoolData);
+            rotation.writeCtoolData(extraCtoolData, writeHeader);
+            writeHeader = false;
         }
         extraCtoolData.Close();
     }
