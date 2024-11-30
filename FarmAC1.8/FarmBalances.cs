@@ -1160,102 +1160,202 @@ class farmBalanceClass
         GlobalVars.Instance.writeEndTab();
 
         //! Now write to the summary Excel (csv) file
-        GlobalVars.Instance.writeSummaryExcel("Farm and scenario", "", GlobalVars.Instance.getFarmFilePath()[0]); 
-        GlobalVars.Instance.writeSummaryExcel("C fixed from atmosphere", "kg C/ha/yr", carbonFromPlants / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in imported feed", "kg C/ha/yr", CPlantProductImported / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in imported bedding", "kg C/ha/yr", CinImportedBedding / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in fertiliser", "kg C/ha/yr", CinImportedFertiliser / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("Total_C_input", "kg C/ha/yr", (carbonFromPlants+CPlantProductImported+CinImportedBedding+ CinImportedFertiliser) /agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in exported milk", "kg C/ha/yr", Cmilk/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in exported meat", "kg C/ha/yr", Cmeat/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in mortalities", "kg C/ha/yr", Cmortalities/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in crop products sold", "kg C/ha/yr", CinCropProductsSold/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in exported manure", "kg C/ha/yr", Cmanexp/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("Change in C stored in the soil", "kg C/ha/yr", CDeltaSoil/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("Total_C_output", "kg C/ha/yr", (Cmanexp + Cmilk + Cmeat + CinCropProductsSold) / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in CO2 emitted by the soil", "kg C/ha/yr", soilCO2_CEmission/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in process storage losses", "kg C/ha/yr", processStorageCloss/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in grazed herbage", "kg C/ha/yr", grazedHerbageC/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in pasture-fed feed", "kg C/ha/yr",CinPastureFeed / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in crop products harvested", "kg C/ha/yr", harvestedC / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in feed waste", "kg C/ha/yr", CinFeedWaste/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in excreta deposited in housing", "kg C/ha/yr", CInhouseExcreta/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in CO2 lost from housing", "kg C/ha/yr",housingCLoss/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in manure sent to storage", "kg C/ha/yr", CinManureSentToStorage/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in CO2 emission from storage", "kg C/ha/yr", manurestoreCO2C/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in CH4 emission from storage", "kg C/ha/yr", manurestoreCH4C/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in runoff from storage", "kg C/ha/yr", manurestoreRunoffC/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in biogas CO2", "kg C/ha/yr", biogasCO2C/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in biogas CH4", "kg C/ha/yr", biogasCH4C/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in burnt residue CO", "kg C/ha/yr", burntResidueCOC/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in burnt residue CO2", "kg C/ha/yr", burntResidueCO2C/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in burnt residue black C", "kg C/ha/yr", burntResidueBlackC/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in livestock CH4", "kg C/ha/yr", livestockCH4C / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in livestock CO2", "kg C/ha/yr", livestockCO2C / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in biogas supplementary feedstock", "kg C/ha/yr", biogasSupplC / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in feed fed in housing", "kg C/ha/yr", CinFeedFedInHouse / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in bedding used in housing", "kg C/ha/yr", CinBedding / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in soil CH4 emission", "kg C/ha/yr", soilCH4_CEmission / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C lost from fertiliser C", "kg C/yr", fertiliserCloss / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("C in excreta deposited on fields", "kg C/ha/yr", excretalCtoPasture / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("Change in soil C", "kg C/ha/yr", CDeltaSoil / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("Total C emitted", "kg C/ha/yr", CLost / agriculturalArea);
-        double FarmCbalance = CInput - (CLost + Cexport);
-        double temp = 0;
-        ///inputs of N
-        GlobalVars.Instance.writeSummaryExcel("N in imported manure", "kg N/yr", Nmanimp / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N fixation", "kg N/ha/yr", NFix / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N deposited from atmosphere", "kg N/ha/yr", Natm / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N in fertiliser", "kg N/ha/yr", NFert / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N in imported crop products", "kg N/ha/yr", NPlantProductImported / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N in biogas supplementary feedstock", "kg N/ha/yr", biogasSupplN/ agriculturalArea);
-        temp = (Nmanimp + Natm + NFix + NFert + NPlantProductImported + biogasSupplN) / agriculturalArea;
-        GlobalVars.Instance.writeSummaryExcel("Total N input", "kg N/ha/yr", temp);
-        ///outputs of N
-        GlobalVars.Instance.writeSummaryExcel("N sold in crop products", "kg N/ha/yr", Nsold / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N sold in milk", "kg N/ha/yr", Nmilk / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N exported in meat", "kg N/ha/yr", NGrowth / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N in mortalities", "kg N/ha/yr", Nmortalities / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N in exported manure", "kg N/ha/yr", Nmanexp / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("Total amount of N exported", "kg N/ha/yr", NExport / agriculturalArea);
-        ///losses of N
-        GlobalVars.Instance.writeSummaryExcel("N lost in NH3 emission from housing", "kg N/ha/yr", housingNH3Loss / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N lost in N2 emission from manure storage", "kg N/ha/yr", manureN2Emission / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N lost in N2O emission from manure storage", "kg N/ha/yr", manureN2OEmission / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N lost in NH3 emission from manure storage", "kg N/ha/yr", manureNH3Emission / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N lost in runoff from manure storage", "kg N/ha/yr", runoffN / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N lost as N2 from the field", "kg N/ha/yr", fieldN2Emission / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N lost as N2O from the field", "kg N/ha/yr", fieldN2OEmission / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N lost as NH3 emission from fertilisers", "kg N/ha/yr", fertNH3NEmission / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N lost as NH3 from field-applied manure", "kg N/ha/yr", fieldmanureNH3Emission / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N lost as NO3 leaching from soil", "kg N/ha/yr", Nleaching / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N lost from processing/stored crop products", "kg N/ha/yr", processStorageNloss / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N lost in NH3 emission from urine deposited in field", "kg N/ha/yr", fieldUrineNH3Emission / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N lost as N2O in gases from burning crop residues", "kg N/ha/yr", burntResidueN2ON / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N lost as NH3 in gases from burning crop residues", "kg N/ha/yr", burntResidueNH3N / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N lost as NOx in gases from burning crop residues", "kg N/ha/yr", burntResidueNOxN / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N lost in other gases from burning crop residues", "kg N/ha/yr", burntResidueOtherN / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("Change in N stored in soil", "kg N/ha/yr", NDeltaSoil / agriculturalArea);
-        temp = (housingNH3Loss + manureN2Emission + manureN2OEmission + manureNH3Emission + runoffN + fieldN2Emission + fieldN2OEmission +
-            fertNH3NEmission + fieldmanureNH3Emission + processStorageNloss + fieldUrineNH3Emission + Nleaching + 
-            burntResidueN2ON + burntResidueNH3N + burntResidueNOxN + burntResidueOtherN) / agriculturalArea;
-        GlobalVars.Instance.writeSummaryExcel("Total_N_lost", "kg N/ha/yr", temp);
-        ///internal flows
-        GlobalVars.Instance.writeSummaryExcel("N in grazed feed", "kg N/ha/yr", NinGrazedFeed / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N fed in housing", "kg N/ha/yr", NfedInHousing / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N excreted in field", "kg N/ha/yr", NexcretedField / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N excreted in housing", "kg N/ha/yr", NexcretedHousing / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N input to storage in waste feed", "kg N/ha/yr", storageFromFeedWasteN / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N input to storage from housing", "kg N/ha/yr", storageFromHouseN / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N ex storage", "kg N/ha/yr", manureNexStorage / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N applied in manure to fields", "kg N/ha/yr", (manureNexStorage +Nmanimp-Nmanexp)/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N taken up by crops", "kg N/ha/yr", CropNuptake/ agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N input to soil in crop residues", "kg N/ha/yr", NinCropResidues / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N removed in crop products harvested", "kg N/ha/yr", Nharvested / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N in bedding", "kg N/ha/yr", Nbedding / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N in imported bedding", "kg N/ha/yr", NinImportedBedding / agriculturalArea);
-        GlobalVars.Instance.writeSummaryExcel("N in pasture-fed feed", "kg N/ha/yr", NfedAtPasture / agriculturalArea);
-        
+        if (agriculturalArea > 0)
+        {
+            GlobalVars.Instance.writeSummaryExcel("Farm and scenario", "", GlobalVars.Instance.getFarmFilePath()[0]);
+            GlobalVars.Instance.writeSummaryExcel("C fixed from atmosphere", "kg C/ha/yr", carbonFromPlants / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in imported feed", "kg C/ha/yr", CPlantProductImported / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in imported bedding", "kg C/ha/yr", CinImportedBedding / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in fertiliser", "kg C/ha/yr", CinImportedFertiliser / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("Total_C_input", "kg C/ha/yr", (carbonFromPlants + CPlantProductImported + CinImportedBedding + CinImportedFertiliser) / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in exported milk", "kg C/ha/yr", Cmilk / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in exported meat", "kg C/ha/yr", Cmeat / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in mortalities", "kg C/ha/yr", Cmortalities / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in crop products sold", "kg C/ha/yr", CinCropProductsSold / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in exported manure", "kg C/ha/yr", Cmanexp / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("Change in C stored in the soil", "kg C/ha/yr", CDeltaSoil / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("Total_C_output", "kg C/ha/yr", (Cmanexp + Cmilk + Cmeat + CinCropProductsSold) / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in CO2 emitted by the soil", "kg C/ha/yr", soilCO2_CEmission / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in process storage losses", "kg C/ha/yr", processStorageCloss / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in grazed herbage", "kg C/ha/yr", grazedHerbageC / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in pasture-fed feed", "kg C/ha/yr", CinPastureFeed / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in crop products harvested", "kg C/ha/yr", harvestedC / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in feed waste", "kg C/ha/yr", CinFeedWaste / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in excreta deposited in housing", "kg C/ha/yr", CInhouseExcreta / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in CO2 lost from housing", "kg C/ha/yr", housingCLoss / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in manure sent to storage", "kg C/ha/yr", CinManureSentToStorage / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in CO2 emission from storage", "kg C/ha/yr", manurestoreCO2C / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in CH4 emission from storage", "kg C/ha/yr", manurestoreCH4C / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in runoff from storage", "kg C/ha/yr", manurestoreRunoffC / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in biogas CO2", "kg C/ha/yr", biogasCO2C / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in biogas CH4", "kg C/ha/yr", biogasCH4C / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in burnt residue CO", "kg C/ha/yr", burntResidueCOC / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in burnt residue CO2", "kg C/ha/yr", burntResidueCO2C / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in burnt residue black C", "kg C/ha/yr", burntResidueBlackC / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in livestock CH4", "kg C/ha/yr", livestockCH4C / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in livestock CO2", "kg C/ha/yr", livestockCO2C / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in biogas supplementary feedstock", "kg C/ha/yr", biogasSupplC / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in feed fed in housing", "kg C/ha/yr", CinFeedFedInHouse / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in bedding used in housing", "kg C/ha/yr", CinBedding / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in soil CH4 emission", "kg C/ha/yr", soilCH4_CEmission / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C lost from fertiliser C", "kg C/yr", fertiliserCloss / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("C in excreta deposited on fields", "kg C/ha/yr", excretalCtoPasture / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("Change in soil C", "kg C/ha/yr", CDeltaSoil / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("Total C emitted", "kg C/ha/yr", CLost / agriculturalArea);
+            double FarmCbalance = CInput - (CLost + Cexport);
+            double temp = 0;
+            ///inputs of N
+            GlobalVars.Instance.writeSummaryExcel("N in imported manure", "kg N/yr", Nmanimp / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N fixation", "kg N/ha/yr", NFix / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N deposited from atmosphere", "kg N/ha/yr", Natm / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N in fertiliser", "kg N/ha/yr", NFert / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N in imported crop products", "kg N/ha/yr", NPlantProductImported / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N in biogas supplementary feedstock", "kg N/ha/yr", biogasSupplN / agriculturalArea);
+            temp = (Nmanimp + Natm + NFix + NFert + NPlantProductImported + biogasSupplN) / agriculturalArea;
+            GlobalVars.Instance.writeSummaryExcel("Total N input", "kg N/ha/yr", temp);
+            ///outputs of N
+            GlobalVars.Instance.writeSummaryExcel("N sold in crop products", "kg N/ha/yr", Nsold / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N sold in milk", "kg N/ha/yr", Nmilk / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N exported in meat", "kg N/ha/yr", NGrowth / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N in mortalities", "kg N/ha/yr", Nmortalities / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N in exported manure", "kg N/ha/yr", Nmanexp / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("Total amount of N exported", "kg N/ha/yr", NExport / agriculturalArea);
+            ///losses of N
+            GlobalVars.Instance.writeSummaryExcel("N lost in NH3 emission from housing", "kg N/ha/yr", housingNH3Loss / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N lost in N2 emission from manure storage", "kg N/ha/yr", manureN2Emission / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N lost in N2O emission from manure storage", "kg N/ha/yr", manureN2OEmission / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N lost in NH3 emission from manure storage", "kg N/ha/yr", manureNH3Emission / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N lost in runoff from manure storage", "kg N/ha/yr", runoffN / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N lost as N2 from the field", "kg N/ha/yr", fieldN2Emission / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N lost as N2O from the field", "kg N/ha/yr", fieldN2OEmission / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N lost as NH3 emission from fertilisers", "kg N/ha/yr", fertNH3NEmission / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N lost as NH3 from field-applied manure", "kg N/ha/yr", fieldmanureNH3Emission / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N lost as NO3 leaching from soil", "kg N/ha/yr", Nleaching / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N lost from processing/stored crop products", "kg N/ha/yr", processStorageNloss / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N lost in NH3 emission from urine deposited in field", "kg N/ha/yr", fieldUrineNH3Emission / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N lost as N2O in gases from burning crop residues", "kg N/ha/yr", burntResidueN2ON / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N lost as NH3 in gases from burning crop residues", "kg N/ha/yr", burntResidueNH3N / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N lost as NOx in gases from burning crop residues", "kg N/ha/yr", burntResidueNOxN / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N lost in other gases from burning crop residues", "kg N/ha/yr", burntResidueOtherN / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("Change in N stored in soil", "kg N/ha/yr", NDeltaSoil / agriculturalArea);
+            temp = (housingNH3Loss + manureN2Emission + manureN2OEmission + manureNH3Emission + runoffN + fieldN2Emission + fieldN2OEmission +
+                fertNH3NEmission + fieldmanureNH3Emission + processStorageNloss + fieldUrineNH3Emission + Nleaching +
+                burntResidueN2ON + burntResidueNH3N + burntResidueNOxN + burntResidueOtherN) / agriculturalArea;
+            GlobalVars.Instance.writeSummaryExcel("Total_N_lost", "kg N/ha/yr", temp);
+            ///internal flows
+            GlobalVars.Instance.writeSummaryExcel("N in grazed feed", "kg N/ha/yr", NinGrazedFeed / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N fed in housing", "kg N/ha/yr", NfedInHousing / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N excreted in field", "kg N/ha/yr", NexcretedField / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N excreted in housing", "kg N/ha/yr", NexcretedHousing / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N input to storage in waste feed", "kg N/ha/yr", storageFromFeedWasteN / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N input to storage from housing", "kg N/ha/yr", storageFromHouseN / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N ex storage", "kg N/ha/yr", manureNexStorage / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N applied in manure to fields", "kg N/ha/yr", (manureNexStorage + Nmanimp - Nmanexp) / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N taken up by crops", "kg N/ha/yr", CropNuptake / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N input to soil in crop residues", "kg N/ha/yr", NinCropResidues / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N removed in crop products harvested", "kg N/ha/yr", Nharvested / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N in bedding", "kg N/ha/yr", Nbedding / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N in imported bedding", "kg N/ha/yr", NinImportedBedding / agriculturalArea);
+            GlobalVars.Instance.writeSummaryExcel("N in pasture-fed feed", "kg N/ha/yr", NfedAtPasture / agriculturalArea);
+        }
+        else
+        {
+            GlobalVars.Instance.writeSummaryExcel("Farm and scenario", "", GlobalVars.Instance.getFarmFilePath()[0]);
+            GlobalVars.Instance.writeSummaryExcel("C fixed from atmosphere", "kg C/yr", "0");
+            GlobalVars.Instance.writeSummaryExcel("C in imported feed", "kg C/yr", CPlantProductImported);
+            GlobalVars.Instance.writeSummaryExcel("C in imported bedding", "kg C/yr", CinImportedBedding );
+            GlobalVars.Instance.writeSummaryExcel("C in fertiliser", "kg C/yr", "0");
+            GlobalVars.Instance.writeSummaryExcel("Total_C_input", "kg C/yr", (carbonFromPlants + CPlantProductImported + CinImportedBedding + CinImportedFertiliser) );
+            GlobalVars.Instance.writeSummaryExcel("C in exported milk", "kg C/yr", Cmilk );
+            GlobalVars.Instance.writeSummaryExcel("C in exported meat", "kg C/yr", Cmeat );
+            GlobalVars.Instance.writeSummaryExcel("C in mortalities", "kg C/yr", Cmortalities );
+            GlobalVars.Instance.writeSummaryExcel("C in crop products sold", "kg C/yr", CinCropProductsSold );
+            GlobalVars.Instance.writeSummaryExcel("C in exported manure", "kg C/yr", Cmanexp );
+            GlobalVars.Instance.writeSummaryExcel("Change in C stored in the soil", "kg C/yr", CDeltaSoil );
+            GlobalVars.Instance.writeSummaryExcel("Total_C_output", "kg C/yr", (Cmanexp + Cmilk + Cmeat + CinCropProductsSold) );
+            GlobalVars.Instance.writeSummaryExcel("C in CO2 emitted by the soil", "kg C/yr", soilCO2_CEmission );
+            GlobalVars.Instance.writeSummaryExcel("C in process storage losses", "kg C/yr", processStorageCloss );
+            GlobalVars.Instance.writeSummaryExcel("C in grazed herbage", "kg C/yr", grazedHerbageC );
+            GlobalVars.Instance.writeSummaryExcel("C in pasture-fed feed", "kg C/yr", CinPastureFeed );
+            GlobalVars.Instance.writeSummaryExcel("C in crop products harvested", "kg C/yr", harvestedC );
+            GlobalVars.Instance.writeSummaryExcel("C in feed waste", "kg C/yr", CinFeedWaste );
+            GlobalVars.Instance.writeSummaryExcel("C in excreta deposited in housing", "kg C/yr", CInhouseExcreta );
+            GlobalVars.Instance.writeSummaryExcel("C in CO2 lost from housing", "kg C/yr", housingCLoss );
+            GlobalVars.Instance.writeSummaryExcel("C in manure sent to storage", "kg C/yr", CinManureSentToStorage );
+            GlobalVars.Instance.writeSummaryExcel("C in CO2 emission from storage", "kg C/yr", manurestoreCO2C );
+            GlobalVars.Instance.writeSummaryExcel("C in CH4 emission from storage", "kg C/yr", manurestoreCH4C );
+            GlobalVars.Instance.writeSummaryExcel("C in runoff from storage", "kg C/yr", manurestoreRunoffC );
+            GlobalVars.Instance.writeSummaryExcel("C in biogas CO2", "kg C/yr", biogasCO2C );
+            GlobalVars.Instance.writeSummaryExcel("C in biogas CH4", "kg C/yr", biogasCH4C );
+            GlobalVars.Instance.writeSummaryExcel("C in burnt residue CO", "kg C/yr", burntResidueCOC );
+            GlobalVars.Instance.writeSummaryExcel("C in burnt residue CO2", "kg C/yr", burntResidueCO2C );
+            GlobalVars.Instance.writeSummaryExcel("C in burnt residue black C", "kg C/yr", burntResidueBlackC );
+            GlobalVars.Instance.writeSummaryExcel("C in livestock CH4", "kg C/yr", livestockCH4C );
+            GlobalVars.Instance.writeSummaryExcel("C in livestock CO2", "kg C/yr", livestockCO2C );
+            GlobalVars.Instance.writeSummaryExcel("C in biogas supplementary feedstock", "kg C/yr", biogasSupplC );
+            GlobalVars.Instance.writeSummaryExcel("C in feed fed in housing", "kg C/yr", CinFeedFedInHouse );
+            GlobalVars.Instance.writeSummaryExcel("C in bedding used in housing", "kg C/yr", CinBedding );
+            GlobalVars.Instance.writeSummaryExcel("C in soil CH4 emission", "kg C/yr", soilCH4_CEmission );
+            GlobalVars.Instance.writeSummaryExcel("C lost from fertiliser C", "kg C/yr", fertiliserCloss );
+            GlobalVars.Instance.writeSummaryExcel("C in excreta deposited on fields", "kg C/yr", excretalCtoPasture );
+            GlobalVars.Instance.writeSummaryExcel("Change in soil C", "kg C/yr", CDeltaSoil );
+            GlobalVars.Instance.writeSummaryExcel("Total C emitted", "kg C/yr", CLost );
+            double FarmCbalance = CInput - (CLost + Cexport);
+            double temp = 0;
+            ///inputs of N
+            GlobalVars.Instance.writeSummaryExcel("N in imported manure", "kg N/yr", Nmanimp );
+            GlobalVars.Instance.writeSummaryExcel("N fixation", "kg N/yr", NFix );
+            GlobalVars.Instance.writeSummaryExcel("N deposited from atmosphere", "kg N/yr", Natm );
+            GlobalVars.Instance.writeSummaryExcel("N in fertiliser", "kg N/yr", NFert );
+            GlobalVars.Instance.writeSummaryExcel("N in imported crop products", "kg N/yr", NPlantProductImported );
+            GlobalVars.Instance.writeSummaryExcel("N in biogas supplementary feedstock", "kg N/yr", biogasSupplN );
+            temp = (Nmanimp + Natm + NFix + NFert + NPlantProductImported + biogasSupplN) ;
+            GlobalVars.Instance.writeSummaryExcel("Total N input", "kg N/yr", temp);
+            ///outputs of N
+            GlobalVars.Instance.writeSummaryExcel("N sold in crop products", "kg N/yr", Nsold );
+            GlobalVars.Instance.writeSummaryExcel("N sold in milk", "kg N/yr", Nmilk );
+            GlobalVars.Instance.writeSummaryExcel("N exported in meat", "kg N/yr", NGrowth );
+            GlobalVars.Instance.writeSummaryExcel("N in mortalities", "kg N/yr", Nmortalities );
+            GlobalVars.Instance.writeSummaryExcel("N in exported manure", "kg N/yr", Nmanexp );
+            GlobalVars.Instance.writeSummaryExcel("Total amount of N exported", "kg N/yr", NExport );
+            ///losses of N
+            GlobalVars.Instance.writeSummaryExcel("N lost in NH3 emission from housing", "kg N/yr", housingNH3Loss );
+            GlobalVars.Instance.writeSummaryExcel("N lost in N2 emission from manure storage", "kg N/yr", manureN2Emission );
+            GlobalVars.Instance.writeSummaryExcel("N lost in N2O emission from manure storage", "kg N/yr", manureN2OEmission );
+            GlobalVars.Instance.writeSummaryExcel("N lost in NH3 emission from manure storage", "kg N/yr", manureNH3Emission );
+            GlobalVars.Instance.writeSummaryExcel("N lost in runoff from manure storage", "kg N/yr", runoffN );
+            GlobalVars.Instance.writeSummaryExcel("N lost as N2 from the field", "kg N/yr", fieldN2Emission );
+            GlobalVars.Instance.writeSummaryExcel("N lost as N2O from the field", "kg N/yr", fieldN2OEmission );
+            GlobalVars.Instance.writeSummaryExcel("N lost as NH3 emission from fertilisers", "kg N/yr", fertNH3NEmission );
+            GlobalVars.Instance.writeSummaryExcel("N lost as NH3 from field-applied manure", "kg N/yr", fieldmanureNH3Emission );
+            GlobalVars.Instance.writeSummaryExcel("N lost as NO3 leaching from soil", "kg N/yr", Nleaching );
+            GlobalVars.Instance.writeSummaryExcel("N lost from processing/stored crop products", "kg N/yr", processStorageNloss );
+            GlobalVars.Instance.writeSummaryExcel("N lost in NH3 emission from urine deposited in field", "kg N/yr", fieldUrineNH3Emission );
+            GlobalVars.Instance.writeSummaryExcel("N lost as N2O in gases from burning crop residues", "kg N/yr", burntResidueN2ON );
+            GlobalVars.Instance.writeSummaryExcel("N lost as NH3 in gases from burning crop residues", "kg N/yr", burntResidueNH3N );
+            GlobalVars.Instance.writeSummaryExcel("N lost as NOx in gases from burning crop residues", "kg N/yr", burntResidueNOxN );
+            GlobalVars.Instance.writeSummaryExcel("N lost in other gases from burning crop residues", "kg N/yr", burntResidueOtherN );
+            GlobalVars.Instance.writeSummaryExcel("Change in N stored in soil", "kg N/yr", NDeltaSoil );
+            temp = (housingNH3Loss + manureN2Emission + manureN2OEmission + manureNH3Emission + runoffN + fieldN2Emission + fieldN2OEmission +
+                fertNH3NEmission + fieldmanureNH3Emission + processStorageNloss + fieldUrineNH3Emission + Nleaching +
+                burntResidueN2ON + burntResidueNH3N + burntResidueNOxN + burntResidueOtherN) ;
+            GlobalVars.Instance.writeSummaryExcel("Total_N_lost", "kg N/yr", temp);
+            ///internal flows
+            GlobalVars.Instance.writeSummaryExcel("N in grazed feed", "kg N/yr", NinGrazedFeed );
+            GlobalVars.Instance.writeSummaryExcel("N fed in housing", "kg N/yr", NfedInHousing );
+            GlobalVars.Instance.writeSummaryExcel("N excreted in field", "kg N/yr", NexcretedField );
+            GlobalVars.Instance.writeSummaryExcel("N excreted in housing", "kg N/yr", NexcretedHousing );
+            GlobalVars.Instance.writeSummaryExcel("N input to storage in waste feed", "kg N/yr", storageFromFeedWasteN );
+            GlobalVars.Instance.writeSummaryExcel("N input to storage from housing", "kg N/yr", storageFromHouseN );
+            GlobalVars.Instance.writeSummaryExcel("N ex storage", "kg N/yr", manureNexStorage );
+            GlobalVars.Instance.writeSummaryExcel("N applied in manure to fields", "kg N/yr", (manureNexStorage + Nmanimp - Nmanexp) );
+            GlobalVars.Instance.writeSummaryExcel("N taken up by crops", "kg N/yr", CropNuptake );
+            GlobalVars.Instance.writeSummaryExcel("N input to soil in crop residues", "kg N/yr", NinCropResidues );
+            GlobalVars.Instance.writeSummaryExcel("N removed in crop products harvested", "kg N/yr", Nharvested );
+            GlobalVars.Instance.writeSummaryExcel("N in bedding", "kg N/yr", Nbedding );
+            GlobalVars.Instance.writeSummaryExcel("N in imported bedding", "kg N/yr", NinImportedBedding );
+            GlobalVars.Instance.writeSummaryExcel("N in pasture-fed feed", "kg N/yr", NfedAtPasture );
+        }
 
         GlobalVars.Instance.writeSummaryExcel("", "", 0);
         GlobalVars.Instance.writeSummaryExcel("", "", 0);

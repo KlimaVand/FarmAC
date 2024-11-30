@@ -117,6 +117,7 @@ namespace AnimalChange
                     theFarms = new List<FarmClass>();
                     GlobalVars.Instance.CloseLogFile();  //close log file at alternative location. Log files may be opened for each farm
                 }
+                int numberScenarios = 0;
                 for (int settingsID = minSetting; settingsID <= maxSetting; settingsID++)
                 {
                     FarmClass aFarm = new FarmClass();
@@ -372,6 +373,7 @@ namespace AnimalChange
                                                     aFarm.WriteFarmBalances();
                                                     GlobalVars.Instance.writeEndTab(); }
                                             }
+                                            numberScenarios++;
                                         }//end of scenario exists
                                         long ticks = DateTime.UtcNow.Ticks;
                                     }//end of scenario
@@ -391,7 +393,7 @@ namespace AnimalChange
                         GlobalVars.Instance.CloseAllFiles();
                         GlobalVars.Instance.CloseLogFile();  //close log file 
                     }
-                    Console.WriteLine("Finished after running " + (settingsID + 1).ToString() + " scenarios");
+                    Console.WriteLine("Finished after running " + numberScenarios.ToString() + " scenarios");
                     timer.Stop();
                     // Get the elapsed time as a TimeSpan value.
                     TimeSpan ts = timer.Elapsed;
