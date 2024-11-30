@@ -104,6 +104,45 @@
     <Adaptation>-1</Adaptation>
     <Note>One cow only</Note>
   </settings>
+  <settings>
+    <Identity>7</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67905\farm_67905_1.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67905\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>Grass farm with dairy cows and one cropping sequence</Note>
+  </settings>
+  <settings>
+    <Identity>8</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67900\farm_67900_1.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67900\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>Spring cereals with irrigation</Note>
+  </settings>
+  <settings>
+    <Identity>9</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67900\farm_67900_2.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67900\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>1</Adaptation>
+    <Note>Spring cereals with irrigation</Note>
+  </settings>
   <CommonSettings>
     <alternativePath>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\</alternativePath>
     <verbosityLevel>1</verbosityLevel>

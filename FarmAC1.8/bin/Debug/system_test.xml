@@ -1,121 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xml>
   <settings>
-    <Identity>0</Identity>
+    <Identity>10</Identity>
     <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\constants.xml </constants>
     <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67905\farm_67905_1.xml</farm>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67913\farm_67913_1.xml</farm>
     <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\fertMan.xml</fertAndManure>
     <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67905\output\</outputDir>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67913\output\</outputDir>
     <pauseBeforeExit>true</pauseBeforeExit>
     <stopOnError>true</stopOnError>
     <Adaptation>-1</Adaptation>
-    <Note>One cow only</Note>
-  </settings>
-  <settings>
-    <Identity>0</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\farm_67906_1.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\output\</outputDir>
-    <pauseBeforeExit>true</pauseBeforeExit>
-    <stopOnError>true</stopOnError>
-    <Adaptation>-1</Adaptation>
-    <Note>Test bare soil</Note>
-  </settings>
-  <settings>
-    <Identity>1</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\farm_67906_1.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\output\</outputDir>
-    <pauseBeforeExit>true</pauseBeforeExit>
-    <stopOnError>true</stopOnError>
-    <Adaptation>1</Adaptation>
-    <Note>Test bare soil</Note>
-  </settings>
-  <settings>
-    <Identity>2</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\farm_67898_1.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\output\</outputDir>
-    <pauseBeforeExit>true</pauseBeforeExit>
-    <stopOnError>true</stopOnError>
-    <Adaptation>-1</Adaptation>
-    <Note>One field with cereal</Note>
-  </settings>
-  <settings>
-    <Identity>3</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\farm_67898_1.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\output\</outputDir>
-    <pauseBeforeExit>true</pauseBeforeExit>
-    <stopOnError>true</stopOnError>
-    <Adaptation>1</Adaptation>
-    <Note>One field with cereal</Note>
-  </settings>
-  <settings>
-    <Identity>4</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\farm_67898_2.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\output\</outputDir>
-    <pauseBeforeExit>true</pauseBeforeExit>
-    <stopOnError>true</stopOnError>
-    <Adaptation>1</Adaptation>
-    <Note>One field with cereal and cover crop</Note>
-  </settings>
-  <settings>
-    <Identity>5</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\farm_67898_3.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\output\</outputDir>
-    <pauseBeforeExit>true</pauseBeforeExit>
-    <stopOnError>true</stopOnError>
-    <Adaptation>1</Adaptation>
-    <Note>One field with cereal with straw incorporation</Note>
-  </settings>
-  <settings>
-    <Identity>6</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67908\farm_67908_1.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67908\output\</outputDir>
-    <pauseBeforeExit>true</pauseBeforeExit>
-    <stopOnError>true</stopOnError>
-    <Adaptation>-1</Adaptation>
-    <Note>One cow only</Note>
-  </settings>
-  <settings>
-    <Identity>7</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67905\farm_67905_1.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67905\output\</outputDir>
-    <pauseBeforeExit>true</pauseBeforeExit>
-    <stopOnError>true</stopOnError>
-    <Adaptation>-1</Adaptation>
-    <Note>One cow only</Note>
+    <Note>Spring cereals with irrigation</Note>
   </settings>
   <CommonSettings>
     <alternativePath>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\</alternativePath>

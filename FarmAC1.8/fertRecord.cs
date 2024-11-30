@@ -119,7 +119,7 @@ using System.Xml;
         {
             monthOfApplication = GetMonth_applied() - cropStartMonth;
         }
-        int dayOfApplication = (int)Math.Round(monthOfApplication * 30.416 + 15);
+        int dayOfApplication = (int)Math.Round((monthOfApplication-1) * 30.416 + 15);
         int cropStartDay = cropStartDate.GetDay();
         if ((monthOfApplication == 0) && (dayOfApplication < cropStartDay))  //if an application in middle of month would be before the crop has started
             dayOfApplication = cropStartDay;
