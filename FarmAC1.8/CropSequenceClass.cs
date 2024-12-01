@@ -1712,7 +1712,7 @@ public class CropSequenceClass
             int count = 0;
 
             double[] Temperature = GlobalVars.Instance.theZoneData.airTemp;
-            CheckRotationCBalance(i + 1);
+            //CheckRotationCBalance(i + 1);  //only use for debugging. Causes problems if residues are carried over to the next crop
 
             //iterate for each crop, until the crop yield stabilises (note special treatment of grazed crops)
             while ((gotit == false) || (doneOnce == false))
