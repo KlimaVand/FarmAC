@@ -91,6 +91,12 @@ public class GlobalVars
         tmp.amounts = amount;
         alltotNFom.Add(tmp);
     }
+    public struct soilsTypeArray
+    {
+        public int soilType;
+        public double area;
+    };
+
     //! is false until a header has been written to the Field output file 
     public bool headerField;
     //! is false until a header has been written to the livestock output file 

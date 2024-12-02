@@ -7,7 +7,7 @@ using System.Xml.Linq;
 public class FarmClass
 {
     //! List of crop sequences on the farm
-	List<CropSequenceClass> rotationList;
+    List<CropSequenceClass> rotationList;
     //! List of livestock on the farm
     List<livestock> listOfLivestock;
     //! List of manure stores on the farm
@@ -25,7 +25,7 @@ public class FarmClass
     int ScenarioNo;
     //!  FarmClass constructor.
     public FarmClass()
-	{
+    {
         listOfManurestores = new List<manureStore>();
         listOfHousing = new List<housing>();
         listOfLivestock = new List<livestock>();
@@ -77,8 +77,8 @@ public class FarmClass
         //this code checks to make sure that the field areas have not been changed between the Baseline and mitigation scenarios
         if (GlobalVars.Instance.reuseCtoolData != -1)
         {
-            reworkCtoolDataFromFile();
-            double[] oldArea = new double[rotationList.Count];
+            checkSoilTypeAreas();
+/*            double[] oldArea = new double[rotationList.Count];
             double[] newArea = new double[rotationList.Count];
             for (int i = 0; i < rotationList.Count; i++)
             {
@@ -117,8 +117,12 @@ public class FarmClass
                 {
                     GlobalVars.Instance.Error("area for soil type " + j.ToString() + " in scenario does not match area in Baseline scenario");
                 }
-            }
+            }*/
 
+        }
+        for (int i=0; i<rotationList.Count; i++)
+        {
+            rotationList[i].InitialiseSoilCN();
         }
         if (farmArea > 0)
             areaWeightedDuration /= farmArea;
@@ -208,7 +212,7 @@ public class FarmClass
             housing ahouse = listOfHousing[i];
             ahouse.DoHousing();
         }
-//        GlobalVars.Instance.theManureExchange = new GlobalVars.theManureExchangeClass();
+        //        GlobalVars.Instance.theManureExchange = new GlobalVars.theManureExchangeClass();
         for (int i = 0; i < listOfManurestores.Count; i++)  //simulate each of the manure stores
         {
             manureStore amanurestore2 = listOfManurestores[i];
@@ -395,4 +399,41 @@ public class FarmClass
             }
         }
     }
-}
+    public void checkSoilTypeAreas()
+    {
+        List<GlobalVars.soilsTypeArray> anArray = new List<GlobalVars.soilsTypeArray>();
+        GlobalVars.soilsTypeArray temp = new GlobalVars.soilsTypeArray();
+        temp.area = rotationList[0].getArea();
+        temp.soilType = rotationList[0].GetsoiltypeNo();
+        anArray.Add(temp);
+        for (int i = 1; i < rotationList.Count; i++)
+        {
+            for (int j = 0; j < anArray.Count; j++)
+            {
+                temp = anArray[j];
+                if (rotationList[i].GetsoiltypeNo() == temp.soilType)
+                {
+                    temp.area += rotationList[i].getArea();
+                }
+                else
+                {
+                    temp = new GlobalVars.soilsTypeArray();
+                    temp.soilType = rotationList[i].GetsoiltypeNo();
+                    temp.area = rotationList[i].getArea();
+                    anArray.Add(temp);
+                }
+            }
+        }
+        for (int i = 0; i < GlobalVars.Instance.theSoilCTransferData.Count; i++)
+        {
+            for (int j = 0; j < anArray.Count; j++)
+            {
+                if (GlobalVars.Instance.theSoilCTransferData[i].soilType==anArray[j].soilType)
+                {
+                    if (GlobalVars.Instance.theSoilCTransferData[i].area != anArray[j].area)
+                        GlobalVars.Instance.Error("Areas of soil type " + anArray[j].soilType.ToString() + "differ in baseline and scenario");
+                }   
+            }
+        }
+    }
+ }
