@@ -2,9 +2,9 @@
 using System.Xml;
 using System.Xml.Linq;
 using System.Collections.Generic;
-/*! A class named ctool2 */
+/*! A class named SoilClayer */
 /*!
- Based on CTool model, expanded to include N
+ Based on CTool model
 */
 public class SoilClayer
 {
@@ -80,8 +80,7 @@ public class SoilClayer
         return biocharc;
     }
 
-    public SoilClayer(int theLayerNo, double theFOMdecompositionrate, double theHUMdecompositionrate, double theROMdecompositionrate, double thetF, double theROMificationfraction,
-        double thefCO2, double theClayfraction)
+    public SoilClayer(int theLayerNo, double theClayfraction = 0.0)
     {
         layerNo = theLayerNo;
         Clayfraction = theClayfraction;

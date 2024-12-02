@@ -333,8 +333,11 @@ namespace AnimalChange
                                                 outputName = "outputFarm" + farmNr.ToString() + "BaselineScenarioNr" + ScenarioNr.ToString();
                                             else
                                                 outputName = "outputFarm" + farmNr.ToString() + "ScenarioNr" + ScenarioNr.ToString();
-
-                                            GlobalVars.Instance.OpenOutputFiles(outputName, outputDir);
+                                            if (GlobalVars.Instance.reuseCtoolData != -1)
+                                            {
+                                                aFarm.reworkCtoolDataFromFile();
+                                            }
+                                                GlobalVars.Instance.OpenOutputFiles(outputName, outputDir);
                                             GlobalVars.Instance.writeStartTab("Farm");
 
                                             GlobalVars.Instance.initialiseExcretaExchange();

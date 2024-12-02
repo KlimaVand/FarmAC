@@ -19,6 +19,41 @@ public class GlobalVars
         public double amounts;
 
     };
+
+    //!Used to contain data for each soil type on a farm. Only used if soil types are not locked, so da from spinup is at the level of soil type, not crop sequence
+    //All values except area are in kg
+    public class soilTypeCdata
+    {
+        public double fomcLayer1=0;
+        public double fomcLayer2 = 0;
+        public double humcLayer1 = 0;
+        public double humcLayer2 = 0;
+        public double romcLayer1 = 0;
+        public double romcLayer2 = 0;
+        public double biocharcLayer1 = 0;
+        public double biocharcLayer2 = 0;
+        public double FOMn = 0;
+        public double residualMineralN = 0;
+        public double area = 0;
+        public int soilType = 0;
+        public soilTypeCdata() { }
+        public void AddData(soilTypeCdata dataToAdd)
+        {
+        fomcLayer1 += dataToAdd.fomcLayer1;
+        fomcLayer2 += dataToAdd.fomcLayer2;
+        humcLayer1 += dataToAdd.humcLayer1;
+        humcLayer2 += dataToAdd.humcLayer2;
+        romcLayer1 += dataToAdd.romcLayer1;
+        romcLayer2 += dataToAdd.romcLayer2;
+        biocharcLayer1 += dataToAdd.biocharcLayer1;
+        biocharcLayer2 += dataToAdd.biocharcLayer2;
+        FOMn += dataToAdd.FOMn;
+        residualMineralN += dataToAdd.residualMineralN;
+        area += dataToAdd.area;
+    }
+};
+    public List<soilTypeCdata> theSoilCTransferData = new List<soilTypeCdata>() { };
+
     //! an instance
     public List<totCFom> alltotCFom = new List<totCFom>();
     //! A normal member. Add variables to structure totCFom. Taking two arguments.
@@ -2244,7 +2279,7 @@ public class GlobalVars
         OpenTabfile();
          FieldfileName = outputDir + outputName + "Fieldfile.csv";
         OpenFieldFile();
-        livestockfileName = outputDir + outputName + "livetockfile.csv";
+        livestockfileName = outputDir + outputName + "livestockfile.csv";
         OpenLivestockFile();
         CtoolfileName = outputDir + outputName + "CtoolFile.csv";
         OpenCtoolFile();

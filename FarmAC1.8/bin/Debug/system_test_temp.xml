@@ -182,6 +182,19 @@
     <Adaptation>-1</Adaptation>
     <Note>Straw burning and stubble burning</Note>
   </settings>
+  <settings>
+    <Identity>13</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67936\farm_67936_2.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67936\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>Testing residues</Note>
+  </settings>
   <CommonSettings>
     <alternativePath>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\</alternativePath>
     <verbosityLevel>1</verbosityLevel>

@@ -70,10 +70,6 @@ public class FarmClass
                 areaWeightedDuration += anExample.getArea() * anExample.GetlengthOfSequence();
                 anExample.calcGrazedFeedItems();
                 farmArea += anExample.getArea();
-                if (GlobalVars.Instance.GetlockSoilTypes())
-                    soilTypeCount++;
-                else
-                    anExample.SetsoilTypeCount(anExample.GetsoiltypeNo());
                 rotationList.Add(anExample);
             }
         }
@@ -81,9 +77,10 @@ public class FarmClass
         //this code checks to make sure that the field areas have not been changed between the Baseline and mitigation scenarios
         if (GlobalVars.Instance.reuseCtoolData != -1)
         {
-            double[] oldArea = new double[20];
-            double[] newArea = new double[20];
-            for (int i = 0; i < 20; i++)
+            reworkCtoolDataFromFile();
+            double[] oldArea = new double[rotationList.Count];
+            double[] newArea = new double[rotationList.Count];
+            for (int i = 0; i < rotationList.Count; i++)
             {
                 oldArea[i] = 0;
                 newArea[i] = 0;
@@ -340,14 +337,62 @@ public class FarmClass
     void writeCtoolData(List<CropSequenceClass> rotationList)
     {
         bool writeHeader = true;
-        System.IO.StreamWriter extraCtoolData = new System.IO.StreamWriter(GlobalVars.Instance.getWriteHandOverData());
+        System.IO.StreamWriter handoverCtoolData = new System.IO.StreamWriter(GlobalVars.Instance.getWriteHandOverData());
         for (int i = 0; i < rotationList.Count; i++)
         {
             CropSequenceClass rotation = rotationList[i];
-            rotation.writeCtoolData(extraCtoolData, writeHeader);
+            rotation.writeCtoolData(handoverCtoolData, writeHeader);
             writeHeader = false;
         }
-        extraCtoolData.Close();
+        handoverCtoolData.Close();
+    }
+    public void reworkCtoolDataFromFile()
+    {
+        Console.WriteLine("handover Data from " + GlobalVars.Instance.getReadHandOverData());
+        string[] lines = null;
+        try  //look for the file containing the status variables 
+        {
+            lines = System.IO.File.ReadAllLines(GlobalVars.Instance.getReadHandOverData());
+        }
+        catch
+        {
+            GlobalVars.Instance.Error("could not find CTool handover data " + GlobalVars.Instance.getReadHandOverData());
+        }
+        List<GlobalVars.soilTypeCdata> tempSoilCTransferData = new List<GlobalVars.soilTypeCdata>();
+        GlobalVars.soilTypeCdata tempInputSoilData = new GlobalVars.soilTypeCdata();
+        for (int j = 1; j < lines.Length; j++)
+        {
+            //GlobalVars.Instance.theSoilCTransferData.Add(tempInputSoilData);
+            string[] data = lines[j].Split('\t');
+            double area = Convert.ToDouble(data[12]);
+            tempInputSoilData.soilType = Convert.ToInt32(data[1]);
+            tempInputSoilData.fomcLayer1 = Convert.ToDouble(data[2]) * area;
+            tempInputSoilData.fomcLayer2 = Convert.ToDouble(data[3]) * area;
+            tempInputSoilData.humcLayer1 = Convert.ToDouble(data[4]) * area;
+            tempInputSoilData.humcLayer2 = Convert.ToDouble(data[5]) * area;
+            tempInputSoilData.romcLayer1 = Convert.ToDouble(data[6]) * area;
+            tempInputSoilData.romcLayer2 = Convert.ToDouble(data[7]) * area;
+            tempInputSoilData.biocharcLayer1 = Convert.ToDouble(data[8]) * area;
+            tempInputSoilData.biocharcLayer2 = Convert.ToDouble(data[9]) * area;
+            tempInputSoilData.FOMn = Convert.ToDouble(data[10]) * area;
+            tempInputSoilData.residualMineralN = Convert.ToDouble(data[11]) * area;
+            tempInputSoilData.area = Convert.ToDouble(data[12]);
+            tempSoilCTransferData.Add(tempInputSoilData);
+        }
+        GlobalVars.Instance.theSoilCTransferData.Add(tempSoilCTransferData[0]);
+        for (int i = 1; i < tempSoilCTransferData.Count; i++)
+        {
+            for (int j = 0; j < GlobalVars.Instance.theSoilCTransferData.Count; j++)
+            {
+                if (tempSoilCTransferData[j].soilType == GlobalVars.Instance.theSoilCTransferData[j].soilType)
+                {
+                    GlobalVars.Instance.theSoilCTransferData[j].AddData(tempSoilCTransferData[j]);
+                }
+                else
+                {
+                    GlobalVars.Instance.theSoilCTransferData.Add(tempSoilCTransferData[j]);
+                }
+            }
+        }
     }
 }
-

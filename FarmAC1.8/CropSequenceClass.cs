@@ -536,11 +536,11 @@ public class CropSequenceClass
         double mineralNFromSpinup = 0;
         //! Initialize the soil organic matter model
         if (GlobalVars.Instance.GetlockSoilTypes())     //!if true, the C-TOOL pools for each crop sequence will be preserved but the areas must not change. If false, pools within a soil type will be merged and areas can change.            
-            aModel.Initialisation(soilTypeCount, ClayFraction, offset, amplitude, maxSoilDepth, dampingDepth, initialC,
+            aModel.Initialisation(true, identity, soiltypeNo, ClayFraction, offset, amplitude, maxSoilDepth, dampingDepth, initialC,
                 GlobalVars.Instance.getConstantFilePath(), GlobalVars.Instance.GeterrorFileName(), InitialCtoN,
                 pHUMupperLayer, pHUMlowerLayer, ref mineralNFromSpinup);
         else
-            aModel.Initialisation(soiltypeNo, ClayFraction, offset, amplitude, maxSoilDepth, dampingDepth, initialC,
+            aModel.Initialisation(false, identity, soiltypeNo, ClayFraction, offset, amplitude, maxSoilDepth, dampingDepth, initialC,
             GlobalVars.Instance.getConstantFilePath(), GlobalVars.Instance.GeterrorFileName(), InitialCtoN,
             pHUMupperLayer, pHUMlowerLayer, ref mineralNFromSpinup);
         // spin up the soil model
@@ -2684,67 +2684,43 @@ public class CropSequenceClass
             }
         }
     }
-    //!  Write contents of soil pools to file at the end of a Baseline simulation
+    //!  Write contents of soil pools to file at the end of a Baseline spinup (adaptation) simulation
     /*
-     * Data will be used to initiate the soil pools when implementing scenarios
+     * Data will be used to initiate the soil pools when implementing projection scenarios (including Baseline)
     */
-    public void writeCtoolData(System.IO.StreamWriter extraCtoolData, bool writeHeader = true)
+    public void writeCtoolData(System.IO.StreamWriter handoverCtoolData, bool writeHeader = true)
     {
-        double[] rotarea = new double[20];
-        double[] fomcLayer1 = new double[20];
-        double[] fomcLayer2 = new double[20];
-        double[] humcLayer1 = new double[20];
-        double[] humcLayer2 = new double[20];
-        double[] romcLayer1 = new double[20];
-        double[] romcLayer2 = new double[20];
-        double[] biocharcLayer1 = new double[20];
-        double[] biocharcLayer2 = new double[20];
-        double[] FOMn = new double[20];
-        double[] rotresidualMineralN = new double[20];
+        double rotarea = 0;
+        double fomcLayer1 = 0;
+        double fomcLayer2 = 0;
+        double humcLayer1 = 0;
+        double humcLayer2 = 0;
+        double romcLayer1 = 0;
+        double romcLayer2 = 0;
+        double biocharcLayer1 = 0;
+        double biocharcLayer2 = 0;
+        double FOMn = 0;
+        double rotresidualMineralN = 0;
         if (writeHeader)
-            extraCtoolData.WriteLine("soilNo" + '\t' + "fomcLayer1_kg_ha" + '\t' + "fomcLayer2_kg_ha" + '\t' + "humcLayer1_kg_ha" + '\t' + "humcLayer2_kg_ha" + '\t'
+            handoverCtoolData.WriteLine("sequenceNo" + '\t' + "soilTypeNo" +'\t' + "fomcLayer1_kg_ha" + '\t' + "fomcLayer2_kg_ha" + '\t' + "humcLayer1_kg_ha" + '\t' + "humcLayer2_kg_ha" + '\t'
                     + "romcLayer1_kg_ha" + '\t' + "romcLayer2_kg_ha" + '\t' + "biocharcLayer1_kg_ha" + '\t' + "biocharcLayer2_kg_ha" + '\t'
                     + "FOMn_kg_ha" + '\t' + "rotresidualMineralN_kg_ha" + '\t' + "rotarea_ha");
-        for (int soilNo = 0; soilNo < 20; soilNo++)
-        {
-            rotarea[soilNo] = 0;
-            fomcLayer1[soilNo] = 0;
-            fomcLayer2[soilNo] = 0;
-            humcLayer1[soilNo] = 0;
-            humcLayer2[soilNo] = 0;
-            romcLayer1[soilNo] = 0;
-            romcLayer2[soilNo] = 0;
-            FOMn[soilNo] = 0;
-            rotresidualMineralN[soilNo] = 0;
-        }
-        int soiltypeNo = 0;
-        //!if true, the C-TOOL pools for each crop sequence will be preserved but the areas must not change. If false, pools within a soil type will be merged and areas can change.            
-        if (GlobalVars.Instance.GetlockSoilTypes())
-            soiltypeNo = GetsoilTypeCount();
-        else
-            soiltypeNo = GetsoiltypeNo();
-        rotarea[soiltypeNo] += getArea();
-        fomcLayer1[soiltypeNo] += aModel.GettheClayers()[0].getFOM() * getArea();
-        fomcLayer2[soiltypeNo] += aModel.GettheClayers()[1].getFOM() * getArea();
-        humcLayer1[soiltypeNo] += aModel.GettheClayers()[0].getHUM() * getArea();
-        humcLayer2[soiltypeNo] += aModel.GettheClayers()[1].getHUM() * getArea();
-        romcLayer1[soiltypeNo] += aModel.GettheClayers()[0].getROM() * getArea();
-        romcLayer2[soiltypeNo] += aModel.GettheClayers()[1].getROM() * getArea();
-        biocharcLayer1[soiltypeNo] += aModel.GettheClayers()[0].getBiochar() * getArea();
-        biocharcLayer2[soiltypeNo] += aModel.GettheClayers()[1].getBiochar() * getArea();
-        FOMn[soiltypeNo] += aModel.FOMn * getArea();
-        rotresidualMineralN[soiltypeNo] += GetResidualSoilMineralN();
-        for (int soilNo = 0; soilNo < 20; soilNo++)
-        {
-            if (rotarea[soilNo] > 0)
-            {
-                extraCtoolData.WriteLine(soilNo.ToString() + '\t' + (fomcLayer1[soilNo] / rotarea[soilNo]).ToString() + '\t' + (fomcLayer2[soilNo] / rotarea[soilNo]).ToString()
-                    + '\t' + (humcLayer1[soilNo] / rotarea[soilNo]).ToString() + '\t' + (humcLayer2[soilNo] / rotarea[soilNo]).ToString()
-                    + '\t' + (romcLayer1[soilNo] / rotarea[soilNo]).ToString() + '\t' + (romcLayer2[soilNo] / rotarea[soilNo]).ToString()
-                    + '\t' + (biocharcLayer1[soilNo] / rotarea[soilNo]).ToString() + '\t' + (biocharcLayer2[soilNo] / rotarea[soilNo]).ToString()
-                    + '\t' + FOMn[soilNo] / rotarea[soilNo] + '\t' + rotresidualMineralN[soilNo] / rotarea[soilNo] + '\t' + rotarea[soilNo]);
-            }
-        }
-
+        rotarea += getArea();
+        fomcLayer1 += aModel.GettheClayers()[0].getFOM() * getArea();
+        fomcLayer2 += aModel.GettheClayers()[1].getFOM() * getArea();
+        humcLayer1 += aModel.GettheClayers()[0].getHUM() * getArea();
+        humcLayer2 += aModel.GettheClayers()[1].getHUM() * getArea();
+        romcLayer1 += aModel.GettheClayers()[0].getROM() * getArea();
+        romcLayer2 += aModel.GettheClayers()[1].getROM() * getArea();
+        biocharcLayer1 += aModel.GettheClayers()[0].getBiochar() * getArea();
+        biocharcLayer2 += aModel.GettheClayers()[1].getBiochar() * getArea();
+        FOMn += aModel.FOMn * getArea();
+        rotresidualMineralN += GetResidualSoilMineralN();
+        rotarea = getArea();
+        handoverCtoolData.WriteLine(identity.ToString() + '\t' + soiltypeNo + '\t'+ (fomcLayer1 / rotarea).ToString() + '\t' + (fomcLayer2 / rotarea).ToString()
+            + '\t' + (humcLayer1 / rotarea).ToString() + '\t' + (humcLayer2 / rotarea).ToString()
+            + '\t' + (romcLayer1 / rotarea).ToString() + '\t' + (romcLayer2 / rotarea).ToString()
+            + '\t' + (biocharcLayer1 / rotarea).ToString() + '\t' + (biocharcLayer2 / rotarea).ToString()
+            + '\t' + FOMn / rotarea + '\t' + rotresidualMineralN / rotarea + '\t' + rotarea);
     }
 }

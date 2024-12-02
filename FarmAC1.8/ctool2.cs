@@ -127,7 +127,7 @@ public class ctool2
      \param pHUMLowwerLayer the HUM C in the lower soil layer as proportion of the total C in the lower layer as a double 
      \param residualMineralN the residual mineral N in the soil at the end of spinning up the model (kg/ha)
      */
-    public void Initialisation(int soilTypeNo, double ClayFraction, double offsetIn, double amplitudeIn, double maxSoilDepthIn, double dampingDepthIn,
+    public void Initialisation(bool lockAreas, int sequenceNumber, int soilTypeNo, double ClayFraction, double offsetIn, double amplitudeIn, double maxSoilDepthIn, double dampingDepthIn,
         double initialC, string[] parameterFileName, string errorFileName, double InitialCtoN, double pHUMupperLayer, double pHUMLowerLayer,
         ref double residualMineralN)
     {
@@ -160,7 +160,7 @@ public class ctool2
         ROMificationfraction = ctoolInfo.getItemDouble("Value");
 
         //Set up the soil layers
-        SoilClayer aClayer = new SoilClayer(0, FOMdecompositionrate, HUMdecompositionrate, ROMdecompositionrate, tF, ROMificationfraction, fCO2, Clayfraction);
+        SoilClayer aClayer = new SoilClayer(0, Clayfraction);
         theClayers.Add(aClayer);
         aClayer = new SoilClayer(aClayer);
         aClayer.setLayerNo(1);
@@ -196,7 +196,18 @@ public class ctool2
             for (int j = 1; j < lines.Length; j++)
             {
                 string[] data = lines[j].Split('\t');
-                if (soilTypeNo == Convert.ToDouble(data[0]))
+                int test = Convert.ToInt32(data[0]);
+                if (lockAreas)
+                {
+                    if (test == sequenceNumber)
+                        gotit = true;
+                }
+                else
+                {
+                    if (test == soilTypeNo)
+                        gotit = true;
+                }
+                if (gotit)
                 {
                     theClayers[0].setFOM(Convert.ToDouble(data[1]));
                     theClayers[1].setFOM(Convert.ToDouble(data[2]));
@@ -208,7 +219,7 @@ public class ctool2
                     theClayers[1].setBiochar(Convert.ToDouble(data[8]));
                     FOMn = Convert.ToDouble(data[9]);
                     residualMineralN = Convert.ToDouble(data[10]);
-                    gotit=true;
+                    break;
                 }
             }
             if (!gotit)
@@ -711,7 +722,6 @@ public class ctool2
         GlobalVars.Instance.writeInformationToFiles("GetFOMn", "GetFOMn", "-", GetFOMn(), parens);
         GlobalVars.Instance.writeInformationToFiles("GetHUMn", "GetHUMn", "-", GetHUMn(), parens);
         GlobalVars.Instance.writeInformationToFiles("GetROMn", "GetROMn", "-", GetROMn(), parens);
-        GlobalVars.Instance.writeEndTab();
-       
+        GlobalVars.Instance.writeEndTab();       
     }
 }
