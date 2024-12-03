@@ -476,101 +476,12 @@ public class CropSequenceClass
             CropClass aCrop = theCrops[i];
             aCrop.SetlengthOfSequence(lengthOfSequence);
         }
-/*        //Now sort out the soil modelling
-        //This creates an instance of the modified version of the CTool model
-        aModel = new ctool2(parens + "_1");
-        //Make sure the soil type information is present in the zonal data
-        soiltypeNo = -1;
-        for (int i = 0; i < GlobalVars.Instance.theZoneData.thesoilData.Count; i++)
-        {
-            if (GlobalVars.Instance.theZoneData.thesoilData[i].name.CompareTo(soilType) == 0)
-                soiltypeNo = i;
-        }
-        if (soiltypeNo == -1)
-        {
-            string messageString = ("Error - could not find soil type " + soilType + " in parameter file\n");
-            messageString += ("Crop sequence name = " + name);
-            GlobalVars.Instance.Error(messageString);
-        }
-        //Check to see if the crop rooting depth will be limited by soil depth (and issue a warning)
-        double maxSoilDepth = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].GetSoilDepth();
-        bool doneOnce = false;
-        for (int i = 0; i < theCrops.Count; i++)
-        {
-            CropClass aCrop = theCrops[i];
-            if (aCrop.GetMaximumRootingDepth()>maxSoilDepth)
-            {
-                aCrop.SetMaximumRootingDepth(maxSoilDepth);
-                if (!doneOnce)
-                {
-                    string messageString = ("Warning - crop rooting depth limited by soil depth " + aCrop.Getname() + "\n");
-                    messageString += ("Crop sequence name = " + name);
-                    GlobalVars.Instance.log(messageString, 6);
-                    doneOnce = true;
-                }
-            }
-        }
-
-        //! initial total C in the soil (used for spinning up the soil C model)
-        double initialC = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].theC_ToolData[FarmType - 1].initialC;
-        //! initial FOM C input (used for spinning up the soil C model)
-        double initialFOM_Cinput = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].theC_ToolData[FarmType - 1].InitialFOM;
-        //! Initial C:N ratio of the fresh organic matter
-        double InitialFOMCtoN = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].theC_ToolData[FarmType - 1].InitialFOMCtoN;
-        //!Clay fraction of the soil
-        double ClayFraction = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].ClayFraction;
-        //!Damping depth (m) to be used in calculating the soil temperature at different depths in the soil
-        double dampingDepth = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].GetdampingDepth();
-        //! Proportion of the organic matter that is initially present as humic organic matter in the upper soil layer
-        double pHUMupperLayer = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].theC_ToolData[FarmType - 1].pHUMupperLayer;
-        //! Proportion of the organic matter that is initially present as humic organic matter in the lower soil layer
-        double pHUMlowerLayer = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].theC_ToolData[FarmType - 1].pHUMlowerLayer;
-        //! C:N ratio of the humic and resistent organic mattr
-        double InitialCtoN = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].theC_ToolData[FarmType - 1].InitialCtoN;
-        //!Average air temperature (used for spinning up)
-        double[] averageAirTemperature = GlobalVars.Instance.theZoneData.airTemp;
-        //!The number of days that the 
-        int offset = GlobalVars.Instance.theZoneData.GetairtemperatureOffset();
-        double amplitude = GlobalVars.Instance.theZoneData.GetairtemperatureAmplitude();
-        double mineralNFromSpinup = 0;
-        //! Initialize the soil organic matter model
-        if (GlobalVars.Instance.GetlockSoilTypes())     //!if true, the C-TOOL pools for each crop sequence will be preserved but the areas must not change. If false, pools within a soil type will be merged and areas can change.            
-            aModel.Initialisation(true, identity, soiltypeNo, ClayFraction, offset, amplitude, maxSoilDepth, dampingDepth, initialC,
-                GlobalVars.Instance.getConstantFilePath(), GlobalVars.Instance.GeterrorFileName(), InitialCtoN,
-                pHUMupperLayer, pHUMlowerLayer, ref mineralNFromSpinup);
-        else
-            aModel.Initialisation(false, identity, soiltypeNo, ClayFraction, offset, amplitude, maxSoilDepth, dampingDepth, initialC,
-            GlobalVars.Instance.getConstantFilePath(), GlobalVars.Instance.GeterrorFileName(), InitialCtoN,
-            pHUMupperLayer, pHUMlowerLayer, ref mineralNFromSpinup);
-        // spin up the soil model
-        spinup(ref mineralNFromSpinup, initialFOM_Cinput, InitialFOMCtoN, averageAirTemperature, aID);
-        startsoilMineralN = mineralNFromSpinup;
-        //Initialise the soil water model
-        double currentRootingDepth = 0;
-        double currentLAI = 0;
-        if (theCrops[0].Getpermanent())
-        {
-            currentRootingDepth = theCrops[0].GetMaximumRootingDepth();
-            currentLAI = 3.0; //assume a reasonable crop LAI
-        }
-        else
-        {
-            currentRootingDepth = 0;
-            currentLAI = 0;
-        }
-        double[] layerOM;
-        layerOM = new double[2];
-        layerOM[0] = aModel.GetOrgC(0);
-        layerOM[1] = aModel.GetOrgC(1);
-        thesoilWaterModel.Initialise2( soiltypeNo, theCrops[0].GetMaximumRootingDepth(), currentRootingDepth, currentLAI, layerOM);
-        dailyCinputToSoil = new double[lengthOfSequence * 365];
-*/
         //calculate the climate variables for each crop
         for (int i = 0; i < theCrops.Count; i++)
             theCrops[i].CalculateClimate();
     }
 
-    public void InitialiseSoilCN()
+    public void InitialiseSoilCN(bool doSpinup)
     {
         //Now sort out the soil modelling
         thesoilWaterModel = new simpleSoil();
@@ -639,9 +550,15 @@ public class CropSequenceClass
             aModel.Initialisation(false, identity, soiltypeNo, ClayFraction, offset, amplitude, maxSoilDepth, dampingDepth, initialC,
             GlobalVars.Instance.getConstantFilePath(), GlobalVars.Instance.GeterrorFileName(), InitialCtoN,
             pHUMupperLayer, pHUMlowerLayer, ref mineralNFromSpinup);
-        // spin up the soil model
-        spinup(ref mineralNFromSpinup, initialFOM_Cinput, InitialFOMCtoN, averageAirTemperature, identity);
-        startsoilMineralN = mineralNFromSpinup;
+        if (doSpinup)
+        {
+            // spin up the soil model
+            spinup(ref mineralNFromSpinup, initialFOM_Cinput, InitialFOMCtoN, averageAirTemperature, identity);
+            startsoilMineralN = mineralNFromSpinup;
+        }
+        initialSoilC = GetCStored();//value in kg per crop sequence
+        initialSoilN = GetNStored();//value in kgN per crop sequence
+
         //Initialise the soil water model
         double currentRootingDepth = 0;
         double currentLAI = 0;
@@ -2376,9 +2293,6 @@ public class CropSequenceClass
             soilNmineralised = Nmin;
             thestartsoilMineralN = Nmin;
         }
-        initialSoilC = GetCStored();//value in kg per crop sequence
-        initialSoilN = GetNStored();//value in kgN per crop sequence
-
         GlobalVars.Instance.log("tonnes C/ha at start of spinup " + (CatStartSpinup / (area * 1000)).ToString() + " tonnes C/ha at end of spinup " + (initialSoilC / (1000 * area)).ToString(), 6);
         GlobalVars.Instance.log("kg N/ha min at end of spinup " + (soilNmineralised / area).ToString(), 6);
 

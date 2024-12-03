@@ -182,50 +182,7 @@ public class ctool2
         }
         if ((GlobalVars.Instance.reuseCtoolData != -1)&&(NonBaselinespinupYears==0))
         {
-            Console.WriteLine("handover Data from "+ GlobalVars.Instance.getReadHandOverData());
-            string[] lines=null;
-            try  //look for the file containing the status variables 
-            {
-                lines = System.IO.File.ReadAllLines(GlobalVars.Instance.getReadHandOverData());
-            }
-            catch
-            {
-                GlobalVars.Instance.Error("could not find CTool handover data " + GlobalVars.Instance.getReadHandOverData());
-            }
-            bool gotit=false;
-            for (int j = 1; j < lines.Length; j++)
-            {
-                string[] data = lines[j].Split('\t');
-                int test = Convert.ToInt32(data[0]);
-                if (lockAreas)
-                {
-                    if (test == sequenceNumber)
-                        gotit = true;
-                }
-                else
-                {
-                    if (test == soilTypeNo)
-                        gotit = true;
-                }
-                if (gotit)
-                {
-                    theClayers[0].setFOM(Convert.ToDouble(data[1]));
-                    theClayers[1].setFOM(Convert.ToDouble(data[2]));
-                    theClayers[0].setHUM(Convert.ToDouble(data[3]));
-                    theClayers[1].setHUM(Convert.ToDouble(data[4]));
-                    theClayers[0].setROM(Convert.ToDouble(data[5]));
-                    theClayers[1].setROM(Convert.ToDouble(data[6]));
-                    theClayers[0].setBiochar(Convert.ToDouble(data[7]));
-                    theClayers[1].setBiochar(Convert.ToDouble(data[8]));
-                    FOMn = Convert.ToDouble(data[9]);
-                    residualMineralN = Convert.ToDouble(data[10]);
-                    break;
-                }
-            }
-            if (!gotit)
-                GlobalVars.Instance.Error("could not find soil carbon data for soil type " + soilTypeNo.ToString());
-            // file.WriteLine(fomc[0].ToString() + '\t' + fomc[1].ToString() + '\t' + humc[0].ToString() + '\t' + humc[1].ToString() + '\t' + humc[0].ToString() + '\t' + humc[1].ToString() + '\t' + FOMn);
-            //file.Close();
+            readHandoverData(lockAreas, sequenceNumber, soilTypeNo, ref residualMineralN);
         }
         else
         {
@@ -703,6 +660,49 @@ public class ctool2
     {
 	    return 7.24*Math.Exp(-3.432+0.168*temperature*(1-0.5*temperature/36.9)); 
     }
+    public void readHandoverData(bool lockAreas, int sequenceNumber, int soilTypeNo, ref double residualMineralN)
+    {
+        if (lockAreas)
+        {
+            string[] lines = null;
+            try  //look for the file containing the status variables 
+            {
+                lines = System.IO.File.ReadAllLines(GlobalVars.Instance.getReadHandOverData());
+            }
+            catch
+            {
+                GlobalVars.Instance.Error("could not find CTool handover data " + GlobalVars.Instance.getReadHandOverData());
+            }
+            bool gotit = false;
+            for (int j = 1; j < lines.Length; j++)
+            {
+                string[] data = lines[j].Split('\t');
+                int test = Convert.ToInt32(data[0]);
+                if (test == sequenceNumber)
+                    gotit = true;
+                if (gotit)
+                {
+                    theClayers[0].setFOM(Convert.ToDouble(data[2]));
+                    theClayers[1].setFOM(Convert.ToDouble(data[3]));
+                    theClayers[0].setHUM(Convert.ToDouble(data[4]));
+                    theClayers[1].setHUM(Convert.ToDouble(data[5]));
+                    theClayers[0].setROM(Convert.ToDouble(data[6]));
+                    theClayers[1].setROM(Convert.ToDouble(data[7]));
+                    theClayers[0].setBiochar(Convert.ToDouble(data[8]));
+                    theClayers[1].setBiochar(Convert.ToDouble(data[9]));
+                    FOMn = Convert.ToDouble(data[10]);
+                    residualMineralN = Convert.ToDouble(data[11]);
+                    break;
+                }
+            }
+            if (!gotit)
+                    GlobalVars.Instance.Error("could not find soil carbon data for crop sequence " + sequenceNumber.ToString());
+         }
+         else
+            GlobalVars.Instance.Error("Function not implemented for flexible areas");
+//        GlobalVars.Instance.Error("could not find soil carbon data for soil type " + soilTypeNo.ToString());
+    }
+
     //! Write details. 
     public void Write()
     {

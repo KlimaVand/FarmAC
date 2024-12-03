@@ -91,10 +91,15 @@ public class GlobalVars
         tmp.amounts = amount;
         alltotNFom.Add(tmp);
     }
-    public struct soilsTypeArray
+    public class soilTypeArrayClass
     {
-        public int soilType;
-        public double area;
+        int soilType;
+        double area;
+        public void setSoilType(int aType) { soilType = aType; }
+        public void setArea(double aVal) { area = aVal; }
+        public int getSoilType() { return soilType; }
+        public double getArea() { return area; }
+        public void addArea(double aVal) { area += aVal; }
     };
 
     //! is false until a header has been written to the Field output file 
