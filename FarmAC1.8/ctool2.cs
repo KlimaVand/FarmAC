@@ -720,7 +720,8 @@ public class ctool2
                     break;
                 }
             }
-            GlobalVars.Instance.Error("Could not find soil carbon data for soil type " + soilTypeNo.ToString());
+            if (!gotit)
+                GlobalVars.Instance.Error("Could not find soil carbon data for soil type " + soilTypeNo.ToString());
         }
     }
 
