@@ -662,6 +662,7 @@ public class ctool2
     }
     public void readHandoverData(bool lockAreas, int sequenceNumber, int soilTypeNo, ref double residualMineralN)
     {
+        bool gotit = false;
         if (lockAreas)
         {
             string[] lines = null;
@@ -673,7 +674,6 @@ public class ctool2
             {
                 GlobalVars.Instance.Error("could not find CTool handover data " + GlobalVars.Instance.getReadHandOverData());
             }
-            bool gotit = false;
             for (int j = 1; j < lines.Length; j++)
             {
                 string[] data = lines[j].Split('\t');
@@ -696,11 +696,32 @@ public class ctool2
                 }
             }
             if (!gotit)
-                    GlobalVars.Instance.Error("could not find soil carbon data for crop sequence " + sequenceNumber.ToString());
-         }
-         else
-            GlobalVars.Instance.Error("Function not implemented for flexible areas");
-//        GlobalVars.Instance.Error("could not find soil carbon data for soil type " + soilTypeNo.ToString());
+                GlobalVars.Instance.Error("could not find soil carbon data for crop sequence " + sequenceNumber.ToString());
+        }
+        else
+        {
+            for (int j = 1; j < GlobalVars.Instance.theSoilCTransferData.Count; j++)
+            {
+                GlobalVars.soilTypeCdata temp = GlobalVars.Instance.theSoilCTransferData[j];
+                if (temp.soilType == soilTypeNo)
+                    gotit = true;
+                if (gotit)
+                {
+                    theClayers[0].setFOM(temp.fomcLayer1);
+                    theClayers[1].setFOM(temp.fomcLayer1);
+                    theClayers[0].setHUM(temp.humcLayer1);
+                    theClayers[1].setHUM(temp.humcLayer2);
+                    theClayers[0].setROM(temp.romcLayer1);
+                    theClayers[1].setROM(temp.romcLayer2);
+                    theClayers[0].setBiochar(temp.biocharcLayer1);
+                    theClayers[1].setBiochar(temp.biocharcLayer2);
+                    FOMn = Convert.ToDouble(temp.FOMn);
+                    residualMineralN = temp.residualMineralN;
+                    break;
+                }
+            }
+            GlobalVars.Instance.Error("Could not find soil carbon data for soil type " + soilTypeNo.ToString());
+        }
     }
 
     //! Write details. 
