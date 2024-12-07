@@ -675,6 +675,20 @@ public class GlobalVars
 
         public List<fertiliserData> theFertManData;
         public List<soilData> thesoilData;
+        public int GetSoilTypeNo(string nameOfSoil)
+        {
+            int soilNo = -1;
+            for (int i = 0; i < thesoilData.Count; i++)
+            {
+                if (thesoilData[i].name.CompareTo(nameOfSoil) == 0)
+                {
+                    soilNo = i;
+                    break;
+                }
+            }
+            return soilNo;
+        }
+
         public List<manureAppData> themanureAppData;
         double urineNH3EmissionFactor;
         double manureN20EmissionFactor;
@@ -925,12 +939,6 @@ public class GlobalVars
                     averageAirTemperature += airTemp[i - 1];
                 }
                 averageAirTemperature /= 12.0;
-                /*AEZParamFile.PathNames[2] = "DroughtIndex"; 
-                for (int i = min; i <= max; i++)
-                {
-                    AEZParamFile.Identity[1] = i;
-                    droughtIndex[i - 1] = AEZParamFile.getItemDouble("Value");
-                }*/
                 AEZParamFile.PathNames[2] = "Precipitation";
                 for (int i = min; i <= max; i++)
                 {
@@ -1022,8 +1030,6 @@ public class GlobalVars
                     newsoilData.SandFraction = AEZParamFile.getItemDouble("Value", RecipientPath);
                     RecipientPath = RecipientStub + "ClayFraction(-1)";
                     newsoilData.ClayFraction = AEZParamFile.getItemDouble("Value", RecipientPath);
-
-
                     RecipientPath = RecipientStub + "ThermalDiffusivity(-1)";
                     newsoilData.thermalDiff = AEZParamFile.getItemDouble("Value", RecipientPath);
                     newsoilData.dampingDepth = newsoilData.CalcDampingDepth(newsoilData.thermalDiff, GlobalVars.Instance.Getrho());

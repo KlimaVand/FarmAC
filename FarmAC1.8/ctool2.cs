@@ -692,6 +692,9 @@ public class ctool2
                     theClayers[1].setBiochar(Convert.ToDouble(data[9]));
                     FOMn = Convert.ToDouble(data[10]);
                     residualMineralN = Convert.ToDouble(data[11]);
+                    int soilTypeCheck = Convert.ToInt32(data[1]);
+                    if (soilTypeCheck!=soilTypeNo)
+                        GlobalVars.Instance.Error("Soil types in CTool file do not match soil type in crop sequence " + sequenceNumber.ToString());
                     break;
                 }
             }

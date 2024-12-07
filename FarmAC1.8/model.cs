@@ -324,8 +324,6 @@ namespace AnimalChange
                                             GlobalVars.Instance.setReadHandOverData(outputDir + "dataCtool" + "_" + args[0] + "_" + args[4] + ".txt");
                                             GlobalVars.Instance.setWriteHandOverData(outputDir + "dataCtool" + "_" + args[0] + "_" + args[1] + ".txt");
                                         }
-                                        int soilTypeCount = 0;
-
                                         if (farmInformation.doesIDExist(settingsnr))
                                         {
                                             string outputName;
@@ -356,7 +354,7 @@ namespace AnimalChange
                                             GlobalVars.Instance.setcurrentEnergySystem(energySystem);
                                             if (GlobalVars.Instance.GetstrictGrazing() == true)
                                             {
-                                                aFarm.SetupRotation(farmInformation, newPath, zoneNr, farmNr, ScenarioNr, FarmType, soilTypeCount);
+                                                aFarm.SetupRotation(farmInformation, newPath, zoneNr, farmNr, ScenarioNr, FarmType);
                                                 aFarm.SetupLivestockAndManure(farmInformation, zoneNr, farmNr, newPath, ScenarioNr);
                                                 GlobalVars.Instance.theManureExchange = new GlobalVars.theManureExchangeClass();
                                                 //GlobalVars.Instance.setRunFullModel(false);
@@ -449,7 +447,7 @@ namespace AnimalChange
             string[] names = new string[2];
             if (args.Length != 0)
             {
-                    List<string> tmpPath = new List<string>(settings.PathNames);
+                List<string> tmpPath = new List<string>(settings.PathNames);
                 List<int> tmpID = new List<int>(settings.Identity);
                 settings.Identity.Clear();
                 settings.PathNames.Clear();

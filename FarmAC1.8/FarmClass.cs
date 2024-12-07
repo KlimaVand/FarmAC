@@ -49,10 +49,8 @@ public class FarmClass
     \param farmNr farm number as an integer
     \param ScenarioNr scenario number as an integer
     \param FarmTyp farm type as an integer
-    \param soilTypeCount number of soil types available as an integer
     */
-    public void SetupRotation(FileInformation farmInformation, string newPath, int zoneNr, int farmNr, int ScenarioNr, int FarmTyp,
-        int soilTypeCount)
+    public void SetupRotation(FileInformation farmInformation, string newPath, int zoneNr, int farmNr, int ScenarioNr, int FarmTyp)
     {
         double areaWeightedDuration = 0.0;
         int minRotation = 99, maxRotation = 0;
@@ -66,7 +64,7 @@ public class FarmClass
             {
                 CropSequenceClass anExample = new CropSequenceClass(RotationPath, rotationID, zoneNr, FarmTyp,
                     "farmnr" + farmNr.ToString() + "_ScenarioNr" + ScenarioNr.ToString() + "_CropSequenceClass" +
-                    rotationID.ToString(), soilTypeCount);
+                    rotationID.ToString());
                 areaWeightedDuration += anExample.getArea() * anExample.GetlengthOfSequence();
                 anExample.calcGrazedFeedItems();
                 farmArea += anExample.getArea();
@@ -327,11 +325,11 @@ public class FarmClass
             GlobalVars.Instance.Error("could not find CTool handover data " + GlobalVars.Instance.getReadHandOverData());
         }
         List<GlobalVars.soilTypeCdata> tempSoilCTransferData = new List<GlobalVars.soilTypeCdata>();
-        GlobalVars.soilTypeCdata tempInputSoilData = new GlobalVars.soilTypeCdata();
         for (int j = 1; j < lines.Length; j++)
         {
             string[] data = lines[j].Split('\t');
             double area = Convert.ToDouble(data[12]);
+            GlobalVars.soilTypeCdata tempInputSoilData = new GlobalVars.soilTypeCdata();
             tempInputSoilData.soilType = Convert.ToInt32(data[1]);
             tempInputSoilData.fomcLayer1 = Convert.ToDouble(data[2]) * area;
             tempInputSoilData.fomcLayer2 = Convert.ToDouble(data[3]) * area;
@@ -349,17 +347,18 @@ public class FarmClass
         GlobalVars.Instance.theSoilCTransferData.Add(tempSoilCTransferData[0]);
         for (int i = 1; i < tempSoilCTransferData.Count; i++)
         {
-            for (int j = 0; j < GlobalVars.Instance.theSoilCTransferData.Count; j++)
+            bool dataAdded = false;
+            for (int j = 1; j < GlobalVars.Instance.theSoilCTransferData.Count; j++)
             {
-                if (tempSoilCTransferData[j].soilType == GlobalVars.Instance.theSoilCTransferData[j].soilType)
+                if (tempSoilCTransferData[i].soilType == GlobalVars.Instance.theSoilCTransferData[j].soilType)
                 {
-                    GlobalVars.Instance.theSoilCTransferData[j].AddData(tempSoilCTransferData[j]);
-                }
-                else
-                {
-                    GlobalVars.Instance.theSoilCTransferData.Add(tempSoilCTransferData[j]);
+                    GlobalVars.Instance.theSoilCTransferData[j].AddData(tempSoilCTransferData[i]);
+                    dataAdded = true;
+                    break;
                 }
             }
+            if (!dataAdded)
+                GlobalVars.Instance.theSoilCTransferData.Add(tempSoilCTransferData[i]);
         }
     }
     public void checkSoilTypeAreas()
@@ -371,20 +370,23 @@ public class FarmClass
         anArray.Add(temp);
         for (int i = 1; i < rotationList.Count; i++)
         {
+            bool dataAdded = false;
             for (int j = 0; j < anArray.Count; j++)
             {
                 temp = anArray[j];
                 if (rotationList[i].GetsoiltypeNo() == temp.getSoilType())
                 {
                     temp.addArea(rotationList[i].getArea());
+                    dataAdded = true;
+                    break;
                 }
-                else
-                {
-                    temp = new GlobalVars.soilTypeArrayClass();
-                    temp.setSoilType(rotationList[i].GetsoiltypeNo());
-                    temp.setArea(rotationList[i].getArea());
-                    anArray.Add(temp);
-                }
+            }
+            if (!dataAdded)
+            {
+                temp = new GlobalVars.soilTypeArrayClass();
+                temp.setSoilType(rotationList[i].GetsoiltypeNo());
+                temp.setArea(rotationList[i].getArea());
+                anArray.Add(temp);
             }
         }
         for (int i = 0; i < GlobalVars.Instance.theSoilCTransferData.Count; i++)

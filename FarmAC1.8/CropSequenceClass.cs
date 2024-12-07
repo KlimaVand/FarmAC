@@ -71,8 +71,6 @@ public class CropSequenceClass
     simpleSoil thesoilWaterModel;
     //! soil type (Danish classes)
     private int soiltypeNo = 0;
-    //!
-    private int soilTypeCount = 0;
     //! Instance of C-Tool v2 model 
     public ctool2 aModel;
     private string parens; /*!< a string containing information about the farm and scenario number.*/
@@ -127,16 +125,6 @@ public class CropSequenceClass
      \return Soil Type No as an integer value.
     */
     public int GetsoiltypeNo() { return soiltypeNo; }
-    //!  Get Soil Type Count. 
-    /*!
-     \return Soil Type Count as an integer value.
-    */
-    public int GetsoilTypeCount() { return soilTypeCount; }
-    //!  Set Soil Type Count. 
-    /*!
-     \param aVal an integer argument.
-    */
-    public void SetsoilTypeCount(int aVal) { soilTypeCount = aVal; }
     //!  Get the Nitrate Leaching for the whole crop sequence. 
     /*!
      \return Nitrate Leaching (kg N)
@@ -230,9 +218,8 @@ public class CropSequenceClass
      \param aID an integer argument.
      \param currentFarmType the farm type as an integer argument.
      \param aparens, a string containing information about the farm and scenario number.
-     \param asoilTypeCount, an integer argument.
     */
-    public CropSequenceClass(string aPath, int aID, int zoneNr, int currentFarmType, string aparens, int asoilTypeCount)
+    public CropSequenceClass(string aPath, int aID, int zoneNr, int currentFarmType, string aparens)
     {
         parens = aparens;
         path = aPath;
@@ -244,7 +231,14 @@ public class CropSequenceClass
         name = rotation.getItemString("NameOfRotation");
         area = rotation.getItemDouble("Area");
         soilType = rotation.getItemString("SoilType");
-        soilTypeCount = asoilTypeCount;
+        //Make sure the soil type information is present in the zonal data
+        soiltypeNo = GlobalVars.Instance.theZoneData.GetSoilTypeNo(soilType);
+        if (soiltypeNo == -1)
+        {
+            string messageString = ("Error - could not find soil type " + soilType + " in parameter file\n");
+            messageString += ("Crop sequence name = " + name);
+            GlobalVars.Instance.Error(messageString);
+        }
         //Get the crops in the sequence
         string crop = path + ".Crop";
         rotation.setPath(crop);
@@ -487,19 +481,6 @@ public class CropSequenceClass
         thesoilWaterModel = new simpleSoil();
         //This creates an instance of the modified version of the CTool model
         aModel = new ctool2(parens + "_1");
-        //Make sure the soil type information is present in the zonal data
-        soiltypeNo = -1;
-        for (int i = 0; i < GlobalVars.Instance.theZoneData.thesoilData.Count; i++)
-        {
-            if (GlobalVars.Instance.theZoneData.thesoilData[i].name.CompareTo(soilType) == 0)
-                soiltypeNo = i;
-        }
-        if (soiltypeNo == -1)
-        {
-            string messageString = ("Error - could not find soil type " + soilType + " in parameter file\n");
-            messageString += ("Crop sequence name = " + name);
-            GlobalVars.Instance.Error(messageString);
-        }
         //Check to see if the crop rooting depth will be limited by soil depth (and issue a warning)
         double maxSoilDepth = GlobalVars.Instance.theZoneData.thesoilData[soiltypeNo].GetSoilDepth();
         bool doneOnce = false;

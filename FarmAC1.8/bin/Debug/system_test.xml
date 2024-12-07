@@ -15,9 +15,9 @@
   </settings>
   <settings>
     <Identity>1</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\constants.xml </constants>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\constants.xml </constants>
     <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\farm_67906_1.xml</farm>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\farm_67906_2.xml</farm>
     <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\fertMan.xml</fertAndManure>
     <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\feedstuff.xml</feedItems>
     <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\output\</outputDir>
@@ -25,45 +25,6 @@
     <stopOnError>true</stopOnError>
     <Adaptation>1</Adaptation>
     <Note>One cow only</Note>
-  </settings>
-  <settings>
-    <Identity>14</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\117052\farm_117052_5.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\117052\output\</outputDir>
-    <pauseBeforeExit>true</pauseBeforeExit>
-    <stopOnError>true</stopOnError>
-    <Adaptation>-1</Adaptation>
-    <Note>Testing residues</Note>
-  </settings>
-  <settings>
-    <Identity>15</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\117051\farm_117051_8.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\117051\output\</outputDir>
-    <pauseBeforeExit>true</pauseBeforeExit>
-    <stopOnError>true</stopOnError>
-    <Adaptation>7</Adaptation>
-    <Note>Testing residues</Note>
-  </settings>
-  <settings>
-    <Identity>16</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\117051\farm_117051_7.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\117051\output\</outputDir>
-    <pauseBeforeExit>true</pauseBeforeExit>
-    <stopOnError>true</stopOnError>
-    <Adaptation>-1</Adaptation>
-    <Note>Testing residues</Note>
   </settings>
   <CommonSettings>
     <alternativePath>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\</alternativePath>
