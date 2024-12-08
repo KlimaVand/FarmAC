@@ -218,30 +218,30 @@ public class manureStore
     */
     public void getParameters(int zoneNr)
     {
-        FileInformation manureParamFile = new FileInformation(GlobalVars.Instance.getParamFilePath());
-        manureParamFile.setPath("AgroecologicalZone("+zoneNr.ToString()+").ManureStorage");
-        int maxManure = 0, minManure = 99;
-        manureParamFile.getSectionNumber(ref minManure, ref maxManure);
-
+        //Find the manure storage
+        FileInformation manureStoreParamFile = new FileInformation(GlobalVars.Instance.getParamFilePath());
+        manureStoreParamFile.setPath("AgroecologicalZone("+zoneNr.ToString()+").ManureStorage");
+        int maxManureStore = 0, minManureStore = 99;
+        manureStoreParamFile.getSectionNumber(ref minManureStore, ref maxManureStore);
         bool found = false;
         int num=0;
         //GlobalVars.Instance.log("ind " + " Req " + " test" + " sg ");  //for testing
         // find the correct manure storage, using the storage type and species of livestock
-        for (int i = minManure; i <= maxManure; i++)
+        for (int i = minManureStore; i <= maxManureStore; i++)
         {
-            if (manureParamFile.doesIDExist(i))
+            if (manureStoreParamFile.doesIDExist(i))
             {
-                manureParamFile.Identity.Add(i);
-                int tmpStorageType = manureParamFile.getItemInt("StorageType");
-                int tmpSpeciesGroup = manureParamFile.getItemInt("SpeciesGroup");
-                name = manureParamFile.getItemString("Name");
+                manureStoreParamFile.Identity.Add(i);
+                int tmpStorageType = manureStoreParamFile.getItemInt("StorageType");
+                int tmpSpeciesGroup = manureStoreParamFile.getItemInt("SpeciesGroup");
+                name = manureStoreParamFile.getItemString("Name");
                 if (ManureStorageID == tmpStorageType & speciesGroup == tmpSpeciesGroup)
                 {
                     found = true;
                     num = i;
                     break;
                 }
-                manureParamFile.Identity.RemoveAt(manureParamFile.Identity.Count - 1);
+                manureStoreParamFile.Identity.RemoveAt(manureStoreParamFile.Identity.Count - 1);
             }
         }
         if (found == false)
@@ -251,92 +251,91 @@ public class manureStore
         }
         string RecipientPath = "AgroecologicalZone("+zoneNr.ToString()+").ManureStorage" + '(' + num.ToString() + ").StoresSolid(-1)";
         bool StoresSolid;
-        string tempString = manureParamFile.getItemString("Value",RecipientPath);
+        string tempString = manureStoreParamFile.getItemString("Value",RecipientPath);
         if (tempString == "true")
             StoresSolid = true;
         else
             StoresSolid = false;
+
         //these parameters are for the Tier 3 method that is not currently used
-        manureParamFile.PathNames[manureParamFile.PathNames.Count - 1] = "ohmOrg";
-        ohmOrg = manureParamFile.getItemDouble("Value");
-        manureParamFile.PathNames[manureParamFile.PathNames.Count - 1] = "ohmTAN";
-        ohmTAN = manureParamFile.getItemDouble("Value");
+        manureStoreParamFile.PathNames[manureStoreParamFile.PathNames.Count - 1] = "ohmOrg";
+        ohmOrg = manureStoreParamFile.getItemDouble("Value");
+        manureStoreParamFile.PathNames[manureStoreParamFile.PathNames.Count - 1] = "ohmTAN";
+        ohmTAN = manureStoreParamFile.getItemDouble("Value");
         switch (GlobalVars.Instance.getcurrentInventorySystem())
         {
             case 1://IPCC 2006
-                //manureParamFile.PathNames[manureParamFile.PathNames.Count - 1] = "MCF";
-                //MCF = manureParamFile.getItemDouble("Value");
-                manureParamFile.PathNames[manureParamFile.PathNames.Count - 1] = "EFNH3storageIPCC";
-                EFStoreNH3 = manureParamFile.getItemDouble("Value");
-                manureParamFile.PathNames[manureParamFile.PathNames.Count - 1] = "EFN2OstorageIPCC";
-                EFStoreN20 = manureParamFile.getItemDouble("Value");
+                //manureStoreParamFile.PathNames[manureStoreParamFile.PathNames.Count - 1] = "MCF";
+                //MCF = manureStoreParamFile.getItemDouble("Value");
+                manureStoreParamFile.PathNames[manureStoreParamFile.PathNames.Count - 1] = "EFNH3storageIPCC";
+                EFStoreNH3 = manureStoreParamFile.getItemDouble("Value");
+                manureStoreParamFile.PathNames[manureStoreParamFile.PathNames.Count - 1] = "EFN2OstorageIPCC";
+                EFStoreN20 = manureStoreParamFile.getItemDouble("Value");
                 break;
             case 2: 
             case 3: //IPCC 2019 allows UNECE method
-                manureParamFile.PathNames[manureParamFile.PathNames.Count - 1] = "MCF";
-                MCF = manureParamFile.getItemDouble("Value");
-                manureParamFile.PathNames[manureParamFile.PathNames.Count - 1] = "EFNH3storageRef";
-                EFStoreNH3 = manureParamFile.getItemDouble("Value");
-                manureParamFile.PathNames[manureParamFile.PathNames.Count - 1] = "EFN2OstorageIPCC";
-                EFStoreN20 = manureParamFile.getItemDouble("Value");
+                manureStoreParamFile.PathNames[manureStoreParamFile.PathNames.Count - 1] = "MCF";
+                MCF = manureStoreParamFile.getItemDouble("Value");
+                manureStoreParamFile.PathNames[manureStoreParamFile.PathNames.Count - 1] = "EFNH3storageRef";
+                EFStoreNH3 = manureStoreParamFile.getItemDouble("Value");
+                manureStoreParamFile.PathNames[manureStoreParamFile.PathNames.Count - 1] = "EFN2OstorageIPCC";
+                EFStoreN20 = manureStoreParamFile.getItemDouble("Value");
                 break;
             case 4:
                 // Componenet of Tier 3 method (not used)
                 double b1;
                 double lnArr;
-                manureParamFile.PathNames[manureParamFile.PathNames.Count - 1] = "b1";
-                b1 = manureParamFile.getItemDouble("Value");
-                manureParamFile.PathNames[manureParamFile.PathNames.Count - 1] = "lnArr";
-                lnArr = manureParamFile.getItemDouble("Value");
-                manureParamFile.PathNames[manureParamFile.PathNames.Count - 1] = "meanTemp";
-                meanTemp = manureParamFile.getItemDouble("Value");
-                manureParamFile.PathNames[manureParamFile.PathNames.Count - 1] = "EFNH3storageRef";
-                EFStoreNH3 = manureParamFile.getItemDouble("Value");
-                manureParamFile.PathNames[manureParamFile.PathNames.Count - 1] = "EFN2OstorageRef";
-                EFStoreN20 = manureParamFile.getItemDouble("Value");
-                manureParamFile.PathNames[manureParamFile.PathNames.Count - 1] = "StorageRefTemp";
-                StorageRefTemp = manureParamFile.getItemDouble("Value");
+                manureStoreParamFile.PathNames[manureStoreParamFile.PathNames.Count - 1] = "b1";
+                b1 = manureStoreParamFile.getItemDouble("Value");
+                manureStoreParamFile.PathNames[manureStoreParamFile.PathNames.Count - 1] = "lnArr";
+                lnArr = manureStoreParamFile.getItemDouble("Value");
+                manureStoreParamFile.PathNames[manureStoreParamFile.PathNames.Count - 1] = "meanTemp";
+                meanTemp = manureStoreParamFile.getItemDouble("Value");
+                manureStoreParamFile.PathNames[manureStoreParamFile.PathNames.Count - 1] = "EFNH3storageRef";
+                EFStoreNH3 = manureStoreParamFile.getItemDouble("Value");
+                manureStoreParamFile.PathNames[manureStoreParamFile.PathNames.Count - 1] = "EFN2OstorageRef";
+                EFStoreN20 = manureStoreParamFile.getItemDouble("Value");
+                manureStoreParamFile.PathNames[manureStoreParamFile.PathNames.Count - 1] = "StorageRefTemp";
+                StorageRefTemp = manureStoreParamFile.getItemDouble("Value");
                 break;
         }
-        manureParamFile.PathNames[manureParamFile.PathNames.Count - 1] = "PropGasCapture";
-        propGasCapture = manureParamFile.getItemDouble("Value");
-        manureParamFile.PathNames[manureParamFile.PathNames.Count - 1] = "lambda_m";
-        Lambda = manureParamFile.getItemDouble("Value");
+        manureStoreParamFile.PathNames[manureStoreParamFile.PathNames.Count - 1] = "PropGasCapture";
+        propGasCapture = manureStoreParamFile.getItemDouble("Value");
+        manureStoreParamFile.PathNames[manureStoreParamFile.PathNames.Count - 1] = "lambda_m";
+        Lambda = manureStoreParamFile.getItemDouble("Value");
         //See if this is a biogas reactor that receives supplementary feedstocks
         string aPath = "AgroecologicalZone(" + zoneNr.ToString() + ").ManureStorage(" + num.ToString() + ").SupplementaryFeedstocks(-1).Feedstock";
-        manureParamFile.setPath(aPath);
+        manureStoreParamFile.setPath(aPath);
         int minsuppFeed = 99, maxsuppFeed = 0;
-        manureParamFile.getSectionNumber(ref minsuppFeed, ref maxsuppFeed);
+        manureStoreParamFile.getSectionNumber(ref minsuppFeed, ref maxsuppFeed);
         for (int k = minsuppFeed; k <= maxsuppFeed; k++)
         {
-            manureParamFile.Identity.Add(k);
+            manureStoreParamFile.Identity.Add(k);
             feedItem aFeedstock = new feedItem();
-            aFeedstock.Setamount(manureParamFile.getItemDouble("Amount"));
-            aFeedstock.GetStandardFeedItem(manureParamFile.getItemInt("FeedCode"));
+            aFeedstock.Setamount(manureStoreParamFile.getItemDouble("Amount"));
+            aFeedstock.GetStandardFeedItem(manureStoreParamFile.getItemInt("FeedCode"));
             supplementaryFeedstock.Add(aFeedstock);
-            manureParamFile.Identity.RemoveAt(manureParamFile.Identity.Count - 1);
+            manureStoreParamFile.Identity.RemoveAt(manureStoreParamFile.Identity.Count - 1);
         }
         // find the correct manure that is stored, using the manure type and species of livestock
         theManure = new manure();
         theManure.SetisSolid(StoresSolid);
         //indicate the type of manure
         theManure.SetspeciesGroup(speciesGroup);
-        FileInformation file = new FileInformation(GlobalVars.Instance.getfertManFilePath());
-        file.setPath("AgroecologicalZone("+GlobalVars.Instance.GetZone().ToString()+").manure");
+        FileInformation manureFile = new FileInformation(GlobalVars.Instance.getfertManFilePath());
+        manureFile.setPath("AgroecologicalZone("+GlobalVars.Instance.GetZone().ToString()+").manure");
         int min = 99; int max = 0;
-        file.getSectionNumber(ref min, ref max);
-  
+        manureFile.getSectionNumber(ref min, ref max);
         bool gotit = false;
         int j = min;
         while ((j <= max) && (gotit == false))
         {
-            if(file.doesIDExist(j))
+            if(manureFile.doesIDExist(j))
             {
-        
-                file.Identity.Add(j);
-                int StoredTypeFile = file.getItemInt("ManureType");
-                int SpeciesGroupFile = file.getItemInt("SpeciesGroup");
-                string manureName = file.getItemString("Name");
+                manureFile.Identity.Add(j);
+                int StoredTypeFile = manureFile.getItemInt("ManureType");
+                int SpeciesGroupFile = manureFile.getItemInt("SpeciesGroup");
+                string manureName = manureFile.getItemString("Name");
                 if (StoredTypeFile == ManureStorageID && SpeciesGroupFile == speciesGroup)
                 {
                     //itemNr = j;
@@ -345,12 +344,12 @@ public class manureStore
                     gotit = true;
                 }
                 j++;
-                file.Identity.RemoveAt(file.Identity.Count-1);
+                manureFile.Identity.RemoveAt(manureFile.Identity.Count-1);
             }
         }
         if (gotit == false)
         {
-            string messageString = "Error - manure type not found for manure storage " + name + " ManureStorageID = " 
+            string messageString = "Error - manure type " + ManureStorageID.ToString() +  "not found for manure storage " + name + " ManureStorageID = " 
                 + ManureStorageID.ToString() + " Species group = " + speciesGroup.ToString();
             GlobalVars.Instance.Error(messageString);
         }

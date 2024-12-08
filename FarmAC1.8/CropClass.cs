@@ -1243,54 +1243,6 @@ public class CropClass
         }
     }
 
-    //public void GetBareSoilResidues(string path, int index, int zoneNr)
-    //{
-    //    FileInformation cropInformation = new FileInformation(GlobalVars.Instance.getFarmFilePath());
-    //    cropInformation.setPath(path + "(" + index + ").Product(-1)");
-    //    cropInformation.Identity.RemoveAt(cropInformation.Identity.Count - 1);
-    //    int minProduct = 99, maxProduct = 0;
-    //    cropInformation.getSectionNumber(ref minProduct, ref maxProduct);
-    //    double isGrazedProduction = 0;
-    //    for (int i = minProduct; i <= maxProduct; i++)
-    //    {
-    //        if (cropInformation.doesIDExist(i) == true)
-    //        {
-    //            cropInformation.Identity.Add(i);
-    //            string cropPath = path + "(" + index + ")" + ".Product";
-    //            GlobalVars.product anExample = new GlobalVars.product();
-    //            feedItem aComposition = new feedItem();
-    //            anExample.composition = aComposition;
-    //            anExample.Harvested = cropInformation.getItemString("Harvested");
-    //            string temp = path + "(" + index + ")" + ".Product" + "(" + i.ToString() + ").Expected_yield(-1)";
-    //            anExample.Expected_yield = cropInformation.getItemDouble("Value", temp);
-    //            if (anExample.composition.GetisGrazed() == true)
-    //            {
-    //                anExample.Grazed_yield = anExample.Expected_yield;
-    //                isGrazedProduction += anExample.Expected_yield;
-    //            }
-    //            if (anExample.Expected_yield > 0)
-    //                theProducts.Add(anExample);
-    //            else
-    //            {
-    //                string messageString = ("Error - grazed yield of grazed residue crop must be greater than zero \n");
-    //                messageString = messageString + ("Crop sequence name = " + cropSequenceName + "\n");
-    //                messageString = messageString + ("Crop sequence number = " + cropSequenceNo + "\n");
-    //                messageString = messageString + ("Crop name = " + name);
-    //                GlobalVars.Instance.Error(messageString);
-    //            }
-    //            cropInformation.PathNames.RemoveAt(cropInformation.PathNames.Count - 1);
-    //            cropInformation.Identity.RemoveAt(cropInformation.Identity.Count - 1);
-    //            cropInformation.Identity.RemoveAt(cropInformation.Identity.Count - 1);
-    //        }
-    //    }
-    //}
-    //public void AddProductsWithResidue(List<GlobalVars.product> list)
-    //{
-    //    for (int i = 0; i < list.Count; i++)
-    //    {
-    //        theProducts.Add(list[i]);
-    //    }
-    //}
     //! Get the crop management parameters
     /*!
       \param path, path for the input file as a string argument.

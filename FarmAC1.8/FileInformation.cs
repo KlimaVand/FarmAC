@@ -471,17 +471,17 @@ public class FileInformation
     {
         /* this code is intended to check whether there are more tags in the alternative file than in the default value and return an error if this is the case
          * If there are fewer entries in the default file then not all the data in the alternative file will be searched. For some reason, this does not work*/
-       /*int altmin = 99, altmax = 0;
+       int altmin = 99, altmax = 0;
         if (treeAlt!=null)
             recursionForSectionNumber(treeAlt.SubNode, ref altmin, ref altmax,0);
-        else*/
+        //else
         recursionForSectionNumber(treeOrg.SubNode, ref min, ref max, 0);
-       /* int altNo = altmax - altmin;
+        int altNo = altmax - altmin;
         int origNo = max - min;
         if (altNo>origNo)
         {
             string message = "";
-        }*/
+        }
     }
 
     //!  searching for the path down the xml-tree and report back how many section there are.
