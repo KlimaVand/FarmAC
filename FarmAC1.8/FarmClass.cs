@@ -75,9 +75,11 @@ public class FarmClass
         //this code checks to make sure that the field areas have not been changed between the Baseline and mitigation scenarios
         if (GlobalVars.Instance.reuseCtoolData != -1)
         {
-            checkSoilTypeAreas();
             if (!GlobalVars.Instance.GetlockSoilTypes())
+            {
                 reworkCtoolDataFromFile();
+                checkSoilTypeAreas();
+            }
         }
         for (int i=0; i<rotationList.Count; i++)
         {
@@ -348,7 +350,7 @@ public class FarmClass
         for (int i = 1; i < tempSoilCTransferData.Count; i++)
         {
             bool dataAdded = false;
-            for (int j = 1; j < GlobalVars.Instance.theSoilCTransferData.Count; j++)
+            for (int j = 0; j < GlobalVars.Instance.theSoilCTransferData.Count; j++)
             {
                 if (tempSoilCTransferData[i].soilType == GlobalVars.Instance.theSoilCTransferData[j].soilType)
                 {
@@ -396,7 +398,7 @@ public class FarmClass
                 if (GlobalVars.Instance.theSoilCTransferData[i].soilType==anArray[j].getSoilType())
                 {
                     if (GlobalVars.Instance.theSoilCTransferData[i].area != anArray[j].getArea())
-                        GlobalVars.Instance.Error("Areas of soil type " + anArray[j].getSoilType().ToString() + "differ in baseline and scenario");
+                        GlobalVars.Instance.Error("Areas of soil type " + anArray[j].getSoilType().ToString() + " differ in baseline and scenario");
                 }   
             }
         }

@@ -2000,10 +2000,6 @@ public class CropClass
                 aManure.SetTAN(0.0);
                 aManure.SetlabileOrganicN(aManure.GetlabileOrganicN() - tmpNH3emission);
             }
-            if (dayNo >= duration)
-            {
-                Console.Write("");;
-            }
             manureTAN[dayNo] += aManure.GetTAN();
             manureFOMCsurface[dayNo] += aManure.GetdegC() + aManure.GetnonDegC();
             manureHUMCsurface[dayNo] += aManure.GethumicC();

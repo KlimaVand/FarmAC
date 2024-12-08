@@ -703,7 +703,7 @@ public class ctool2
         }
         else
         {
-            for (int j = 1; j < GlobalVars.Instance.theSoilCTransferData.Count; j++)
+            for (int j = 0; j < GlobalVars.Instance.theSoilCTransferData.Count; j++)
             {
                 GlobalVars.soilTypeCdata temp = GlobalVars.Instance.theSoilCTransferData[j];
                 if (temp.soilType == soilTypeNo)
