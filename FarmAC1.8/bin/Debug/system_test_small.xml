@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+  <settings>
+    <Identity>0</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\farm_67906_1.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>-1</Adaptation>
+    <Note>One cow only</Note>
+  </settings>
+  <settings>
+    <Identity>1</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\farm_67906_2.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>1</Adaptation>
+    <Note>One cow only</Note>
+  </settings>
+  <CommonSettings>
+    <alternativePath>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\</alternativePath>
+    <verbosityLevel>1</verbosityLevel>
+    <logFile>true</logFile>
+    <logScreen>true</logScreen>
+    <ctoolxls>false</ctoolxls>
+    <Plant>true</Plant>
+    <livestock>true</livestock>
+    <outputxls>true</outputxls>
+    <Debug>true</Debug>
+    <SummaryExcel>true</SummaryExcel>
+  </CommonSettings>
+</xml>

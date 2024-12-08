@@ -1991,7 +1991,7 @@ public class CropClass
                     break;
             }
             manureNH3emission += tmpNH3emission;
-            int dayNo= (int) manureApplied[i].GetRelativeDay(getStartLongTime());
+            int dayNo= (int) manureApplied[i].GetdayOfApplication();
             if (tmpNH3emission <= aManure.GetTAN())
                 aManure.SetTAN(aManure.GetTAN() - tmpNH3emission);
             else //this should rarely happen and only if using Tier 2 for solid manures
@@ -2002,8 +2002,7 @@ public class CropClass
             }
             if (dayNo >= duration)
             {
-                Console.Write("");
-                dayNo = (int)manureApplied[i].GetRelativeDay(getStartLongTime());
+                Console.Write("");;
             }
             manureTAN[dayNo] += aManure.GetTAN();
             manureFOMCsurface[dayNo] += aManure.GetdegC() + aManure.GetnonDegC();

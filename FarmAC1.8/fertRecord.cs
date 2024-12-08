@@ -11,8 +11,8 @@ using System.Xml;
         public double Namount; /*!< Total amount of N applied. */
         public double Camount; /*!< total amount of C applied. */
         public int Month_applied; /*!<Month of the year when the application is made. */
-        public int dayOfApplication; /*!<Day during the duration of the crop that the application is made. */
-        public timeClass applicdate; /*!<calendar date when the application is made. */
+        public int dayOfApplication; /*!<Day when the application is made, where day = 0 at the start of crop. */
+        public timeClass applicdate; /*!<Calendar date when the application is made. */
         public string Applic_techniqueS; /*!<Name of the manure application technique. */
         public int Applic_techniqueI;  /*!<Identification number of the manure application technique. */
         public int ManureStorageID; /*!< Identification number of the manure storage from which the manure originates. */
@@ -119,13 +119,14 @@ using System.Xml;
         {
             monthOfApplication = GetMonth_applied() - cropStartMonth;
         }
-        int dayOfApplication = (int)Math.Round((monthOfApplication-1) * 30.416 + 15);
+        int dayOfApplication = (int)Math.Round((monthOfApplication) * 30.416 + 15);
         int cropStartDay = cropStartDate.GetDay();
         if ((monthOfApplication == 0) && (dayOfApplication < cropStartDay))  //if an application in middle of month would be before the crop has started
             dayOfApplication = cropStartDay;
+        int duration = (int)(cropEndDate.getLongTime() - cropStartDate.getLongTime()); 
+        if (dayOfApplication >= duration)  //If the assumed day of application on the 15th would be after the crop finishes (e.g. short period with bare soil), move the application day to the end of the crop period
+            dayOfApplication = duration - 1;
         SetdayOfApplication(dayOfApplication);  //dayOfApplication counts relative to the first day the crop is established
-        applicdate.SetYear(applicdate.GetYear() - firstYear);
-        int duration = (int)(cropEndDate.getLongTime() - cropStartDate.getLongTime());
         if (GetdayOfApplication() > duration)  //this should not happen
             return false;
         else
@@ -196,17 +197,6 @@ using System.Xml;
           \return a timeClass value for Date.       
         */
         public timeClass GetDate() { return applicdate; }
-        //! A normal member, Get RelativeDay. Taking one argument and Returning a long value.
-        /*!
-         * \param startDay, a long argument that points to timeClass startDate.
-          \return a long value for startDay.       
-        */
-        public int GetRelativeDay(long startDay)//timeClass startDate) 
-        {
-            int retVal = Convert.ToInt32(applicdate.getLongTime() - startDay);// startDate.getLongTime();
-
-            return retVal;
-        }
     }
 
 

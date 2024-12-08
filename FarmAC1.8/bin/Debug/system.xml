@@ -1,99 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xml>
-  <settings1>
-    <Identity>0</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\farm_67906_1.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\output\</outputDir>
-    <pauseBeforeExit>true</pauseBeforeExit>
-    <stopOnError>true</stopOnError>
-    <Adaptation>-1</Adaptation>
-    <Note>Test bare soil</Note>
-  </settings1>
-  <settings1>
-    <Identity>1</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\farm_67906_1.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\output\</outputDir>
-    <pauseBeforeExit>true</pauseBeforeExit>
-    <stopOnError>true</stopOnError>
-    <Adaptation>1</Adaptation>
-    <Note>Test bare soil</Note>
-  </settings1>
-  <settings1>
-    <Identity>2</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\farm_67898_1.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\output\</outputDir>
-    <pauseBeforeExit>true</pauseBeforeExit>
-    <stopOnError>true</stopOnError>
-    <Adaptation>-1</Adaptation>
-    <Note>Test bare soil</Note>
-  </settings1>
-  <settings1>
-    <Identity>3</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\farm_67898_1.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\output\</outputDir>
-    <pauseBeforeExit>true</pauseBeforeExit>
-    <stopOnError>true</stopOnError>
-    <Adaptation>1</Adaptation>
-    <Note>Test bare soil</Note>
-  </settings1>
-  <settings1>
-    <Identity>4</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\farm_67898_2.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\output\</outputDir>
-    <pauseBeforeExit>true</pauseBeforeExit>
-    <stopOnError>true</stopOnError>
-    <Adaptation>1</Adaptation>
-    <Note>Test bare soil</Note>
-  </settings1>
-  <settings1>
-    <Identity>5</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\farm_67898_3.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\output\</outputDir>
-    <pauseBeforeExit>true</pauseBeforeExit>
-    <stopOnError>true</stopOnError>
-    <Adaptation>1</Adaptation>
-    <Note>Test bare soil</Note>
-  </settings1>
   <settings>
-    <Identity>6</Identity>
+    <Identity>0</Identity>
     <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\constants.xml </constants>
     <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\farm_67898_2.xml</farm>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67943\farm_67943_32.xml</farm>
     <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\fertMan.xml</fertAndManure>
     <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67898\output\</outputDir>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67943\output\</outputDir>
     <pauseBeforeExit>true</pauseBeforeExit>
     <stopOnError>true</stopOnError>
     <Adaptation>-1</Adaptation>
     <Note>One cow only</Note>
   </settings>
   <CommonSettings>
-    <alternativePath>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\67906\</alternativePath>
-    <verbosityLevel>5</verbosityLevel>
+    <alternativePath>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\</alternativePath>
+    <verbosityLevel>1</verbosityLevel>
     <logFile>true</logFile>
     <logScreen>true</logScreen>
     <ctoolxls>false</ctoolxls>
@@ -101,5 +23,6 @@
     <livestock>true</livestock>
     <outputxls>true</outputxls>
     <Debug>true</Debug>
+    <SummaryExcel>true</SummaryExcel>
   </CommonSettings>
 </xml>
