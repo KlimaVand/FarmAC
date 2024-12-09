@@ -49,6 +49,30 @@ public class FileInformation
     static List<string> FileName = new List<string>();
     //a list of xml tress that has been read into memery
     static List<Node> AllNodes = new List<Node>();
+
+   private bool IsFilePresent(string fileString)
+    {
+        bool isPresent = false;
+        string directoryName = "";
+        string filename = "";
+        string[] partFileNames = fileString.Split('\\');
+        string[] theFiles = { "" };
+        if (partFileNames.Count() > 1)
+        {
+            for (int i = 0; i < partFileNames.Count() - 1; i++)
+            {
+                directoryName += partFileNames[i] + '\\';
+            }
+            theFiles = Directory.GetFiles(directoryName);
+        }
+        filename = partFileNames[partFileNames.Count()-1];
+        for (int i=0; i<theFiles.Count(); i++)
+        {
+            if (String.Equals(filename, theFiles[i]))
+                isPresent = true;
+        }
+        return isPresent;
+    }
     //!  Read parameter file. 
     /*!
      * Data from files that need to be read frequently are loaded into memory, to save execution time
@@ -90,6 +114,7 @@ public class FileInformation
                     XmlReader data = null;
                     try
                     {
+                    //IsFilePresent(nameOfFile);
                         //check if the file does exist
                         while (!File.Exists(nameOfFile))
                         {
@@ -474,13 +499,13 @@ public class FileInformation
        int altmin = 99, altmax = 0;
         if (treeAlt!=null)
             recursionForSectionNumber(treeAlt.SubNode, ref altmin, ref altmax,0);
-        //else
         recursionForSectionNumber(treeOrg.SubNode, ref min, ref max, 0);
         int altNo = altmax - altmin;
         int origNo = max - min;
         if (altNo>origNo)
         {
-            string message = "";
+            string messageString = "More data in alternative file " + fileNameAlt + " than in default file " + fileNameOrg;
+            GlobalVars.Instance.Error(messageString); 
         }
     }
 
