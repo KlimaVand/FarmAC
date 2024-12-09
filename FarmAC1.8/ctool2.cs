@@ -583,7 +583,7 @@ public class ctool2
         double HUMNInput = HUMC_InputThisCrop / CtoNHUM;  //HUM N can be calculated from HUM C because we use a fixed C:N for HUM
         Nmin = NStart + FOMNInput + HUMNInput - Nend - Nleached;
         // Check that we can close C balances in pools
-        balance = FOMcInput - (FOMcCO2  + GetFOMCStored() + FOMcToHUM);
+        balance = FOMcInput - (FOMcCO2  + GetFOMCStored() + FOMcToHUM); 
         if (Math.Abs(balance) > 0.001)
             Console.WriteLine("Error in FOM balance in ctool2 Dynamics");
         balance = HUMcInput + FOMcToHUM - (HUMcCO2 + GetHUMCStored() + HUMcToROM);

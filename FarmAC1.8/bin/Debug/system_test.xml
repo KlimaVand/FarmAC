@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xml>
   <settings>
-    <Identity>22</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\117051\farm_117051_8.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\117051\output\</outputDir>
+    <Identity>0</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\SAfrica\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\SAfrica\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\SAfrica\812523\farm_812523_22.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\SAfrica\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\SAfrica\812523\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\SAfrica\812523\output\</outputDir>
     <pauseBeforeExit>true</pauseBeforeExit>
     <stopOnError>true</stopOnError>
-    <Adaptation>7</Adaptation>
-    <Note>Senegal intensive with mitigation</Note>
+    <Adaptation>-1</Adaptation>
+    <Note>SAfrica traditional</Note>
   </settings>
   <CommonSettings>
-    <alternativePath>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\</alternativePath>
+    <alternativePath>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\SAfrica\</alternativePath>
     <verbosityLevel>1</verbosityLevel>
     <logFile>true</logFile>
     <logScreen>true</logScreen>

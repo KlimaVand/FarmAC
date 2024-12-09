@@ -101,129 +101,127 @@ public class FileInformation
                 //using the alternative file
                 inUse = true;
                 treeAlt = AllNodes.ElementAt(i);
-            }
-           
+            }           
         }
         //the file is not found. so it is going to be read
         if (inUse == false)
         {
             Node tree = new Node();
-                string itemName = "ino";
+            string itemName = "ino";
+            try
+            {
+                XmlReader data = null;
                 try
                 {
-                    XmlReader data = null;
-                    try
+                //IsFilePresent(nameOfFile);
+                    //check if the file does exist
+                    while (!File.Exists(nameOfFile))
                     {
-                    //IsFilePresent(nameOfFile);
-                        //check if the file does exist
-                        while (!File.Exists(nameOfFile))
+    #if printDiagnostics
+                        Console.WriteLine("Looking for " + nameOfFile);
+    #endif
+                    //file does not exist. Checking if the file is in the directorym above.
+                    string[] path = nameOfFile.Split('\\');
+                    //at the top directoy so file is not found
+                    if (path.Count() == 1 || (path.Count() == 2 && path[0][1] == ':'))
+                    {
+                        if (!nameOfFile.Contains("Alternative"))
                         {
-#if printDiagnostics
-                            Console.WriteLine("Looking for " + nameOfFile);
-#endif
-                        //file does not exist. Checking if the file is in the directorym above.
-                        string[] path = nameOfFile.Split('\\');
-                        //at the top directoy so file is not found
-                        if (path.Count() == 1 || (path.Count() == 2 && path[0][1] == ':'))
-                        {
-                            if (!nameOfFile.Contains("Alternative"))
-                            {
-                                GlobalVars.Instance.log("Could not find " + nameOfFile, 4);
-                                GlobalVars.Instance.Error(nameOfFile + " not found", "in FileInformation(string nameOfFile)", true);
-                            }
-                            break;
+                            GlobalVars.Instance.log("Could not find " + nameOfFile, 4);
+                            GlobalVars.Instance.Error(nameOfFile + " not found", "in FileInformation(string nameOfFile)", true);
                         }
-                            nameOfFile = "";
-                            //creating new path for checking the file. The dir is the parent dir
-                            for (int i = 0; i < path.Count() - 2; i++)
-                            {
-                                nameOfFile += path[i] + '\\';
-                            }
-                            nameOfFile += path[path.Count() - 1];
-
-                        }
-
-                        file = nameOfFile;
-                        //reading file - if the file does not exist, the program jumps to the catch statement
-                        data = XmlReader.Create(nameOfFile);
-#if printDiagnostics
-                        Console.WriteLine("Found " + nameOfFile + " in " + Directory.GetCurrentDirectory().ToString());
-#endif
-                        if (nameOfFile.Contains("Alternative"))
-                        {
-                            UsingAlternative = true;
-                            GlobalVars.Instance.log("Using " + nameOfFile,4);
-                        }
-
-                        string[] partFileNames = nameOfFile.Split('\\');
-                        //saving file name so we dont read it again.
-                        FileName.Add(partFileNames[partFileNames.Count() - 1]);
+                        break;
                     }
-                    catch
-                    {
-                        //if the generic file (eg non-alternative) is not found then we throw an error
-                        if (!nameOfFile.Contains("Alternative.xml"))
+                        nameOfFile = "";
+                        //creating new path for checking the file. The dir is the parent dir
+                        for (int i = 0; i < path.Count() - 2; i++)
                         {
-                            GlobalVars.Instance.Error(nameOfFile + " not found", "in FileInformation(string nameOfFile)", false);
-                            throw new System.Exception("farm Fail");
+                            nameOfFile += path[i] + '\\';
                         }
-#if printDiagnostics
-                        else
-                        Console.WriteLine("Not found " + nameOfFile);
-#endif
+                        nameOfFile += path[path.Count() - 1];
                     }
-                    if (data != null)
+
+                    file = nameOfFile;
+                    //reading file - if the file does not exist, the program jumps to the catch statement
+                    data = XmlReader.Create(nameOfFile);
+    #if printDiagnostics
+                    Console.WriteLine("Found " + nameOfFile + " in " + Directory.GetCurrentDirectory().ToString());
+    #endif
+                    if (nameOfFile.Contains("Alternative"))
                     {
-                        //start reading through the xml-tree
-                        while (data.Read())
+                        UsingAlternative = true;
+                        GlobalVars.Instance.log("Using " + nameOfFile,4);
+                    }
+
+                    string[] partFileNames = nameOfFile.Split('\\');
+                    //saving file name so we dont read it again.
+                    FileName.Add(partFileNames[partFileNames.Count() - 1]);
+                }
+                catch
+                {
+                    //if the generic file (eg non-alternative) is not found then we throw an error
+                    if (!nameOfFile.Contains("Alternative.xml"))
+                    {
+                        GlobalVars.Instance.Error(nameOfFile + " not found", "in FileInformation(string nameOfFile)", false);
+                        throw new System.Exception("farm Fail");
+                    }
+    #if printDiagnostics
+                    else
+                    Console.WriteLine("Not found " + nameOfFile);
+    #endif
+                }
+                if (data != null)
+                {
+                    //start reading through the xml-tree
+                    while (data.Read())
+                    {
+                        if (data.NodeType == XmlNodeType.Element)
                         {
-                            if (data.NodeType == XmlNodeType.Element)
+                            XElement el = XNode.ReadFrom(data) as XElement;
+                            IEnumerable<XElement> node = el.Elements();
+                            //running through each sub-trees from the top node
+                            for (int i = 0; i < node.Count(); i++)
                             {
-                                XElement el = XNode.ReadFrom(data) as XElement;
-                                IEnumerable<XElement> node = el.Elements();
-                                //running through each sub-trees from the top node
-                                for (int i = 0; i < node.Count(); i++)
-                                {
-                                    IEnumerable<XElement> ting = node.ElementAt(i).Elements();
-                                    //creating a new node with value and name
-                                    Node newNode = new Node();
-                                    newNode.setNodeValue(node.ElementAt(i).Value);
-                                    newNode.setNodeName(node.ElementAt(i).Name.ToString());
-                                    //reading the nodes children
-                                    recursionRead(ting, ref newNode);
-                                    //adding the new node to the tree
-                                    tree.addChild(newNode);
-                                }
+                                IEnumerable<XElement> ting = node.ElementAt(i).Elements();
+                                //creating a new node with value and name
+                                Node newNode = new Node();
+                                newNode.setNodeValue(node.ElementAt(i).Value);
+                                newNode.setNodeName(node.ElementAt(i).Name.ToString());
+                                //reading the nodes children
+                                recursionRead(ting, ref newNode);
+                                //adding the new node to the tree
+                                tree.addChild(newNode);
                             }
                         }
-                        data.Close();
-                        //file name saved
-                        tree.FileName = file;
-                        //saving the xml-tree
-                        AllNodes.Add(tree);
+                    }
+                    data.Close();
+                    //file name saved
+                    tree.FileName = file;
+                    //saving the xml-tree
+                    AllNodes.Add(tree);
                 }
             }
-                catch (Exception e)
-                {
-                    if (nameOfFile != null)
-                        if (!nameOfFile.Contains("Alternative.xml"))
+            catch (Exception e)
+            {
+                if (nameOfFile != null)
+                    if (!nameOfFile.Contains("Alternative.xml"))
+                    {
+                        GlobalVars.Instance.log(e.ToString(), 5);
+                        if (e.Message.CompareTo("farm Fail") != 0)
                         {
-                            GlobalVars.Instance.log(e.ToString(), 5);
-                            if (e.Message.CompareTo("farm Fail") != 0)
+                            string messageString = ("problem with reading: " + nameOfFile + " because of " + e.ToString()) + "\r\n";
+                            messageString += ("model terminated") + "\r\n";
+                            messageString += ("the path is: ");
+                            for (int i = 0; i < PathNames.Count; i++)
                             {
-                                string messageString = ("problem with reading: " + nameOfFile + " because of " + e.ToString()) + "\r\n";
-                                messageString += ("model terminated") + "\r\n";
-                                messageString += ("the path is: ");
-                                for (int i = 0; i < PathNames.Count; i++)
-                                {
-                                    messageString += (PathNames[i] + "(" + Identity[i].ToString() + ")");
-                                }
-                                GlobalVars.Instance.Error(messageString, e.StackTrace, true);
+                                messageString += (PathNames[i] + "(" + Identity[i].ToString() + ")");
                             }
-                            else
-                                throw new System.Exception("farm Fail");
+                            GlobalVars.Instance.Error(messageString, e.StackTrace, true);
                         }
-                }
+                        else
+                            throw new System.Exception("farm Fail");
+                    }
+            }
         }
     }
     //! A constructor with one argument.
