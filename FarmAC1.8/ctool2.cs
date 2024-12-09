@@ -582,8 +582,6 @@ public class ctool2
         double Nend = GetNStored();  //total N stored in the soil at the end of the period (kg/ha)
         double HUMNInput = HUMC_InputThisCrop / CtoNHUM;  //HUM N can be calculated from HUM C because we use a fixed C:N for HUM
         Nmin = NStart + FOMNInput + HUMNInput - Nend - Nleached;
-        if (Nmin < 0.0)
-            Console.WriteLine();
         // Check that we can close C balances in pools
         balance = FOMcInput - (FOMcCO2  + GetFOMCStored() + FOMcToHUM);
         if (Math.Abs(balance) > 0.001)

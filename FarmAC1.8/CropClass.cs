@@ -2237,7 +2237,18 @@ public class CropClass
         mineralNFromLastCrop = surplusMineralN;
         soilNMineralisation = thesoilNMineralisation;
         if (soilNMineralisation < 0)
-            Console.WriteLine();
+        {
+            if ((soilNMineralisation + mineralNFromLastCrop) > 0)
+            {
+                mineralNFromLastCrop += soilNMineralisation;
+                soilNMineralisation = 0.0;
+            }
+            else
+            {
+                string errorMsg = "Soil mineralisation has gone negative in crop " + Getname() + " in crop sequence " + cropSequenceNo.ToString();
+                GlobalVars.Instance.Error(errorMsg);
+            }
+        }
         double manureOrgN = GetmanureOrgN();
         double totmanureTAN = GetmanureTAN();
         double soilNSupply = mineralNFromLastCrop + soilNMineralisation;
@@ -2544,10 +2555,8 @@ public class CropClass
                 GlobalVars.Instance.Error(errorMsg);
             }
         }
-        //Console.WriteLine(" init start yr " + GetStartYear().ToString() + " init end " + GetEndYear().ToString());
         SetStartYear(GetStartYear() - firstYear);
         SetEndYear(GetEndYear() - firstYear);
-        //Console.WriteLine(" fin start yr " + GetStartYear().ToString() + " fin end " + GetEndYear().ToString());
     }
     //!  Check Crop C Balance. 
     /*!
@@ -3164,7 +3173,6 @@ public class CropClass
             }
             else
                 rainfreeDays++;
-            //            Console.WriteLine(" k " + k + " precip " + precipitation[k].ToString("F3"));
             temptemperature[daycount] = GlobalVars.Instance.theZoneData.airTemp[realTime.GetMonth() - 1];
             tempTsum[daycount] = GlobalVars.Instance.theZoneData.GetTemperatureSum(temptemperature[daycount], baseTemperature);
             //Console.WriteLine(name + " month " + realTime.GetMonth().ToString() + " day " + daycount.ToString() + " ppt " + tempprecipitation[daycount].ToString("0.00")
@@ -3273,7 +3281,10 @@ public class CropClass
             nitrateLeaching += NleachingToday;
             modelledCropNuptake += NuptakeToday;
             if (NuptakeToday < 0)
-                Console.WriteLine();
+            {
+                string errorMsg = "N uptake is negative for crop " + Getname() + " in crop sequence " + cropSequenceNo.ToString();
+                GlobalVars.Instance.Error(errorMsg);
+            }
             if (((maxDailyCropNuptake - NuptakeToday) > 0) && (NfixationFactor > 0))
             {
                 fixationToday = GetNfixation(maxDailyCropNuptake - NuptakeToday) * (1 - droughtFactorPlant[i]);
@@ -3302,7 +3313,10 @@ public class CropClass
                 mineralNavailable += manureTAN[i] - (N2ON + N2N);
             }
             if (N2ON < 0.0)
-                Console.WriteLine();
+            {
+                string errorMsg = "N2O has gone negative in crop " + Getname() + " in crop sequence no" + cropSequenceNo.ToString();
+                GlobalVars.Instance.Error(errorMsg);
+            }
         }
         if (modelledCropNuptake > maxCropNuptake)
         {

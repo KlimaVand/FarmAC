@@ -338,6 +338,19 @@
     <Adaptation>-1</Adaptation>
     <Note>Senegal intensive</Note>
   </settings>
+  <settings>
+    <Identity>25</Identity>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\117051\farm_117051_8.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\Senegal\117051\output\</outputDir>
+    <pauseBeforeExit>true</pauseBeforeExit>
+    <stopOnError>true</stopOnError>
+    <Adaptation>7</Adaptation>
+    <Note>Senegal intensive with mitigation</Note>
+  </settings>
   <CommonSettings>
     <alternativePath>c:\Users\au224222\Dropbox\FarmAC\FarmAC\TestFiles\NJH\</alternativePath>
     <verbosityLevel>1</verbosityLevel>

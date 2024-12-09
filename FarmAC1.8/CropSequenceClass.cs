@@ -1742,9 +1742,6 @@ public class CropSequenceClass
                 //Run the soil C and N model
                 RunCropCTool(GlobalVars.Instance.Writectoolxls, false, i, Temperature, theCrops[i].GetdroughtFactorSoil(), 0, ref CropCinputToSoil, ref CropNinputToSoil, ref ManCinputToSoil, ref ManNinputToSoil,
                     ref CropsoilCO2_CEmission, ref CropCleached, ref mineralisedN);
-                // for debugging
-                //if (mineralisedN < 0)
-                //    Console.Write("");
                 double relGrowth = 0;
                 //calculate the amount of N available to the crop and the resulting crop growth
                 theCrops[i].CalcAvailableNandGrowth(ref surplusMineralN, mineralisedN, ref relGrowth);

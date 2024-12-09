@@ -357,7 +357,6 @@ namespace AnimalChange
                                                 aFarm.SetupRotation(farmInformation, newPath, zoneNr, farmNr, ScenarioNr, FarmType);
                                                 aFarm.SetupLivestockAndManure(farmInformation, zoneNr, farmNr, newPath, ScenarioNr);
                                                 GlobalVars.Instance.theManureExchange = new GlobalVars.theManureExchangeClass();
-                                                //GlobalVars.Instance.setRunFullModel(false);
                                                 if (!GlobalVars.Instance.getRunFullModel()) //only called when only the livestock excretion is needed
                                                 {
                                                     GlobalVars.Instance.CalcAllFeedAndProductsPotential(aFarm.GetRotationList());
@@ -389,8 +388,6 @@ namespace AnimalChange
                                 GlobalVars.Instance.Error(e.Message, e.StackTrace, true);
                             }
                         }
-                        //GlobalVars.Instance.theZoneData.CloseDebugFile();
-                        //GlobalVars.Instance.CloseLogFile();
                         GlobalVars.Instance.CloseAllFiles();
                         GlobalVars.Instance.CloseLogFile();  //close log file 
                     }

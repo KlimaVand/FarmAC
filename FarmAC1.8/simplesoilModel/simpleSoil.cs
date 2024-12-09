@@ -354,8 +354,6 @@ namespace simplesoilModel
             //now calculate transpiration
             rel_droughtPlant = 1.0;
             transpire = 0.0;
-            //if (croppotEvapGreen == 0)
-              //  Console.WriteLine("");
             if (totalLAI > 0)
             {
                 if (theRooting.getvolume() >= breakpoint * theRooting.getmaxVolume())    //if the water available in the rooting zone is sufficient to allow transpiration to proceed at the maximum rate
