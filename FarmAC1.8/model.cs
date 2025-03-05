@@ -1,5 +1,5 @@
 ﻿//#define LocalServer
-#define test_runs
+//#define test_runs
 using System;
 using System.Collections.Generic;
 using System.Linq;

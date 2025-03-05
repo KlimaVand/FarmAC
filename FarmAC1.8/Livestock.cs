@@ -79,6 +79,8 @@ public class livestock
     bool isRuminant;
     //! true if this is a milk-producing animal
     bool isDairy;
+    //! true if the animal is pregnant
+    bool isPregnant = false;
     //true if the production (meat or milk) is an input
     bool inputProduction;
     //! Annual average number of animals
@@ -97,10 +99,14 @@ public class livestock
     private string parens; /*!<! a string containing information about the farm and scenario number.*/
     //! Unique ID for animal species (= 1 for cattle, = 2 for pigs)
     int speciesGroup;
+    //! 1 for female, 2 for whole male, 3 for castrate)
+    int Sex;
     //Subcategory of a species (e.g. dairy, beef)
     int LivestockType;
     //!Average live weight (kg)
-    double liveweight; 
+    double liveweight;
+    //!Mature live weight (kg)
+    double MatureLiveweight;
     //! Initial weight (kg)
     double startWeight;
     //! Final weight (kg)
@@ -131,6 +137,8 @@ public class livestock
     double maintenanceEnergyCoeff;
     //! Coefficient of growth energy demand equation
     double growthEnergyDemandCoeff;
+    //intake coefficient for IPCC 2019
+    double Cf_i = 0;
     //! Multiplier to increase (>1) or decrease (<1) the energy requirement per unit of milk produced
     double milkAdjustmentCoeff;
     //! Proportion of livestock that dies and does not contribute to production
@@ -382,7 +390,22 @@ public class livestock
             basePath = "AgroecologicalZone(" + zoneNr.ToString() + ").Livestock(" + Convert.ToInt32(livestockID) + ")";
             //paramFile.setPath(basePath + ".SpeciesGroup(0)");
             //speciesGroup = paramFile.getItemInt("Value");
-            paramFile.setPath(basePath + ".efficiencyProteinMilk(0)");
+            switch (GlobalVars.Instance.getcurrentEnergySystem())
+            {
+                case 1:
+                    paramFile.setPath(basePath + ".Cf_i(0)");
+                    Cf_i = paramFile.getItemDouble("Value", true, ".Cf_i(0)");
+                    paramFile.setPath(basePath + ".Sex(0)");
+                    Sex = paramFile.getItemInt("Value");
+                    paramFile.setPath(basePath + ".isPregnant(0)");
+                    isPregnant = paramFile.getItemBool("Value");
+                    paramFile.setPath(basePath + ".MatureLiveweight(0)");
+                    MatureLiveweight = paramFile.getItemDouble("Value");
+                      break;
+                default:
+                    break;
+            }
+                    paramFile.setPath(basePath + ".efficiencyProteinMilk(0)");
             efficiencyProteinMilk = paramFile.getItemDouble("Value");
             
             paramFile.setPath(basePath + ".isRuminant(0)");
@@ -414,12 +437,15 @@ public class livestock
             mortalityCoefficient = paramFile.getItemDouble("Value");
             entericYm = paramFile.getItemDouble("Value", basePath + ".entericYm(-1)");
             Bo = paramFile.getItemDouble("Value", basePath + ".Bo(-1)");
-            if (isRuminant)
+            if (isDairy)
             {
                 paramFile.setPath(basePath + ".milkNconc(0)");
                 milkNconc = paramFile.getItemDouble("Value");
                 paramFile.setPath(basePath + ".milkCconc(0)");
                 milkCconc = paramFile.getItemDouble("Value");
+            }
+            if (isRuminant)
+            {
                 paramFile.setPath(basePath + ".nitrateEfficiency(0)");
                 nitrateEfficiency = paramFile.getItemDouble("Value");
                 //nitrateEfficiency
@@ -552,6 +578,11 @@ public class livestock
         switch (GlobalVars.Instance.getcurrentEnergySystem())
         {
             case 1:
+                if (isDairy)
+                    maintenanceEnergy = maintenanceEnergyCoeff * (1.2 * Cf_i * Math.Pow(liveweight, 0.75));
+                else
+                    maintenanceEnergy = maintenanceEnergyCoeff * (Cf_i * Math.Pow(liveweight, 0.75));
+                break;
             case 2: //Use simplified CSIRO method
                 if (speciesGroup == 1)  //cattle
                 {
@@ -583,26 +614,49 @@ public class livestock
     double dailyGrowthEnergyPerkg() //MJ per kg
     {
         double growthEnergyPerkg = 0;
-        switch (GlobalVars.Instance.getcurrentEnergySystem())
+        if (GlobalVars.Instance.getcurrentEnergySystem() == 1)
         {
-            case 1:
-            case 2://use CSIRO method
-               if (speciesGroup == 1)
+            //IPCC 2019
+            if (speciesGroup == 1)
+                switch (Sex)
                 {
-                    double efficiencyGrowth = 0.042 * energyIntake / DMintake + 0.006;//CSIRO 2007 1.36,
-                    growthEnergyPerkg = growthEnergyDemandCoeff / efficiencyGrowth;
-                    //growthEnergyPerkg =(6.7 - 1.0*energyLevel)-(20.3-1.0*energyLevel))/(1+Math.Exp(-6.0*))
+                    case 1:
+                        growthEnergyPerkg = 22.02 * Math.Pow(liveweight / (0.8 * MatureLiveweight), 0.75) * Math.Pow(1, 1.097);
+                        break;
+                    case 2:
+                        growthEnergyPerkg = 22.02 * Math.Pow(liveweight / (1.2 * MatureLiveweight), 0.75) * Math.Pow(1, 1.097);
+                        break;
+                    case 3:
+                        growthEnergyPerkg = 22.02 * Math.Pow(liveweight / MatureLiveweight, 0.75) * Math.Pow(1, 1.097);
+                        break;
                 }
-                if (speciesGroup == 2)
-                    growthEnergyPerkg = 24.0; // 47.0;
-                break;
-            //case 3: IPCC 2019
-
-            default:
-                string messageString=("Energy system for livestock not found");
-                GlobalVars.Instance.Error(messageString);
-                break;
-
+        }
+        if (speciesGroup == 2)
+        {
+            switch (Sex)  //Note that liveweight is used here is the average weight during the growth period of the group
+            {
+                case 1:
+                    growthEnergyPerkg = (2.1 + 0.45 * liveweight) / 365;
+                    break;
+                case 2:
+                    growthEnergyPerkg = (2.5 + 0.35 * liveweight) / 365;
+                    break;
+                case 3:
+                    growthEnergyPerkg = (4.4 + 0.32 * liveweight) / 365;
+                    break;
+            }
+        }
+    
+        if (GlobalVars.Instance.getcurrentEnergySystem() == 2)
+            //use CSIRO method
+        {
+            if (speciesGroup == 1)
+            {
+                double efficiencyGrowth = 0.042 * energyIntake / DMintake + 0.006;//CSIRO 2007 1.36,
+                growthEnergyPerkg = growthEnergyDemandCoeff / efficiencyGrowth;
+            }
+            if (speciesGroup == 2)
+                growthEnergyPerkg = 24.0; // 47.0;
         }
         return growthEnergyPerkg;
     }
@@ -614,17 +668,24 @@ public class livestock
     {
         double milkEnergyPerkg = 0;
         double milkEnergyContentPerkg=0;
-        switch (speciesGroup)  //Use CSIRO method
+        if (GlobalVars.Instance.getcurrentEnergySystem() == 2)
         {
-            case 1: milkEnergyContentPerkg = GlobalVars.Instance.GetECM(1, milkFat/10, milkNconc * 6.38 * 100) * 3.054;//Australian standards state 3.054 MJ/kg ECM
-                break;
-            case 2: break;
-            case 3: milkEnergyContentPerkg = 0.0328 * milkFat + 0.0025 * 42 /*assume 6 weeks for day of lactation*/ + 2.203;
-                break;
+            switch (speciesGroup)  //Use CSIRO method
+            {
+                case 1:
+                    milkEnergyContentPerkg = GlobalVars.Instance.GetECM(1, milkFat / 10, milkNconc * 6.38 * 100) * 3.054;//Australian standards state 3.054 MJ/kg ECM
+                    break;
+                case 2: break;
+                case 3:
+                    milkEnergyContentPerkg = 0.0328 * milkFat + 0.0025 * 42 /*assume 6 weeks for day of lactation*/ + 2.203;
+                    break;
+            }
         }
         switch (GlobalVars.Instance.getcurrentEnergySystem())
         {
             case 1:
+                milkEnergyPerkg = 1.47 * 0.4 * milkFat;
+                break;
             //Use CSIRO method
             case 2: double efficiencyMilk = (0.02 * energyIntake / DMintake + 0.4);//SCA 1990 1.48
                 milkEnergyPerkg = milkAdjustmentCoeff * milkEnergyContentPerkg / efficiencyMilk; // milkAdjustmentCoeff is  Multiplier to increase (>1) or decrease (<1) the energy requirement per unit of milk produced

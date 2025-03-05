@@ -390,9 +390,9 @@ public class FileInformation
       \param stopOnError if true, the program will stop if there is an error. Set false for optional variables.
       \return the parameter as an integer.
     */
-    public int getItemInt(string itemName, bool stopOnError = true)
+    public int getItemInt(string itemName, bool stopOnError = true, string detail ="")
     {
-        string output=getItemString(itemName, stopOnError);
+        string output=getItemString(itemName, stopOnError, detail);
         if (output.CompareTo("nothing") != 0)
             return Convert.ToInt32(output);
         else return -1;
@@ -404,9 +404,9 @@ public class FileInformation
       \param stopOnError if true, the program will stop if there is an error. Set false for optional variables.
       \return the parameter as a dpuble.
     */
-    public double getItemDouble(string itemName, bool stopOnError = true)
+    public double getItemDouble(string itemName, bool stopOnError = true, string detail = "")
     {
-        string stuff = getItemString(itemName, stopOnError);
+        string stuff = getItemString(itemName, stopOnError, detail);
         if (stuff.Contains(","))
         {
 
@@ -423,10 +423,10 @@ public class FileInformation
       \param stopOnError if true, the program will stop if there is an error. Set false for optional variables.
       \return the parameter as a boolean.
     */
-    public bool getItemBool(string itemName, bool stopOnError = true, bool defaultValue = false)
+    public bool getItemBool(string itemName, bool stopOnError = true, bool defaultValue = false, string detail = "")
     {
         bool ret_val = defaultValue;
-        string stuff = getItemString(itemName, stopOnError);
+        string stuff = getItemString(itemName, stopOnError, detail);
         if (stuff.CompareTo("nothing") != 0)
             ret_val=Convert.ToBoolean(stuff);
         return ret_val;
@@ -439,10 +439,10 @@ public class FileInformation
       \param stopOnError if true, the program will stop if there is an error. Set false for optional variables.
       \return the parameter as an integer value.
     */
-    public int getItemInt(string itemName, string path, bool stopOnError = true)
+    public int getItemInt(string itemName, string path, bool stopOnError = true, string detail = "")
     {
         setPath(path);
-        return Convert.ToInt32(getItemString(itemName, stopOnError));
+        return Convert.ToInt32(getItemString(itemName, stopOnError, detail));
     }
 
     //!  Finds the itemName in xml in the xml file at path and returning it as a double. Taking three arguments.
@@ -452,10 +452,10 @@ public class FileInformation
       \param stopOnError if true, the program will stop if there is an error. Set false for optional variables.
       \return the parameter as a double value.
     */
-    public double getItemDouble(string itemName, string path, bool stopOnError = true)
+    public double getItemDouble(string itemName, string path, bool stopOnError = true, string detail = "")
     {
         setPath(path);
-        return Convert.ToDouble(getItemString(itemName, stopOnError));
+        return Convert.ToDouble(getItemString(itemName, stopOnError,detail));
     }
     //!  Finds the itemName in xml in the xml file at path and returning it as a boolean. Taking three arguments.
     /*!
@@ -464,10 +464,10 @@ public class FileInformation
       \param stopOnError if true, the program will stop if there is an error. Set false for optional variables.
       \return the parameter as a boolean.
     */
-    public bool getItemBool(string itemName, string path, bool stopOnError=true)
+    public bool getItemBool(string itemName, string path, bool stopOnError=true, string detail = "")
     {
         setPath(path);
-        string stuff = getItemString(itemName,stopOnError);
+        string stuff = getItemString(itemName,stopOnError,detail);
         return Convert.ToBoolean(stuff);
     }
     //Finds the itemName in xml in the xml file at path and returning it as a string.
@@ -478,10 +478,10 @@ public class FileInformation
       \param stopOnError if true, the program will stop if there is an error. Set false for optional variables.
       \return the parameter as string
     */
-    public string getItemString(string itemName, string path, bool stopOnError=true)
+    public string getItemString(string itemName, string path, bool stopOnError=true, string detail = "")
     {
         setPath(path);
-        return getItemString(itemName,stopOnError);
+        return getItemString(itemName,stopOnError,detail);
     }
    
     //!  Get the minimum and maximum number of tags in a section.  Note that the section numbers do not need to be continuous
@@ -560,7 +560,7 @@ public class FileInformation
       \param stopOnError if true, the program will stop if there is an error. Set false for optional variables.
       \return the variable as a string value.
     */
-    public string getItemString(string itemName, bool stopOnError=true)
+    public string getItemString(string itemName, bool stopOnError=true, string detail = "")
     {
         string info = "nothing";
         //seaching in the alternative file if it is present
@@ -572,7 +572,7 @@ public class FileInformation
                 {
                     //child found. Seaching through its kids 
                     if (treeAlt.SubNode[i].SubNode.ElementAt(0).getNodeValue() == Identity[0].ToString() || Identity[0] == -1)
-                        info = recursionForItem(treeAlt.SubNode[i].SubNode, itemName, 0, false);
+                        info = recursionForItem(treeAlt.SubNode[i].SubNode, itemName, 0, false, detail);
                 }
         }
         bool found=false;
@@ -590,7 +590,7 @@ public class FileInformation
             {
 
                 if (treeOrg.SubNode[i].SubNode.ElementAt(0).getNodeValue() == Identity[0].ToString() || Identity[0] == -1)
-                    info = recursionForItem(treeOrg.SubNode[i].SubNode, itemName, 0, stopOnError);
+                    info = recursionForItem(treeOrg.SubNode[i].SubNode, itemName, 0, stopOnError, detail);
             }
         }
         if (found==false)
@@ -600,6 +600,8 @@ public class FileInformation
         if (stopOnError == true && info.CompareTo("nothing")==0)
         {
             string messageString = ("could not find " + itemName) + "\n";
+            if (detail.Length > 0)
+                messageString += detail + "\n";
             messageString += ("model terminated") + "\n";
             messageString += ("the path is: ");
             for (int i = 0; i < PathNames.Count; i++)
@@ -623,7 +625,7 @@ public class FileInformation
       \param stopOnError if true, the program will stop if there is an error. Set false for optional variables.
       \return variable as a string value.
     */
-    public string recursionForItem(List<Node> node, string itemName, int iteration, bool stopOnError    )
+    public string recursionForItem(List<Node> node, string itemName, int iteration, bool stopOnError, string detail = "")
     {
         //running through all notes 
         for (int i = 0; i < node.Count(); i++)
@@ -664,7 +666,7 @@ public class FileInformation
                                     if (ting.ElementAt(0).getNodeValue() == Identity[iteration + 1].ToString() || Identity[iteration + 1] == -1)
                                     {
                                         //returning the result from that subtree 
-                                        return recursionForItem(ting, itemName, iteration + 1, stopOnError);
+                                        return recursionForItem(ting, itemName, iteration + 1, stopOnError, detail);
                                     }
                                 }
 
@@ -677,15 +679,17 @@ public class FileInformation
         //if item is not found and if it is critical that we find it then we are throwing an error 
         if (stopOnError)
         {
-            string messageString = ("could not find " + itemName) + "\n";
-            messageString += ("model terminated") + "\n";
-            messageString += ("the path is: ");
+            string messageString = ("could not find " + itemName);
+            if (detail.Length>0)
+                messageString += " for parameter " + detail + "\n";
+            messageString += (" model terminated") + "\n";
+            messageString += (" the path is: ");
             for (int i = 0; i < PathNames.Count; i++)
             {
                 messageString += (PathNames[i] + "(" + Identity[i].ToString() + ")");
             }
 
-            messageString += ("the file name is " + fileNameOrg);
+            messageString += (" the file name is " + fileNameOrg);
             GlobalVars.Instance.Error(messageString);
         }
         return "nothing";
