@@ -2626,7 +2626,7 @@ public class GlobalVars
      \return a tabFile. 
    */
     public System.IO.StreamWriter GetTabFileWriter() { return tabFile; }
-    //! A normol member. erroMsg contains the description of the error, stackTrace contains the details of the calls to the stack, if stopOnException is true, the program will exit
+    //! Used to handle errors. Parameter errorMsg contains the description of the error, stackTrace contains the details of the calls to the stack, if stopOnException is true, the program will exit
     //! use stopOnException = false when running more than one farm or scenario and you wish to continue to the next farm or scenario, when an error occurs
     /*!
      \param erroMsg, a string argument.

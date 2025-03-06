@@ -151,25 +151,25 @@ public class livestock
     double nitrateEfficiency;
     //! Proportion of excreta that is deposited in the fields
     double propExcretaField =-1.0; 
-    //! Energy intake (MJ/year)
+    //! Energy intake (MJ ME/year)
     double energyIntake; 
-    //! Total demand for energy (MJ/year)
+    //! Total demand for energy (MJ ME/year)
     double energyDemand;
-    //! Maintenance energy (MJ/yr)
+    //! Maintenance energy (MJ ME/yr)
     double energyUseForMaintenance;
-    //! Growth energy (MJ/yr)
+    //! Growth energy (MJ ME/yr)
     double energyUseForGrowth;
-    //! Milk energy (MJ/yr)
+    //! Milk energy (MJ ME/yr)
     double energyUseForMilk;
-    //! Energy used for grazing (MJ/yr)
+    //! Energy used for grazing (MJ ME/yr)
     double energyUseForGrazing;
-    //! Energy remobilized from body reserves (MJ/yr)
+    //! Energy remobilized from body reserves (MJ ME/yr)
     double energyFromRemobilisation;
-    //! Deficit of energy required for maintenance (MJ/yr)
+    //! Deficit of energy required for maintenance (MJ ME/yr)
     double maintenanceEnergyDeficit;
-    //! Deficit of energy required for growth (MJ/yr)
+    //! Deficit of energy required for growth (MJ ME/yr)
     double growthEnergyDeficit;
-    //! Energy supplied in concentrate feed (MJ/yr)
+    //! Energy supplied in concentrate feed (MJ ME/yr)
     double concentrateEnergy;
     //! Limit on N use efficiency when production is an input (exceedance will generate an error)
     double maxNuseEfficiency; 
@@ -570,23 +570,20 @@ public class livestock
 
     //! Calculate daily maintenance energy of ruminants.
     /*!
-     \return the maintenance energy (MJ per day) as a double value.
+     \return the maintenance energy (MJ ME per day) as a double value.
     */
-    double dailymaintenanceEnergy() //MJ per animal
+    double dailymaintenanceEnergy() //MJ ME per animal
     {
         double maintenanceEnergy = 0;
+        double efficiencyMaintenance = 0.02 * energyIntake / DMintake + 0.5;
         switch (GlobalVars.Instance.getcurrentEnergySystem())
         {
             case 1:
-                if (isDairy)
-                    maintenanceEnergy = maintenanceEnergyCoeff * (1.2 * Cf_i * Math.Pow(liveweight, 0.75));
-                else
-                    maintenanceEnergy = maintenanceEnergyCoeff * (Cf_i * Math.Pow(liveweight, 0.75));
+                    maintenanceEnergy = Cf_i * Math.Pow(liveweight, 0.75)/efficiencyMaintenance;
                 break;
             case 2: //Use simplified CSIRO method
                 if (speciesGroup == 1)  //cattle
                 {
-                    double efficiencyMaintenance = 0.02 * energyIntake / DMintake + 0.5;
                     double dailyEnergyIntake = energyIntake / GlobalVars.avgNumberOfDays;
                     //CSIRO (1990) eq 1.20, minus EGRAZE and ECOLD
                     if (age < 6.0)
@@ -610,14 +607,16 @@ public class livestock
         }
         return maintenanceEnergy;
     }
-    //! Returns the concentration of energy in growth of ruminants (MJ/kg weight gain)
-    double dailyGrowthEnergyPerkg() //MJ per kg
+    //! Returns the concentration of energy in growth of ruminants (MJ ME/kg weight gain)
+    double dailyGrowthEnergyPerkg() //MJ ME per kg
     {
         double growthEnergyPerkg = 0;
+        double efficiencyGrowth = 0.042 * energyIntake / DMintake + 0.006;//CSIRO 2007 1.36,
         if (GlobalVars.Instance.getcurrentEnergySystem() == 1)
         {
             //IPCC 2019
             if (speciesGroup == 1)
+            {
                 switch (Sex)
                 {
                     case 1:
@@ -630,29 +629,29 @@ public class livestock
                         growthEnergyPerkg = 22.02 * Math.Pow(liveweight / MatureLiveweight, 0.75) * Math.Pow(1, 1.097);
                         break;
                 }
-        }
-        if (speciesGroup == 2)
-        {
-            switch (Sex)  //Note that liveweight is used here is the average weight during the growth period of the group
-            {
-                case 1:
-                    growthEnergyPerkg = (2.1 + 0.45 * liveweight) / 365;
-                    break;
-                case 2:
-                    growthEnergyPerkg = (2.5 + 0.35 * liveweight) / 365;
-                    break;
-                case 3:
-                    growthEnergyPerkg = (4.4 + 0.32 * liveweight) / 365;
-                    break;
             }
-        }
-    
+            if (speciesGroup == 2)
+            {
+                switch (Sex)  //Note that liveweight is used here is the average weight during the growth period of the group
+                {
+                    case 1:
+                        growthEnergyPerkg = (2.1 + 0.45 * liveweight) / 365;
+                        break;
+                    case 2:
+                        growthEnergyPerkg = (2.5 + 0.35 * liveweight) / 365;
+                        break;
+                    case 3:
+                        growthEnergyPerkg = (4.4 + 0.32 * liveweight) / 365;
+                        break;
+                }
+            }
+            growthEnergyPerkg/=efficiencyGrowth;
+        }    
         if (GlobalVars.Instance.getcurrentEnergySystem() == 2)
             //use CSIRO method
         {
             if (speciesGroup == 1)
             {
-                double efficiencyGrowth = 0.042 * energyIntake / DMintake + 0.006;//CSIRO 2007 1.36,
                 growthEnergyPerkg = growthEnergyDemandCoeff / efficiencyGrowth;
             }
             if (speciesGroup == 2)
@@ -660,20 +659,21 @@ public class livestock
         }
         return growthEnergyPerkg;
     }
-    //! Return energy concentration in milk (MJ/kg)
+    //! Return energy concentration in milk (MJ ME/kg)
     /*!
-     \returns energy concentration in milk (MJ/kg) as a double value.
+     \returns energy concentration in milk (MJ ME/kg) as a double value.
     */
-    double dailyMilkEnergyPerkg()//MJ per kg
+    double dailyMilkEnergyPerkg()//MJ ME per kg
     {
         double milkEnergyPerkg = 0;
         double milkEnergyContentPerkg=0;
+        double efficiencyMilk = (0.02 * energyIntake / DMintake + 0.4);//SCA 1990 1.48
         if (GlobalVars.Instance.getcurrentEnergySystem() == 2)
         {
             switch (speciesGroup)  //Use CSIRO method
             {
                 case 1:
-                    milkEnergyContentPerkg = GlobalVars.Instance.GetECM(1, milkFat / 10, milkNconc * 6.38 * 100) * 3.054;//Australian standards state 3.054 MJ/kg ECM
+                    milkEnergyContentPerkg = GlobalVars.Instance.GetECM(1, milkFat / 10, milkNconc * 6.38 * 100) * 3.054;//Australian standards state 3.054 MJ ME/kg ECM
                     break;
                 case 2: break;
                 case 3:
@@ -684,10 +684,10 @@ public class livestock
         switch (GlobalVars.Instance.getcurrentEnergySystem())
         {
             case 1:
-                milkEnergyPerkg = 1.47 * 0.4 * milkFat;
+                milkEnergyPerkg = (1.47 * 0.4 * milkFat/10.0)/ efficiencyMilk; //milk fat is input as g/kg, IPCC require %
                 break;
             //Use CSIRO method
-            case 2: double efficiencyMilk = (0.02 * energyIntake / DMintake + 0.4);//SCA 1990 1.48
+            case 2: 
                 milkEnergyPerkg = milkAdjustmentCoeff * milkEnergyContentPerkg / efficiencyMilk; // milkAdjustmentCoeff is  Multiplier to increase (>1) or decrease (<1) the energy requirement per unit of milk produced
                 break;
             default: 
@@ -697,7 +697,7 @@ public class livestock
         }
         return milkEnergyPerkg;
     }
-    //! Returns energy remobilised for a given weight loss (MJ/kg)
+    //! Returns energy remobilised for a given weight loss (MJ ME/kg)
     /*!
      \param weightloss weight lost (kg), a double
     */
@@ -861,27 +861,27 @@ public class livestock
         double proteinRemobilisation = weightLoss * growthNconc * 6.25;
         return proteinRemobilisation;
     }
-    //! Returns maintenance energy per year (MJ).
+    //! Returns maintenance energy per year (MJ ME).
     /*!
-     \return maintenance energy (MJ) per year as a double value.
+     \return maintenance energy (MJ ME) per year as a double value.
     */
     public double GetmaintenanceEnergy()//MJ ME per year
     {
         double maintenanceEnergy = dailymaintenanceEnergy() * GlobalVars.avgNumberOfDays;
         return maintenanceEnergy;
     }
-    //! Returns grouwth energy per year (MJ).
+    //! Returns grouwth energy per year (MJ ME).
     /*!
-     \return grouwth energy per year (MJ) as a double value.
+     \return grouwth energy per year (MJ ME) as a double value.
     */
     public double GetGrowthEnergy()//MJ ME per year
     {
         double growthEnergy = avgProductionMeat * dailyGrowthEnergyPerkg() * GlobalVars.avgNumberOfDays;
         return growthEnergy;
     }
-    //! Returns milk energy per year (MJ).
+    //! Returns milk energy per year (MJ ME).
     /*!
-     \return milk energy per year (MJ) as a double value.
+     \return milk energy per year (MJ ME) as a double value.
     */
     public double GetMilkEnergy()//MJ ME per year
     {
@@ -906,7 +906,7 @@ public class livestock
         return growthProtein;
     }
     //! Calculates the animal's annual energy demand.
-    public void CalcEnergyDemand()//MJ per year
+    public void CalcEnergyDemand()//MJ ME per year
     {
         calcEnergyLevel();
         energyDemand = GetmaintenanceEnergy() + GetGrowthEnergy() + GetMilkEnergy();
@@ -929,7 +929,7 @@ public class livestock
         growthEnergyDeficit = 0;
         double proteinFromRemobilisation = 0;
         calcEnergyLevel();
-        double MEAvail = 0.81* energyIntake;///energyIntake is in MJ per animal per year,
+        double MEAvail = 0.81* energyIntake;///energyIntake is in MJ ME per animal per year,
         double proteinSupply = Nintake * 6.25;
         double faecalProtein = dailyFaecalProtein() * GlobalVars.avgNumberOfDays/1000.0; //kg per year
         faecalN = faecalProtein / 6.25;
