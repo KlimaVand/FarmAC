@@ -2,12 +2,12 @@
 <xml>
   <settings>
     <Identity>0</Identity>
-    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\78986\constants.xml </constants>
-    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\78986\parameters.xml</parameters>
-    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\78986\farm_78986_39.xml</farm>
-    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\78986\fertMan.xml</fertAndManure>
-    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\78986\feedstuff.xml</feedItems>
-    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\DK\78986\output\</outputDir>
+    <constants>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\117052\constants.xml </constants>
+    <parameters>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\117052\parameters.xml</parameters>
+    <farm>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\117052\farm_117052_5.xml</farm>
+    <fertAndManure>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\117052\fertMan.xml</fertAndManure>
+    <feedItems>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\117052\feedstuff.xml</feedItems>
+    <outputDir>c:\Users\au224222\Dropbox\FarmAC\FarmAC\Senegal\117052\output\</outputDir>
     <pauseBeforeExit>true</pauseBeforeExit>
     <stopOnError>true</stopOnError>
     <Adaptation>-1</Adaptation>

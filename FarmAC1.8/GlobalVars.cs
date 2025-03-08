@@ -973,7 +973,7 @@ public class GlobalVars
                 airtemperatureAmplitude = AEZParamFile.getItemDouble("Value");
             }
             AEZParamFile.setPath(basePath + ".GrazingMidpoint(-1)");
-            grazingMidpoint = AEZParamFile.getItemInt("Value");
+            grazingMidpoint = AEZParamFile.getItemInt("Value"); 
             AEZParamFile.setPath(basePath + ".UrineNH3EF(-1)");
             urineNH3EmissionFactor = AEZParamFile.getItemDouble("Value");
             AEZParamFile.setPath(basePath + ".Manure(-1).EFN2O(-1)");
